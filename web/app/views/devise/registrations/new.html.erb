@@ -11,11 +11,21 @@
 
   <div><%= f.label :password_confirmation %><br />
 
-    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+   <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
+ <div>
+  <%= f.label :nombre %><br />
+  <%= f.text_field :nombre, :autofocus => true %>
+  </div>
 
+  <div>
+  <%= f.label :ciudad %><br />
+  <%= f.text_field :ciudad, :autofocus => true %>
+  </div>
 
-     <div><%= f.label :nombre %><br />
-
+  <div>
+  <%= f.label :region %><br />
+  <%= f.text_field :region, :autofocus => true %>
+  </div>
 
   <div><%= f.submit "Sign up" %></div>
 <% end %>
