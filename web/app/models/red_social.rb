@@ -1,0 +1,3 @@
+class RedSocial < ActiveRecord::Base
+  belongs_to :user
+end

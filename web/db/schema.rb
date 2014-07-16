@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140716001020) do
+ActiveRecord::Schema.define(version: 20140716004311) do
 
   create_table "eventos", force: true do |t|
     t.string   "nombre"
@@ -23,9 +23,42 @@ ActiveRecord::Schema.define(version: 20140716001020) do
     t.datetime "updated_at"
   end
 
+  create_table "oferta", force: true do |t|
+    t.string   "nombre"
+    t.string   "desc"
+    t.integer  "porcentaje"
+    t.boolean  "cantidad"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "pasajes", force: true do |t|
+    t.integer  "user_evento_id"
+    t.integer  "oferta_id"
+    t.integer  "precio"
+    t.integer  "cantidad"
+    t.string   "codigo"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "pasajes", ["oferta_id"], name: "index_pasajes_on_oferta_id"
+  add_index "pasajes", ["user_evento_id"], name: "index_pasajes_on_user_evento_id"
+
+  create_table "red_socials", force: true do |t|
+    t.integer  "tipo"
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "red_socials", ["user_id"], name: "index_red_socials_on_user_id"
+
   create_table "user_eventos", id: false, force: true do |t|
     t.integer "user_id"
-    t.integer "evento_id"
+    t.integer "part_id"
   end
 
   create_table "users", force: true do |t|

@@ -9,5 +9,7 @@ class User < ActiveRecord::Base
   validates :region, presence: true
 
 
-  has_and_belongs_to_many :eventos
+  has_many :user_eventos
+  has_many :eventos , through: :user_eventos
+  has_many :pasajes , through: :user_eventos
 end
