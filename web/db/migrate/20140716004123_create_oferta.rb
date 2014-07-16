@@ -7,6 +7,6 @@ class CreateOferta < ActiveRecord::Migration
       t.boolean :mod_cantidad
 
       t.timestamps
-    end
+    end     
   end
 end

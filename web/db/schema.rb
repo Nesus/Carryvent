@@ -45,7 +45,7 @@ ActiveRecord::Schema.define(version: 20140716032004) do
   add_index "pasajes", ["oferta_id"], name: "index_pasajes_on_oferta_id"
   add_index "pasajes", ["user_evento_id"], name: "index_pasajes_on_user_evento_id"
 
-  create_table "publicacion_caropools", force: true do |t|
+  create_table "publicacion_carpools", force: true do |t|
     t.integer  "user_evento_id"
     t.date     "fecha"
     t.text     "descripcion"

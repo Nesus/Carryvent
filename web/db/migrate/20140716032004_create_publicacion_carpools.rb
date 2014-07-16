@@ -1,6 +1,6 @@
-class CreatePublicacionCaropools < ActiveRecord::Migration
+class CreatePublicacionCarpools < ActiveRecord::Migration
   def change
-    create_table :publicacion_caropools do |t|
+    create_table :publicacion_carpools do |t|
       t.belongs_to :user_evento
       t.date :fecha
       t.text :descripcion

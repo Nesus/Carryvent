@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PublicacionCaropoolTest < ActiveSupport::TestCase
+class PublicacionCarpoolTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
