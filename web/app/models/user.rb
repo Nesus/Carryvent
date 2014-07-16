@@ -7,4 +7,7 @@ class User < ActiveRecord::Base
   validates :nombre, presence: true
   validates :ciudad, presence: true
   validates :region, presence: true
+
+
+  has_and_belongs_to_many :eventos
 end
