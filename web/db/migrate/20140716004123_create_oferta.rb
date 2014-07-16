@@ -4,7 +4,7 @@ class CreateOferta < ActiveRecord::Migration
       t.string :nombre
       t.string :desc
       t.integer :porcentaje
-      t.boolean :cantidad
+      t.boolean :mod_cantidad
 
       t.timestamps
     end

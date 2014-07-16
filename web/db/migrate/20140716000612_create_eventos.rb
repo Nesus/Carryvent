@@ -3,8 +3,8 @@ class CreateEventos < ActiveRecord::Migration
     create_table :eventos do |t|
       t.string :nombre
       t.string :desc
-      t.date :fechaInicio
-      t.date :fechaTermino
+      t.date :fecha_inicio
+      t.date :fecha_termino
       t.string :imagen
 
       t.timestamps
