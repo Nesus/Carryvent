@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
   validates :ciudad, presence: true
   validates :region, presence: true
 
-
+  has_many :red_socials
   has_many :user_eventos
   has_many :eventos , through: :user_eventos
   has_many :pasajes , through: :user_eventos

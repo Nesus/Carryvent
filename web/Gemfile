@@ -41,3 +41,8 @@ gem 'spring',        group: :development
 gem 'omniauth'
 
 gem 'devise'
+
+group :development, :test do
+    gem 'railroady'
+    gem 'rails-erd'
+end
