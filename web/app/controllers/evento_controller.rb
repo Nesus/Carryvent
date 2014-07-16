@@ -1,0 +1,2 @@
+class EventoController < ApplicationController
+end
