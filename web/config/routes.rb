@@ -1,5 +1,50 @@
 Rails.application.routes.draw do
-  devise_for :users
+  #devise_for :users
+  #resources :user
+  #resources :carpool
+  #resources :evento
+  #resources :authenticate
+
+  devise_for :users, :skip => [:sessions, :passwords, :confirmations, :registrations]
+  as :user do
+    #Registro
+    get   '/registrarse' => 'devise/registrations#new',    :as => :new_user_registration
+    post  '/registrarse' => 'devise/registrations#create', :as => :user_registration
+
+    #Login
+    get 'login' => 'devise/sessions#new', :as => :new_user_session
+    post 'login' => 'devise/sessions#create', :as => :user_session
+    match 'logout' => 'devise/sessions#destroy', :as => :destroy_user_session,
+      :via => Devise.mappings[:user].sign_out_via
+
+    scope '/account' do
+      # password reset
+      get   '/resetpassword'        => 'devise/passwords#new',    :as => :new_user_password
+      put   '/resetpassword'        => 'devise/passwords#update', :as => :user_password
+      post  '/resetpassword'        => 'devise/passwords#create'
+      get   '/resetpassword/change' => 'devise/passwords#edit',   :as => :edit_user_password
+
+      # confirmation
+      get   '/confirm'        => 'devise/confirmations#show',   :as => :user_confirmation
+      post  '/confirm'        => 'devise/confirmations#create'
+      get   '/confirm/resend' => 'devise/confirmations#new',    :as => :new_usern_confirmation
+
+      # settings & cancellation
+      get '/cancel'   => 'devise/registrations#cancel', :as => :cancel_user_registration
+      get '/settings' => 'devise/registrations#edit',   :as => :edit_user_registration
+      put '/settings' => 'devise/registrations#update'
+
+      # account deletion
+      delete '' => 'devise/registrations#destroy'
+    end
+
+
+    ## Mas rutas http://iampedantic.com/post/41170460234/fully-customizing-devise-routes
+  end
+
+
+  root 'user#index'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
