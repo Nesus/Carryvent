@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  #devise_for :publicadors
   #devise_for :users
   #resources :user
   #resources :carpool
@@ -37,11 +38,16 @@ Rails.application.routes.draw do
       # account deletion
       delete '' => 'devise/registrations#destroy'
     end
-
-
     ## Mas rutas http://iampedantic.com/post/41170460234/fully-customizing-devise-routes
   end
 
+  devise_for :publicadors, :skip => [:sessions, :passwords, :confirmations, :registrations]
+  as :publicador do
+    get 'cv-login' => 'devise/sessions#new', :as => :new_publicador_session
+    post 'cv-login' => 'devise/sessions#create', :as => :publicador_session
+    match 'cv-logout' => 'devise/sessions#destroy', :as => :destroy_publicador_session,
+      :via => Devise.mappings[:publicador].sign_out_via
+  end
 
   root 'user#index'
 

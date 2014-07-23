@@ -19,6 +19,20 @@
   <div><%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "off" %></div>
 
+  <% if resource_name =! :user%>
+    <p><%= f.label :username %><br />
+    <%= f.text_field :username %></p>
+<% else %>
+    <p><%= f.label :nombre %><br />
+    <%= f.text_field :nombre %></p>
+
+    <p><%= f.label :ciudad %><br />
+    <%= f.text_field :ciudad %></p>
+
+    <p><%= f.label :region %><br />
+    <%= f.text_field :region %></p>
+
+<% end %>
   <div><%= f.submit "Update" %></div>
 <% end %>
 

@@ -1,8 +1,14 @@
 <h2>Sign in</h2>
-
+<%= session[:flash]%>
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div><%= f.label :email %><br />
-  <%= f.email_field :email, autofocus: true %></div>
+  <% if resource_name != :user %>
+  <p><%= f.label :username %><br />
+  	 <%= f.text_field :username %></p>
+
+  <% else %>
+  <p><%= f.label :email %><br />
+  	 <%= f.text_field :email %></p>
+  <% end %>
 
   <div><%= f.label :password %><br />
     <%= f.password_field :password, autocomplete: "off" %></div>

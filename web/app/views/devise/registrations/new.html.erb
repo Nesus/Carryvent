@@ -10,23 +10,22 @@
     <%= f.password_field :password, autocomplete: "off" %></div>
 
   <div><%= f.label :password_confirmation %><br />
+    <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
 
-   <%= f.password_field :password_confirmation, autocomplete: "off" %></div>
- <div>
-  <%= f.label :nombre %><br />
-  <%= f.text_field :nombre, :autofocus => true %>
-  </div>
+<% if resource_name =! :user%>
+    <p><%= f.label :username %><br />
+   	<%= f.text_field :username %></p>
+<% else %>
+    <p><%= f.label :nombre %><br />
+    <%= f.text_field :nombre %></p>
 
-  <div>
-  <%= f.label :ciudad %><br />
-  <%= f.text_field :ciudad, :autofocus => true %>
-  </div>
+    <p><%= f.label :ciudad %><br />
+    <%= f.text_field :ciudad %></p>
 
-  <div>
-  <%= f.label :region %><br />
-  <%= f.text_field :region, :autofocus => true %>
-  </div>
+    <p><%= f.label :region %><br />
+    <%= f.text_field :region %></p>
 
+<% end %>
   <div><%= f.submit "Sign up" %></div>
 <% end %>
 
