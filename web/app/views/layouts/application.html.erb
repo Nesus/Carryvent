@@ -12,6 +12,7 @@
   <li><%= link_to "Home", "/" %></li>
   <% if user_signed_in? %>
     <li><%= link_to "Eventos", lista_eventos_user_path %></li>
+    <li><%= link_to current_user.nombre , perfil_user_path(current_user)%></li>
     <li> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
   <% elsif publicador_signed_in? %>
     <li> <%= link_to "Publicar Evento", publicar_evento_path %></li>
