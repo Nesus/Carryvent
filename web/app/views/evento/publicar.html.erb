@@ -26,11 +26,11 @@ Publicar Evento
   </div>
   <div class="field">
     <%= f.label :fecha_inicio %><br>
-    <%= f.text_field :fecha_inicio %>
+    <%= f.date_select :fecha_inicio %>
   </div>
   <div class="field">
     <%= f.label :fecha_termino %><br>
-    <%= f.text_field :fecha_termino %>
+    <%= f.date_select :fecha_termino, min: :fecha_inicio %>
   </div>
   <div class="field">
     <%= f.label :imagen %><br>

@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get '/editar/:id' => 'evento#editar', as: :editar_evento
   get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
 
-  get '/:id' => 'user#perfil', as: :perfil_user
+  get '/user/:id' => 'user#perfil', as: :perfil_user
 
   devise_for :users, :skip => [:sessions, :passwords, :confirmations, :registrations]
   as :user do
