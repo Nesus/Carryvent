@@ -14,8 +14,8 @@
     <li><%= link_to "Eventos", lista_eventos_user_path %></li>
     <li> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
   <% elsif publicador_signed_in? %>
-    <li> <%= link_to "Publicar Evento", "/" %></li>
-    <li><%= link_to "Administrar Eventos", "/" %></li></li> 
+    <li> <%= link_to "Publicar Evento", publicar_evento_path %></li>
+    <li><%= link_to "Administrar Eventos", lista_eventos_publicador_path %></li></li> 
     <li><%= link_to "Logout", destroy_publicador_session_path, :method => :delete %></li>
   <% else %>
     <li><%= link_to "Login", new_user_session_path %></li>

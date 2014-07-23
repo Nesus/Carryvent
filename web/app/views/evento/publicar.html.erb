@@ -1,1 +1,43 @@
-publicar
+Publicar Evento
+<%= form_for @evento, url: eventos_path  do |f| %>
+
+    <% if @evento.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@evento.errors.count, "error") %> prohibited
+        this article from being saved:
+      </h2>
+      <ul>
+        <% @evento.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :nombre %><br>
+    <%= f.text_field :nombre %>
+  </div>
+  <div class="field">
+    <%= f.label :desc %><br>
+    <%= f.text_area :desc %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_inicio %><br>
+    <%= f.text_field :fecha_inicio %>
+  </div>
+  <div class="field">
+    <%= f.label :fecha_termino %><br>
+    <%= f.text_field :fecha_termino %>
+  </div>
+  <div class="field">
+    <%= f.label :imagen %><br>
+    <%= f.text_field :imagen %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

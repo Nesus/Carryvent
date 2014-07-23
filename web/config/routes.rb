@@ -7,8 +7,11 @@ Rails.application.routes.draw do
 
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
   get '/publicar' => 'evento#publicar', as: :publicar_evento
-  post '/publicar' => 'evento#new', as: :new_publicar_evento
-  get '/editar' => 'evento#editar', as: :editar_evento
+  post '/publicar' => 'evento#new', as: :eventos
+  get '/editar/:id' => 'evento#editar', as: :editar_evento
+  get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
+
+  get '/:id' => 'user#perfil', as: :perfil_user
 
   devise_for :users, :skip => [:sessions, :passwords, :confirmations, :registrations]
   as :user do

@@ -1,1 +1,11 @@
-Eventos
+Eventos <br>
+<% @eventos.each do |evento| %>
+	<strong>Titulo</strong>
+		<%= evento.nombre %>
+	</p>
+	<p>
+	<strong>Descripcion</strong>
+		<%= evento.desc %>
+	</p>
+
+<% end %>
