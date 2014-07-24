@@ -38,9 +38,12 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 gem 'devise'
+
+gem 'carrierwave'
 
 group :development, :test do
     gem 'railroady'

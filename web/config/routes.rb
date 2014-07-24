@@ -1,19 +1,19 @@
 Rails.application.routes.draw do
-  #devise_for :publicadors
-  #devise_for :users
-  #resources :user
-  #resources :carpool
-  #resources :authenticate
 
+  #Rutas de eventos
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
   get '/publicar' => 'evento#publicar', as: :publicar_evento
   post '/publicar' => 'evento#new', as: :eventos
   get '/editar/:id' => 'evento#editar', as: :editar_evento
   get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
 
+  #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
 
-  devise_for :users, :skip => [:sessions, :passwords, :confirmations, :registrations]
+#  match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+
+  #Rutas para sobre escribir las rutas de devise
+  devise_for :users,  :controllers => { omniauth_callbacks: 'omniauth_callbacks' }, :skip => [:sessions, :passwords, :confirmations, :registrations]
   as :user do
     #Registro
     get   '/registrarse' => 'devise/registrations#new',    :as => :new_user_registration
@@ -48,6 +48,7 @@ Rails.application.routes.draw do
     ## Mas rutas http://iampedantic.com/post/41170460234/fully-customizing-devise-routes
   end
 
+  #Lo mismo de lo anterior pero para publicadores
   devise_for :publicadors, :skip => [:sessions, :passwords, :confirmations, :registrations]
   as :publicador do
     get 'cv-login' => 'devise/sessions#new', :as => :new_publicador_session

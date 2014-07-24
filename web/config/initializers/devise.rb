@@ -11,10 +11,11 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
   
-  #config.reset_password_keys = [ :username ]
-  #config.confirmation_keys = [ :username ]
+
   config.authentication_keys = [ :username ]
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
+  config.omniauth :facebook, "749613061749643", "0be6ad6222895c2f46749e82deed11d8"
+  #config.omniauth :twitter, "KEY", "SECRET"
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
