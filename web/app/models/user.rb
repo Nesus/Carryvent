@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
 
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
-
+    print auth
     # Get the identity and user if they exist
     identity = RedSocial.find_for_oauth(auth)
 
@@ -51,8 +51,8 @@ class User < ActiveRecord::Base
           #username: auth.info.nickname || auth.uid,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20],
-          foto: auth.info.image
-
+          foto: auth.info.image,
+          ciudad: auth.info.location
         )
         user.save!
       end

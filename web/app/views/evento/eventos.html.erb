@@ -10,6 +10,8 @@
             <!-- Creando las ventanitas de evento -->
             <% @eventos.each do |evento| %>
                 <div class="col-lg-4 col-sm-6 text-center">
+                    <!-- Hipervinculo en la imagen, si no hay dejamos un placeholder-->
+                    <!-- Editar el placeholder para version final -->
                     <a href="<%= mostrar_evento_path(evento) %>">
 
                     <img class="img-square img-responsive img-center" src="
