@@ -1,11 +1,46 @@
-Eventos <br>
-<% @eventos.each do |evento| %>
-	<strong>Titulo</strong>
-		<%= evento.nombre %>
-	</p>
-	<p>
-	<strong>Descripcion</strong>
-		<%= evento.desc %>
-	</p>
+    <!-- Page Content -->
+    <div class="container">
 
-<% end %>
+        <!-- Eventos -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="page-header">Eventos</h2>
+            </div>
+
+            <% @eventos.each do |evento| %>
+                <div class="col-lg-4 col-sm-6 text-center">
+                    <img class="img-square img-responsive img-center" src="
+                        <% if evento.imagen.present? %>
+                            <%= evento.imagen %>
+                        <% else %>
+                            http://placehold.it/200x200
+                        <% end %> 
+                   " alt="">
+                    <h3><%= evento.nombre %> </h3>
+                    <p> <%= evento.desc %> </p>
+                </div>
+            <% end %>
+            </div>
+        </div>
+
+        <hr class="container">
+
+        <!-- Footer -->
+        <footer class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Carryvent 2014</p>
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
