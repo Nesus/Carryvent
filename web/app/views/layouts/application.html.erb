@@ -14,6 +14,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= csrf_meta_tags %>
 
+
+    <style type="text/css">
+    .img-circle{
+        width: 30px;
+        height: 30px;
+    }
+    </style>
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -42,10 +49,10 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                   <li><%= link_to "Home", "/" %></li>
+
                   <% if user_signed_in? %>
+
                     <li><%= link_to "Eventos", lista_eventos_user_path %></li>
-                    <li><%= link_to current_user.nombre , perfil_user_path(current_user)%></li>
-                    <li> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
                   <% elsif publicador_signed_in? %>
                     <li> <%= link_to "Publicar Evento", publicar_evento_path %></li>
                     <li><%= link_to "Administrar Eventos", lista_eventos_publicador_path %></li></li> 
@@ -54,6 +61,26 @@
                     <li><%= link_to "Login", new_user_session_path %></li>
                   <% end %>
                 </ul>
+
+                <% if user_signed_in? %>
+                 <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"> 
+                        <% if current_user.foto.present? %>
+                        <img src="<%=current_user.foto %>", class ="img-circle">
+                        <% end %>
+
+                        <%=current_user.nombre%><b class="caret"></b></a>
+
+                        <ul class="dropdown-menu">
+                            <li><%= link_to  "Perfil", perfil_user_path(current_user)%></li>
+                            <li class="divider"></li>
+                            <li> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+                        </ul>
+                    </li>
+                </ul>
+                <% end %>
+
             </div>
             <!-- /.navbar-collapse -->
         </div>
