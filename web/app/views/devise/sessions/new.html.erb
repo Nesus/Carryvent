@@ -33,10 +33,22 @@
       </div>
         </div>
           </div>
+
         <% if resource_name == :user %>
-         <%= link_to "Registrarse", new_registration_path(resource_name), :class => "text-center new-account" %>
-        <i class="icon-facebook"></i><%=link_to "Ingresar con Facebook" ,omniauth_authorize_path(resource_name, :facebook) %> <br>
-        <i class="icon-facebook"></i><%=link_to "Ingresar con Twitter" , omniauth_authorize_path(resource_name, :twitter) %> <br>
+         <%= link_to "Registrarse", new_registration_path(resource_name), :class => "text-center new-account" %> 
+
+          <div class="col-lg-3", style="float:none;margin:0 auto;">
+            <a class="btn btn-block btn-social btn-facebook", href="<%= omniauth_authorize_path(resource_name, :facebook)%>">
+            <i class="fa fa-facebook"></i> Ingresar con Facebook
+          </a>
+
+          <a class="btn btn-block btn-social btn-twitter", href="<%= omniauth_authorize_path(resource_name, :twitter)%>">
+            <i class="fa fa-twitter"></i> Ingresar con Twitter
+          </a>
+         </div>
+
+
+
          <% end %>
           <!--<%= render "devise/shared/links" %>-->
     </div>
