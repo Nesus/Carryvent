@@ -7,8 +7,11 @@
                 <h2 class="page-header">Eventos</h2>
             </div>
 
+            <!-- Creando las ventanitas de evento -->
             <% @eventos.each do |evento| %>
                 <div class="col-lg-4 col-sm-6 text-center">
+                    <a href="<%= mostrar_evento_path(evento) %>">
+
                     <img class="img-square img-responsive img-center" src="
                         <% if evento.imagen.present? %>
                             <%= evento.imagen %>
@@ -16,6 +19,7 @@
                             http://placehold.it/200x200
                         <% end %> 
                    " alt="">
+                    </a>
                     <h3><%= evento.nombre %> </h3>
                     <p> <%= evento.desc %> </p>
                 </div>

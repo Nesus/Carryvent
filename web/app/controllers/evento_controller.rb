@@ -1,6 +1,6 @@
 class EventoController < ApplicationController
 	before_filter :authenticate_user!, :except => [:publicar, :editar, :eventos_publicador, :new]
-	before_filter :authenticate_publicador!, :except => [:eventos]  
+	before_filter :authenticate_publicador!, :except => [:eventos, :show]  
 
 	def eventos
 		@eventos = Evento.all
@@ -24,6 +24,11 @@ class EventoController < ApplicationController
 		end
 
 	end
+
+	def show
+		@evento = Evento.find(params[:id])
+	end
+
 
 	def editar
 		@evento = Evento.find(params[:id])

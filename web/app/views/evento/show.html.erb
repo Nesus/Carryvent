@@ -1,0 +1,17 @@
+<h1>Mostrando evento</h1>
+
+<h2>Nombre</h2>
+<%= @evento.nombre %> 
+<br>
+<h2>Desc</h2>
+<%= @evento.desc %>
+<br>
+<h2>Fecha inicio </h2>	
+<%= @evento.fecha_inicio %>
+<br>
+<h2>Fecha Termino 	</h2>
+<%= @evento.fecha_termino %>
+<br>
+<% if current_user.present? %>
+	<%= link_to "Publicar Carpool", "#" %>
+<% end %>
