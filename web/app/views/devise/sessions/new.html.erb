@@ -33,11 +33,10 @@
       </div>
         </div>
           </div>
-
-
         <% if resource_name == :user %>
+         <%= link_to "Registrarse", new_registration_path(resource_name), :class => "text-center new-account" %>
         <i class="icon-facebook"></i><%=link_to "Ingresar con Facebook" ,omniauth_authorize_path(resource_name, :facebook) %> <br>
-        <i class="icon-facebook"></i><%=link_to "Ingresar con Twitter" , omniauth_authorize_path(resource_name, :facebook) %> <br>
+        <i class="icon-facebook"></i><%=link_to "Ingresar con Twitter" , omniauth_authorize_path(resource_name, :twitter) %> <br>
          <% end %>
           <!--<%= render "devise/shared/links" %>-->
     </div>
