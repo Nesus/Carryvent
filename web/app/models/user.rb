@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
   validates :nombre, presence: true
   #validates :ciudad, presence: true
 
+  #has_many :comment
   has_many :red_socials
   has_many :user_eventos
   has_many :eventos , through: :user_eventos

@@ -66,6 +66,9 @@ Rails.application.routes.draw do
       :via => Devise.mappings[:publicador].sign_out_via
   end
 
+  #comentarios
+  resources :comments, :only =>[:create, :destroy]
+
   root 'user#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

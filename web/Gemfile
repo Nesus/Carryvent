@@ -45,6 +45,8 @@ gem 'devise'
 
 gem 'carrierwave'
 
+gem 'acts_as_commentable_with_threading'
+
 group :development, :test do
     gem 'railroady'
     gem 'rails-erd'
