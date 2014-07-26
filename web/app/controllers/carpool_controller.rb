@@ -32,9 +32,6 @@ class CarpoolController < ApplicationController
 
 	end
 
-	def carpools
-		@publicacionCarpools = PublicacionCarpool.all
-	end
 
 	def comentarios
 		@comments = @publicacioncarpool.comment_threads.order('created_at desc')

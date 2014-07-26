@@ -16,4 +16,12 @@
 	<%= link_to "Publicar Carpool", publicar_carpool_path(@evento) %>
 <% end %>
 
-<% render '/carpool/carpools' %>
+<% if !@publicacionCarpools.nil? %>
+	<h1>Carpools</h1>
+
+		<% @publicacionCarpools.each do |pub| %>
+		<%= pub.fecha %> <br>
+		<%= pub.descripcion %> <br>
+
+		<% end %>
+<% end %>

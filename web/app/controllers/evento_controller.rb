@@ -27,6 +27,7 @@ class EventoController < ApplicationController
 
 	def show
 		@evento = Evento.find(params[:id])
+		@userEventos = PublicacionCarpool.joins(:user_eventos).where(:user_id => current_user.id , :evento_id => params[:id])
 	end
 
 
