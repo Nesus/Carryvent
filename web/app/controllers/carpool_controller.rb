@@ -10,32 +10,31 @@ class CarpoolController < ApplicationController
 	end
 
 	def new
-		print "Buscando userEvento"
-		userEvento = UserEvento.where(["user_id = :value1 AND evento_id = :value2", {:value1 => current_user.id, :value2 => params[:evento_id]}])
-		if userEvento.nil?
-			print "Entró"
-			userEvento = UserEvento.create!(:user_id => current_user.id , :evento_id => params[:evento_id])
+		userEvento = current_user.user_eventos.new(:evento_id => params[:evento_id])
+		if userEvento.save
+		
+		#falta limitar 1 publicacion por usuario
+			publicacionCarpool = PublicacionCarpool.new(carpool_params.merge(:user_evento_id => userEvento.id))
+			if publicacionCarpool.save
+				redirect_to mostrar_carpool_path(params[:evento_id],publicacionCarpool)
+			else
+				redirect_to publicar_carpool_path(params[:evento_id])
+			end
+		else
+			print userEvento.errors.full_messages
 		end
-		#publicacionCarpool = userEvento.publicacion_carpools.new(carpool_params)
-		#if publicacionCarpool.save
-		#	redirect_to mostrar_carpool_path(params[:evento_id],publicacionCarpool)
-		#else
-			redirect_to publicar_carpool_path(params[:evento_id])
-		#end
 	end
 
 	def show
+		@carpool = PublicacionCarpool.find(params[:id])
 
 	end
 
 	def carpools
-		@publicacionCarpools = PublicacionCarpool.where()
+		@publicacionCarpools = PublicacionCarpool.all
 	end
 
 	def comentarios
-	end
-
-	def detalle
 	end
 
 	def crear_comentario

@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
   has_many :red_socials
   has_many :user_eventos
-  has_many_and_belongs_to :eventos , through: :user_eventos
+  has_many :eventos , through: :user_eventos
 
 
 

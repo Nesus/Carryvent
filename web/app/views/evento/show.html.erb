@@ -15,3 +15,5 @@
 <% if current_user.present? %>
 	<%= link_to "Publicar Carpool", publicar_carpool_path(@evento) %>
 <% end %>
+
+<% render '/carpool/carpools' %>
