@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 20140724044557) do
 
   add_index "red_socials", ["user_id"], name: "index_red_socials_on_user_id"
 
-  create_table "user_eventos", id: false, force: true do |t|
+  create_table "user_eventos", force: true do |t|
     t.integer "user_id"
     t.integer "evento_id"
   end

@@ -11,6 +11,14 @@ Rails.application.routes.draw do
   #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
 
+
+  #Carpool
+  get 'evento/:evento_id/carpool/publicar' => 'carpool#publicar', as: :publicar_carpool
+  post 'evento/:evento_id/carpool/publicar' =>  'carpool#new', as: :new_publicar_carpool
+  get 'evento/:evento_id/carpool/:id' => 'carpool#show', as: :mostrar_carpool
+ 
+
+
 #  match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   #Rutas para sobre escribir las rutas de devise
