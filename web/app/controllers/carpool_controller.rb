@@ -27,20 +27,9 @@ class CarpoolController < ApplicationController
 
 	def show
 		@carpool = PublicacionCarpool.find(params[:id])
-		comentarios
-		crear_comentario
-
-	end
-
-
-	def comentarios
-		@comments = @carpool.comment_threads.order('created_at desc')
-        
-	end
-
-	def crear_comentario
-		@new_comment = Comment.build_from(@event, current_user.id, "")
-	end
+        @comments = @carpool.comment_threads.order('created_at desc')
+        @new_comment = Comment.build_from(@carpool, current_user.id, "")
+    end
 
 	private
 	  def carpool_params
