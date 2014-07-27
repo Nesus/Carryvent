@@ -2,7 +2,7 @@
   <hr/>
   <%= link_to "×", comment_path(comment), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this comment?", :disable_with => "×", :class => 'close' %>
   <h4>
-    <%= comment.user.username %>
+    <%= comment.user.nombre %>
     <small>
       <%= comment.updated_at %>
     </small>
