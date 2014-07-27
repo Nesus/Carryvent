@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  nombre: MyString
+  desc: MyString
+  porcentaje: 1
+  cantidad: false
+
+two:
+  nombre: MyString
+  desc: MyString
+  porcentaje: 1
+  cantidad: false

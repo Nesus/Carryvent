@@ -5,3 +5,14 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+#publicador de prueba
+test = Publicador.create!(email:'test@test.cl', username: 'test', password: "11111111", password_confirmation: "11111111")
+
+publicador = Publicador.find(1)
+
+(1..6).each do |i|
+	i = i.to_s
+	evento = publicador.eventos.new(nombre: "Evento " + i , desc: "Este es el evento " + i, imagen: "http://placekitten.com/200/200" )
+	evento.save
+end

@@ -1,0 +1,11 @@
+Eventos Publicados
+
+<% @eventos.each do |evento| %>
+	<div>
+		Titulo:
+		<%= evento.nombre %>
+		Descripcion
+		<%= evento.desc %>
+		<%=link_to "Editar", editar_evento_path(evento) %>
+	</div><br>
+<% end %>

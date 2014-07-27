@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id_id: 
+  fecha: 2014-07-15
+  descripcion: MyText
+  precio: 1
+  hora_desde: 2014-07-15 23:20:04
+  desde: MyString
+  hora_hasta: 2014-07-15 23:20:04
+  hasta: 2014-07-15 23:20:04
+
+two:
+  user_id_id: 
+  fecha: 2014-07-15
+  descripcion: MyText
+  precio: 1
+  hora_desde: 2014-07-15 23:20:04
+  desde: MyString
+  hora_hasta: 2014-07-15 23:20:04
+  hasta: 2014-07-15 23:20:04

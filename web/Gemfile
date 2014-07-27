@@ -38,6 +38,25 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
-gem 'omniauth'
+#login
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 gem 'devise'
+
+gem 'carrierwave'
+
+
+#Comentarios
+gem 'acts_as_commentable_with_threading'
+
+gem 'awesome_nested_set', '>= 3.0.0.rc.5'
+
+gem 'haml'
+
+gem 'simple_form'
+
+group :development, :test do
+    gem 'railroady'
+    gem 'rails-erd'
+end
