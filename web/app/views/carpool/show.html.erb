@@ -1,5 +1,8 @@
-Show <br>
+ <h1>Detalle Carpool</h1>
+<h2>Fecha</h2> 
 <%= @carpool.fecha %> <br>
+<h2>Descripcion</h2>
 <%= @carpool.descripcion %> <br>
+<h2>Comentarios</h2>
 <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %> <br>
 <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %> <br>
