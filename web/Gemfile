@@ -46,6 +46,7 @@ gem 'devise'
 
 gem 'carrierwave'
 
+gem 'jquery-turbolinks'
 
 #Comentarios
 gem 'acts_as_commentable_with_threading'

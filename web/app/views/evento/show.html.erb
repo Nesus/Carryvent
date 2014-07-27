@@ -20,8 +20,11 @@
 	<h1>Carpools</h1>
 
 		<% @publicacionCarpools.each do |pub| %>
-		<%= pub.fecha %> <br>
-		<%= pub.descripcion %> <br>
+		<p>Fecha</p>
+		<%= pub.fecha %> 
+		<p>Descripcion</p>
+		<%= pub.descripcion %> 
+		<%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id) %>
 
 		<% end %>
 <% end %>

@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
     if @comment.save
       render :partial => "comments/comment", :locals => { :comment => @comment }, :layout => false, :status => :created
     else
-      render :js => "alert('error saving comment');"
+      render :js => "alert('Hubo un error al crear el comentario');"
     end
   end
 
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     if @comment.destroy
       render :json => @comment, :status => :ok
     else
-      render :js => "alert('error deleting comment');"
+      render :js => "alert('Hubo un error al borrar el comentario');"
     end
   end
 end
