@@ -1,5 +1,6 @@
 class CarpoolController < ApplicationController
-	
+	before_filter :authenticate_user!
+
 	# definir parametros
 	# definir las cosas previas
 	# definir los requerimientos para los 
