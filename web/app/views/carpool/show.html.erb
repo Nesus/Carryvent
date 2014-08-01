@@ -7,7 +7,13 @@
                 <h2 class="page-header"><%= @evento.nombre %></h2>
             </div>
             <div class="col-lg-2 col-sm-6 text-center">
-                <img class="img-square img-responsive img-center" src="http://placehold.it/150x150" width="150" height="150" alt="">
+                <img class="img-square img-responsive img-center" 
+                src="<% if ! @evento.imagen.nil? %>
+                <%= @evento.imagen %>
+                <% else %>
+                http://placehold.it/150x150
+                <%end%>" 
+                width="150" height="150" alt="">
             </div>
             <div class="col-lg-2 col-sm-6 text-center">
             	<% if @userPub.foto.present? %>

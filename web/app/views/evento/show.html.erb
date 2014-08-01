@@ -43,12 +43,18 @@
 
                             <TR>
                                 <TD WIDTH=200 HEIGHT=110>
-                                    <img src="http://sintoniageek.com/wp-content/uploads/2011/03/avatar-facebook-defecto1.jpg" width="100" height="100" alt="" class="center-block img-responsive">
+
+                                    
+
+                                    <img src="<%= pub.user_evento.user.foto %>?type=large" 
+                                    width="100" height="100" alt="" class="center-block img-responsive">
                                 </TD>
                                 <TD WIDTH=200 HEIGHT=110>
-                                    <p><b>Nombre: <%=pub %> </b></p>
-                                    <p><b>Ciudad: </b></p>
-                                    <p><%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id), :class => 'btn btn-lg btn-primary btn-block' %></p>
+                                    <p><b>Nombre: <%= pub.user_evento.user.nombre %> </b></p>
+                                    <p><b>Ciudad: <%=  pub.user_evento.user.ciudad %> </b></p>
+                                </TD>
+                                <TD>  
+                                 <p><%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id), :class => 'btn btn-lg btn-primary btn-block' %></p>
                                 </TD>
                             </TR>
 
