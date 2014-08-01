@@ -19,11 +19,9 @@
             <p><b>Fecha:<%= @evento.fecha_inicio %> </b></p>
             <p><b>Hora:  <!-- FALTA ESTO --></b></p>
             <p><b>Estado de los pasajes:  </b><!-- FALTA ESTO --></p>
-            <p><button class='btn btn-lg btn-primary btn-block'>Compra tu pasaje</button></p>
-
-            <p> 
+            <p><button class='btn btn-lg btn-primary'>Compra tu pasaje</button> 
             	<% if current_user.present? %>
-				<%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-lg btn-primary btn-block'%>
+				<%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-lg btn-primary'%>
 				<% end %></p>
         </div>
     </div>

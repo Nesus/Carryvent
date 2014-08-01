@@ -46,6 +46,49 @@
 							</div><!--/col-->            
 						</div><!--/row-->
 					</div><!--/panel-body-->
+   <div class="panel panel-default" id="tabs">
+            <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
+            <label for="tab-1" class="tab-label-1">Eventos Asistidos</label>
+                                    
+            <div class="content">
+                <div class="content-1">
+                    <div style="width: 100%; height: 250px; overflow: auto;">
+                        <TABLE BORDER=0>
+                        	<% @userEventos.each do |user_evento| %>
+							
+							<TR>
+                                <TD WIDTH=200 HEIGHT=110>
+                                    <img src="<%= user_evento.evento.imagen %>" 
+                                    width="100" height="100" alt="" class="center-block img-responsive">
+                                </TD>
+                                <TD WIDTH=400 HEIGHT=110>
+                                    <p><b>Titulo:</b> <%= user_evento.evento.nombre %> </p>
+                                    <p><b>Fecha:</b> <%=  user_evento.evento.fecha_inicio %> </p>
+                                    <p>
+                                    	<% if !user_evento.publicacion_carpool.nil? %>
+                                    		<span class="label label-warning"> <i class="glyphicon glyphicon-road"></i> Carpool </span>
+
+                                    	<% elsif !user_evento.pasajes.nil? %>
+                                    		<span class="label label-warning"> <i class="glyphicon glyphicon-road"></i> Carryvent Bus </span>
+                                    	<%end %>
+
+                                    </p>
+                                </TD>
+                                <TD>   <p><%= link_to "Detalle", mostrar_evento_path(user_evento.evento.id), :class => 'btn btn-primary' %></p>
+                                </TD>
+                            </TR>
+
+
+
+
+                        	<% end %>
+                        </TABLE> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
 				</div>
 			</div>
 		</div>

@@ -7,6 +7,7 @@ class UserController < ApplicationController
 
 	def perfil
 		@user = User.find(params[:id])
+		@userEventos = @user.user_eventos
 	end
 
 end

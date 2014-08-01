@@ -15,23 +15,6 @@
     <%= csrf_meta_tags %>
 
 
-    <style type="text/css">
-    .img-circle{
-        width: 30px;
-        height: 30px;
-    }
-    </style>
-
-
-<script type="text/javascript">
-        $(document).on('page:fetch', function() {
-            $(".loading-indicator").show();
-        });
-        $(document).on('page:change', function() {
-            $(".loading-indicator").hide();
-        });
-</script>
-
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -54,7 +37,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#"><b>Carryvent</b></a>
+                <a class="navbar-brand" href="<%=root_path %>"><b>Carryvent</b></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -78,7 +61,7 @@
                     <li class="dropdown">
                         <a href="#" data-toggle="dropdown" class="dropdown-toggle"> 
                         <% if current_user.foto.present? %>
-                        <img src="<%=current_user.foto %>", class ="img-circle">
+                        <img src="<%=current_user.foto %>", class ="img-circle" style="width:30px;height: 30px;">
                         <% end %>
 
                         <%=current_user.nombre%><b class="caret"></b></a>
