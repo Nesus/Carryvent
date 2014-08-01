@@ -10,6 +10,10 @@ module Web
   class Application < Rails::Application
 
     Rails.root.join("vendor","assets", "fonts")
+    Rails.application.config.assets.precompile += %w( jquery-1.11.0.js )
+    Rails.application.config.assets.precompile += %w( jquery.easing.min.js )
+    Rails.application.config.assets.precompile += %w( efecto_grayscale.js )
+
     config.i18n.default_locale = :es
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

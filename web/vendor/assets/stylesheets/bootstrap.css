@@ -6298,7 +6298,31 @@ button.close {
   -o-transition: all ease-out 0.2s 0.1s;
   -ms-transition: all ease-out 0.2s 0.1s;
 }
-/*# sourceMappingURL=bootstrap.css.map */
+/* Estilo Grayscale*/
+
+p {
+    margin: 0 0 25px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+@media(min-width:767px) {
+    p {
+        margin: 0 0 35px;
+        font-size: 20px;
+        line-height: 1.6;
+    }
+}
+
+.content-section {
+    padding-top: 100px;
+}
+
+@media(min-width:767px) {
+    .content-section {
+        padding-top: 250px;
+    }
+}
 
 
 /*# sourceMappingURL=bootstrap.css.map */

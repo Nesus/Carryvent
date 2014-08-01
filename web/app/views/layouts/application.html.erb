@@ -52,6 +52,12 @@
                     <li><%= link_to "Administrar Eventos", lista_eventos_publicador_path %></li></li> 
                     <li><%= link_to "Logout", destroy_publicador_session_path, :method => :delete %></li>
                   <% else %>
+                    <li>
+                        <a class="page-scroll" href="#que"><b> ¿Qué es Carryvent? </b></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#quienes"><b> ¿Quienes somos? </b></a>
+                    </li>
                     <li><%= link_to "Login", new_user_session_path %></li>
                   <% end %>
                 </ul>

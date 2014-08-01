@@ -1,13 +1,34 @@
-
     <!-- Page Content -->
-    <%=image_tag('imagen_landing.jpg', width:'100%', style:'margin-top:-20px;') %>
+    <%= image_tag('imagen_landing.jpg', width:'100%', style:'margin-top:0px;') %>
     <div class="container">
 
+        <% if !user_signed_in? and !publicador_signed_in? %>
+
+        <!-- ¿Qué es Carryvent? -->
+        <section id="que" class="container content-section text-center">
+            <div class="row" >
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>¿Qué es Carryvent?</h2>
+                    <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ¿Quienes somos? -->
+        <section id="quienes" class="container content-section text-center">
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>¿Quienes somos?</h2>
+                    <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.</p>
+                </div>
+            </div>
+        </section>
+
+        <% end %>
         <!-- Landing -->
 
         <hr class="container">
 
-        <div class="imagen_landing"></div>
         <!-- Footer -->
         <footer class="container">
             <div class="row">
@@ -27,3 +48,4 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
+
