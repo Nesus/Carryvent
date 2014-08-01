@@ -1,6 +1,7 @@
     <!-- Page Content -->
-    <%= image_tag('imagen_landing.jpg', width:'100%', style:'margin-top:0px;') %>
-    <div class="container">
+        <section id="home", style="background:url(/assets/imagen_landing.jpg);background-color:#F25539;">
+           <%= image_tag('imagen_landing.jpg', width:'100%', style:'margin-top:0px;') %> </section>
+     
 
         <% if !user_signed_in? and !publicador_signed_in? %>
 
@@ -40,8 +41,6 @@
             <!-- /.row -->
         </footer>
 
-    </div>
-    <!-- /.container -->
 
     <!-- jQuery Version 1.11.0 -->
     <script src="js/jquery-1.11.0.js"></script>
