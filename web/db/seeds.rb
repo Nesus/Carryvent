@@ -13,6 +13,6 @@ publicador = Publicador.find(1)
 
 (1..6).each do |i|
 	i = i.to_s
-	evento = publicador.eventos.new(nombre: "Evento " + i , desc: "Este es el evento " + i, imagen: "/assets/"+i+".jpg" )
+	evento = publicador.eventos.new(nombre: "Evento " + i , desc: "Este es el evento " + i, imagen: "/assets/"+i+".jpg", lugar: "Lugar "+ i )
 	evento.save
 end

@@ -53,8 +53,7 @@
                                     <p><b>Nombre: <%= pub.user_evento.user.nombre %> </b></p>
                                     <p><b>Ciudad: <%=  pub.user_evento.user.ciudad %> </b></p>
                                 </TD>
-                                <TD>  
-                                 <p><%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id), :class => 'btn btn-lg btn-primary btn-block' %></p>
+                                <TD>   <p><%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id), :class => 'btn btn-lg btn-primary btn-block' %></p>
                                 </TD>
                             </TR>
 
