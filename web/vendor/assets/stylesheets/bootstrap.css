@@ -901,7 +901,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: #fff;
+  background-color: #fffafa;
 }
 input,
 button,
@@ -2811,10 +2811,11 @@ fieldset[disabled] .btn-default.active {
   color: #fff;
   background-color: #333;
 }
+/* Boton Ingreso*/
 .btn-primary {
   color: #fff;
-  background-color: #F25539;
-  border-color: #FC593C;
+  background-color: #FF8000;
+  border-color: #FF8000;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -4191,13 +4192,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 /* Color de la barra */
 .navbar-inverse {
-  background-color: #fff;
-  border-color: #f25539;
+  background-color: #fff5f0;
+  border-color: #ff8000;
   border-bottom-width: 3px;
 }
 /* Color Carryvent normal */
 .navbar-inverse .navbar-brand {
-  color: #f25539;
+  color: #ff8000;
 }
 /* Color Carryvent mouse-on */
 .navbar-inverse .navbar-brand:hover,
@@ -4210,7 +4211,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 /* Color links barra normal */
 .navbar-inverse .navbar-nav > li > a {
-  color: #f25539;
+  color: #FF8000;
 }
 /* Color links barra normal mouse-on */
 .navbar-inverse .navbar-nav > li > a:hover,
