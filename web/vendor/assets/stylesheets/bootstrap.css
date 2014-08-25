@@ -11,7 +11,8 @@ html {
       -ms-text-size-adjust: 100%;
 }
 body {
-  margin: 0;
+	margin: 0;
+	padding-top: 30px;
 }
 article,
 aside,
@@ -1420,6 +1421,8 @@ pre code {
   margin-left: auto;
 }
 .row {
+	padding-top: 30px;
+	padding-top: 30px;
   margin-right: -15px;
   margin-left: -15px;
 }
@@ -3771,7 +3774,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  min-height: 50px;
+  max-height: 53px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -6309,11 +6312,13 @@ p {
 
 .content-section {
     padding-top: 100px;
+    padding-bottom: 100px;
 }
 
 @media(min-width:767px) {
     .content-section {
-        padding-top: 250px;
+        padding-top: 130px;
+        padding-bottom: 130px;
     }
 }
 
@@ -6353,6 +6358,16 @@ p {
   border-radius: 6px;
 }
 
-
+#homeLanding{
+	background: url("../assets/imagen_landing.jpg") center top no-repeat;
+	-webkit-background-size:contain;
+	-moz-background-size:contain;
+	-o-background-size:contain;
+	background-size:contain;
+	font-family:'Lato', sans-serif;
+	font-size:16px;
+	color:white;
+	height: 1080px;
+}
 
 /*# sourceMappingURL=bootstrap.css.map */
