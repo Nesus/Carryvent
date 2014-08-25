@@ -1,4 +1,5 @@
 class EventoController < ApplicationController
+
 	before_filter :authenticate_user!, :except => [:publicar, :editar, :eventos_publicador, :new]
 	before_filter :authenticate_publicador!, :except => [:eventos, :show]  
 
@@ -36,7 +37,7 @@ class EventoController < ApplicationController
 	end
 
 
-
+	#Tomamos solamente los parametros de evento que necesitamos
 	private
 	  def evento_params
 	    params.require(:evento).permit(:nombre, :desc, :imagen, :fecha_inicio, :fecha_termino)

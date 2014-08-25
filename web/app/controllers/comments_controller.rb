@@ -1,4 +1,7 @@
 class CommentsController < ApplicationController
+  #Todo esto se sacó de una pagina web
+
+  #Creamos el comentario
   def create
     @comment_hash = params[:comment]
     @obj = @comment_hash[:commentable_type].constantize.find(@comment_hash[:commentable_id])
@@ -11,6 +14,7 @@ class CommentsController < ApplicationController
     end
   end
 
+  #Borramos el comentario
   def destroy
   @comment = Comment.find(params[:id])
     if @comment.destroy

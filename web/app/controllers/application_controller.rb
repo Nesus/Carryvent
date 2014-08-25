@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
 
   protected
 
+  #Damos acceso a devise a los datos necesarios para logearse, registrarse y updatear la cuenta
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:username, :nombre, :ciudad, :region , :email, :password, :password_confirmation, :remember_me) }
     devise_parameter_sanitizer.for(:sign_in) { |u| u.permit(:login, :username, :nombre, :ciudad, :region , :email, :password, :remember_me, :current_password) }
