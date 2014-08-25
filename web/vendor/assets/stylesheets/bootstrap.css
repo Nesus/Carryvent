@@ -1399,6 +1399,11 @@ pre code {
   margin-right: auto;
   margin-left: auto;
 }
+@media (min-width: 530px) {
+  .container {
+    width: 550px;
+  }
+}
 @media (min-width: 768px) {
   .container {
     width: 780px;
@@ -3133,6 +3138,7 @@ tbody.collapse.in {
 }
 .dropdown-menu {
   position: absolute;
+  background-color: #fff5f0;
   top: 100%;
   left: 0;
   z-index: 1000;
@@ -3783,12 +3789,16 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     border-radius: 4px;
   }
 }
+/*Mueve el cuadrito*/
 @media (min-width: 768px) {
   .navbar-header {
     float: left;
   }
 }
 .navbar-collapse {
+  position:absolute;
+  background-color: #fff5f0;
+  right:1px;
   padding-right: 15px;
   padding-left: 15px;
   overflow-x: visible;
@@ -4066,6 +4076,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   margin-top: 0;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  background-color: #fff5f0;
 }
 .navbar-fixed-bottom .navbar-nav > li > .dropdown-menu {
   border-bottom-right-radius: 0;
@@ -4215,12 +4226,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 /* Color links barra normal */
 .navbar-inverse .navbar-nav > li > a {
   color: #FF8000;
+  background-color: #fff5f0;
 }
 /* Color links barra normal mouse-on */
 .navbar-inverse .navbar-nav > li > a:hover,
 .navbar-inverse .navbar-nav > li > a:focus {
   color: #c80000;
-  background-color: transparent;
+  background-color: #fff5f0;
 }
 .navbar-inverse .navbar-nav > .active > a,
 .navbar-inverse .navbar-nav > .active > a:hover,
@@ -4235,14 +4247,14 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   background-color: transparent;
 }
 .navbar-inverse .navbar-toggle {
-  border-color: #F25539;
+  border-color: #ff8000;
 }
 .navbar-inverse .navbar-toggle:hover,
 .navbar-inverse .navbar-toggle:focus {
   background-color: #E25036;
 }
 .navbar-inverse .navbar-toggle .icon-bar {
-  background-color: #fff;
+  background-color: #ff8000;
 }
 .navbar-inverse .navbar-collapse,
 .navbar-inverse .navbar-form {
@@ -6358,16 +6370,62 @@ p {
   border-radius: 6px;
 }
 
+/*Botones barra*/
+#botonesBarra{
+  max-width: 200px;
+  background-color: #fff5f0;
+}
+
+#nombreUsuario{
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+#botonesBarraLogueado{
+  max-width: 350px;
+  background-color: #fff5f0;
+  border:10px;
+}
+
+/*Secciones Landing*/
 #homeLanding{
-	background: url("../assets/imagen_landing.jpg") center top no-repeat;
-	-webkit-background-size:contain;
-	-moz-background-size:contain;
-	-o-background-size:contain;
-	background-size:contain;
-	font-family:'Lato', sans-serif;
-	font-size:16px;
-	color:white;
-	height: 1080px;
+  background: url("../assets/imagen_landing.jpg") center top no-repeat;
+  -webkit-background-size:contain;
+  -moz-background-size:contain;
+  -o-background-size:contain;
+  background-size:contain;
+  font-family:'Lato', sans-serif;
+  font-size:16px;
+  color:white;
+  height: 974px;
+}
+
+#logoCarryvent{
+  background: url("../assets/logoCarryvent.png") center top no-repeat;
+  -webkit-background-size:contain;
+  -moz-background-size:contain;
+  -o-background-size:contain;
+  background-size:contain;
+  height: 350px;
+  margin-top: 30px;
+}
+
+#equipoCarryvent{
+  background: url("../assets/equipoCarryvent.jpg") center top no-repeat;
+  -webkit-background-size:contain;
+  -moz-background-size:contain;
+  -o-background-size:contain;
+  background-size:contain;
+  height: 720px;
+  margin-top: 30px;
+}
+
+#home{
+  background-color: black;
+}
+
+#que{
+  background-color: #F8ECE0;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
