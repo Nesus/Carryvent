@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140727011228) do
+ActiveRecord::Schema.define(version: 20140826182948) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -69,13 +69,13 @@ ActiveRecord::Schema.define(version: 20140727011228) do
     t.integer  "user_evento_id"
     t.date     "fecha"
     t.text     "descripcion"
-    t.integer  "precio"
     t.time     "hora_desde"
     t.string   "desde"
-    t.time     "hora_hasta"
-    t.time     "hasta"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "asientos_disp"
+    t.string   "tipo_vehiculo"
+    t.string   "celular"
   end
 
   create_table "publicadors", force: true do |t|
