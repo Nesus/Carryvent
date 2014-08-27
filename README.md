@@ -7,7 +7,7 @@ Copiar el link que sale a la izquierda de github, asegurarse de que salga que es
 
 Despues en la terminal utilizar
 
-´git clone <url> ´
+´git clone git@github.com:Nesus/Carryvent.git ´
 
 y cambiarse a la branch de desarrollo
 
