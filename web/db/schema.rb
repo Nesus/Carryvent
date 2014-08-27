@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826182948) do
+ActiveRecord::Schema.define(version: 20140827165010) do
+
+  create_table "categories", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cities", force: true do |t|
+    t.integer  "region_id"
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "cities", ["region_id"], name: "index_cities_on_region_id"
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -31,14 +46,18 @@ ActiveRecord::Schema.define(version: 20140826182948) do
   add_index "comments", ["user_id"], name: "index_comments_on_user_id"
 
   create_table "eventos", force: true do |t|
-    t.string   "nombre"
-    t.string   "desc"
-    t.date     "fecha_inicio"
-    t.date     "fecha_termino"
-    t.string   "imagen"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "publicador_id"
+    t.string   "name"
+    t.string   "subtitle"
+    t.string   "address"
+    t.string   "information"
+    t.string   "coordinates"
+    t.integer  "organization_id"
+    t.integer  "category_id"
+    t.integer  "city_id"
+    t.integer  "region_id"
   end
 
   add_index "eventos", ["publicador_id"], name: "index_eventos_on_publicador_id"
@@ -50,6 +69,18 @@ ActiveRecord::Schema.define(version: 20140826182948) do
     t.boolean  "mod_cantidad"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "organizations", force: true do |t|
+    t.string   "name"
+    t.string   "contact_person"
+    t.string   "phone"
+    t.boolean  "valid"
+    t.string   "facebook"
+    t.string   "twitter"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "picture"
   end
 
   create_table "pasajes", force: true do |t|
@@ -107,6 +138,13 @@ ActiveRecord::Schema.define(version: 20140826182948) do
   end
 
   add_index "red_socials", ["user_id"], name: "index_red_socials_on_user_id"
+
+  create_table "regions", force: true do |t|
+    t.string   "name"
+    t.string   "short_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_eventos", force: true do |t|
     t.integer  "user_id"
