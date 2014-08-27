@@ -7,12 +7,12 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 #publicador de prueba
-test = Publicador.create!(email:'test@test.cl', username: 'test', password: "11111111", password_confirmation: "11111111")
+#test = Publicador.create!(email:'test@test.cl', username: 'test', password: "11111111", password_confirmation: "11111111")
 
 publicador = Publicador.find(1)
 
 (1..6).each do |i|
 	i = i.to_s
-	evento = publicador.eventos.new(nombre: "Evento " + i , information: "Este es el evento " + i, imagen: "/assets/"+i+".jpg")
+	evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i, image: "/assets/"+i+".jpg")
 	evento.save
 end

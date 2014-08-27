@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827165010) do
+ActiveRecord::Schema.define(version: 20140827184251) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(version: 20140827165010) do
     t.integer  "category_id"
     t.integer  "city_id"
     t.integer  "region_id"
+    t.string   "image"
   end
 
   add_index "eventos", ["publicador_id"], name: "index_eventos_on_publicador_id"

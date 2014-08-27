@@ -21,15 +21,15 @@
 													<a href="<%= mostrar_evento_path(evento) %>">
 
 													<img class="img-square img-responsive img-center" src="
-															<% if evento.imagen.present? %>
-																	<%= evento.imagen %>
+															<% if evento.image.present? %>
+																	<%= evento.image %>
 															<% else %>
 																	http://placehold.it/200x200
 															<% end %> 
 												 " alt="">
 													</a>
-													<h3><%= evento.nombre %> </h3>
-													<p> <%= evento.desc %> </p>
+													<h3><%= evento.name %> </h3>
+													<p> <%= evento.subtitle %> </p>
 												</div>
 											<% end %> 
 										</div>
@@ -45,8 +45,8 @@
 													<a href="<%= mostrar_evento_path(evento) %>">
 
 													<img class="img-square img-responsive img-center" src="
-															<% if evento.imagen.present? %>
-																	<%= evento.imagen %>
+															<% if evento.image.present? %>
+																	<%= evento.image %>
 															<% else %>
 																	http://placehold.it/200x200
 															<% end %> 
