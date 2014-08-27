@@ -9,7 +9,7 @@ class Evento < ActiveRecord::Base
 
 
 	#Validaciones
-	validates :nombre, presence: true
-	validates :desc, presence: true
+	validates :name, presence: true
+	validates :subtitle, presence: true
 	validates :publicador_id, presence: true
 end
