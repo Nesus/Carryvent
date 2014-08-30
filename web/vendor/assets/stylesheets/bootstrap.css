@@ -3796,9 +3796,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
 }
 .navbar-collapse {
-  position:absolute;
   background-color: #fff5f0;
-  right:1px;
   padding-right: 15px;
   padding-left: 15px;
   overflow-x: visible;
@@ -6307,7 +6305,7 @@ button.close {
   -ms-transition: all ease-out 0.2s 0.1s;
 }
 /* Estilo Grayscale*/
-
+/*
 p {
     margin: 0 0 25px;
     font-size: 18px;
@@ -6333,6 +6331,7 @@ p {
         padding-bottom: 130px;
     }
 }
+*/
 
 /* Seccion eventos */
 
@@ -6387,6 +6386,13 @@ p {
   border:10px;
 }
 
+@media(max-width:767px) {
+  #bs-example-navbar-collapse-1{
+    position:absolute;
+    right: 1px;
+  }
+}
+
 /*Secciones Landing*/
 #homeLanding{
   background: url("../assets/imagen_landing.jpg") center top no-repeat;
@@ -6397,35 +6403,40 @@ p {
   font-family:'Lato', sans-serif;
   font-size:16px;
   color:white;
-  height: 974px;
 }
 
-#logoCarryvent{
-  background: url("../assets/logoCarryvent.png") center top no-repeat;
-  -webkit-background-size:contain;
-  -moz-background-size:contain;
-  -o-background-size:contain;
-  background-size:contain;
-  height: 350px;
-  margin-top: 30px;
+@media(min-width:300px) {
+  #homeLanding{
+      height: 170px;
+  }
 }
 
-#equipoCarryvent{
-  background: url("../assets/equipoCarryvent.jpg") center top no-repeat;
-  -webkit-background-size:contain;
-  -moz-background-size:contain;
-  -o-background-size:contain;
-  background-size:contain;
-  height: 720px;
-  margin-top: 30px;
+@media(min-width:530px) {
+  #homeLanding{
+      height: 260px;
+  }
 }
 
-#home{
-  background-color: black;
+@media(min-width:767px) {
+  #homeLanding{
+      height: 340px;
+  }
 }
 
-#que{
-  background-color: #F8ECE0;
+@media(min-width:992px) {
+  #homeLanding{
+      height: 410px;
+  }
+}
+
+@media(min-width:1200px) {
+    #homeLanding{
+        height: 450px;
+    }
+}
+
+#queQuienes{
+  padding-top: 0px;
 }
 
 /*# sourceMappingURL=bootstrap.css.map */
