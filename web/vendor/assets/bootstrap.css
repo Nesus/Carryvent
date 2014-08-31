@@ -1,129 +1,10 @@
 /*!
- * Start Bootstrap - Round About HTML Template (http://startbootstrap.com)
- * Code licensed under the Apache License v2.0.
- * For details, see http://www.apache.org/licenses/LICENSE-2.0.
- */
-
-
-body {
-    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
-}
-
-.img-center {
-	margin: 0 auto;
-}
-
-footer {
-    margin: 50px 0;
-}
-.new_user
-{
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-}
-.new_publicador
-{
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
-}
-.form-signin .form-signin-heading, .form-signin .checkbox
-{
-    margin-bottom: 10px;
-}
-.form-signin .checkbox
-{
-    font-weight: normal;
-}
-.form-signin .form-control
-{
-    position: relative;
-    font-size: 16px;
-    height: auto;
-    padding: 10px;
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-}
-.form-signin .form-control:focus
-{
-    z-index: 2;
-}
-.form-signin input[type="text"]
-{
-    margin-bottom: -1px;
-    border-bottom-left-radius: 0;
-    border-bottom-right-radius: 0;
-}
-.form-signin input[type="password"]
-{
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-}
-.account-wall
-{
-    margin-top: 20px;
-    padding: 40px 0px 20px 0px;
-    background-color: #f7f7f7;
-    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
-
-}
-.login-title
-{
-    color: #555;
-    font-size: 18px;
-    font-weight: 400;
-    display: block;
-}
-.profile-img
-{
-    width: 96px;
-    height: 96px;
-    margin: 0 auto 10px;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-.need-help
-{
-    margin-top: 10px;
-}
-.new-account
-{
-    display: block;
-    margin-top: 10px;
-}
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
-
-
-
- */
-
-
-/*!
  * Bootstrap v3.2.0 (http://getbootstrap.com)
  * Copyright 2011-2014 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 
 /*! normalize.css v3.0.1 | MIT License | git.io/normalize */
-
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -381,10 +262,12 @@ th {
 }
 @font-face {
   font-family: 'Glyphicons Halflings';
-
-  src: url('../fonts/glyphicons-halflings-regular.eot');
-  src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
-}
+  src: url('/assets/glyphicons-halflings-regular.eot');
+  src: url('/assets/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), 
+  url('/assets/glyphicons-halflings-regular.woff') format('woff'), 
+  url('/assets/glyphicons-halflings-regular.ttf') format('truetype'), 
+  url('/assets/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+  }
 .glyphicon {
   position: relative;
   top: 1px;
@@ -1018,7 +901,7 @@ body {
   font-size: 14px;
   line-height: 1.42857143;
   color: #333;
-  background-color: #fff;
+  background-color: #fffafa;
 }
 input,
 button,
@@ -2488,10 +2371,10 @@ output {
           transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
 }
 .form-control:focus {
-  border-color: #66afe9;
+  border-color: rgba(242, 161, 57, 1);;
   outline: 0;
-  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
-          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(249, 194, 112, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(249, 194, 112, 0.6);
 }
 .form-control::-moz-placeholder {
   color: #777;
@@ -2928,10 +2811,11 @@ fieldset[disabled] .btn-default.active {
   color: #fff;
   background-color: #333;
 }
+/* Boton Ingreso*/
 .btn-primary {
   color: #fff;
-  background-color: #F25539;
-  border-color: #FC593C;
+  background-color: #FF8000;
+  border-color: #FF8000;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -4308,13 +4192,13 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 /* Color de la barra */
 .navbar-inverse {
-  background-color: #fff;
-  border-color: #f25539;
+  background-color: #fff5f0;
+  border-color: #ff8000;
   border-bottom-width: 3px;
 }
 /* Color Carryvent normal */
 .navbar-inverse .navbar-brand {
-  color: #f25539;
+  color: #ff8000;
 }
 /* Color Carryvent mouse-on */
 .navbar-inverse .navbar-brand:hover,
@@ -4327,7 +4211,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 /* Color links barra normal */
 .navbar-inverse .navbar-nav > li > a {
-  color: #f25539;
+  color: #FF8000;
 }
 /* Color links barra normal mouse-on */
 .navbar-inverse .navbar-nav > li > a:hover,
@@ -5900,20 +5784,12 @@ button.close {
   opacity: .5;
 }
 .carousel-control.left {
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
-  background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .5)), to(rgba(0, 0, 0, .0001)));
-  background-image:         linear-gradient(to right, rgba(0, 0, 0, .5) 0%, rgba(0, 0, 0, .0001) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#80000000', endColorstr='#00000000', GradientType=1);
   background-repeat: repeat-x;
 }
 .carousel-control.right {
   right: 0;
   left: auto;
-  background-image: -webkit-linear-gradient(left, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
-  background-image:      -o-linear-gradient(left, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
-  background-image: -webkit-gradient(linear, left top, right top, from(rgba(0, 0, 0, .0001)), to(rgba(0, 0, 0, .5)));
-  background-image:         linear-gradient(to right, rgba(0, 0, 0, .0001) 0%, rgba(0, 0, 0, .5) 100%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00000000', endColorstr='#80000000', GradientType=1);
   background-repeat: repeat-x;
 }
@@ -6325,4 +6201,168 @@ button.close {
     display: none !important;
   }
 }
+
+.ec-stars-wrapper {
+  font-size: 0;
+  display: inline-block;
+}
+.ec-stars-wrapper a {
+  text-decoration: none;
+  display: inline-block;
+  font-size: 35px;
+  font-size: 2rem; 
+  color: #888;
+}
+
+/* Tabs */
+#tabs {
+  width: 85%;
+  height: 350px;
+  border: 2px;
+  border-color: blue;
+}
+
+#tabs input {
+  height: 32px;
+  visibility: hidden;
+}
+
+#tabs label {
+  float: left;
+  cursor: pointer;
+  font-size: 15px;
+  line-height: 40px;
+  height: 40px;
+  padding: 0 20px;
+  display: block;
+  color: #888;
+  text-align: center;
+  border-radius: 5px 5px 0 0;
+  background: #eee;
+  margin-right: 5px;
+}
+
+#tabs input:hover + label {
+  background: #ddd;
+  color: #666;
+}
+
+#tabs input:checked + label {
+  background: #eee;
+  color: #f25539;
+  z-index: 6;
+  line-height: 45px;
+  height: 45px;
+  position: relative;
+  top: -5px;
+  -webkit-transition: .1s;
+  -moz-transition: .1s;
+  -o-transition: .1s;
+  -ms-transition: .1s;
+}
+
+.content {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  padding: 30px;
+  z-index: 5;
+  border-radius: 0 5px 5px 5px;
+}
+
+.content div {
+  position: absolute;
+  z-index: -100;
+  opacity: 0;
+  transition: all linear 0.1s;
+}
+
+.content-1 div{
+  position: relative;
+  opacity: 1;
+}
+
+#tabs input.tab-selector-1:checked ~ .content .content-1,
+#tabs input.tab-selector-2:checked ~ .content .content-2 {
+  z-index: 100;
+  opacity: 1;
+  -webkit-transition: all ease-out 0.2s 0.1s;
+  -moz-transition: all ease-out 0.2s 0.1s;
+  -o-transition: all ease-out 0.2s 0.1s;
+  -ms-transition: all ease-out 0.2s 0.1s;
+}
+/* Estilo Grayscale*/
+
+p {
+    margin: 0 0 25px;
+    font-size: 18px;
+    line-height: 1.5;
+}
+
+@media(min-width:767px) {
+    p {
+        margin: 0 0 35px;
+        font-size: 20px;
+        line-height: 1.6;
+    }
+}
+
+.content-section {
+    padding-top: 100px;
+}
+
+@media(min-width:767px) {
+    .content-section {
+        padding-top: 250px;
+    }
+}
+
+/* Seccion eventos */
+
+.carousel {
+  position: relative;
+  margin-bottom: 20px;
+  line-height: 1;
+}
+.carousel-control {
+  position: absolute;
+  top: 40%;
+  left: 15px;
+  width: 40px;
+  height: 40px;
+  margin-top: -20px;
+  font-size: 60px;
+  font-weight: 100;
+  line-height: 30px;
+  color: #ffffff;
+  text-align: center;
+  background: #ff8000;
+  -webkit-border-radius: 23px;
+  -moz-border-radius: 23px;
+  border-radius: 23px;
+  opacity: 1;
+  filter: alpha(opacity=50);
+}
+.hero-unit {
+	height: 750px;
+  padding: 60px;
+  margin-bottom: 30px;
+  background-color: #fff5f0;
+  -webkit-border-radius: 6px;
+  -moz-border-radius: 6px;
+  border-radius: 6px;
+}
+
+#homeLanding{
+	background:url("/assets/landingcito.png") no-repeat center center scroll;
+	-webkit-background-size:contain;
+	-moz-background-size:contain;
+	-o-background-size:contain;
+	background-size:contain;
+	font-family:'Lato', sans-serif;
+	font-size:16px;
+	color:white;
+  height: 1080px;
+}
+
 /*# sourceMappingURL=bootstrap.css.map */
