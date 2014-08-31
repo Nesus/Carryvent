@@ -5,14 +5,38 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'csv'
 
-#publicador de prueba
-test = Publicador.create!(email:'test@test.cl', username: 'test', password: "11111111", password_confirmation: "11111111")
+#Publicador de prueba
+test = Publicador.new(email:'test@test.cl', username: 'test', password: "11111111", password_confirmation: "11111111")
+test.save
 
+#Buscamos el publicador
 publicador = Publicador.find(1)
 
-(1..6).each do |i|
-	i = i.to_s
-	evento = publicador.eventos.new(nombre: "Evento " + i , desc: "Este es el evento " + i, imagen: "/assets/"+i+".jpg")
-	evento.save
+#Insertamos eventos de prueba
+
+cant = Evento.count
+
+if cant < 6
+	(1..6).each do |i|
+		i = i.to_s
+		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i, image: "/assets/"+i+".jpg")
+		evento.save
+	end
+end 
+
+#Importando datos de ciudad y regiones
+
+regiones_text = File.read("db/dbCiudades/regiones.csv")	
+regiones = CSV.parse(regiones_text, headers: true)
+
+comunas_text = File.read("db/dbCiudades/comunas.csv")	
+comunas = CSV.parse(comunas_text, headers: true)
+
+if Region.count == 0
+	regiones.each do |row|
+		reg = Region.new(id: row["REGION_ID"], name: row["REGION_NOMBRE"], short_name: row["REGION_ID"].to_s + "° Región")
+		reg.save
+	end
 end

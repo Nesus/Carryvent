@@ -10,6 +10,10 @@ Rails.application.routes.draw do
 
   #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
+  #testing
+  get '/user/:id/editar' => 'user#editar', as: :editar_user
+  #get '/user/:id/editarpasswd' => 'devise/passwords#edit',   :as => :edit_user_password
+  #get '/user/:id/editarpasswd' => 'user#editarpasswd', as: :editarpasswd_user
 
 
   #Carpool
@@ -64,6 +68,12 @@ Rails.application.routes.draw do
     post 'cv-login' => 'devise/sessions#create', :as => :publicador_session
     match 'cv-logout' => 'devise/sessions#destroy', :as => :destroy_publicador_session,
       :via => Devise.mappings[:publicador].sign_out_via
+  end
+
+  resource :user, only: [:edit] do
+    collection do
+      patch 'update_password'
+    end
   end
 
   #comentarios

@@ -32,7 +32,12 @@
 								<p><strong>Ciudad: </strong> <%= @user.ciudad %> </p>
 								<p><strong>E-mail: </strong> <%= @user.email %> </p>
 
-								<a href="#" class="btn btn-primary" style="float:right;"><i class="glyphicon glyphicon-edit"></i> Editar Perfil</a>
+
+								<a href="#" class="btn btn-primary" style="float:right;"><i class="glyphicon glyphicon-edit"></i> <%= link_to "Editar Perfil", editar_user_path(@user) %> </a>
+
+                                <%= link_to 'Editar Password', editarpasswd_user_path(@user) %>
+                                <%= link_to 'Editar password 2', edit_user_registration_path(@user) %>
+                                
 									<!-- btn btn-lg btn-primary btn-block-->
 
 

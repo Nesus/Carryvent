@@ -57,6 +57,12 @@ gem 'haml'
 
 gem 'simple_form'
 
+
+#best
+#gem 'best_in_place', github: 'bernat/best_in_place' 
+
+#gem "jquery-rails", "~> 2.3.0"
+
 group :development, :test do
     gem 'railroady'
     gem 'rails-erd'

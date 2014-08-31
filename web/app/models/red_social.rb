@@ -1,5 +1,8 @@
 class RedSocial < ActiveRecord::Base
+  #Pertenece al usuario que la agregó
   belongs_to :user
+
+  #Valida que todo exista
   validates_presence_of :uid, :provider
   validates_uniqueness_of :uid, :scope => :provider
 

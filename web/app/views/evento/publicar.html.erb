@@ -17,24 +17,20 @@ Publicar Evento
 
 
   <div class="field">
-    <%= f.label :nombre %><br>
-    <%= f.text_field :nombre %>
+    <%= f.label :name %><br>
+    <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label :desc %><br>
-    <%= f.text_area :desc %>
+    <%= f.label :subtitle %><br>
+    <%= f.text_area :subtitle %>
   </div>
   <div class="field">
-    <%= f.label :fecha_inicio %><br>
-    <%= f.date_select :fecha_inicio %>
+    <%= f.label :information %><br>
+    <%= f.date_select :information %>
   </div>
   <div class="field">
-    <%= f.label :fecha_termino %><br>
-    <%= f.date_select :fecha_termino, min: :fecha_inicio %>
-  </div>
-  <div class="field">
-    <%= f.label :imagen %><br>
-    <%= f.text_field :imagen %>
+    <%= f.label :coordinates %><br>
+    <%= f.date_select :coordinates %>
   </div>
 
   <div class="actions">

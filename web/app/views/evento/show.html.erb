@@ -4,19 +4,19 @@
     <!-- Eventos -->
     <div class="row">
         <div class="col-lg-12">
-            <h2 class="page-header"><%= @evento.nombre %></h2>
+            <h2 class="page-header"><%= @evento.name %></h2>
         </div>
         <div class="col-lg-4 col-sm-6 text-center">
-        	<% if @evento.imagen %>
-        		 <img class="img-square img-responsive img-center" src="<%= @evento.imagen %>" alt="">
+        	<% if @evento.image %>
+        		 <img class="img-square img-responsive img-center" src="<%= @evento.image %>" alt="">
         	<% else %>
             	<img class="img-square img-responsive img-center" src="http://placehold.it/200x200" alt="">
             <% end %>
         </div>
         <div class="col-lg-4 col-sm-6">
-            <p><b>Descripción:<%= @evento.desc %> </b></p>
+            <p><b>Descripción:<%= @evento.information %> </b></p>
             <p><b>Lugar: <!-- FALTA ESTO --> </b></p>
-            <p><b>Fecha:<%= @evento.fecha_inicio %> </b></p>
+            <p><b>Fecha: <!-- FALTA ESTO --> </b></p>
             <p><b>Hora:  <!-- FALTA ESTO --></b></p>
             <p><b>Estado de los pasajes:  </b><!-- FALTA ESTO --></p>
             <p><button class='btn btn-lg btn-primary'>Compra tu pasaje</button> 
