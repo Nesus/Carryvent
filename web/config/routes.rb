@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/user/:id' => 'user#perfil', as: :perfil_user
   #testing
   get '/user/:id/editar' => 'user#editar', as: :editar_user
+  get '/user/:id/editarpasswd' => 'ser#editarpasswd', as: :editar_user_passwd
 
 
   #Carpool
