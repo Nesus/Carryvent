@@ -10,7 +10,7 @@
 							<div class="col-xs-12 col-sm-4 text-center">
 								<img src="
                                 <% if @user.foto.present? %>
-                                    <%= @user.foto + "?type=large" %>
+                                    <%= @user.foto.url %>
                                 <% else %>
                                     http://sintoniageek.com/wp-content/uploads/2011/03/avatar-facebook-defecto1.jpg
                                 <% end %>       
@@ -34,9 +34,6 @@
 
 
 								<a href="#" class="btn btn-primary" style="float:right;"><i class="glyphicon glyphicon-edit"></i> <%= link_to "Editar Perfil", editar_user_path(@user) %> </a>
-
-                                <%= link_to 'Editar Password', editarpasswd_user_path(@user) %>
-                                <%= link_to 'Editar password 2', edit_user_registration_path(@user) %>
                                 
 									<!-- btn btn-lg btn-primary btn-block-->
 

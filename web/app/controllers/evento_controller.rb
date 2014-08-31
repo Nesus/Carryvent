@@ -29,6 +29,8 @@ class EventoController < ApplicationController
 	def show
 		@evento = Evento.find(params[:id])
 		@publicacionCarpools = PublicacionCarpool.joins(user_evento: [:user, :evento]).where(eventos:{id: params[:id]})
+		@comments = @evento.comment_threads.order('created_at desc')
+        @new_comment = Comment.build_from(@evento, current_user.id, "")
 	end
 
 
@@ -40,6 +42,6 @@ class EventoController < ApplicationController
 	#Tomamos solamente los parametros de evento que necesitamos
 	private
 	  def evento_params
-	    params.require(:evento).permit(:name, :subtitle, :address, :information, :coordinates)
+	    params.require(:evento).permit(:name, :subtitle, :address, :information, :coordinates, :image)
 	  end
 end

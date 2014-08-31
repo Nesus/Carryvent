@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  mount_uploader :foto, FotoUploader
+
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
   # Include default devise modules. Others available are:
@@ -51,9 +54,9 @@ class User < ActiveRecord::Base
           #username: auth.info.nickname || auth.uid,
           email: email ? email : "#{TEMP_EMAIL_PREFIX}-#{auth.uid}-#{auth.provider}.com",
           password: Devise.friendly_token[0,20],
-          foto: auth.info.image.sub("_normal", ""),
           ciudad: auth.info.location
         )
+        user.remote_foto_url = auth.info.image.sub("_normal", "").sub("http://","https://") + "?type=large"
         user.save!
       end
     end
