@@ -1,4 +1,8 @@
 class Evento < ActiveRecord::Base
+
+
+	mount_uploader :image, ImageUploader
+
 	#Relaciones
 	## Un evento tiene varios usuarios que asisten a el
 	has_many :user_eventos

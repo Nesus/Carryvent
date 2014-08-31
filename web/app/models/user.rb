@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  mount_uploader :foto, ImageUploader
+
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
   # Include default devise modules. Others available are:
