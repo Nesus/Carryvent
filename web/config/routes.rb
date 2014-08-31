@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
+  #testing
+  get '/user/:id/editar' => 'user#editar', as: :editar_user
 
 
   #Carpool
