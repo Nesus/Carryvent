@@ -7,7 +7,6 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
 
-
 #Publicador de prueba
 test = Publicador.new(email:'test@test.cl', username: 'test', password: "11111111", password_confirmation: "11111111")
 test.save
@@ -41,15 +40,3 @@ if Region.count == 0
 		reg.save
 	end
 end
-
-if City.count == 0
-	comunas.each do |row|
-		region_id = row["COMUNA_PROVINCIA_ID"][0..-2]
-		if region.id != region_id
-			region = Region.find(region_id.to_i)
-		end
-		cit = region.cities.new(id: row["COMUNA_ID"],name: row["COMUNA_NOMBRE"])
-		cit.save
-	end
-end
-
