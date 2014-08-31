@@ -1,36 +1,50 @@
-Publicar Evento
-<%= form_for @evento, :html => {:multipart => true} , url: eventos_path  do |f| %>
+<div class="container">
+  <!-- Publicar Evento -->
+  <div class="row">
+      <div class="col-xs-12">
+        <h2 class="page-header">Publicar Evento</h2>
+        <div class="col-xs-3"></div>
+        <div id="publicarEvento" class="hero-unit col-xs-6">
+          <%= form_for @evento, url: eventos_path  do |f| %>
+            <% if @evento.errors.any? %>
+              <div id="error_explanation">
+                <h2>
+                  <%= pluralize(@evento.errors.count, "error") %> prohibited
+                  this article from being saved:
+                </h2>
+                <ul>
+                  <% @evento.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            <% end %>
 
-    <% if @evento.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@evento.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @evento.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+            <div class="field">
+              <%= f.label :name %><br>
+              <%= f.text_field :name %>
+            </div>
+            <div class="field">
+              <%= f.label :subtitle %><br>
+              <%= f.text_area :subtitle %>
+            </div>
+            <div class="field">
+              <%= f.label :information %><br>
+              <%= f.date_select :information %>
+            </div>
+            <div class="field">
+              <%= f.label :coordinates %><br>
+              <%= f.date_select :coordinates %>
+            </div>
 
-
-  <div class="field">
-    <%= f.label :name %><br>
-    <%= f.text_field :name %>
+            <div class="actions">
+              <%= f.submit %>
+            </div>
+          <% end %>
+        </div>
+        <div class="col-xs-3"></div>
+      </div>
   </div>
-  <div class="field">
-    <%= f.label :subtitle %><br>
-    <%= f.text_area :subtitle %>
-  </div>
+  <hr class="container">
 
-  <div class="field">
-    <%= f.file_field :image %>
 
-  </div> 
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
