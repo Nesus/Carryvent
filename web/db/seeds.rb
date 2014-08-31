@@ -20,8 +20,10 @@ cant = Evento.count
 
 if cant < 6
 	(1..6).each do |i|
+
 		i = i.to_s
-		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i, image: "/assets/"+i+".jpg")
+		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i)
+		evento.image = File.open("app/assets/images/"+i+".jpg")
 		evento.save
 	end
 end 
