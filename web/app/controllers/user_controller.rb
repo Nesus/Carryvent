@@ -14,7 +14,7 @@ class UserController < ApplicationController
 		@user = User.find(params[:id])
 	end
 
-	def editarPassw
+	def editarpasswd
 		@user = User.find(params[:id])
 	end
 
