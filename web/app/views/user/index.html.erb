@@ -1,27 +1,27 @@
-    <!-- Page Content -->
-    <div class="containter-fluid">
-        <section id="home", style="background:url(/assets/landingcito.png);background-color:#F25539;">
-        <div class="row" style="background: url('/assets/landingcito.png') no-repeat fixed center center / cover transparent;
-" ></div>
-
-           <!--<%= image_tag('landingcito.png', width:'100%', style:'margin-top:0px;') %> </section>-->
+    <!-- Page Content -->    
+        
+       
+        <section id="home">
+            <div id="homeLanding">
+            </div>            
+        </section>
      
 
         <% if !user_signed_in? and !publicador_signed_in? %>
-        <div class="row" >
+
         <!-- ¿Qué es Carryvent? -->
         <section id="que" class="container content-section text-center">
-            
+            <div class="row" >
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>¿Qué es Carryvent?</h2>
                     <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.</p>
                 </div>
-         
+            </div>
         </section>
-        </div>
+
         <!-- ¿Quienes somos? -->
         <section id="quienes" class="container content-section text-center">
-            <div class="row">
+            <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>¿Quienes somos?</h2>
                     <p>Lorem ipsum ad his scripta blandit partiendo, eum fastidii accumsan euripidis in, eum liber hendrerit an. Qui ut wisi vocibus suscipiantur, quo dicit ridens inciderint id. Quo mundi lobortis reformidans eu, legimus senserit definiebas an eos. Eu sit tincidunt incorrupte definitionem, vis mutat affert percipit cu, eirmod consectetuer signiferumque eu per. In usu latine equidem dolores. Quo no falli viris intellegam, ut fugit veritus placerat per.</p>
@@ -32,7 +32,8 @@
         <% end %>
         <!-- Landing -->
 
-    </div>
+        <hr class="container">
+
         <!-- Footer -->
         <footer class="container">
             <div class="row">
