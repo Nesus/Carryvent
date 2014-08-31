@@ -29,6 +29,8 @@ class EventoController < ApplicationController
 	def show
 		@evento = Evento.find(params[:id])
 		@publicacionCarpools = PublicacionCarpool.joins(user_evento: [:user, :evento]).where(eventos:{id: params[:id]})
+		@comments = @evento.comment_threads.order('created_at desc')
+        @new_comment = Comment.build_from(@evento, current_user.id, "")
 	end
 
 

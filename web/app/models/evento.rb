@@ -1,7 +1,10 @@
 class Evento < ActiveRecord::Base
 
-
+	#Subir imagenes
 	mount_uploader :image, ImageUploader
+
+	#Comentarios
+	acts_as_commentable
 
 	#Relaciones
 	## Un evento tiene varios usuarios que asisten a el

@@ -39,8 +39,9 @@
       </div>
       <div class="col-xs-6">
         <h4>Comentarios Evento</h4>
-        <div id="comentariosEvento" class="hero-unit">
-          
+        <div id="comentariosEvento" class="hero-unit" >
+        <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %> <br>
+        <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %> <br>
         </div>
       </div>
     </div>
