@@ -1,5 +1,5 @@
 Publicar Evento
-<%= form_for @evento, url: eventos_path  do |f| %>
+<%= form_for @evento, :html => {:multipart => true} , url: eventos_path  do |f| %>
 
     <% if @evento.errors.any? %>
     <div id="error_explanation">
@@ -24,14 +24,11 @@ Publicar Evento
     <%= f.label :subtitle %><br>
     <%= f.text_area :subtitle %>
   </div>
+
   <div class="field">
-    <%= f.label :information %><br>
-    <%= f.date_select :information %>
-  </div>
-  <div class="field">
-    <%= f.label :coordinates %><br>
-    <%= f.date_select :coordinates %>
-  </div>
+    <%= f.file_field :image %>
+
+  </div> 
 
   <div class="actions">
     <%= f.submit %>
