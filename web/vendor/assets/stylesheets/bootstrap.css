@@ -6439,6 +6439,27 @@ p {
   padding-top: 0px;
 }
 
+/*Publicar Evento*/
+
+#publicarEvento{
+  height: auto;
+}
+
+@media(max-width:750px) {
+  #publicarEvento{
+    width: auto;
+  }
+}
+
+/*Show Evento*/
+
+#ofertasCarpool{
+  height: 300px;
+}
+
+#comentariosEvento{
+  height: 300px;
+}
 /*# sourceMappingURL=bootstrap.css.map */
 
 
