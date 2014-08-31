@@ -10,4 +10,8 @@ class UserController < ApplicationController
 		@userEventos = @user.user_eventos
 	end
 
+	def editar
+		@user = User.find(params[:id])
+	end
+
 end
