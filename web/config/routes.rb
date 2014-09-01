@@ -79,6 +79,9 @@ Rails.application.routes.draw do
   #comentarios
   resources :comments, :only =>[:create, :destroy]
 
+  #activity
+  resources :notifications
+
   root 'user#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

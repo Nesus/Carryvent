@@ -59,6 +59,7 @@ gem 'haml'
 
 gem 'simple_form'
 
+gem 'public_activity'
 
 #best
 #gem 'best_in_place', github: 'bernat/best_in_place' 
