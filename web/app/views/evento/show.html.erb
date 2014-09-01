@@ -18,10 +18,12 @@
         <p><b>Fecha: <!-- FALTA ESTO --> </b></p>
         <p><b>Hora:  <!-- FALTA ESTO --></b></p>
         <p><b>Estado de los pasajes:  </b><!-- FALTA ESTO --></p>
-        <p><button class='btn btn-lg btn-primary'>Compra tu pasaje</button> 
+         
         <% if current_user.present? %>
+          <p><button class='btn btn-lg btn-primary'>Compra tu pasaje</button>
           <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-lg btn-primary'%>
-        <% end %></p>
+          </p>
+        <% end %>
       </div>
       <div class="col-xs-5">
         <img class="img-square img-responsive img-center" src="http://placehold.it/200x200" alt=""> 
@@ -34,28 +36,7 @@
       <div class="col-xs-6">
         <h4>Ofertas Carpool</h4>
         <div id="ofertasCarpool" class="hero-unit">
-          
-        </div>
-      </div>
-      <div class="col-xs-6">
-        <h4>Comentarios Evento</h4>
-        <div id="comentariosEvento" class="hero-unit" >
-        <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %> <br>
-        <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %> <br>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <% if !@publicacionCarpools.nil? %>
-    <div class="panel panel-default" id="tabs">
-      <input id="tab-1" type="radio" name="radio-set" class="tab-selector-1" checked="checked" />
-      <label for="tab-1" class="tab-label-1">Ofertas de Carpool</label>
-                              
-      <div class="content">
-        <div class="content-1">
-          <div style="width: 100%; height: 250px; overflow: auto;">
-            <TABLE BORDER=0>
+           <TABLE BORDER=0>
                 <% @publicacionCarpools.each do |pub| %>
 
                 <TR>
@@ -72,12 +53,21 @@
                 </TR>
               <% end %>
             </TABLE> 
-          </div>
+
+          
+        </div>
+      </div>
+      <div class="col-xs-6">
+        <h4>Comentarios Evento</h4>
+        <div id="comentariosEvento" class="hero-unit" >
+        <% if current_user %>
+          <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %> <br>
+        <% end %>
+        <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %> <br>
         </div>
       </div>
     </div>
-  <% end %>
-
+  </div>
   <hr class="container">
 
   <!-- Footer -->

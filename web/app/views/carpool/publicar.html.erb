@@ -1,47 +1,52 @@
-Publicar Carpool
-<%= form_for @publicacioncarpool, url: new_publicar_carpool_path  do |f| %>
+<div class="container-fluid">
+  <div class="row">
+    <%= form_for @publicacioncarpool, url: new_publicar_carpool_path  do |f| %>
 
-    <% if @publicacioncarpool.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@publicacioncarpool.errors.count, "error") %> prohibited
-        this article from being saved:
-      </h2>
-      <ul>
-        <% @publicacioncarpool.errors.full_messages.each do |msg| %>
-          <li><%= msg %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
+        <% if @publicacioncarpool.errors.any? %>
+        <div id="error_explanation">
+          <h2>
+            <%= pluralize(@publicacioncarpool.errors.count, "error") %> prohibited
+            this article from being saved:
+          </h2>
+          <ul>
+            <% @publicacioncarpool.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class="field">
+        <%= f.label :fecha %>
+        <%= f.date_select :fecha %>
+      </div>
+      <div class="field">
+        <%= f.label :hora_desde %>
+        <%= f.time_select :hora_desde %>
+      </div>
+      <div class="field">
+        <%= f.label :desde %>
+        <%= f.text_field :desde %>
+      </div>
+      <div class="field">
+        <%= f.label "Asientos Disponibles" %>
+        <%= f.text_field :asientos_disp %>
+      </div>
+      <div class="field">
+        <%= f.label "Tipo de Vehiculo" %>
+        <%= f.text_field :tipo_vehiculo %>
+      </div>
+       <div class="field">
+        <%= f.label "Celular de contacto" %>
+        <%= f.text_field :celular %>
+      </div>
+      <div class="field">
+        <%= f.label :descripcion %><br>
+        <%= f.text_area :descripcion %>
+      </div>
 
-  <div class="field">
-    <%= f.label :descripcion %><br>
-    <%= f.text_area :descripcion %>
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
   </div>
-  <div class="field">
-    <%= f.label :precio %><br>
-    <%= f.text_area :precio %>
-  </div>
-  <div class="field">
-    <%= f.label :hora_desde %><br>
-    <%= f.time_select :hora_desde %>
-  </div>
-  <div class="field">
-    <%= f.label :hora_hasta %><br>
-    <%= f.time_select :hora_hasta %>
-  </div>
-  <div class="field">
-    <%= f.label :desde %><br>
-    <%= f.text_field :desde %>
-  </div>
-
-   <div class="field">
-    <%= f.label :hasta %><br>
-    <%= f.text_field :hasta %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-<% end %>
+</div>
