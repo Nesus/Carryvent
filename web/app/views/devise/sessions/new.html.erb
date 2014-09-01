@@ -12,7 +12,20 @@
           <div class="account-wall">
             <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120" alt="">
             
-            <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-signin") do |f| %>
+            <%= form_for(resource, as: resource_name, url: session_path(resource_name), class: "form-signin") do |f| %> 
+            <% flash.each do |key, value| %>
+              <% if key == "alert" or key == "error" %>
+              <div class="alert alert-<%= key %>">
+                  <a href="#" data-dismiss="alert" class="close">×</a>
+                    <ul>
+                      <li>
+                        <%= value %>
+                      </li>
+                    </ul>
+                </div>
+              <%end %>
+            <% end %>
+
 
               <% if resource_name != :user %>
                 <%= f.text_field :username, :class => "form-control", :placeholder =>"Username" %>
