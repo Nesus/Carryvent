@@ -59,6 +59,8 @@ GEM
     execjs (2.1.0)
     faraday (0.9.0)
       multipart-post (>= 1.2, < 3)
+    geocoder (1.2.4)
+    gmaps4rails (2.1.2)
     haml (4.0.5)
       tilt
     hashie (3.2.0)
@@ -192,6 +194,8 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
+  geocoder
+  gmaps4rails
   haml
   jbuilder (~> 2.0)
   jquery-rails

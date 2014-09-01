@@ -42,6 +42,7 @@ class EventoController < ApplicationController
 	#Tomamos solamente los parametros de evento que necesitamos
 	private
 	  def evento_params
-	    params.require(:evento).permit(:name, :subtitle, :address, :information, :coordinates, :image)
+	    params.require(:evento).permit(:name, :subtitle, :address, :information, :coordinates, 
+	    	:image, :latitude, :longitude)
 	  end
 end

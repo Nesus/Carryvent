@@ -19,4 +19,11 @@ class Evento < ActiveRecord::Base
 	validates :name, presence: true
 	validates :subtitle, presence: true
 	validates :publicador_id, presence: true
+
+	#geocoded
+	geocoded_by :address
+	after_validation :geocode
+
+
+
 end

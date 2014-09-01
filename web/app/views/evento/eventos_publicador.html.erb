@@ -3,9 +3,11 @@ Eventos Publicados
 <% @eventos.each do |evento| %>
 	<div>
 		Titulo:
-		<%= evento.nombre %>
+		<%= evento.name %>
 		Descripcion
 		<%= evento.information %>
+		<%= evento.longitude %>
+		<%= evento.latitude %>
 		<%=link_to "Editar", editar_evento_path(evento) %>
 	</div><br>
 <% end %>
