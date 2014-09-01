@@ -38,15 +38,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<%=root_path %>"><b><i class="fa fa-car"></i> Carryvent</b></a>
+                <a class="navbar-brand" href="<%=root_path %>"><b>Carryvent</b></a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                 <% if user_signed_in? or publicador_signed_in? %>
-                  <li><%= link_to "Home", root_path %></li>
+                  <li><%= link_to "Inicio", root_path %></li>
                 <% else %>
-                  <li> <a class="page-scroll" href="#home"><b> Home </b></a></li>
+                  <li> <a class="page-scroll"><b> Inicio </b></a></li>
                 <% end %>
                   <% if user_signed_in? %>
 
@@ -56,20 +56,14 @@
                     <li><%= link_to "Administrar Eventos", lista_eventos_publicador_path %></li></li> 
                     <li><%= link_to "Logout", destroy_publicador_session_path, :method => :delete %></li>
                   <% else %>
-                    <li>
-                        <a class="page-scroll" href="#que"><b> ¿Qué es Carryvent? </b></a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="#quienes"><b> ¿Quienes somos? </b></a>
-                    </li>
-                    <li><%= link_to "Login", new_user_session_path %></li>
+                    <li id="botonesBarra"><%= link_to "Login", new_user_session_path %></li>
                   <% end %>
                 </ul>
 
                 <% if user_signed_in? %>
                  <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a href="#" data-toggle="dropdown" class="dropdown-toggle"> 
+                        <a id="nombreUsuario" href="#" data-toggle="dropdown" class="dropdown-toggle"> 
                         <% if current_user.foto.present? %>
                         <img src="<%=current_user.foto.thumb.url %>", class ="img-circle">
                         <% end %>
@@ -79,7 +73,7 @@
                         <ul class="dropdown-menu">
                             <li><%= link_to  "Perfil", perfil_user_path(current_user)%></li>
                             <li class="divider"></li>
-                            <li> <%= link_to "Logout", destroy_user_session_path, :method => :delete %></li>
+                            <li> <%= link_to "Salir", destroy_user_session_path, :method => :delete %></li>
                         </ul>
                     </li>
                 </ul>
