@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140827184251) do
+ActiveRecord::Schema.define(version: 20140901000518) do
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -62,6 +62,16 @@ ActiveRecord::Schema.define(version: 20140827184251) do
   end
 
   add_index "eventos", ["publicador_id"], name: "index_eventos_on_publicador_id"
+
+  create_table "gustos", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gustos", ["category_id"], name: "index_gustos_on_category_id"
+  add_index "gustos", ["user_id"], name: "index_gustos_on_user_id"
 
   create_table "oferta", force: true do |t|
     t.string   "nombre"
@@ -146,6 +156,18 @@ ActiveRecord::Schema.define(version: 20140827184251) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "transaccion_carpools", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "publicacion_carpool_id"
+    t.boolean  "aceptado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "asientos"
+  end
+
+  add_index "transaccion_carpools", ["publicacion_carpool_id"], name: "index_transaccion_carpools_on_publicacion_carpool_id"
+  add_index "transaccion_carpools", ["user_id"], name: "index_transaccion_carpools_on_user_id"
 
   create_table "user_eventos", force: true do |t|
     t.integer  "user_id"

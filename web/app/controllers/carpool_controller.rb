@@ -1,9 +1,4 @@
 class CarpoolController < ApplicationController
-	before_filter :authenticate_user!
-
-	# definir parametros
-	# definir las cosas previas
-	# definir los requerimientos para los 
 
 	#Vista de publicar carpool
 	def publicar
@@ -23,6 +18,7 @@ class CarpoolController < ApplicationController
 			if publicacionCarpool.save
 				redirect_to mostrar_carpool_path(params[:evento_id],publicacionCarpool)
 			else
+				userEvento.destroy
 				redirect_to publicar_carpool_path(params[:evento_id])
 			end
 		else
@@ -38,6 +34,27 @@ class CarpoolController < ApplicationController
         @comments = @carpool.comment_threads.order('created_at desc')
         @new_comment = Comment.build_from(@carpool, current_user.id, "")
     end
+
+   	def new_transaction
+   		evento = Evento.find(params[:evento_id])
+   		carpool = PublicacionCarpool.find(params[:publicacion_carpool_id])
+   		#Usuario que pide el carpool
+   		user = current_user
+   		#Usuario que publico el carpool
+   		userPub = User.joins(user_eventos: [:user, :evento, :publicacion_carpool]).where(publicacion_carpools: {id: params[:id]}).first
+   		if user != userPub
+   			trans = user.transaccion_carpools.new(:pubicacion_carpool_id => carpool.id , :aceptado => false, :asientos => params[:asientos] )
+
+   			if trans.save
+   				##MOSTRAR QUE SE PUDO CREAR
+   				redirect_to mostrar_carpool_path(evento, carpool)
+   			else
+   				#MOSTRAR ERROR QUE NO SE PUDO CREAR
+   				redirect_to mostrar_carpool_path(evento, carpool)
+   			end
+   		end
+   	end
+
 
     #Tomamos solamente los parametros que sirven para publicacion_carpool
 	private
