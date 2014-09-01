@@ -3598,7 +3598,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 10px 15px 5px 15px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -3978,7 +3978,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-nav > li > a {
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 0px;
   }
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px;
@@ -6377,7 +6377,7 @@ p {
 
 #nombreUsuario{
   padding-bottom: 8px;
-  padding-top: 8px;
+  padding-top: 7px;
 }
 
 #botonesBarraLogueado{
@@ -6455,9 +6455,11 @@ p {
 
 #ofertasCarpool{
   height: 300px;
+  overflow-y: auto;
 }
 
 #comentariosEvento{
   height: 300px;
+  overflow-y: auto;
 }
 /*# sourceMappingURL=bootstrap.css.map */

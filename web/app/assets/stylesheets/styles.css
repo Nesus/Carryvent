@@ -44,12 +44,28 @@
     border-top-left-radius: 0;
     border-top-right-radius: 0;
 }
+
+/* login */
 .account-wall
 {
     margin-top: 20px;
     margin-left: 30px;
     margin-right: 30px;
     padding: 40px 0px 20px 0px;
+    background-color: #fff1e8;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+}
+
+/* registrarse */
+.account-wall_reg
+{
+    margin-top: 20px;
+    padding: 20px 0px 20px 0px;
     background-color: #fff1e8;
     -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
     -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
@@ -84,3 +100,36 @@
     display: block;
     margin-top: 10px;
 }
+
+
+
+/*flash*/
+.alert-error {
+    background-color: #FFFAFA; /*#f2dede*/
+    border-color: #eed3d7;
+    color: rgba(246, 35, 35, 1); /*#b94a48*/
+    text-align: left;
+ }
+
+.alert-alert {
+    background-color: #FFFAFA; /* #f2dede */
+    border-color: #eed3d7;
+    color: #b94a48;
+    text-align: left;
+ }
+
+.alert-success {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+.alert-notice {
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+    color: #468847;
+    text-align: left;
+ }
+
+
