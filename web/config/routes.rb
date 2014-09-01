@@ -8,6 +8,14 @@ Rails.application.routes.draw do
   get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
   get '/evento/:id  ' => 'evento#show', as: :mostrar_evento
 
+
+  #Ruta organizadores
+  get '/organization/:id' => 'organization#show', as: :mostrar_organization
+  get '/publicarOrg' => 'organization#new', as: :publicar_organization
+  post '/publicarOrg' => 'organization#create', as: :crear_organization
+  get '/organization/edit/:id' => 'organization#update', as: :editar_organization
+
+
   #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
   #testing
