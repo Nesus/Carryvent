@@ -1,6 +1,5 @@
 class EventoController < ApplicationController
 
-	before_filter :authenticate_user!, :except => [:publicar, :editar, :eventos_publicador, :new]
 	before_filter :authenticate_publicador!, :except => [:eventos, :show]  
 
 	def eventos

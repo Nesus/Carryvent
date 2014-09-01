@@ -1,5 +1,7 @@
 class CarpoolController < ApplicationController
 
+	before_filter :authenticate_user!, :except => [:show]
+
 	#Vista de publicar carpool
 	def publicar
 		@publicacioncarpool = PublicacionCarpool.new
