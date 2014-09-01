@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include PublicActivity::Model
+  tracked
 
   mount_uploader :foto, FotoUploader
 
