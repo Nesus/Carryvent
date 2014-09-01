@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140901205644) do
+ActiveRecord::Schema.define(version: 20140901215956) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -207,14 +207,11 @@ ActiveRecord::Schema.define(version: 20140901205644) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "nombre"
-    t.string   "ciudad"
-    t.string   "region"
-    t.string   "telefono"
-    t.date     "cumple"
-    t.string   "rut"
-    t.string   "dv"
     t.text     "direccion"
     t.string   "foto"
+    t.integer  "ciudad_id"
+    t.integer  "region_id"
+    t.float    "ranking"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
