@@ -7,6 +7,10 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
 
+
+test = User.new(email: 'test@test.cl', nombre: "Testito Testoneo", password: "11111111" , password_confirmation: "11111111")
+test.save
+
 #Publicador de prueba
 test = Publicador.new(email:'test@test.cl', username: 'test', password: "11111111", password_confirmation: "11111111")
 test.save

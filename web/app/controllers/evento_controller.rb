@@ -12,6 +12,9 @@ class EventoController < ApplicationController
 
 	def publicar
 		@evento = Evento.new
+		@ciudades = City.all
+		@regiones = Region.all
+		@organizations = Organization.all
 	end
 
 	def new
@@ -38,7 +41,6 @@ class EventoController < ApplicationController
 	def editar
 		@evento = Evento.find(params[:id])
 	end
-
 
 	#Tomamos solamente los parametros de evento que necesitamos
 	private
