@@ -3780,7 +3780,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  max-height: 53px;
+  max-height: 100px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -5377,7 +5377,7 @@ a.list-group-item-danger.active:focus {
   color: #000;
   text-shadow: 0 1px 0 #fff;
   filter: alpha(opacity=20);
-  opacity: .2;
+  opacity: .3;
 }
 .close:hover,
 .close:focus {
@@ -6461,3 +6461,8 @@ p {
   height: 300px;
 }
 /*# sourceMappingURL=bootstrap.css.map */
+
+
+
+
+
