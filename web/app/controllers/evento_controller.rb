@@ -31,6 +31,12 @@ class EventoController < ApplicationController
 		@publicacionCarpools = PublicacionCarpool.joins(user_evento: [:user, :evento]).where(eventos:{id: params[:id]})
 		@comments = @evento.comment_threads.order('created_at desc')
         @new_comment = Comment.build_from(@evento, current_user.id, "")
+        @hash = Gmaps4rails.build_markers(@evento) do |evento, marker|
+			marker.lat evento.latitude
+			marker.lng evento.longitude
+			marker.infowindow evento.subtitle
+			marker.json({ name: evento.name})
+		end
 	end
 
 
