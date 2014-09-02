@@ -46,7 +46,7 @@
                 <% if user_signed_in? or publicador_signed_in? %>
                   <li><%= link_to "Inicio", root_path %></li>
                 <% else %>
-                  <li> <a class="page-scroll"><b> Inicio </b></a></li>
+                  <li> <a class="page-scroll" href="/"><b> Inicio </b></a></li>
                 <% end %>
                   <% if user_signed_in? %>
 

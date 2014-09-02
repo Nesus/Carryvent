@@ -1,8 +1,3 @@
-<% regiones = [] %>
-<% @regiones.each do |r| %>
-  <% regiones << r.name %>
-<% end %>
-
 <div class="container">
   <div class="row">
     <div class="col-sm-6 col-md-4 col-md-offset-4">
@@ -34,10 +29,10 @@
             <%= f.text_field :nombre , :class => "form-control", :placeholder =>"Nombre"%></p>
 
             <p><%= f.label "Región" %><br>
-            <%= f.select :region_id , options_for_select(regiones) %></p>
+            <%= f.select :region_id , @regiones.collect  {|r| [ r.name] }, {include_blank: true}, {class: "form-control"}%></p>
             
             <p><%= f.label :ciudad_id %>
-            <%= f.text_field :ciudad_id , :class => "form-control", :placeholder =>"Ciudad"%></p>
+            <%= f.select :ciudad_id , @ciudades.collect  {|c| [ c.name] }, {include_blank: true}, {class: "form-control"}%></p>
 
           <% end %>
           <div>
