@@ -28,14 +28,11 @@
             <p><%= f.label :nombre %>
             <%= f.text_field :nombre , :class => "form-control", :placeholder =>"Nombre"%></p>
 
-            <p><%= f.label :region_id %>
-            <%= f.text_field :region_id , :class => "form-control", :placeholder =>"Region"%></p>
-
-            <p><%= f.label :region_id %>
-            <%= f.select :region_id , options_for_select(@regiones) %>
+            <p><%= f.label "Región" %><br>
+            <%= f.select :region_id , @regiones.collect  {|r| [ r.name] }, {include_blank: true}, {class: "form-control"}%></p>
             
             <p><%= f.label :ciudad_id %>
-            <%= f.text_field :ciudad_id , :class => "form-control", :placeholder =>"Ciudad"%></p>
+            <%= f.select :ciudad_id , @ciudades.collect  {|c| [ c.name] }, {include_blank: true}, {class: "form-control"}%></p>
 
           <% end %>
           <div>
