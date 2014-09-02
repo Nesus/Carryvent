@@ -44,7 +44,11 @@
             <div class="field">
               <%= f.label "Región" %><br>
               <%= f.select :region_id , options_for_select(regiones) %>
-            </div>
+            </div>  
+
+            <% @ciudades.each do |r| %>
+              <%= r.name %>
+            <% end %>
 
             <br>
 
