@@ -45,4 +45,7 @@ class Comment < ActiveRecord::Base
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end
+
+  # para activity
+  tracked owner: ->(controller, model) { controller.current_user }
 end

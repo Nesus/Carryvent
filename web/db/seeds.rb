@@ -7,7 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 require 'csv'
 
-
+#Usuario de prueba
 test = User.new(email: 'test@test.cl', nombre: "Testito Testoneo", password: "11111111" , password_confirmation: "11111111")
 test.save
 
