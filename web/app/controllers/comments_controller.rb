@@ -23,4 +23,6 @@ class CommentsController < ApplicationController
       render :js => "alert('Hubo un error al borrar el comentario');"
     end
   end
+
+  tracked owner: ->(controller, model) { controller && controller.current_user }
 end

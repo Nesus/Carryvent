@@ -80,6 +80,16 @@ ActiveRecord::Schema.define(version: 20140901215956) do
 
   add_index "eventos", ["publicador_id"], name: "index_eventos_on_publicador_id"
 
+  create_table "gustos", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "category_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "gustos", ["category_id"], name: "index_gustos_on_category_id"
+  add_index "gustos", ["user_id"], name: "index_gustos_on_user_id"
+
   create_table "oferta", force: true do |t|
     t.string   "nombre"
     t.string   "desc"
@@ -164,6 +174,18 @@ ActiveRecord::Schema.define(version: 20140901215956) do
     t.datetime "updated_at"
   end
 
+  create_table "transaccion_carpools", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "publicacion_carpool_id"
+    t.boolean  "aceptado"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "asientos"
+  end
+
+  add_index "transaccion_carpools", ["publicacion_carpool_id"], name: "index_transaccion_carpools_on_publicacion_carpool_id"
+  add_index "transaccion_carpools", ["user_id"], name: "index_transaccion_carpools_on_user_id"
+
   create_table "user_eventos", force: true do |t|
     t.integer  "user_id"
     t.integer  "evento_id"
@@ -185,14 +207,11 @@ ActiveRecord::Schema.define(version: 20140901215956) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "nombre"
-    t.string   "ciudad"
-    t.string   "region"
-    t.string   "telefono"
-    t.date     "cumple"
-    t.string   "rut"
-    t.string   "dv"
     t.text     "direccion"
     t.string   "foto"
+    t.integer  "ciudad_id"
+    t.integer  "region_id"
+    t.float    "ranking"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
