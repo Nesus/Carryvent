@@ -1,6 +1,12 @@
 
-<h1>Notificaciones </h1>
+<h1>Notificaciones</h1>
+
+Últimas actividades:
 <% @activities.each do |activity| %>
-  <%= activity.inspect %>
+  <div class="activity">
+  <%= link_to activity.owner.name, activity.owner if activity.owner %>
+
+  </div>
 <% end %>
+
 
