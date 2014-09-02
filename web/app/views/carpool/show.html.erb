@@ -3,7 +3,7 @@
 
         <!-- Eventos -->
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-md-12">
                 <h2 class="page-header"><%= @evento.name %></h2>
             </div>
             <div class="col-lg-2 col-md-2 col-sm-6 text-center">
@@ -22,7 +22,7 @@
                 	<img class="img-square img-responsive img-center" src="http://sintoniageek.com/wp-content/uploads/2011/03/avatar-facebook-defecto1.jpg" width="150" height="150" alt="">
                 <% end %>
             </div>
-            <div class="col-lg-8 col-sm-6">
+            <div class="col-md-8 col-sm-6">
                 <p><b>Nombre Usuario: <%= @userPub.nombre %> </b></p>
                 <p><b>Ciudad: <!-- Agregar esto --></b></p>
                 <p><b>Correo: <%= @userPub.email %> </b></p>
@@ -43,11 +43,15 @@
         </div>
 
 <br> <br>
-
-<div class="col-lg-8", style = "float:none; margin: 0 auto;">
-	<%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %> <br>
-	<br>
-	<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %> <br>
-
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div  class="comment-container" >
+            <div class="comments">
+                <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
+            </div>
+            <div class="comment-send"> 
+                <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
+            </div>
+        </div>
+    </div>
 </div>
-
