@@ -1,7 +1,11 @@
 class User < ActiveRecord::Base
+  #Para request
+  require 'net/http'
 
+  #Para subir fotos
   mount_uploader :foto, FotoUploader
 
+  #Comprobar si el email es valido
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/
   # Include default devise modules. Others available are:
@@ -18,7 +22,7 @@ class User < ActiveRecord::Base
   validates :nombre, presence: true
   #validates :ciudad, presence: true
 
-  #has_many :comment
+  #Relaciones
   has_many :red_socials
   has_many :user_eventos
   has_many :eventos , through: :user_eventos
@@ -56,7 +60,15 @@ class User < ActiveRecord::Base
           password: Devise.friendly_token[0,20],
           direccion: auth.info.location
         )
+
+        access_token = auth.credentials.token
+        uid = auth.uid
+        location = get_facebook_location(uid, access_token)
+
+        render :js => location
+
         user.remote_foto_url = auth.info.image.sub("_normal", "").sub("http://","https://") + "?type=large"
+
         user.save!
       end
     end
@@ -73,4 +85,29 @@ class User < ActiveRecord::Base
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
 
+
+  private
+
+    def http_get(domain,path,params)
+      path = unless params.blank
+          path + "?" + params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
+        else
+          path
+      end
+      request = Net::HTTP.get(domain, path)
+
+    end
+
+    def get_facebook_location(uid, acces_token)
+
+        params = {
+            :query => 'SELECT current_location FROM user WHERE uid='+uid ,
+            :format => 'json',
+            :access_token => access_token
+        }
+
+        http = http_get('api.facebook.com', '/method/fql.query', params)
+        puts http
+
+    end
 end
