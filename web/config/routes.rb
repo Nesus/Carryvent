@@ -94,6 +94,10 @@ Rails.application.routes.draw do
     root :to => "evento#eventos", as: "authenticated_root"
   end
 
+  authenticated :publicador do
+    root :to => "evento#eventos_publicador", as: "authenticated_publicador_root"
+  end
+
   root :to => 'user#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

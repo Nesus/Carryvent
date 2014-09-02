@@ -3,7 +3,9 @@ class EventoController < ApplicationController
 	before_filter :authenticate_publicador!, :except => [:eventos, :show]  
 
 	def eventos
-		@eventos = Evento.all
+		eventos_list = Evento.all
+		@eventos= eventos_list.each_slice(6).to_a
+
   	end
 
   	def eventos_publicador
