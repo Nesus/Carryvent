@@ -1,9 +1,9 @@
-<div class="comment-form">
+<div class="comment-form" style="margin-top:5px">
  <%= simple_form_for comment, :remote => true do |f| %>
   <%= f.text_area :body, :input_html => { :rows => "2" }, :label => false , :class => "form-control"%>
   <%= f.input :commentable_id, :as => :hidden, :value => comment.commentable_id %>
-  <%= f.input :commentable_type, :as => :hidden, :value => comment.commentable_type %> <br>
-  <div style="float:right;">
+  <%= f.input :commentable_type, :as => :hidden, :value => comment.commentable_type %>
+  <div style="float:right; margin-top:5px;">
   	<%= f.button :submit,'Comentar', :class => "btn btn-primary", :disable_with => "Submitting…" %>
   </div>
  <% end %>

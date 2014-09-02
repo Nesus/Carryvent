@@ -67,6 +67,8 @@
                         <a id="nombreUsuario" href="#" data-toggle="dropdown" class="dropdown-toggle"> 
                         <% if current_user.foto.present? %>
                         <img src="<%=current_user.foto.thumb.url %>", class ="img-circle">
+                        <% else %>
+                        <img src="/assets/place_user.png", class="img-circle", style="width:30px;heigh:30px">
                         <% end %>
 
                         <%=current_user.nombre%><b class="caret"></b></a>

@@ -11,53 +11,60 @@
 				<div class="container-fluid">
 					<div id="heroSlider" class="carousel slide">
 						<div class="carousel-inner">
-							<div class="active item">
-								<div class="hero-unit">
-									<% @eventos.each do |evento| %>
-										<div class="col-lg-4 col-sm-6 text-center">
-											<!-- Hipervinculo en la imagen, si no hay dejamos un placeholder-->
-											<!-- Editar el placeholder para version final -->
-											<a href="<%= mostrar_evento_path(evento) %>">
+	
+							<% primer = true %>
+							<% @eventos.each do |eventos| %>
+								<% if primer %>
+									<div class="active item">
+										<div class="hero-unit">
+											<% eventos.each do |evento| %>
+												<div class="col-lg-4 col-sm-6 text-center">
+													<!-- Hipervinculo en la imagen, si no hay dejamos un placeholder-->
+													<!-- Editar el placeholder para version final -->
+													<a href="<%= mostrar_evento_path(evento) %>">
 
-											<img class="img-square img-responsive img-center" src="
-													<% if evento.image.present? %>
-															<%= evento.image %>
-													<% else %>
-															http://placehold.it/200x200
-													<% end %> 
-										 " alt="">
-											</a>
-											<h3><%= evento.name %> </h3>
-											<p> <%= evento.subtitle %> </p>
+													<img class="img-square img-responsive img-center" src="
+															<% if evento.image.present? %>
+																	<%= evento.image %>
+															<% else %>
+																	http://placehold.it/200x200
+															<% end %> 
+												 " alt="">
+													</a>
+													<h3><%= evento.name %> </h3>
+													<p> <%= evento.subtitle %> </p>
+												</div>
+											<%end%>
 										</div>
-									<% end %> 
-								</div>
-							</div>
-							
-							<div class="item">
-								<div class="hero-unit">
-								<!-- INICIO-->
-									<% @eventos.each do |evento| %>
-										<div class="col-lg-4 col-sm-6 text-center">
-											<!-- Hipervinculo en la imagen, si no hay dejamos un placeholder-->
-											<!-- Editar el placeholder para version final -->
-											<a href="<%= mostrar_evento_path(evento) %>">
+									</div>
+									<% primer = false %>
+								<% else %>
+									<div class="item">
+										<div class="hero-unit">
+										<!-- INICIO-->
+											<% eventos.each do |evento| %>
+												<div class="col-lg-4 col-sm-6 text-center">
+												<!-- Hipervinculo en la imagen, si no hay dejamos un placeholder-->
+												<!-- Editar el placeholder para version final -->
+													<a href="<%= mostrar_evento_path(evento) %>">
 
-											<img class="img-square img-responsive img-center" src="
-													<% if evento.image.present? %>
-															<%= evento.image %>
-													<% else %>
-															http://placehold.it/200x200
-													<% end %> 
-										 " alt="">
-											</a>
-											<h3><%= evento.name %> </h3>
-											<p> <%= evento.information %> </p>
+													<img class="img-square img-responsive img-center" src="
+														<% if evento.image.present? %>
+																<%= evento.image %>
+														<% else %>
+																http://placehold.it/200x200
+														<% end %> 
+											 " alt="">
+													</a>
+													<h3><%= evento.name %> </h3>
+													<p> <%= evento.information %> </p>
+												</div>
+											<% end %>
+									<!-- FIN-->                  
 										</div>
-									<% end %>
-								<!-- FIN-->                  
-								</div>
-							</div>
+									</div>
+								<% end %>
+							<% end %>
 							
 						</div>
 						<a class="left carousel-control" href="#heroSlider" data-slide="prev">‹</a>

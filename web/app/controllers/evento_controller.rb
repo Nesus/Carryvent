@@ -1,10 +1,11 @@
 class EventoController < ApplicationController
 
-	before_filter :authenticate_user!, :except => [:publicar, :editar, :eventos_publicador, :new]
 	before_filter :authenticate_publicador!, :except => [:eventos, :show]  
 
 	def eventos
-		@eventos = Evento.all
+		eventos_list = Evento.all
+		@eventos= eventos_list.each_slice(6).to_a
+
   	end
 
   	def eventos_publicador
@@ -33,7 +34,9 @@ class EventoController < ApplicationController
 		@evento = Evento.find(params[:id])
 		@publicacionCarpools = PublicacionCarpool.joins(user_evento: [:user, :evento]).where(eventos:{id: params[:id]})
 		@comments = @evento.comment_threads.order('created_at desc')
-        @new_comment = Comment.build_from(@evento, current_user.id, "")
+        if current_user
+        	@new_comment = Comment.build_from(@evento, current_user.id, "")
+        end
 	end
 
 

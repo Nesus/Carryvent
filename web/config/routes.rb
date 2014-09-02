@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  #comentarios
+  resources :comments, :only =>[:create, :destroy]
+
+  #activity
+  resources :notifications
+
   #Rutas de eventos
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
   get '/publicar' => 'evento#publicar', as: :publicar_evento
@@ -29,7 +35,7 @@ Rails.application.routes.draw do
   post 'evento/:evento_id/carpool/publicar' =>  'carpool#new', as: :new_publicar_carpool
   get 'evento/:evento_id/carpool/:id' => 'carpool#show', as: :mostrar_carpool
  
-
+  post 'evento/:evento_id/carpool/:id' => 'carpool#new_transaction', as: :crear_transaccion_carpool
 
   #match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
@@ -84,10 +90,15 @@ Rails.application.routes.draw do
     end
   end
 
-  #comentarios
-  resources :comments, :only =>[:create, :destroy]
+  authenticated :user do
+    root :to => "evento#eventos", as: "authenticated_root"
+  end
 
-  root 'user#index'
+  authenticated :publicador do
+    root :to => "evento#eventos_publicador", as: "authenticated_publicador_root"
+  end
+
+  root :to => 'user#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
