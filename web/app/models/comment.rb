@@ -1,4 +1,7 @@
 class Comment < ActiveRecord::Base
+  #Para activity
+  include PublicActivity::Common
+
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
   validates :body, :presence => true
@@ -45,4 +48,6 @@ class Comment < ActiveRecord::Base
   def self.find_commentable(commentable_str, commentable_id)
     commentable_str.constantize.find(commentable_id)
   end
+
+
 end
