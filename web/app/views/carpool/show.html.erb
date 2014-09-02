@@ -3,39 +3,55 @@
 
         <!-- Eventos -->
         <div class="row">
-            <div class="col-lg-12">
-                <h2 class="page-header"><%= @evento.nombre %></h2>
+            <div class="col-md-12">
+                <h2 class="page-header"><%= @evento.name %></h2>
             </div>
-            <div class="col-lg-2 col-sm-6 text-center">
+            <div class="col-lg-2 col-md-2 col-sm-6 text-center">
                 <img class="img-square img-responsive img-center" 
-                src="<% if ! @evento.imagen.nil? %>
-                <%= @evento.imagen %>
+                src="<% if ! @evento.image.nil? %>
+                <%= @evento.image %>
                 <% else %>
                 http://placehold.it/150x150
                 <%end%>" 
                 width="150" height="150" alt="">
             </div>
-            <div class="col-lg-2 col-sm-6 text-center">
+            <div class="col-lg-2 col-md-2 col-sm-6 text-center">
             	<% if @userPub.foto.present? %>
             		<img class="img-square img-responsive img-center" src="<%= @userPub.foto+"?type=large" %>" width="150" height="150" alt="">
             	<% else %>
                 	<img class="img-square img-responsive img-center" src="http://sintoniageek.com/wp-content/uploads/2011/03/avatar-facebook-defecto1.jpg" width="150" height="150" alt="">
                 <% end %>
             </div>
-            <div class="col-lg-8 col-sm-6">
+            <div class="col-md-8 col-sm-6">
                 <p><b>Nombre Usuario: <%= @userPub.nombre %> </b></p>
-                <p><b>Ciudad: <%= @userPub.ciudad %></b></p>
+                <p><b>Ciudad: <!-- Agregar esto --></b></p>
                 <p><b>Correo: <%= @userPub.email %> </b></p>
-                <p><b>Asientos disponibles: </b></p>
+                <p><b>Asientos disponibles: <%= @asientosDisp %> </b></p>
+                
+                <% if current_user != @userPub %>
+                    <p> Pedir asiento en carpool <br>
+
+                     <%= form_for @transaccion , url: crear_transaccion_carpool_path do |f| %>
+                        <%= f.label :asientos %>
+                        <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }) %>
+                        <%= f.submit %>
+                    <% end %>
+                    </p>
+                <% end %>
+
             </div>
         </div>
 
 <br> <br>
-
-<div class="col-lg-8", style = "float:none; margin: 0 auto;">
-	<%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %> <br>
-	<br>
-	<%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %> <br>
-
+<div class="row">
+    <div class="col-md-6 col-xs-12">
+        <div  class="comment-container" >
+            <div class="comments">
+                <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
+            </div>
+            <div class="comment-send"> 
+                <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
+            </div>
+        </div>
+    </div>
 </div>
-

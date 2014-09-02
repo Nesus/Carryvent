@@ -4,6 +4,7 @@ class PublicacionCarpool < ActiveRecord::Base
   belongs_to :user_evento
   has_one :user, through: :user_evento
   has_one :evento, through: :user_evento
+  has_many :transaccion_carpools
 
   #Comentarios
   acts_as_commentable

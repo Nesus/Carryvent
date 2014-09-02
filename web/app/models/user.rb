@@ -24,10 +24,18 @@ class User < ActiveRecord::Base
 
   #Relaciones
   has_many :red_socials
+  has_many :transaccion_carpools
+  
   has_many :user_eventos
   has_many :eventos , through: :user_eventos
+  has_many :publicacion_carpools, through: :user_eventos
+  has_many :pasajes, through: :user_eventos
 
+  has_many :gustos
+  has_many :categories, through: :gustos
 
+  belongs_to :city
+  belongs_to :region
 
 
   def self.find_for_oauth(auth, signed_in_resource = nil)
