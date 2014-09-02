@@ -33,19 +33,23 @@ class CarpoolController < ApplicationController
 		@evento = Evento.find(params[:evento_id])
 		@carpool = PublicacionCarpool.find(params[:id])
 		@userPub = User.joins(user_eventos: [:user, :evento, :publicacion_carpool]).where(publicacion_carpools: {id: params[:id]}).first
+        asientosTomados = @carpool.transaccion_carpools.where(:aceptado => true).count
+        @asientosDisp = @carpool.asientos_disp - asientosTomados
         @comments = @carpool.comment_threads.order('created_at desc')
         @new_comment = Comment.build_from(@carpool, current_user.id, "")
+
+        @transaccion = TransaccionCarpool.new
     end
 
    	def new_transaction
    		evento = Evento.find(params[:evento_id])
-   		carpool = PublicacionCarpool.find(params[:publicacion_carpool_id])
+   		carpool = PublicacionCarpool.find(params[:id])
    		#Usuario que pide el carpool
    		user = current_user
    		#Usuario que publico el carpool
    		userPub = User.joins(user_eventos: [:user, :evento, :publicacion_carpool]).where(publicacion_carpools: {id: params[:id]}).first
    		if user != userPub
-   			trans = user.transaccion_carpools.new(:pubicacion_carpool_id => carpool.id , :aceptado => false, :asientos => params[:asientos] )
+   			trans = user.transaccion_carpools.new(:publicacion_carpool_id => carpool.id , :aceptado => false, :asientos => params[:asientos] )
 
    			if trans.save
    				##MOSTRAR QUE SE PUDO CREAR

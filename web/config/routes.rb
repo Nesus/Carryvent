@@ -29,7 +29,7 @@ Rails.application.routes.draw do
   post 'evento/:evento_id/carpool/publicar' =>  'carpool#new', as: :new_publicar_carpool
   get 'evento/:evento_id/carpool/:id' => 'carpool#show', as: :mostrar_carpool
  
-
+  post 'evento/:evento_id/carpool/:id' => 'carpool#new_transaction', as: :crear_transaccion_carpool
 
 #  match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 

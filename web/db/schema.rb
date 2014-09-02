@@ -30,23 +30,6 @@ ActiveRecord::Schema.define(version: 20140902001813) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
 
-  create_table "activities", force: true do |t|
-    t.integer  "trackable_id"
-    t.string   "trackable_type"
-    t.integer  "owner_id"
-    t.string   "owner_type"
-    t.string   "key"
-    t.text     "parameters"
-    t.integer  "recipient_id"
-    t.string   "recipient_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
-  add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
-  add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
-
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -223,14 +206,11 @@ ActiveRecord::Schema.define(version: 20140902001813) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "nombre"
-    t.string   "ciudad"
-    t.string   "region"
-    t.string   "telefono"
-    t.date     "cumple"
-    t.string   "rut"
-    t.string   "dv"
     t.text     "direccion"
     t.string   "foto"
+    t.integer  "ciudad_id"
+    t.integer  "region_id"
+    t.float    "ranking"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
