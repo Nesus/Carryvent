@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   #Para request
   require 'net/http'
+  require "uri"
 
   #Para subir fotos
   mount_uploader :foto, FotoUploader
@@ -71,10 +72,14 @@ class User < ActiveRecord::Base
 
         access_token = auth.credentials.token
         uid = auth.uid
-        location = get_facebook_location(uid, access_token)
+        location = get_facebook_location(uid, access_token)[0]
+        city = location["current_location"]["city"]
+        region = location["current_location"]["state"]
+        ciudad = City.where(:name => city).first
+        region = Region.find(ciudad.region_id)
 
-        render :js => location
-
+        user.ciudad_id = ciudad.id
+        user.region_id = region.id
         user.remote_foto_url = auth.info.image.sub("_normal", "").sub("http://","https://") + "?type=large"
 
         user.save!
@@ -93,29 +98,37 @@ class User < ActiveRecord::Base
     self.email && self.email !~ TEMP_EMAIL_REGEX
   end
 
+  def self.http_get(domain,path,params)
 
-  private
-
-    def http_get(domain,path,params)
-      path = unless params.blank
-          path + "?" + params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
-        else
-          path
-      end
-      request = Net::HTTP.get(domain, path)
-
+    path = unless params.blank?
+        path + "?" + params.collect { |k,v| "#{k}=#{CGI::escape(v.to_s)}" }.join('&')
+      else
+        path
     end
 
-    def get_facebook_location(uid, acces_token)
+    uri = URI.parse(domain+path)
+    http = Net::HTTP.new(uri.host, uri.port)
+    http.use_ssl = true
+    http.verify_mode = OpenSSL::SSL::VERIFY_NONE
 
-        params = {
-            :query => 'SELECT current_location FROM user WHERE uid='+uid ,
-            :format => 'json',
-            :access_token => access_token
-        }
+    request = Net::HTTP::Get.new(uri.request_uri)
 
-        http = http_get('api.facebook.com', '/method/fql.query', params)
-        puts http
+    response = http.request(request)
+    response = response.body
+    response = JSON.parse(response)
+    return response
+  end
 
-    end
+  def self.get_facebook_location(uid, access_token)
+      
+      params = {
+          :query => 'SELECT current_location FROM user WHERE uid='+uid ,
+          :format => 'json',
+          :access_token => access_token
+      }
+      http = http_get('https://api.facebook.com', '/method/fql.query', params)
+      print http
+      return http
+
+  end
 end

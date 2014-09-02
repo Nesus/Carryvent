@@ -29,7 +29,7 @@
 										
 									</div>
 								<h2><%= @user.nombre %></h2>
-								<p><strong>Ciudad: </strong> <%= @user.ciudad %> </p>
+								<p><strong>Ciudad: </strong> <%= @user.city.name + "," + @user.region.name  %> </p>
 								<p><strong>E-mail: </strong> <%= @user.email %> </p>
 
 
