@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  #comentarios
+  resources :comments, :only =>[:create, :destroy]
+
+  #activity
+  resources :notifications
+
   #Rutas de eventos
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
   get '/publicar' => 'evento#publicar', as: :publicar_evento
@@ -83,12 +89,6 @@ Rails.application.routes.draw do
       patch 'update_password'
     end
   end
-
-  #comentarios
-  resources :comments, :only =>[:create, :destroy]
-
-  #activity
-  resources :notifications
 
   root 'user#index'
 

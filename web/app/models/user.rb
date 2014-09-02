@@ -1,7 +1,4 @@
 class User < ActiveRecord::Base
-  include PublicActivity::Model
-  tracked
-
   mount_uploader :foto, FotoUploader
 
   TEMP_EMAIL_PREFIX = 'change@me'

@@ -8,6 +8,9 @@ class CommentsController < ApplicationController
     # Not implemented: check to see whether the user has permission to create a comment on this object
     @comment = Comment.build_from(@obj, current_user.id, @comment_hash[:body])
     if @comment.save
+      if @obj.instance_of?(PublicacionCarpool)
+        @comment.create_activity :create, owner: current_user, recipient: @obj.user_evento.user, parameters: {publicacion_carpool_id: @obj.id}
+      end
       render :partial => "comments/comment", :locals => { :comment => @comment }, :layout => false, :status => :created
     else
       render :js => "alert('Hubo un error al crear el comentario');"
@@ -23,6 +26,4 @@ class CommentsController < ApplicationController
       render :js => "alert('Hubo un error al borrar el comentario');"
     end
   end
-
-  tracked owner: ->(controller, model) { controller && controller.current_user }
 end

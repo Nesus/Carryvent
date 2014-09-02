@@ -49,9 +49,11 @@ class CarpoolController < ApplicationController
    		#Usuario que publico el carpool
    		userPub = User.joins(user_eventos: [:user, :evento, :publicacion_carpool]).where(publicacion_carpools: {id: params[:id]}).first
    		if user != userPub
-   			trans = user.transaccion_carpools.new(:publicacion_carpool_id => carpool.id , :aceptado => false, :asientos => params[:asientos] )
+   			trans = user.transaccion_carpools.new(:asientos => trans_carpool_params["asientos"],  :publicacion_carpool_id => carpool.id , :aceptado => false )
 
    			if trans.save
+   				#Active Record
+   				trans.create_activity :create, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: trans_carpool_params["asientos"] , publicacion_carpool_id: carpool.id  }
    				##MOSTRAR QUE SE PUDO CREAR
    				redirect_to mostrar_carpool_path(evento, carpool)
    			else
@@ -66,5 +68,9 @@ class CarpoolController < ApplicationController
 	private
 	  def carpool_params
 	    params.require(:publicacion_carpool).permit(:user_evento_id, :fecha, :descripcion, :precio, :hora_desde, :hora_hasta, :desde , :hasta)
+	  end
+
+	  def trans_carpool_params
+	  	params.require(:transaccion_carpool).permit(:asientos)
 	  end
 end

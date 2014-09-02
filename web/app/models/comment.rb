@@ -1,4 +1,7 @@
 class Comment < ActiveRecord::Base
+  #Para activity
+  include PublicActivity::Common
+
   acts_as_nested_set :scope => [:commentable_id, :commentable_type]
 
   validates :body, :presence => true
@@ -46,6 +49,5 @@ class Comment < ActiveRecord::Base
     commentable_str.constantize.find(commentable_id)
   end
 
-  # para activity
-  tracked owner: ->(controller, model) { controller.current_user }
+
 end
