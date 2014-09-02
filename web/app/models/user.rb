@@ -78,7 +78,7 @@ class User < ActiveRecord::Base
         ciudad = City.where(:name => city).first
         region = Region.find(ciudad.region_id)
 
-        user.ciudad_id = ciudad.id
+        user.city_id = ciudad.id
         user.region_id = region.id
         user.remote_foto_url = auth.info.image.sub("_normal", "").sub("http://","https://") + "?type=large"
 
