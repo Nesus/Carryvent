@@ -1,3 +1,8 @@
+<% regiones = [] %>
+<% @regiones.each do |r| %>
+  <% regiones << r.name %>
+<% end %>
+
 <div class="container">
   <!-- Publicar Evento -->
   <div class="row">
@@ -35,6 +40,12 @@
               <%= f.label :coordinates %><br>
               <%= f.date_select :coordinates %>
             </div>
+            <div class="field">
+              <%= f.label "Región" %><br>
+              <%= f.select :region_id , options_for_select(regiones) %>
+            </div>
+
+            <br>
 
             <div class="actions">
               <%= f.submit %>

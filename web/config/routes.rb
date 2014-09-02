@@ -37,14 +37,14 @@ Rails.application.routes.draw do
  
   post 'evento/:evento_id/carpool/:id' => 'carpool#new_transaction', as: :crear_transaccion_carpool
 
-#  match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
+  #match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-  #Rutas para sobre escribir las rutas de devise
-  devise_for :users,  :controllers => { omniauth_callbacks: 'omniauth_callbacks' }, :skip => [:sessions, :passwords, :confirmations, :registrations]
+  #Rutas para sobreescribir las rutas de devise
+  devise_for :users,  :controllers => { :omniauth_callbacks => 'omniauth_callbacks', :registrations => "registrations"  }, :skip => [:sessions, :passwords, :confirmations, :registrations]
   as :user do
     #Registro
-    get   '/registrarse' => 'devise/registrations#new',    :as => :new_user_registration
-    post  '/registrarse' => 'devise/registrations#create', :as => :user_registration
+    get   '/registrarse' => 'registrations#new',    :as => :new_user_registration
+    post  '/registrarse' => 'registrations#create', :as => :user_registration
 
     #Login
     get 'login' => 'devise/sessions#new', :as => :new_user_session

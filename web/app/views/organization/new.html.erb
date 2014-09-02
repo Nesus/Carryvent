@@ -6,22 +6,24 @@
       </h1>
       <div class="account-wall_reg">
         <%= form_for @organization, url: crear_organization_path, class: "form-signin"  do |f| %>
-          <p><%= f.label :name %>
+          <div>
+          <p><%= f.label "Nombre de la Organización"%>
           <%= f.text_field :name , :class => "form-control", :placeholder =>"Nombre de la Organización"%></p>
 
-          <p><%= f.label :contact_person %>
+          <p><%= f.label "Persona de contacto" %>
           <%= f.text_field :contact_person , :class => "form-control", :placeholder =>"Persona de Contacto"%></p>
 
-          <p><%= f.label :phone %>
-          <%= f.text_field :phone , :class => "form-control", :placeholder =>"Teléfono"%></p>
+          <p><%= f.label "Teléfono" %>
+          <%= f.text_field :phone , :class => "form-control", :placeholder =>"Ej: +56987654321"%></p>
 
-          <p><%= f.label :facebook %>
-          <%= f.text_field :facebok , :class => "form-control", :placeholder =>"Ej: /organizacion"%></p>
+          <p><%= f.label "Facebook" %>
+          <%= f.text_field :facebook , :class => "form-control", :placeholder =>"Ej: /organizacion"%></p>
 
-          <p><%= f.label :twitter %>
+          <p><%= f.label "Twitter" %>
           <%= f.text_field :twitter , :class => "form-control", :placeholder =>"Ej: @organizacion"%></p>
-      
+
           <%= f.submit "Registrarse", :class => "btn btn-primary btn-block" %>
+          </div>
         <% end %> 
       </div>
     </div>
