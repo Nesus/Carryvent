@@ -32,7 +32,7 @@
 								<p><strong>Ciudad: </strong> <%= @user.city.name + "," + @user.region.name  %> </p>
 								<p><strong>E-mail: </strong> <%= @user.email %> </p>
 
-                                <% if @user == current_user %>
+                                <% if @user == current_user and current_user.facebook_password == false %>
 								<a href="<%=edit_user_registration_path(@user)%>" class="btn btn-primary" style="float:right;">
                                     <i class="glyphicon glyphicon-edit"></i> 
                                     Editar Perfil </a>
