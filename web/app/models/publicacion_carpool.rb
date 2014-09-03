@@ -17,6 +17,12 @@ class PublicacionCarpool < ActiveRecord::Base
   
   ##Fecha
 
+  def self.asientos_disp
+    tomados = self.transaccion_carpools.sum(:asientos, :conditions => {:aceptado => true})
+    disponibles = self.asientos_disp - tomados
+    return disponibles
+  end
+
 
 end
 

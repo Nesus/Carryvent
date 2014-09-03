@@ -19,8 +19,8 @@ Rails.application.routes.draw do
   get '/organization/:id' => 'organization#show', as: :mostrar_organization
   get '/publicarOrg' => 'organization#new', as: :publicar_organization
   post '/publicarOrg' => 'organization#create', as: :crear_organization
-  get '/organization/edit/:id' => 'organization#update', as: :editar_organization
-
+  get '/organization/edit/:id' => 'organization#edit', as: :editar_organization
+  post '/organization/edit/:id' => 'organization#update', as: :modificar_organization
 
   #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
