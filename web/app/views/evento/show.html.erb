@@ -37,26 +37,41 @@
           <div class="comments">
             <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
           </div>
-          <div class="comment-send"> </div>
+          <div class="comment-send"> 
         <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
+        </div>
         </div>
       </div>
       <div class="col-md-6 col-xs-12">
         <h4>Ofertas Carpool</h4>
-        <div id="ofertasCarpool" class="hero-unit">
+        <div class="carpool-container">
         	<% if !@publicacionCarpools.nil? %>
-	          <TABLE BORDER=0>
+	          <TABLE class="tabla-carpools">
+              <tr>
+              <th> Usuario </th>
+              <th> Ciudad </th>
+              <th> Asientos disponibles </th>
+              <th>  Detalles</th>
+              </tr>
               <% @publicacionCarpools.each do |pub| %>
 	              <TR>
-	                <TD WIDTH=200 HEIGHT=110>
-	                  <img src="<%= pub.user_evento.user.foto %>?type=large" width="100" height="100" alt="" class="center-block img-responsive">
+	                <TD>
+                    <% if pub.user_evento.user.foto.thumb.url %>
+                     <% img = pub.user_evento.user.foto.thumb.url %>
+                     <img src="<%= img  %>" width="100" height="100" alt="" class="center-block img-responsive">
+                    <% else %>
+                      <img src="/assets/place_user.png", class="img-circle", style="width:30px;heigh:30px">
+                    <% end %>
+                    <%= link_to pub.user_evento.user.nombre, perfil_user_path(pub.user_evento.user) %>
 	                </TD>
-	                <TD WIDTH=200 HEIGHT=110>
-	                  <p><b>Nombre: <%= pub.user_evento.user.nombre %> </b></p>
-	                  <p><b>Asientos disponibles: <%=  pub.asientos_disp %> </b></p>
+	                <TD>
+	                  <%= pub.user_evento.user.city.name %>
 	                </TD>
+                  <td>
+                    <%= pub.asientos_disp %>
+                  </td>
 	                <TD>   
-	                  <p><%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id), :class => 'btn btn-lg btn-primary btn-block' %></p>
+	                  <%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id) %>
 	                </TD>
 	              </TR>
 	            <% end %>
