@@ -78,6 +78,7 @@
               <th> Usuario </th>
               <th> Ciudad </th>
               <th> Asientos pedidos </th>
+              <th>  Estado </th>
               <th>  Aceptar/Rechazar</th>
               </tr>
               <% @peticiones.each do |peticion| %>
@@ -98,11 +99,28 @@
                     <%= peticion.asientos%>
                   </td>
                   <td>
+                    <% if peticion.aceptado.nil? %>
+                        Pendiente
+                    <% elsif peticion.aceptado %>
+                        Aceptado
+                    <% else %>
+                        Rechazado
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if peticion.aceptado %>
+                        Aceptar
+                    <% else %>
                     <%= link_to "Aceptar" , aceptar_transaccion_path(@evento, @carpool, peticion)
                     %> 
+                    <% end %>
                     / 
+                    <% if !peticion.aceptado %>
+                        Rechazar
+                    <% else %>
                     <%= link_to "Rechazar" , rechazar_transaccion_path(@evento, @carpool, peticion)
                     %>
+                    <% end %>
                   </td>
                   </TR>
                 <% end %>

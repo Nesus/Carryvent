@@ -87,8 +87,9 @@ class CarpoolController < ApplicationController
    		evento = Evento.find(params[:evento_id])
    		carpool = PublicacionCarpool.find(params[:id])
    		aceptar = transaccion.update(:aceptado => true)
-   		transaccion.create_activity :aceptado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: trans_carpool_params["asientos"] , publicacion_carpool_id: carpool.id  }
-   	end
+   		transaccion.create_activity :aceptado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: transaccion.asientos , publicacion_carpool_id: carpool.id  }
+   	  redirect_to mostrar_carpool_path(evento,carpool)
+    end
 
     #Rechazar peticion
    	def rechazar_transaction
@@ -96,8 +97,9 @@ class CarpoolController < ApplicationController
    		evento = Evento.find(params[:evento_id])
    		carpool = PublicacionCarpool.find(params[:id])
    		rechazar = transaccion.update(:aceptado => false)
-   		transaccion.create_activity :rechazado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: trans_carpool_params["asientos"] , publicacion_carpool_id: carpool.id  }
-   	end
+   		transaccion.create_activity :rechazado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos:transaccion.asientos , publicacion_carpool_id: carpool.id  }
+   	  redirect_to mostrar_carpool_path(evento,carpool)
+    end
 
     #Borrar transaccion
    	def delete_transaction
@@ -105,8 +107,9 @@ class CarpoolController < ApplicationController
    		evento = Evento.find(params[:evento_id])
    		carpool = PublicacionCarpool.find(params[:id])
    		borrar = transaccion.destroy
-   		transaccion.create_activity :borrado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: trans_carpool_params["asientos"] , publicacion_carpool_id: carpool.id  }
-   	end
+   		transaccion.create_activity :borrado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: transaccion.asientos , publicacion_carpool_id: carpool.id  }
+   	  redirect_to mostrar_carpool_path(evento,carpool)
+    end
 
     #Editar asientos de peticion
    	def cambiar_asientos
