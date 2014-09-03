@@ -29,7 +29,10 @@
 										
 									</div>
 								<h2><%= @user.nombre %></h2>
+                                <% if @user.city %>
 								<p><strong>Ciudad: </strong> <%= @user.city.name + "," + @user.region.name  %> </p>
+
+                                <% end %>
 								<p><strong>E-mail: </strong> <%= @user.email %> </p>
 
                                 <% if @user == current_user and current_user.facebook_password == false %>
