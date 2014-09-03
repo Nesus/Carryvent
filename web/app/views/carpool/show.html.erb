@@ -2,56 +2,137 @@
     <div class="container">
 
         <!-- Eventos -->
-        <div class="row">
-            <div class="col-md-12">
-                <h2 class="page-header"><%= @evento.name %></h2>
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-6 text-center">
+    <h2 class="page-header"> Carpool hacia <%= @evento.name %></h2>
+        <div class="col-md-6 col-xs-12">
+            <div class="row">
+                <div class="col-md-2 col-xs-4">
+                <% if @userPub.foto.present? %>
+                    <img class="img-square img-responsive img-center" src="<%= @userPub.foto+"?type=large" %>" width="80" height="80" alt="">
+                <% else %>
+                    <img class="img-square img-responsive img-center" src="http://sintoniageek.com/wp-content/uploads/2011/03/avatar-facebook-defecto1.jpg" width="80" height="80" alt="">
+                <% end %>
+
                 <img class="img-square img-responsive img-center" 
                 src="<% if ! @evento.image.nil? %>
                 <%= @evento.image %>
                 <% else %>
                 http://placehold.it/150x150
                 <%end%>" 
-                width="150" height="150" alt="">
-            </div>
-            <div class="col-lg-2 col-md-2 col-sm-6 text-center">
-            	<% if @userPub.foto.present? %>
-            		<img class="img-square img-responsive img-center" src="<%= @userPub.foto+"?type=large" %>" width="150" height="150" alt="">
-            	<% else %>
-                	<img class="img-square img-responsive img-center" src="http://sintoniageek.com/wp-content/uploads/2011/03/avatar-facebook-defecto1.jpg" width="150" height="150" alt="">
-                <% end %>
-            </div>
-            <div class="col-md-8 col-sm-6">
+                width="80" height="80" alt="">
+                </div>
+
+                <div class="col-md-10 col-xs-8">
                 <p><b>Nombre Usuario: <%= @userPub.nombre %> </b></p>
-                <p><b>Ciudad: <!-- Agregar esto --></b></p>
+                <p><b>Ciudad:  <%= @userPub.city.name + "," + @userPub.region.name %></b></p>
                 <p><b>Correo: <%= @userPub.email %> </b></p>
-                <p><b>Asientos disponibles: <%= @asientosDisp %> </b></p>
-                
-                <% if current_user != @userPub %>
-                    <p> Pedir asiento en carpool <br>
 
-                     <%= form_for @transaccion , url: crear_transaccion_carpool_path do |f| %>
-                        <%= f.label :asientos %>
-                        <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }) %>
-                        <%= f.submit %>
-                    <% end %>
-                    </p>
+                <% if @transUser and @transUser.aceptado %>
+                <p style="color:red;"><b>Celular: <%= @carpool.celular %> </b> </p>
                 <% end %>
+                </div>
+            </div>
+
+            <div class="row">
+                    <div  class="comment-container" >
+                        <div class="comments">
+                            <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
+                        </div>
+                        <div class="comment-send"> 
+                            <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
+                        </div>
+                    </div>
+                </div>
 
             </div>
+
+        <div class="col-md-6 col-xs-12">
+            <% if @userPub != current_user %>
+                    <div class="text-center"><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></div> 
+
+                    <% if @transUser %>
+                        <div class="text-center">
+                            Su petición fue 
+                            <% if @transUser.aceptado.nil? %>
+                               <span style="color:blue;">Enviada</span>
+                            <% elsif @transUser.aceptado %>
+                               <span style="color:green;">Aceptada</span> 
+                            <% else %>
+                               <span style="color:red;">Rechazada</span> 
+                            <% end %>
+                        </div>
+                    <% else %>
+                    <div class="col-md-4 col-md-offset-4">
+                        <div class="text-center">
+                                        <b> Pedir asientos en carpool </b>
+                        </div>
+                         <%= form_for @transaccion , url: crear_transaccion_carpool_path do |f| %>
+                            <%= f.label :asientos %>
+                            <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }) %> <br>
+                            <%= f.submit "Realizar peticion", :class =>"btn btn-primary"%>
+                        <%end%>
+                    </div>
+                    <%end%>
+
+            <% else %>
+            <div class="carpool-container">
+                <div class="text-center"><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></div>
+            <% if !@peticiones.nil? %>
+              <TABLE class="tabla-carpools">
+              <tr>
+              <th> Usuario </th>
+              <th> Ciudad </th>
+              <th> Asientos pedidos </th>
+              <th>  Estado </th>
+              <th>  Aceptar/Rechazar</th>
+              </tr>
+              <% @peticiones.each do |peticion| %>
+                  <TR>
+                    <TD>
+                    <% if peticion.user.foto.thumb.url %>
+                     <% img = peticion.user.foto.thumb.url %>
+                     <img src="<%= img  %>" alt="" class="center-block img-responsive">
+                    <% else %>
+                      <img src="/assets/place_user.png", class="img-circle", style="width:30px;heigh:30px">
+                    <% end %>
+                    <%= link_to peticion.user.nombre[0..20]+"..", perfil_user_path(peticion.user) %>
+                    </TD>
+                    <TD>
+                      <%= peticion.user.city.name %>
+                    </TD>
+                  <td>
+                    <%= peticion.asientos%>
+                  </td>
+                  <td>
+                    <% if peticion.aceptado.nil? %>
+                        Pendiente
+                    <% elsif peticion.aceptado %>
+                        Aceptado
+                    <% else %>
+                        Rechazado
+                    <% end %>
+                  </td>
+                  <td>
+                    <% if peticion.aceptado %>
+                        Aceptar
+                    <% else %>
+                    <%= link_to "Aceptar" , aceptar_transaccion_path(@evento, @carpool, peticion)
+                    %> 
+                    <% end %>
+                    / 
+                    <% if !peticion.aceptado %>
+                        Rechazar
+                    <% else %>
+                    <%= link_to "Rechazar" , rechazar_transaccion_path(@evento, @carpool, peticion)
+                    %>
+                    <% end %>
+                  </td>
+                  </TR>
+                <% end %>
+              </TABLE> 
+                  <% end %>
+        </div>   
+
+            <% end %>
         </div>
-
-<br> <br>
-<div class="row">
-    <div class="col-md-6 col-xs-12">
-        <div  class="comment-container" >
-            <div class="comments">
-                <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
-            </div>
-            <div class="comment-send"> 
-                <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
-            </div>
         </div>
     </div>
-</div>

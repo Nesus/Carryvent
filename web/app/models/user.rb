@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   #Para subir fotos
   mount_uploader :foto, FotoUploader
 
+  acts_as_messageable
   #Comprobar si el email es valido
   TEMP_EMAIL_PREFIX = 'change@me'
   TEMP_EMAIL_REGEX = /\Achange@me/

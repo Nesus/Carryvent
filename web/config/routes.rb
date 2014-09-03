@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/publicar' => 'evento#new', as: :eventos
   get '/editar/:id' => 'evento#editar', as: :editar_evento
   get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
-  get '/evento/:id  ' => 'evento#show', as: :mostrar_evento
+  get '/evento/:id' => 'evento#show', as: :mostrar_evento
 
 
   #Ruta organizadores
@@ -36,7 +36,9 @@ Rails.application.routes.draw do
   get 'evento/:evento_id/carpool/:id' => 'carpool#show', as: :mostrar_carpool
  
   post 'evento/:evento_id/carpool/:id' => 'carpool#new_transaction', as: :crear_transaccion_carpool
-
+  get 'evento/carpool/:evento_id/:id/:transaction_id/accept' => 'carpool#aceptar_transaction', as: :aceptar_transaccion
+  get 'evento/carpool/:evento_id/:id/:transaction_id/reject' => 'carpool#rechazar_transaction', as: :rechazar_transaccion
+  get 'evento/carpool/:evento_id/:id/:transaction_id/delete' => 'carpool#delete_transaction' , as: :borrar_transaccion
   #match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   #Rutas para sobreescribir las rutas de devise
@@ -97,6 +99,8 @@ Rails.application.routes.draw do
   authenticated :publicador do
     root :to => "evento#eventos_publicador", as: "authenticated_publicador_root"
   end
+
+  
 
   root :to => 'user#index'
 
