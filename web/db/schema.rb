@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902165051) do
+ActiveRecord::Schema.define(version: 20140903022557) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -211,6 +211,7 @@ ActiveRecord::Schema.define(version: 20140902165051) do
     t.integer  "city_id"
     t.integer  "region_id"
     t.float    "ranking"
+    t.boolean  "facebook_password"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

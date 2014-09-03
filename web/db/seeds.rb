@@ -9,7 +9,7 @@ require 'csv'
 
 #Usuario de prueba
 print "-Verificando Usuario de prueba\n"
-user = User.new(email: 'test@test.cl', nombre: "Testito Testoneo", password: "11111111" , password_confirmation: "11111111")
+user = User.new(email: 'test@test.cl', nombre: "Testito Testoneo", password: "11111111" , password_confirmation: "11111111", city_id: 4101 , region_id: 4)
 if user.save
 	print "--Usuario Creado\n"
 else
