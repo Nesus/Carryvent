@@ -32,9 +32,11 @@
 								<p><strong>Ciudad: </strong> <%= @user.city.name + "," + @user.region.name  %> </p>
 								<p><strong>E-mail: </strong> <%= @user.email %> </p>
 
-
-								<a href="#" class="btn btn-primary" style="float:right;"><i class="glyphicon glyphicon-edit"></i> <%= link_to "Editar Perfil", editar_user_path(@user) %> </a>
-                                
+                                <% if @user == current_user %>
+								<a href="<%=edit_user_registration_path(@user)%>" class="btn btn-primary" style="float:right;">
+                                    <i class="glyphicon glyphicon-edit"></i> 
+                                    Editar Perfil </a>
+                                <% end %>
 									<!-- btn btn-lg btn-primary btn-block-->
 
 
