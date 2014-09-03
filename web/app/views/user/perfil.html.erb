@@ -34,6 +34,8 @@
 
 
 								<a href="#" class="btn btn-primary" style="float:right;"><i class="glyphicon glyphicon-edit"></i> <%= link_to "Editar Perfil", editar_user_path(@user) %> </a>
+
+                                <%= render current_user.mailbox.inbox %>
                                 
 									<!-- btn btn-lg btn-primary btn-block-->
 
