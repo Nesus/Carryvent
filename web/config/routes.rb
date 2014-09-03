@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   post '/publicar' => 'evento#new', as: :eventos
   get '/editar/:id' => 'evento#editar', as: :editar_evento
   get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
-  get '/evento/:id  ' => 'evento#show', as: :mostrar_evento
+  get '/evento/:id' => 'evento#show', as: :mostrar_evento
 
 
   #Ruta organizadores
