@@ -37,13 +37,13 @@
             </div>
             <div class="field">
               <p><%= f.label "Región" %><br>
-            <%= f.select :region_id , @regiones.collect  {|r| [ r.name] }, {include_blank: true}, {class: "form-control"}%></p>
+              <%= f.select :region_id , @regiones.collect  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);"}%></p>
             </div>  
-
-            <% @ciudades.each do |r| %>
-              <%= r.name %>
-            <% end %>
-
+            <div class="field">
+              <p><%= f.label :ciudad_id %>
+              <%= f.select :city_id , {}, {include_blank: true}, {class: "form-control"}%></p>
+            </div>
+            
             <br>
 
             <div class="actions">
@@ -54,3 +54,119 @@
         <div class="col-xs-3"></div>
       </div>
   </div>
+
+<script type="text/javascript">
+  function filtroCiudades(region){
+    var largo = document.getElementById("evento_city_id").length;
+    for (i=0; i<largo; i++){
+      document.getElementById("evento_city_id").remove(option);
+    }
+    switch(region){
+      case(1):
+        <% City.where('region_id = 1').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(2):
+        <% City.where('region_id = 2').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(3):
+        <% City.where('region_id = 3').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(4):
+        <% City.where('region_id = 4').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(5):
+        <% City.where('region_id = 5').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(6):
+        <% City.where('region_id = 6').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(7):
+        <% City.where('region_id = 7').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(8):
+        <% City.where('region_id = 8').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(9):
+        <% City.where('region_id = 9').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(10):
+        <% City.where('region_id = 10').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(11):
+        <% City.where('region_id = 11').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(12):
+        <% City.where('region_id = 12').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(13):
+        <% City.where('region_id = 13').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(14):
+        <% City.where('region_id = 14').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+      case(15):
+        <% City.where('region_id = 15').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("evento_city_id").add(option);
+        <%end%>
+        break;
+    }
+  }
+</script>
