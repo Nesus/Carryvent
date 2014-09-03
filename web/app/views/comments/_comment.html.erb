@@ -2,7 +2,13 @@
   <hr/>
   <%= link_to "×", comment_path(comment), :method => :delete, :remote => true, :confirm => "Are you sure you want to remove this comment?", :disable_with => "×", :class => 'close' %>
   <h6>
-    <%= comment.user.nombre %>
+    <% if comment.user.foto.thumb.url %>
+    <%= image_tag comment.user.foto.thumb.url %>
+    <%else %>
+    <%= image_tag "/assets/place_user.png" %>
+
+    <%end %>
+    <%= link_to comment.user.nombre, perfil_user_path(comment.user) %>
     <small>
       <%= comment.updated_at %>
     </small>

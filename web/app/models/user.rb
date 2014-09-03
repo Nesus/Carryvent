@@ -81,6 +81,7 @@ class User < ActiveRecord::Base
 
         user.city_id = ciudad.id
         user.region_id = region.id
+        user.facebook_password = true
         user.remote_foto_url = auth.info.image.sub("_normal", "").sub("http://","https://") + "?type=large"
 
         user.save!
