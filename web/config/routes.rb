@@ -36,7 +36,9 @@ Rails.application.routes.draw do
   get 'evento/:evento_id/carpool/:id' => 'carpool#show', as: :mostrar_carpool
  
   post 'evento/:evento_id/carpool/:id' => 'carpool#new_transaction', as: :crear_transaccion_carpool
-
+  get 'evento/carpool/:evento_id/:id/:transaction_id/accept' => 'carpool#aceptar_transaction', as: :aceptar_transaccion
+  get 'evento/carpool/:evento_id/:id/:transaction_id/reject' => 'carpool#rechazar_transaction', as: :rechazar_transaccion
+  get 'evento/carpool/:evento_id/:id/:transaction_id/delete' => 'carpool#delete_transaction' , as: :borrar_transaccion
   #match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   #Rutas para sobreescribir las rutas de devise

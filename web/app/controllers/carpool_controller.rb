@@ -28,7 +28,7 @@ class CarpoolController < ApplicationController
 		end
 	end
 
-  #Editar evento
+  #Editar carpool
 	def update
 		publicacionCarpool = PublicacionCarpool.find(params[:id])
 		publicacionCarpool.update(carpool_params)
@@ -48,8 +48,14 @@ class CarpoolController < ApplicationController
     @comments = @carpool.comment_threads.order('created_at desc')
     @new_comment = Comment.build_from(@carpool, current_user.id, "")
 
-    @transaccion = TransaccionCarpool.new
+    if @userPub != current_user
+      @transUser = @carpool.transaccion_carpools.where(:user_id => current_user.id).first
+    else
+      @peticiones = @carpool.transaccion_carpools
     end
+
+    @transaccion = TransaccionCarpool.new
+  end
 
     #Creando nueva peticion
    	def new_transaction
