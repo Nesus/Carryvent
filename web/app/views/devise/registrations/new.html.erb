@@ -1,58 +1,171 @@
 <div class="container">
-    <div class="row">
-        <div class="col-sm-6 col-md-4 col-md-offset-4">
-          <h1 class="text-center login-title">
-              Registrarse
-          </h1>
-        <div class="account-wall_reg">       
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-signin" ) do |f| %>
-  
-<%= devise_error_messages! %>
-
-  <div><%= f.label :email %>
-  <%= f.email_field :email, autofocus: true , :class => "form-control", :placeholder =>"Email"  %></div>
-
-  <div><%= f.label "Contraseña" %>
-    <%= f.password_field :password, autocomplete: "off" , :class => "form-control", :placeholder =>"Contraseña"%></div>
-
-  <div>
-    <%= f.password_field :password_confirmation, autocomplete: "off" , :class => "form-control", :placeholder =>"Confirmar Contraseña" %></div>
-
-<% if resource_name =! :user%>
-    <p><%= f.label :username %>
-   	<%= f.text_field :username , :class => "form-control", :placeholder =>"Username"%></p>
-<% else %>
-    <p><%= f.label :nombre %>
-    <%= f.text_field :nombre , :class => "form-control", :placeholder =>"Nombre"%></p>
-
-    <p><%= f.label :ciudad %>
-    <%= f.text_field :ciudad , :class => "form-control", :placeholder =>"Ciudad"%></p>
-
-    <p><%= f.label :region %>
-    <%= f.text_field :region , :class => "form-control", :placeholder =>"Region"%></p>
-
-<% end %>
-  <div><%= f.submit "Registrarse", :class => "btn btn-primary btn-block" %></div>
-<% end %>
-              <% if resource_name == :user %>
-              <div class="col-lg-11 col-md-11 col-xs-11", style="float:none;margin:0 auto;">
-                <a class="btn btn-block btn-social btn-facebook", href="<%= omniauth_authorize_path(resource_name, :facebook)%>">
-                <i class="fa fa-facebook"></i> Ingresar con Facebook </a>
-              </div>
-              <%end%>
-      </div>
-        </div>
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <h1 class="text-center login-title">
+        Registrarse
+      </h1>
+      <div class="account-wall_reg">       
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-signin" ) do |f| %>
+          <%= devise_error_messages! %>
+          <div>
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true , :class => "form-control", :placeholder =>"Email"  %>
           </div>
 
-          <br> 
+          <div>
+            <%= f.label "Contraseña" %>
+            <%= f.password_field :password, autocomplete: "off" , :class => "form-control", :placeholder =>"Contraseña"%>
+          </div>
 
+          <div>
+            <%= f.password_field :password_confirmation, autocomplete: "off" , :class => "form-control", :placeholder =>"Confirmar Contraseña" %>
+          </div>
 
+          <% if resource_name =! :user%>
+            <p><%= f.label :username %>
+           	<%= f.text_field :username , :class => "form-control", :placeholder =>"Username"%></p>
+          <% else %>
+            <p><%= f.label :nombre %>
+            <%= f.text_field :nombre , :class => "form-control", :placeholder =>"Nombre"%></p>
 
+            <p><%= f.label "Región" %><br>
+            <%= f.select :region_id , @regiones.collect  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);"}%></p>
+            
+            <p><%= f.label :ciudad_id %>
+            <%= f.select :city_id , {}, {include_blank: true}, {class: "form-control"}%></p>
 
-
-
-          <!--<%= render "devise/shared/links" %>-->
+          <% end %>
+          <div>
+            <%= f.submit "Registrarse", :class => "btn btn-primary btn-block" %>
+          </div>
+        <% end %>
+      </div>
+      <% if resource_name == :user %>
+        <div class="col-lg-11 col-md-11 col-xs-11", style="float:none;margin:0 auto;">
+          <a class="btn btn-block btn-social btn-facebook", href="<%= omniauth_authorize_path(resource_name, :facebook)%>">
+          <i class="fa fa-facebook"></i> Ingresar con Facebook </a>
+        </div>
+      <%end%>
     </div>
+  </div>
 </div>
 
+<br> 
+          <!--<%= render "devise/shared/links" %>-->
+
+<script type="text/javascript">
+  function filtroCiudades(region){
+    var largo = document.getElementById("user_city_id").length;
+    for (i=0; i<largo; i++){
+      document.getElementById("user_city_id").remove(option);
+    }
+    switch(region){
+      case(1):
+        <% City.where('region_id = 1').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(2):
+        <% City.where('region_id = 2').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(3):
+        <% City.where('region_id = 3').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(4):
+        <% City.where('region_id = 4').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(5):
+        <% City.where('region_id = 5').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(6):
+        <% City.where('region_id = 6').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(7):
+        <% City.where('region_id = 7').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(8):
+        <% City.where('region_id = 8').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(9):
+        <% City.where('region_id = 9').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(10):
+        <% City.where('region_id = 10').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(11):
+        <% City.where('region_id = 11').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(12):
+        <% City.where('region_id = 12').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(13):
+        <% City.where('region_id = 13').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(14):
+        <% City.where('region_id = 14').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+      case(15):
+        <% City.where('region_id = 15').order("name asc").each do |c|%>
+          var option = document.createElement("option");
+          option.text = "<%= c.name %>";
+          document.getElementById("user_city_id").add(option);
+        <%end%>
+        break;
+    }
+  }
+</script>
 

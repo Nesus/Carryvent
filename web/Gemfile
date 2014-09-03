@@ -59,7 +59,9 @@ gem 'haml'
 
 gem 'simple_form'
 
+gem 'public_activity'
 
+gem 'mailboxer'
 #best
 #gem 'best_in_place', github: 'bernat/best_in_place' 
 

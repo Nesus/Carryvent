@@ -1,12 +1,26 @@
 Rails.application.routes.draw do
 
+  #comentarios
+  resources :comments, :only =>[:create, :destroy]
+
+  #activity
+  resources :notifications
+
   #Rutas de eventos
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
   get '/publicar' => 'evento#publicar', as: :publicar_evento
   post '/publicar' => 'evento#new', as: :eventos
   get '/editar/:id' => 'evento#editar', as: :editar_evento
   get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
-  get '/evento/:id  ' => 'evento#show', as: :mostrar_evento
+  get '/evento/:id' => 'evento#show', as: :mostrar_evento
+
+
+  #Ruta organizadores
+  get '/organization/:id' => 'organization#show', as: :mostrar_organization
+  get '/publicarOrg' => 'organization#new', as: :publicar_organization
+  post '/publicarOrg' => 'organization#create', as: :crear_organization
+  get '/organization/edit/:id' => 'organization#edit', as: :editar_organization
+  post '/organization/edit/:id' => 'organization#update', as: :modificar_organization
 
   #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
@@ -21,16 +35,18 @@ Rails.application.routes.draw do
   post 'evento/:evento_id/carpool/publicar' =>  'carpool#new', as: :new_publicar_carpool
   get 'evento/:evento_id/carpool/:id' => 'carpool#show', as: :mostrar_carpool
  
+  post 'evento/:evento_id/carpool/:id' => 'carpool#new_transaction', as: :crear_transaccion_carpool
+  get 'evento/carpool/:evento_id/:id/:transaction_id/accept' => 'carpool#aceptar_transaction', as: :aceptar_transaccion
+  get 'evento/carpool/:evento_id/:id/:transaction_id/reject' => 'carpool#rechazar_transaction', as: :rechazar_transaccion
+  get 'evento/carpool/:evento_id/:id/:transaction_id/delete' => 'carpool#delete_transaction' , as: :borrar_transaccion
+  #match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
-
-#  match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
-
-  #Rutas para sobre escribir las rutas de devise
-  devise_for :users,  :controllers => { omniauth_callbacks: 'omniauth_callbacks' }, :skip => [:sessions, :passwords, :confirmations, :registrations]
+  #Rutas para sobreescribir las rutas de devise
+  devise_for :users,  :controllers => { :omniauth_callbacks => 'omniauth_callbacks', :registrations => "registrations"  }, :skip => [:sessions, :passwords, :confirmations, :registrations]
   as :user do
     #Registro
-    get   '/registrarse' => 'devise/registrations#new',    :as => :new_user_registration
-    post  '/registrarse' => 'devise/registrations#create', :as => :user_registration
+    get   '/registrarse' => 'registrations#new',    :as => :new_user_registration
+    post  '/registrarse' => 'registrations#create', :as => :user_registration
 
     #Login
     get 'login' => 'devise/sessions#new', :as => :new_user_session
@@ -53,7 +69,7 @@ Rails.application.routes.draw do
       # settings & cancellation
       get '/cancel'   => 'devise/registrations#cancel', :as => :cancel_user_registration
       get '/settings' => 'devise/registrations#edit',   :as => :edit_user_registration
-      put '/settings' => 'devise/registrations#update'
+      put '/settings' => 'devise/registrations#update', :as => :update_user_registration
 
       # account deletion
       delete '' => 'devise/registrations#destroy'
@@ -76,10 +92,17 @@ Rails.application.routes.draw do
     end
   end
 
-  #comentarios
-  resources :comments, :only =>[:create, :destroy]
+  authenticated :user do
+    root :to => "evento#eventos", as: "authenticated_root"
+  end
 
-  root 'user#index'
+  authenticated :publicador do
+    root :to => "evento#eventos_publicador", as: "authenticated_publicador_root"
+  end
+
+  
+
+  root :to => 'user#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

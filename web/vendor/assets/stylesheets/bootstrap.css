@@ -3598,7 +3598,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .nav > li > a {
   position: relative;
   display: block;
-  padding: 10px 15px;
+  padding: 10px 15px 5px 15px;
 }
 .nav > li > a:hover,
 .nav > li > a:focus {
@@ -3780,7 +3780,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  max-height: 100px;
+  max-height: 53px;
   margin-bottom: 20px;
   border: 1px solid transparent;
 }
@@ -3978,7 +3978,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   }
   .navbar-nav > li > a {
     padding-top: 15px;
-    padding-bottom: 15px;
+    padding-bottom: 0px;
   }
   .navbar-nav.navbar-right:last-child {
     margin-right: -15px;
@@ -5377,7 +5377,7 @@ a.list-group-item-danger.active:focus {
   color: #000;
   text-shadow: 0 1px 0 #fff;
   filter: alpha(opacity=20);
-  opacity: .3;
+  opacity: .2;
 }
 .close:hover,
 .close:focus {
@@ -6377,7 +6377,7 @@ p {
 
 #nombreUsuario{
   padding-bottom: 8px;
-  padding-top: 8px;
+  padding-top: 7px;
 }
 
 #botonesBarraLogueado{
@@ -6455,14 +6455,11 @@ p {
 
 #ofertasCarpool{
   height: 300px;
+  overflow-y: auto;
 }
 
 #comentariosEvento{
   height: 300px;
+  overflow-y: auto;
 }
 /*# sourceMappingURL=bootstrap.css.map */
-
-
-
-
-
