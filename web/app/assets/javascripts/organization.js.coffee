@@ -4,6 +4,7 @@
 
 $(document).ready ->
   preview = $(".upload-preview img")
+  $(".upload-preview").css('background', '')
   $(".file").change (event) ->
     input = $(event.currentTarget)
     file = input[0].files[0]
