@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :rankings
+
   #comentarios
   resources :comments, :only =>[:create, :destroy]
 

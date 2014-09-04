@@ -21,6 +21,11 @@ class PublicacionCarpool < ActiveRecord::Base
     asientos_disp - transaccion_carpools.sum(:asientos, :conditions => {:aceptado => true})
   end
 
+  def date_time
+    merged_datetime = DateTime.new(fecha.year, fecha.month,
+                               fecha.day, hora_desde.hour,
+                               hora_desde.min, hora_desde.sec)
+  end
 
 end
 

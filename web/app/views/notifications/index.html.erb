@@ -1,12 +1,16 @@
+<div class="container">
 
-<h1>Notificaciones</h1>
+  <div class="col-md-5 col-md-offset-4">
+	<h1>Notificaciones</h1>
 
-Últimas actividades:
-<% @activities.each do |activity| %>
-  <div class="activity">
-  <%= activity.inspect %>
+	Últimas actividades:
+	<% @activities.each do |activity| %>
+	  <div class="activity">
+	  <%= render_activity activity%>
 
-  </div>
-<% end %>
+	  </div>
+	<% end %>
+	</div>
+</div>
 
 
