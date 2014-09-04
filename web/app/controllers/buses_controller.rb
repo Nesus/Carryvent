@@ -73,5 +73,5 @@ class BusesController < ApplicationController
     end
 
     #agregado para acceso
-    before_filter :authorize, :except => :index
+    
 end

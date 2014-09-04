@@ -1,8 +1,8 @@
-EVENTO_ID,EVENTO_NAME,EVENTO_INFORMATION,EVENTO_SUBTITLE,EVENTO_ADDRESS,EVENTO_IMAGE,REGION_ID,COMUNA_ID
-1,Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,app/assets/images/1.png,13,13101
-1,Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,app/assets/images/1.png,13,13101
-1,Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,app/assets/images/1.png,13,13101
-1,Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,app/assets/images/1.png,13,13101
-1,Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,app/assets/images/1.png,13,13101
-2,ILLAPU,Concierto,Evento masivo,san diego 854 santiago chile,app/assets/images/2.png,13,13130
-2,ILLAPU,Concierto,Evento masivo,san diego 854 santiago chile,app/assets/images/2.png,13,13130
+EVENTO_NAME,EVENTO_INFORMATION,EVENTO_SUBTITLE,EVENTO_ADDRESS,REGION_ID,COMUNA_ID
+Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,13,13101
+Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,13,13101
+Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,13,13101
+Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,13,13101
+Lollapalooza,Concierto,Mega evento,Movistar Arena Tupper Santiago Chile,13,13101
+ILLAPU,Concierto,Evento masivo,san diego 854 santiago chile,13,13130
+ILLAPU,Concierto,Evento masivo,san diego 854 santiago chile,13,13130
