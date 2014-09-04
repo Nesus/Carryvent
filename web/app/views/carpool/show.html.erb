@@ -49,11 +49,16 @@
         <div class="col-md-6 col-xs-12">
             <% if @userPub != current_user %>
               <div class="row">
-                    <div class="text-center">
-                      <p><b>Lugar: </b> <%= @carpool.desde %></p>
-                      <p><b>Hora: </b> <%= @carpool.hora_desde.strftime("%H:%M") %></p>
-                      <p><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></p>
-                    </div> 
+                <div class="row">
+                  <div class="col-md-8 col-md-offset-2">
+                      <div>
+                        <p><b>Lugar: </b> <%= @carpool.desde %></p>
+                        <p><b>Hora: </b> <%= @carpool.hora_desde.strftime("%H:%M") %></p>
+                        <p><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></p>
+                        <p><b>Descripción: <%= @carpool.descripcion %></b> </p>
+                      </div> 
+                  </div>
+                </div>
 
                     <% if @transUser %>
                         <div class="text-center">
