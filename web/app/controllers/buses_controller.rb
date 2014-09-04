@@ -71,4 +71,7 @@ class BusesController < ApplicationController
     def bus_params
       params.require(:bus).permit(:bus_id, :patente, :empresa_id, :asientos, :tipo)
     end
+
+    #agregado para acceso
+    before_filter :authorize, :except => :index
 end
