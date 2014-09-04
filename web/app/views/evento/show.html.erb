@@ -81,7 +81,7 @@
 	                <TD>
                     <% if pub.user_evento.user.foto.thumb.url %>
                      <% img = pub.user_evento.user.foto.thumb.url %>
-                     <img src="<%= img  %>" width="100" height="100" alt="" class="center-block img-responsive">
+                     <img src="<%= img  %>" alt="" class="img-circle">
                     <% else %>
                       <img src="/assets/place_user.png", class="img-circle", style="width:30px;heigh:30px">
                     <% end %>
@@ -95,7 +95,10 @@
                   </td>
 	                <TD>
                   <% if current_user %>   
-	                  <%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id) %>
+	                  <%= link_to  mostrar_carpool_path(@evento.id, pub.id) do %>
+                      <i class="fa fa-bars"></i>
+                        Detalle
+                    <% end %>
                   <% else %>
                     Detalle
                   <% end %>
