@@ -21,16 +21,16 @@
 												<div class="col-lg-4 col-sm-6 text-center">
 													<!-- Hipervinculo en la imagen, si no hay dejamos un placeholder-->
 													<!-- Editar el placeholder para version final -->
-													<a href="<%= mostrar_evento_path(evento) %>">
 
-													<img class="img-square img-responsive img-center" src="
-															<% if evento.image.present? %>
-																	<%= evento.image %>
-															<% else %>
-																	http://placehold.it/200x200
-															<% end %> 
-												 " alt="">
-													</a>
+													<%= link_to mostrar_evento_path(evento), 'data-no-turbolink' => true  do %>
+														<% if evento.image.present? %>
+																	<% img = evento.image %>
+														<% else %>
+																	<% img = 'http://placehold.it/200x200' %>
+														<% end %> 
+														<%= image_tag img , :class => "img-square img-responsive img-center" %>
+
+													<% end %>
 													<h3><%= evento.name %> </h3>
 													<p> <%= evento.subtitle %> </p>
 												</div>
