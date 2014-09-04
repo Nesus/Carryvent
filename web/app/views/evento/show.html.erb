@@ -17,10 +17,13 @@
         <% end %>
       </div>
       <div class="col-xs-4">
-        <p><b>Descripción:<%= @evento.information %> </b></p>
-        <p><b>Lugar: <!-- FALTA ESTO --> </b></p>
-        <p><b>Fecha: <!-- FALTA ESTO --> </b></p>
-        <p><b>Hora:  <!-- FALTA ESTO --></b></p>
+        <p><b>Descripción: </b><%= @evento.subtitle %> </p>
+        <p><b>Lugar: </b><%= @evento.address %> </p>
+        <%if !@evento.information.nil? %>
+          <p><b>Información Extra: </b><%= @evento.information %> </p>
+        <% end %>
+        <p><b>Fecha: </b><%= @evento.date.strftime("%d/%m/%Y") %> </p>
+        <p><b>Hora:  </b><%= @evento.time.strftime("%H:%M") %> </p>
         <p><b>Estado de los pasajes:  </b><!-- FALTA ESTO --></p>
         <p><button class='btn btn-lg btn-primary'>Compra tu pasaje</button> 
         <% if current_user.present? %>

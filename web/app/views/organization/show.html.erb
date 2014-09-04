@@ -8,7 +8,11 @@
   			<div class="panel-body">
   				<div class="row">
   					<div class="col-xs-12 col-sm-4 text-center">
-  						<!-- FOTO -->
+                <% if @organization.picture.present? %>
+                  <img src=" <%= @organization.picture.url %>" alt="" class="center-block img-responsive">
+                <% else %>
+                  <img style="width:200px;height:200px;"/>
+                <% end %>       
   					</div>
             <!--/col--> 
                       
@@ -17,6 +21,10 @@
   								
   						</div>
   						<h2><%= @organization.name %></h2>
+              <p><b>Persona de contacto: </b> <%= @organization.contact_person %> </p>
+              <p><b>Teléfono: </b> <%= @organization.phone %> </p>
+              <p><b>Facebook: </b> <%= @organization.facebook %> </p>
+              <p><b>Twitter: </b> <%= @organization.twitter %> </p>
   					</div><!--/col-->            
   				</div><!--/row-->
   			</div><!--/panel-body-->
