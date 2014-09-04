@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 20140903022557) do
     t.integer  "city_id"
     t.integer  "region_id"
     t.string   "image"
+    t.float    "latitude"
+    t.float    "longitude"
   end
 
   add_index "eventos", ["publicador_id"], name: "index_eventos_on_publicador_id"

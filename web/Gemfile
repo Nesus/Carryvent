@@ -71,3 +71,7 @@ group :development, :test do
     gem 'railroady'
     gem 'rails-erd'
 end
+
+
+gem 'gmaps4rails'
+gem 'geocoder'

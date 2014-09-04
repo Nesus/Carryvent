@@ -61,6 +61,8 @@ GEM
       multipart-post (>= 1.2, < 3)
     foreigner (1.6.1)
       activerecord (>= 3.0.0)
+    geocoder (1.2.4)
+    gmaps4rails (2.1.2)
     haml (4.0.5)
       tilt
     hashie (3.2.0)
@@ -203,6 +205,8 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
+  geocoder
+  gmaps4rails
   haml
   jbuilder (~> 2.0)
   jquery-rails
