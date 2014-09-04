@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :buses
+
   #comentarios
   resources :comments, :only =>[:create, :destroy]
 
