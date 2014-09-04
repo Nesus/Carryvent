@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904020436) do
+ActiveRecord::Schema.define(version: 20140904054527) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -190,6 +190,7 @@ ActiveRecord::Schema.define(version: 20140904020436) do
     t.integer  "asientos_disp"
     t.string   "tipo_vehiculo"
     t.string   "celular"
+    t.string   "job_id"
   end
 
   create_table "publicadors", force: true do |t|
@@ -211,6 +212,19 @@ ActiveRecord::Schema.define(version: 20140904020436) do
   add_index "publicadors", ["email"], name: "index_publicadors_on_email", unique: true
   add_index "publicadors", ["reset_password_token"], name: "index_publicadors_on_reset_password_token", unique: true
   add_index "publicadors", ["username"], name: "index_publicadors_on_username", unique: true
+
+  create_table "rankings", force: true do |t|
+    t.integer  "value"
+    t.text     "comment"
+    t.boolean  "assist"
+    t.boolean  "driver"
+    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "rankings", ["user_id"], name: "index_rankings_on_user_id"
 
   create_table "red_socials", force: true do |t|
     t.integer  "user_id"
@@ -236,6 +250,7 @@ ActiveRecord::Schema.define(version: 20140904020436) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "asientos"
+    t.string   "job_id"
   end
 
   add_index "transaccion_carpools", ["publicacion_carpool_id"], name: "index_transaccion_carpools_on_publicacion_carpool_id"

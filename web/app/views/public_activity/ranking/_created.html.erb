@@ -1,0 +1,4 @@
+<% id = activity.trackable_id%>
+<% rank = Ranking.find(id) %>
+
+ Evalúa tu experiencia de carpool con <%= link_to activity.owner.nombre , perfil_user_path(activity.owner) %> llenando la encuesta en <%= link_to "este link" , edit_ranking_path(rank) %>
