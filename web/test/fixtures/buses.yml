@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  bus_id: 1
+  patente: MyString
+  empresa_id: 1
+  asientos: 1
+  tipo: MyString
+
+two:
+  bus_id: 1
+  patente: MyString
+  empresa_id: 1
+  asientos: 1
+  tipo: MyString
