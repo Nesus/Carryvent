@@ -21,6 +21,12 @@ class EventoController < ApplicationController
         if current_user
         	@new_comment = Comment.build_from(@evento, current_user.id, "")
         end
+        @hash = Gmaps4rails.build_markers(@evento) do |evento, marker|
+			marker.lat evento.latitude
+			marker.lng evento.longitude
+			marker.infowindow evento.subtitle
+			marker.json({ name: evento.name})
+		end
 	end
 
 	#########################
@@ -61,9 +67,10 @@ class EventoController < ApplicationController
 		evento.update(evento_params)
 	end
 
+
 	#Tomamos solamente los parametros de evento que necesitamos
 	private
 	  def evento_params
-	    params.require(:evento).permit(:name, :subtitle, :address, :information, :coordinates, :image)
+	    params.require(:evento).permit(:name, :subtitle, :address, :information, :image, :date, :time)
 	  end
 end

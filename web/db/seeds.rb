@@ -36,12 +36,15 @@ cant = Evento.count
 
 if cant < 6
 	print "--Creando Eventos\n"
+	lat =  -33.036625
+	long =  -71.4837613
 	(1..6).each do |i|
-
 		i = i.to_s
-		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i)
+		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i, latitude: lat , longitude: long )
 		evento.image = File.open("app/assets/images/"+i+".jpg")
 		evento.save
+		lat = lat + 1
+		long = long + 1
 	end
 else
 	print "--Eventos Existentes\n"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140903022557) do
+ActiveRecord::Schema.define(version: 20140904020436) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -70,12 +70,15 @@ ActiveRecord::Schema.define(version: 20140903022557) do
     t.string   "subtitle"
     t.string   "address"
     t.string   "information"
-    t.string   "coordinates"
     t.integer  "organization_id"
     t.integer  "category_id"
     t.integer  "city_id"
     t.integer  "region_id"
     t.string   "image"
+    t.float    "latitude"
+    t.float    "longitude"
+    t.date     "date"
+    t.time     "time"
   end
 
   add_index "eventos", ["publicador_id"], name: "index_eventos_on_publicador_id"

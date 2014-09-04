@@ -36,31 +36,37 @@
           </div>
         <div class="row">
             <div class="field">
-              <%= f.label :name %><br>
+              <%= f.label "Titulo" %><br>
               <%= f.text_field :name , :class => "form-control"%>
             </div>
             <div class="field">
-              <%= f.label :subtitle %><br>
+              <%= f.label "Subtitulo" %><br>
               <%= f.text_area :subtitle , :class => "form-control"%>
             </div>
             <div class="field">
-              <%= f.label :information %><br>
-              <%= f.text_field :information , :class => "form-control", :type => "date"%>
+              <%= f.label "Dirección del evento" %><br>
+              <%= f.text_field :address , :class => "form-control", :placeholder => "ej: Calle, Numero, Ciudad, Pais"%>
             </div>
             <div class="field">
-              <%= f.label :coordinates %><br>
-              <%= f.text_field :coordinates , :class => "form-control", :type => "date"%>
+              <%= f.label "Información Extra" %><br>
+              <%= f.text_field :information , :class => "form-control"%>
+            </div>
+            <div class="field">
+              <%= f.label "Fecha del evento" %><br>
+              <%= f.date_select :date , :class => "form-control"%>
+            </div>
+            <div class="field">
+              <%= f.label "Hora del evento" %><br>
+              <%= f.time_select :time , :class => "form-control"%>
             </div>
             <div class="field">
               <p><%= f.label "Región" %><br>
               <%= f.select :region_id , @regiones.collect  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);"}%></p>
             </div>  
             <div class="field">
-              <p><%= f.label :ciudad_id %>
+              <p><%= f.label "Ciudad" %>
               <%= f.select :city_id , {}, {include_blank: true}, {class: "form-control"}%></p>
             </div>
-            
-            <br>
 
             <div class="actions">
               <%= f.submit %>
@@ -81,105 +87,105 @@
       case(1):
         <% City.where('region_id = 1').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(2):
         <% City.where('region_id = 2').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(3):
         <% City.where('region_id = 3').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(4):
         <% City.where('region_id = 4').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(5):
         <% City.where('region_id = 5').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(6):
         <% City.where('region_id = 6').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(7):
         <% City.where('region_id = 7').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(8):
         <% City.where('region_id = 8').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(9):
         <% City.where('region_id = 9').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(10):
         <% City.where('region_id = 10').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(11):
         <% City.where('region_id = 11').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(12):
         <% City.where('region_id = 12').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(13):
         <% City.where('region_id = 13').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(14):
         <% City.where('region_id = 14').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
       case(15):
         <% City.where('region_id = 15').order("name asc").each do |c|%>
           var option = document.createElement("option");
-          option.text = "<%= c.name %>";
+          option.text = "<%= c.name %>"; option.value = "<%= c.id %>";
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
