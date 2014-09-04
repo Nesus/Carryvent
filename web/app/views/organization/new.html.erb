@@ -7,6 +7,14 @@
       <div class="account-wall_reg">
         <%= form_for @organization, url: crear_organization_path, class: "form-signin"  do |f| %>
           <div>
+
+            <div class="col-md-8 col-md-offset-2 col-xs-12">
+              <div class="upload-preview">
+                 <img style="width:200px;height:200px;"/>
+              </div>
+
+            <%= f.file_field :picture, :class => "file" %>
+            </div>
           <p><%= f.label "Nombre de la Organización"%>
           <%= f.text_field :name , :class => "form-control", :placeholder =>"Nombre de la Organización"%></p>
 
