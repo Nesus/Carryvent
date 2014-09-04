@@ -21,6 +21,7 @@ class EventoController < ApplicationController
         if current_user
         	@pasaje = Pasaje.new
         	@new_comment = Comment.build_from(@evento, current_user.id, "")
+        	@reservas = current_user.user_eventos.where(:evento_id=> @evento.id).first.pasajes
         end
         @hash = Gmaps4rails.build_markers(@evento) do |evento, marker|
 			marker.lat evento.latitude

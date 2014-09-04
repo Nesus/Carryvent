@@ -25,11 +25,13 @@
         <p><b>Fecha: </b><%= @evento.date.strftime("%d/%m/%Y") %> </p>
         <p><b>Hora:  </b><%= @evento.time.strftime("%H:%M") %> </p>
         <p><b>Estado de los pasajes:  </b> Etapa de Reserva </p>
+        <% if !@reservas.nil? %>
         <%= form_for @pasaje , url: reservar_pasaje_path do |f| %>
             <%= f.label :cantidad %>
             <%= f.select :cantidad, ((1..5).map {|i| [i,i] }) %> <br>
            <%= f.submit "Reserva tus pasaje", :class =>"btn btn-primary"%>
         <%end%>
+        <% end %>
         <% if current_user.present? %>
           <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-lg btn-primary'%>
         <% end %></p>
