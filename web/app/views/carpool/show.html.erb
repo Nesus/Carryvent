@@ -82,7 +82,7 @@
               <tr>
               <th> Usuario </th>
               <th> Ciudad </th>
-              <th> Asientos pedidos </th>
+              <th> N° de Asientos </th>
               <th>  Estado </th>
               <th>  Aceptar/Rechazar</th>
               </tr>
@@ -91,7 +91,7 @@
                     <TD>
                     <% if peticion.user.foto.thumb.url %>
                      <% img = peticion.user.foto.thumb.url %>
-                     <img src="<%= img  %>" alt="" class="center-block img-responsive">
+                     <img src="<%= img  %>" alt="" class="img-circle">
                     <% else %>
                       <img src="/assets/place_user.png", class="img-circle", style="width:30px;heigh:30px">
                     <% end %>
@@ -105,26 +105,30 @@
                   </td>
                   <td>
                     <% if peticion.aceptado.nil? %>
-                        Pendiente
+                        <span style="color:blue;">Pendiente</span>
                     <% elsif peticion.aceptado %>
-                        Aceptado
+                        <span style="color:green;">Aceptado</span>
                     <% else %>
-                        Rechazado
+                        <span style="color:blue;">Rechazado</span>
                     <% end %>
                   </td>
                   <td>
                     <% if peticion.aceptado %>
-                        Aceptar
+                        <span class="glyphicon glyphicon-ok" style="color:grey;"></span>
                     <% else %>
-                    <%= link_to "Aceptar" , aceptar_transaccion_path(@evento, @carpool, peticion)
+                    <%= link_to aceptar_transaccion_path(@evento, @carpool, peticion) do 
                     %> 
+                    <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    <% end %>
                     <% end %>
                     / 
                     <% if !peticion.aceptado %>
-                        Rechazar
+                        <span class="glyphicon glyphicon-remove" style="color:grey;"></span>
                     <% else %>
-                    <%= link_to "Rechazar" , rechazar_transaccion_path(@evento, @carpool, peticion)
-                    %>
+                    <%= link_to rechazar_transaccion_path(@evento, @carpool, peticion) do %>
+                    <span class="glyphicon glyphicon-remove" style="color:red;"></span> 
+                    <%end%>
+
                     <% end %>
                   </td>
                   </TR>
