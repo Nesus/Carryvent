@@ -24,8 +24,8 @@
         <% end %>
         <p><b>Fecha: </b><%= @evento.date.strftime("%d/%m/%Y") %> </p>
         <p><b>Hora:  </b><%= @evento.time.strftime("%H:%M") %> </p>
-        <p><b>Estado de los pasajes:  </b><!-- FALTA ESTO --></p>
-        <p><button class='btn btn-lg btn-primary'>Compra tu pasaje</button> 
+        <p><b>Estado de los pasajes:  </b> Etapa de Reserva </p>
+        <p><button class='btn btn-lg btn-primary'>Reserva tu pasaje</button> 
         <% if current_user.present? %>
           <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-lg btn-primary'%>
         <% end %></p>
