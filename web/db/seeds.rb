@@ -47,7 +47,8 @@ if Evento.count == 0
 	print "--Importando evento\n"
 	eventos.each do |row|
 		ev = publicador.eventos.new(id: row["EVENTO_ID"], name: row["EVENTO_NAME"], information: row["EVENTO_INFORMATION"], subtitle: row["EVENTO_SUBTITLE"], address: row["EVENTO_ADDRESS"], region_id: row["REGION_ID"], city_id: row["COMUNA_ID"])
-		ev.raw_write_attribute(:image, row[5])
+		#ev.raw_write_attribute(:image, row[6])
+		ev.image = File.open("app/assets/images/1.png")
 		ev.save
 	end
 else
