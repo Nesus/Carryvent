@@ -127,7 +127,7 @@ class CarpoolController < ApplicationController
     #Tomamos solamente los parametros que sirven para publicacion_carpool
 	private
 	  def carpool_params
-	    params.require(:publicacion_carpool).permit(:user_evento_id, :fecha, :descripcion, :precio, :hora_desde, :hora_hasta, :desde , :hasta)
+	    params.require(:publicacion_carpool).permit(:user_evento_id, :fecha, :descripcion, :hora_desde, :desde , :asientos_disp, :tipo_vehiculo, :celular)
 	  end
 
 	  def trans_carpool_params
