@@ -16,11 +16,6 @@
 </p>
 
 <p>
-  <strong>Patente:</strong>
-  <%= @bus.patente %>
-</p>
-
-<p>
   <strong>Asientos:</strong>
   <%= @bus.asientos %>
 </p>
@@ -30,5 +25,5 @@
   <%= @bus.tipo %>
 </p>
 
-<%= link_to 'Edit', edit_bus_path(@bus) %> |
-<%= link_to 'Back', buses_path %>
+<%= link_to 'Editar', edit_bus_path(@bus) %> |
+<%= link_to 'Volver', buses_path %>

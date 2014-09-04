@@ -4,7 +4,6 @@ class CreateBuses < ActiveRecord::Migration
       t.integer :bus_id
       t.string :patente
       t.integer :empresa_id
-      t.string :patente
       t.integer :asientos
       t.string :tipo
 

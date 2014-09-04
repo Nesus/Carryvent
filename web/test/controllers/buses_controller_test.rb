@@ -18,7 +18,7 @@ class BusesControllerTest < ActionController::TestCase
 
   test "should create bus" do
     assert_difference('Bus.count') do
-      post :create, bus: { asientos: @bus.asientos, bus_id: @bus.bus_id, empresa_id: @bus.empresa_id, patente: @bus.patente, patente: @bus.patente, tipo: @bus.tipo }
+      post :create, bus: { asientos: @bus.asientos, bus_id: @bus.bus_id, empresa_id: @bus.empresa_id, patente: @bus.patente, tipo: @bus.tipo }
     end
 
     assert_redirected_to bus_path(assigns(:bus))
@@ -35,7 +35,7 @@ class BusesControllerTest < ActionController::TestCase
   end
 
   test "should update bus" do
-    patch :update, id: @bus, bus: { asientos: @bus.asientos, bus_id: @bus.bus_id, empresa_id: @bus.empresa_id, patente: @bus.patente, patente: @bus.patente, tipo: @bus.tipo }
+    patch :update, id: @bus, bus: { asientos: @bus.asientos, bus_id: @bus.bus_id, empresa_id: @bus.empresa_id, patente: @bus.patente, tipo: @bus.tipo }
     assert_redirected_to bus_path(assigns(:bus))
   end
 
