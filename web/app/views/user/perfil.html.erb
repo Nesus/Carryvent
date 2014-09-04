@@ -14,16 +14,15 @@
                 <% else %>
                   http://sintoniageek.com/wp-content/uploads/2011/03/avatar-facebook-defecto1.jpg
                 <% end %>       
-                " alt="" class="center-block img-responsive">
-			<!--		<ul class="list-inline ratings text-center" title="Ratings">
+              " alt="" class="center-block img-responsive">
+              <!-- <ul class="list-inline ratings text-center" title="Ratings">
   							<li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
   							<li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
   							<li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
   							<li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
   							<li><a href="#"><span class="fa fa-star fa-lg"></span></a></li>
-						  </ul> -->
-            </div><!--/col--> 
-                    
+						  </ul>-->
+            </div><!--/col-->       
             <div class="col-xs-12 col-sm-8">
 						  <div> 
 								
@@ -33,6 +32,17 @@
                 <p><strong>Ciudad: </strong> <%= @user.city.name + ", " + @user.region.name  %> </p>
               <% end %>
               <p><strong>E-mail: </strong> <%= @user.email %> </p>
+              <% if @user.ranking %>
+                <p><strong>Ranking Carpool: </strong>
+                <div class="ec-stars-wrapper">
+                  <% for i in 0..(@user.ranking.round-1)%>
+                    <a id = "estrellaColor" >&#9733;</a>
+                  <% end %>
+                  <% for i in 0..(4-@user.ranking.round)%>
+                    <a id = "estrellaGris" >&#9733;</a>
+                  <% end %>
+                </div></p>
+              <% end %>
               <% if @user == current_user and current_user.facebook_password == false %>
 						    <a href="<%=edit_user_registration_path(@user)%>" class="btn btn-primary" style="float:right;">
                 <i class="glyphicon glyphicon-edit"></i> 

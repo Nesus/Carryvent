@@ -23,7 +23,7 @@
 
                 <div class="col-md-10 col-xs-8">
                 <p><b>Nombre Usuario: <%= @userPub.nombre %> </b></p>
-                <p><b>Ciudad:  <%= @userPub.city.name + "," + @userPub.region.name %></b></p>
+                <p><b>Ciudad:  <%= @userPub.city.name + ", " + @userPub.region.name %></b></p>
                 <p><b>Correo: <%= @userPub.email %> </b></p>
 
                 <% if @transUser and @transUser.aceptado %>

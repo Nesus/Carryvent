@@ -6215,6 +6215,7 @@ button.close {
   }
 }
 
+/* Estrellas */
 .ec-stars-wrapper {
   font-size: 0;
   display: inline-block;
@@ -6223,8 +6224,16 @@ button.close {
   text-decoration: none;
   display: inline-block;
   font-size: 35px;
-  font-size: 2rem; 
+  font-size: 3rem; 
   color: #888;
+}
+
+#estrellaGris{
+  color: #888; 
+}
+
+#estrellaColor{
+  color: #ff8000; 
 }
 
 /* Tabs */
