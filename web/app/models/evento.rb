@@ -10,9 +10,16 @@ class Evento < ActiveRecord::Base
 	## Un evento tiene varios usuarios que asisten a el
 	has_many :user_eventos
 	has_many :users , through: :user_eventos
+	has_many :publicacion_carpool, through: :user_eventos
+	has_many :pasajes, through: :user_eventos
 
 	#Pertenece al publicador que lo publico
 	belongs_to :publicador
+	belongs_to :city
+	belongs_to :region
+	belongs_to :organization
+	belongs_to :category
+
 
 
 	#Validaciones

@@ -4,6 +4,7 @@ class PublicacionCarpool < ActiveRecord::Base
   belongs_to :user_evento
   has_one :user, through: :user_evento
   has_one :evento, through: :user_evento
+  has_many :transaccion_carpools
 
   #Comentarios
   acts_as_commentable
@@ -15,6 +16,10 @@ class PublicacionCarpool < ActiveRecord::Base
   validates :asientos_disp , presence: true
   
   ##Fecha
+
+  def asientos_libres
+    asientos_disp - transaccion_carpools.sum(:asientos, :conditions => {:aceptado => true})
+  end
 
 
 end
