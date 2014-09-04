@@ -67,13 +67,14 @@
   function filtroCiudades(region){
     var largo = document.getElementById("evento_city_id").length;
     for (i=0; i<largo; i++){
-      document.getElementById("evento_city_id").remove(option);
+      document.getElementById("evento_city_id").remove(0);
     }
     switch(region){
       case(1):
         <% City.where('region_id = 1').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -81,6 +82,7 @@
         <% City.where('region_id = 2').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -88,6 +90,7 @@
         <% City.where('region_id = 3').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -95,6 +98,7 @@
         <% City.where('region_id = 4').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -102,6 +106,7 @@
         <% City.where('region_id = 5').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -109,6 +114,7 @@
         <% City.where('region_id = 6').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -116,6 +122,7 @@
         <% City.where('region_id = 7').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -123,6 +130,7 @@
         <% City.where('region_id = 8').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -130,6 +138,7 @@
         <% City.where('region_id = 9').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -137,6 +146,7 @@
         <% City.where('region_id = 10').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -144,6 +154,7 @@
         <% City.where('region_id = 11').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -151,6 +162,7 @@
         <% City.where('region_id = 12').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -158,6 +170,7 @@
         <% City.where('region_id = 13').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -165,6 +178,7 @@
         <% City.where('region_id = 14').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
@@ -172,6 +186,7 @@
         <% City.where('region_id = 15').order("name asc").each do |c|%>
           var option = document.createElement("option");
           option.text = "<%= c.name %>";
+          option.value = <%= c.id %>;
           document.getElementById("evento_city_id").add(option);
         <%end%>
         break;
