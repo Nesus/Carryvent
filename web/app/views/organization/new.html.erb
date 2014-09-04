@@ -7,6 +7,22 @@
       <div class="account-wall_reg">
         <%= form_for @organization, url: crear_organization_path, class: "form-signin"  do |f| %>
           <div>
+            <% if @organization.errors.any? %>
+            <div class="row">
+              <div id="error_explanation">
+                <h2>
+                  <%= pluralize(@organization.errors.count, "error") %> prohibited
+                  this article from being saved:
+                </h2>
+                <ul>
+                  <% @evento.errors.full_messages.each do |msg| %>
+                    <li><%= msg %></li>
+                  <% end %>
+                </ul>
+              </div>
+            </div>
+            <% end %>
+
 
             <div class="col-md-8 col-md-offset-2 col-xs-12">
               <div class="upload-preview">
