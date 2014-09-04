@@ -1,0 +1,35 @@
+<h1>Listing rankings</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Value</th>
+      <th>Comment</th>
+      <th>Assist</th>
+      <th>Driver</th>
+      <th>User</th>
+      <th>Owner</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rankings.each do |ranking| %>
+      <tr>
+        <td><%= ranking.value %></td>
+        <td><%= ranking.comment %></td>
+        <td><%= ranking.assist %></td>
+        <td><%= ranking.driver %></td>
+        <td><%= ranking.user %></td>
+        <td><%= ranking.owner_id %></td>
+        <td><%= link_to 'Show', ranking %></td>
+        <td><%= link_to 'Edit', edit_ranking_path(ranking) %></td>
+        <td><%= link_to 'Destroy', ranking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Ranking', new_ranking_path %>

@@ -51,6 +51,7 @@
                   <% if user_signed_in? %>
 
                     <li id="botonesBarraLogueado"><%= link_to "Eventos", lista_eventos_user_path %></li>
+                    <li><%= link_to "Notificaciones", notifications_path %></li>
                   <% elsif publicador_signed_in? %>
                     <li> <%= link_to "Publicar Evento", publicar_evento_path %></li>
                     <li> <%= link_to "Agregar Organizacion", publicar_organization_path %></li>

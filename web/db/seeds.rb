@@ -40,7 +40,7 @@ if cant < 6
 	long =  -71.4837613
 	(1..6).each do |i|
 		i = i.to_s
-		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i, latitude: lat , longitude: long )
+		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i, latitude: lat , longitude: long, date: Date.today , time: Time.now )
 		evento.image = File.open("app/assets/images/"+i+".jpg")
 		evento.save
 		lat = lat + 1
@@ -57,11 +57,11 @@ if PublicacionCarpool.count == 0
 	evento = Evento.take
 	user_evento = user.user_eventos.new(:evento_id => evento.id)
 	if user_evento.save
-		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647")
+		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647", :hora_desde => Time.now)
 		pub.save
 	else
 		user_evento=user.user_eventos.where(:evento_id => evento.id).first
-		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647")
+		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647", :hora_desde => Time.now)
 		pub.save
 	end
 	print "--Carpool creado\n"
