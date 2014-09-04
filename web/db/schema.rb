@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904054527) do
+ActiveRecord::Schema.define(version: 20140904083113) do
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -184,6 +184,7 @@ ActiveRecord::Schema.define(version: 20140904054527) do
     t.string   "codigo"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "reserva"
   end
 
   add_index "pasajes", ["oferta_id"], name: "index_pasajes_on_oferta_id"

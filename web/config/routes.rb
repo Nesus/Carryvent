@@ -18,6 +18,9 @@ resources :rankings
   get '/evento/:id' => 'evento#show', as: :mostrar_evento
 
 
+  #Pasajes
+  post '/evento/:id/reservar' => "evento#reservar_pasaje", as: :reservar_pasaje
+
   #Ruta organizadores
   get '/organization/:id' => 'organization#show', as: :mostrar_organization
   get '/publicarOrg' => 'organization#new', as: :publicar_organization
