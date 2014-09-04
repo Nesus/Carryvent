@@ -126,7 +126,7 @@
                     <% end %>
                     <% end %>
                     / 
-                    <% if !peticion.aceptado %>
+                    <% if peticion.aceptado == false %>
                         <span class="glyphicon glyphicon-remove" style="color:grey;"></span>
                     <% else %>
                     <%= link_to rechazar_transaccion_path(@evento, @carpool, peticion) do %>

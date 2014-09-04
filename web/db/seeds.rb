@@ -40,7 +40,6 @@ publicador = Publicador.first
 #Insertamos eventos de prueba
 print "-Creando eventos de prueba\n"
 
-<<<<<<< HEAD
 #cant = Evento.count
 eventos_text = File.read("db/dbEventos/eventos.csv")	
 eventos = CSV.parse(eventos_text, headers: true)
@@ -56,21 +55,6 @@ if Evento.count == 0
 			ev.image = File.open("app/assets/images/1.jpg")	
 			ev.save
 		end
-=======
-cant = Evento.count
-
-if cant < 6
-	print "--Creando Eventos\n"
-	lat =  -33.036625
-	long =  -71.4837613
-	(1..6).each do |i|
-		i = i.to_s
-		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i, latitude: lat , longitude: long, date: Date.today , time: Time.now )
-		evento.image = File.open("app/assets/images/"+i+".jpg")
-		evento.save
-		lat = lat + 1
-		long = long + 1
->>>>>>> 1c03230958794f994abb01dbcf19268c75055c51
 	end
 else
 	print "--Eventos ya importados\n"
