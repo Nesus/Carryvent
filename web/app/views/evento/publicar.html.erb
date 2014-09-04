@@ -40,8 +40,8 @@
               <%= f.text_field :name , :class => "form-control", :placeholder =>"Nombre del Evento"%>
             </div>
             <div class="field">
-              <%= f.label "Subtitulo" %><br>
-              <%= f.text_field :subtitle , :class => "form-control"%>
+              <%= f.label "Descripción" %><br>
+              <%= f.text_field :subtitle , :class => "form-control", :placeholder =>"Descripción del Evento"%>
             </div>
             <div class="field">
               <%= f.label "Dirección del evento" %><br>
@@ -49,15 +49,15 @@
             </div>
             <div class="field">
               <%= f.label "Información Extra" %><br>
-              <%= f.text_field :information , :class => "form-control"%>
+              <%= f.text_field :information , :class => "form-control", :placeholder =>"Información extra del Evento"%>
             </div>
             <div class="field">
               <%= f.label "Fecha del evento" %><br>
-              <%= f.date_select :date , :class => "form-control"%>
+              <%= f.text_field :date , :class => "form-control", :type => "date"%>
             </div>
             <div class="field">
               <%= f.label "Hora del evento" %><br>
-              <%= f.time_select :time , :class => "form-control"%>
+              <%= f.text_field :time , :class => "form-control", :type => "time"%>
             </div>
             <div class="field">
               <p><%= f.label "Región" %><br>
@@ -69,14 +69,13 @@
             </div>
 
             <div class="actions">
-              <%= f.submit %>
+              <%= f.submit "Crear Evento", :class => "btn btn-primary btn-block" %>
             </div>
         </div>
           <% end %>
         </div>
       </div>
   </div>
-  <hr class="container">
 
 <script type="text/javascript">
   function filtroCiudades(region){
