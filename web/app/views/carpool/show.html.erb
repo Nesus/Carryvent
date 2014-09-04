@@ -22,9 +22,9 @@
                 </div>
 
                 <div class="col-md-10 col-xs-8">
-                <p><b>Nombre Usuario: <%= @userPub.nombre %> </b></p>
-                <p><b>Ciudad:  <%= @userPub.city.name + ", " + @userPub.region.name %></b></p>
-                <p><b>Correo: <%= @userPub.email %> </b></p>
+                <p><b>Nombre Usuario: </b><%= @userPub.nombre %> </p>
+                <p><b>Ciudad: </b><%= @userPub.city.name + ", " + @userPub.region.name %></p>
+                <p><b>Correo: </b><%= @userPub.email %> </p>
 
                 <% if @transUser and @transUser.aceptado %>
                 <p style="color:red;"><b>Celular: <%= @carpool.celular %> </b> </p>
