@@ -1,16 +1,41 @@
-Eventos Publicados
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-md-offset-3 col-xs-12">
+			<h2>Eventos Publicados</h1>
+			<div class="panel-eventos">
+					<table class="table-eventos">
+						<tr>
+							<th>
+								Titulo
+							</th>
+							<th>
+								Subtitulo
+							</th>
+							<th>
+								Publicador
+							</th>	
+							<th>
+								Editar
+							</th>	
+						</tr>
 
-<% @eventos.each do |evento| %>
-	<div>
-		Titulo:
-		<%= evento.name %>
-		Descripcion
-		<%= evento.subtitle %>
-		<%= evento.information %>
-		<%= evento.longitude %>
-		<%= evento.latitude %>
-		<%=link_to "Editar", editar_evento_path(evento) %>
-	</div><br>
-
-	
-<% end %>
+						<% @eventos.each do |evento| %>
+						<tr>	
+							<td>
+								<%= evento.name %>
+							</td>
+							<td>
+								<%= evento.subtitle %>
+							</td>
+							<td>
+								<%= evento.publicador.username %>
+							</td>
+							<td>
+								<% if evento.publicador == current_publicador %>
+									<%=link_to "Editar", editar_evento_path(evento) %>
+								<% else %>
+									Editar
+								<% end %>
+							</td>
+						</tr>
+						<% end %>

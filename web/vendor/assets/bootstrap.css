@@ -29,7 +29,7 @@ summary {
 }
 audio,
 canvas,
-progress,
+progress,|
 video {
   display: inline-block;
   vertical-align: baseline;
@@ -6363,6 +6363,38 @@ p {
 	font-size:16px;
 	color:white;
   height: 1080px;
+  width: 100%;
 }
+
+@media(min-width:300px) {
+  #homeLanding{
+      height: 170px;
+  }
+}
+
+@media(min-width:530px) {
+  #homeLanding{
+      height: 260px;
+  }
+}
+
+@media(min-width:767px) {
+  #homeLanding{
+      height: 340px;
+  }
+}
+
+@media(min-width:992px) {
+  #homeLanding{
+      height: 410px;
+  }
+}
+
+@media(min-width:1200px) {
+    #homeLanding{
+        height: 450px;
+    }
+}
+
 
 /*# sourceMappingURL=bootstrap.css.map */

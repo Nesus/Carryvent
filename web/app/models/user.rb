@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
   #Para subir fotos
   mount_uploader :foto, FotoUploader
 
+
   acts_as_messageable
   #Comprobar si el email es valido
   TEMP_EMAIL_PREFIX = 'change@me'
@@ -36,8 +37,19 @@ class User < ActiveRecord::Base
   has_many :gustos
   has_many :categories, through: :gustos
 
+  has_many :rankings
+
   belongs_to :city
   belongs_to :region
+
+  def ranking
+    sum = self.rankings.sum(:value,  :conditions => {:assist => true})
+    if sum
+      return sum
+    else
+      return 0
+    end
+  end
 
 
   def self.find_for_oauth(auth, signed_in_resource = nil)

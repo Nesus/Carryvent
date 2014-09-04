@@ -46,7 +46,7 @@ eventos = CSV.parse(eventos_text, headers: true)
 if Evento.count == 0
 	print "--Importando evento\n"
 	eventos.each do |row|
-		ev = publicador.eventos.new(name: row["EVENTO_NAME"], information: row["EVENTO_INFORMATION"], subtitle: row["EVENTO_SUBTITLE"], address: row["EVENTO_ADDRESS"], region_id: row["REGION_ID"], city_id: row["COMUNA_ID"])
+		ev = publicador.eventos.new(name: row["EVENTO_NAME"], information: row["EVENTO_INFORMATION"], subtitle: row["EVENTO_SUBTITLE"], address: row["EVENTO_ADDRESS"], region_id: row["REGION_ID"], city_id: row["COMUNA_ID"], date: row["EVENTO_DATE"], time: row["EVENTO_TIME"])
 		#ev.raw_write_attribute(:image, row[6])
 		if Evento.count > 4
 			ev.image = File.open("app/assets/images/2.jpg")
@@ -89,11 +89,11 @@ if PublicacionCarpool.count == 0
 	evento = Evento.take
 	user_evento = user.user_eventos.new(:evento_id => evento.id)
 	if user_evento.save
-		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647")
+		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647", :hora_desde => Time.now)
 		pub.save
 	else
 		user_evento=user.user_eventos.where(:evento_id => evento.id).first
-		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647")
+		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647", :hora_desde => Time.now)
 		pub.save
 	end
 	print "--Carpool creado\n"

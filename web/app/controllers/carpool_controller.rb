@@ -87,8 +87,29 @@ class CarpoolController < ApplicationController
    		evento = Evento.find(params[:evento_id])
    		carpool = PublicacionCarpool.find(params[:id])
    		aceptar = transaccion.update(:aceptado => true)
-   		transaccion.create_activity :aceptado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: transaccion.asientos , publicacion_carpool_id: carpool.id  }
-   	  redirect_to mostrar_carpool_path(evento,carpool)
+   		transaccion.create_activity :aceptado, owner:current_user , recipient:transaccion.user , parameters: {asientos: transaccion.asientos , publicacion_carpool_id: carpool.id  }
+   	  
+      scheduler = Rufus::Scheduler.new
+    
+      if carpool.date_time < DateTime.current
+        fecha = DateTime.current + 10.minutes
+      else 
+        fecha = carpool.date_time
+      end
+      job_id = scheduler.in fecha.to_s do
+        #Creamos las encuestas
+        encuestaUser = Ranking.new(driver: false, user_id:carpool.user_evento.user , owner_id:transaccion.user)
+        encuestaPub = Ranking.new(driver: true, user_id: current_user, owner_id: carpool.user_evento.user)
+        encuestaUser.save
+        encuestaPub.save
+        #Creamos las notificaciones
+        encuestaUser.create_activity :created, owner: transaccion.user, recipient: carpool.user_evento.user
+        encuestaPub.create_activity :created, owner: carpool.user_evento.user,  recipient: transaccion.user
+       end
+       transaccion.update(:job_id => job_id)
+
+
+      redirect_to mostrar_carpool_path(evento,carpool)
     end
 
     #Rechazar peticion
@@ -97,8 +118,13 @@ class CarpoolController < ApplicationController
    		evento = Evento.find(params[:evento_id])
    		carpool = PublicacionCarpool.find(params[:id])
    		rechazar = transaccion.update(:aceptado => false)
-   		transaccion.create_activity :rechazado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos:transaccion.asientos , publicacion_carpool_id: carpool.id  }
-   	  redirect_to mostrar_carpool_path(evento,carpool)
+   		transaccion.create_activity :rechazado, owner:current_user , recipient:transaccion.user, parameters: {asientos:transaccion.asientos , publicacion_carpool_id: carpool.id  }
+   	  scheduler = Rufus::Scheduler.new
+      job = scheduler.job(transaccion.job_id)
+      if job
+        job.unschedule
+      end 
+      redirect_to mostrar_carpool_path(evento,carpool)
     end
 
     #Borrar transaccion
@@ -107,7 +133,7 @@ class CarpoolController < ApplicationController
    		evento = Evento.find(params[:evento_id])
    		carpool = PublicacionCarpool.find(params[:id])
    		borrar = transaccion.destroy
-   		transaccion.create_activity :borrado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: transaccion.asientos , publicacion_carpool_id: carpool.id  }
+   		transaccion.create_activity :borrado, owner:current_user , recipient:transaccion.user, parameters: {asientos: transaccion.asientos , publicacion_carpool_id: carpool.id  }
    	  redirect_to mostrar_carpool_path(evento,carpool)
     end
 
@@ -120,14 +146,14 @@ class CarpoolController < ApplicationController
       #Vemos si el usuario que mando la peticion es el mismo que la creo
       if current_user == transaccion.user.id
    		 cambiar = transaccion.update(:asientos => params[:asientos])
-   		 transaccion.create_activity :borrado, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: trans_carpool_params["asientos"] , publicacion_carpool_id: carpool.id  }
+   		 transaccion.create_activity :updated, owner: current_user, recipient: carpool.user_evento.user, parameters: {asientos: trans_carpool_params["asientos"] , publicacion_carpool_id: carpool.id  }
    	  end
     end
 
     #Tomamos solamente los parametros que sirven para publicacion_carpool
 	private
 	  def carpool_params
-	    params.require(:publicacion_carpool).permit(:user_evento_id, :fecha, :descripcion, :precio, :hora_desde, :hora_hasta, :desde , :hasta)
+	    params.require(:publicacion_carpool).permit(:user_evento_id, :fecha, :descripcion, :hora_desde, :desde , :asientos_disp, :tipo_vehiculo, :celular)
 	  end
 
 	  def trans_carpool_params

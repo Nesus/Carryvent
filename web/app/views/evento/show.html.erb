@@ -17,12 +17,15 @@
         <% end %>
       </div>
       <div class="col-xs-4">
-        <p><b>Descripción:<%= @evento.information %> </b></p>
-        <p><b>Lugar: <!-- FALTA ESTO --> </b></p>
-        <p><b>Fecha: <!-- FALTA ESTO --> </b></p>
-        <p><b>Hora:  <!-- FALTA ESTO --></b></p>
-        <p><b>Estado de los pasajes:  </b><!-- FALTA ESTO --></p>
-        <p><button class='btn btn-lg btn-primary'>Compra tu pasaje</button> 
+        <p><b>Descripción: </b><%= @evento.subtitle %> </p>
+        <p><b>Lugar: </b><%= @evento.address %> </p>
+        <%if !@evento.information.nil? %>
+          <p><b>Información Extra: </b><%= @evento.information %> </p>
+        <% end %>
+        <p><b>Fecha: </b><%= @evento.date.strftime("%d/%m/%Y") %> </p>
+        <p><b>Hora:  </b><%= @evento.time.strftime("%H:%M") %> </p>
+        <p><b>Estado de los pasajes:  </b> Etapa de Reserva </p>
+        <p><button class='btn btn-lg btn-primary'>Reserva tu pasaje</button> 
         <% if current_user.present? %>
           <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-lg btn-primary'%>
         <% end %></p>
@@ -54,6 +57,7 @@
         <h4>Comentarios Evento</h4>
         <div  class="comment-container" >
           <div class="comments">
+            <div class="first-comment"></div>
             <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
           </div>
 
@@ -80,7 +84,7 @@
 	                <TD>
                     <% if pub.user_evento.user.foto.thumb.url %>
                      <% img = pub.user_evento.user.foto.thumb.url %>
-                     <img src="<%= img  %>" width="100" height="100" alt="" class="center-block img-responsive">
+                     <img src="<%= img  %>" alt="" class="img-circle">
                     <% else %>
                       <img src="/assets/place_user.png", class="img-circle", style="width:30px;heigh:30px">
                     <% end %>
@@ -94,7 +98,10 @@
                   </td>
 	                <TD>
                   <% if current_user %>   
-	                  <%= link_to "Detalle", mostrar_carpool_path(@evento.id, pub.id) %>
+	                  <%= link_to  mostrar_carpool_path(@evento.id, pub.id) do %>
+                      <i class="fa fa-bars"></i>
+                        Detalle
+                    <% end %>
                   <% else %>
                     Detalle
                   <% end %>

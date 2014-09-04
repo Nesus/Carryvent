@@ -1,0 +1,4 @@
+<% id = activity.parameters[:publicacion_carpool_id] %>
+<% carpool = PublicacionCarpool.find(id) %>
+
+<%= link_to activity.owner.nombre , perfil_user_path(activity.owner) %> Rechazó tu solicitud en <%= link_to "este carpool" , mostrar_carpool_path(carpool.evento, carpool) %>

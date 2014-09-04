@@ -1,0 +1,23 @@
+
+<div class="container">
+
+  <div class="col-md-5 col-md-offset-4">
+    <p id="notice"><%= notice %></p>
+    <% if @ranking.assist %>
+    <h1>Gracias por responder</h1>
+    <p>
+      <strong>Valoración:</strong>
+      <%= @ranking.value %>
+    </p>
+
+    <p>
+      <strong>Comentario:</strong>
+      <%= @ranking.comment %>
+    </p>
+
+    <% else %>
+    <h1>Gracias por responder</h1>
+    <% end %>
+  </div>
+
+</div>

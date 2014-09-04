@@ -16,14 +16,30 @@
 	padding-bottom: 5px;
 	padding-left: 10px;
 	padding-right: 10px; 
-	overflow-y: scroll;
+	overflow-y: auto;
 }
 .tabla-carpools{
     border-collapse: collapse;
     width: 100%;
 }
 
-.tabla-carpools th,td{
+.tabla-carpools th,
+.tabla-carpools td{
 	border: 1px solid orange;
+	text-align: center;
+}
+
+.peticiones-container{
+	height: 100px;
+	  background-color: #fff5f0;
+  	-webkit-border-radius: 6px;
+  	-moz-border-radius: 6px;
+  	border-radius: 6px;
+	position:relative;
+	padding-top:5px;
+	padding-bottom: 5px;
+	padding-left: 10px;
+	padding-right: 10px; 
+	overflow-y: auto;
 	text-align: center;
 }

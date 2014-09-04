@@ -1,0 +1,4 @@
+<% id = activity.parameters[:publicacion_carpool_id] %>
+<% carpool = PublicacionCarpool.find(id) %>
+
+<%= link_to activity.owner.nombre , perfil_user_path(activity.owner) %> creó solicitud de asientos en <%= link_to "tu carpool" , mostrar_carpool_path(carpool.evento, carpool) %>

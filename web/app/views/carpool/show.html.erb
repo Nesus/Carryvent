@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-md-2 col-xs-4">
                 <% if @userPub.foto.present? %>
-                    <img class="img-square img-responsive img-center" src="<%= @userPub.foto+"?type=large" %>" width="80" height="80" alt="">
+                    <img class="img-square img-responsive img-center" src="<%= @userPub.foto.url %>" width="80" height="80" alt="">
                 <% else %>
                     <img class="img-square img-responsive img-center" src="http://sintoniageek.com/wp-content/uploads/2011/03/avatar-facebook-defecto1.jpg" width="80" height="80" alt="">
                 <% end %>
@@ -22,9 +22,9 @@
                 </div>
 
                 <div class="col-md-10 col-xs-8">
-                <p><b>Nombre Usuario: <%= @userPub.nombre %> </b></p>
-                <p><b>Ciudad:  <%= @userPub.city.name + "," + @userPub.region.name %></b></p>
-                <p><b>Correo: <%= @userPub.email %> </b></p>
+                <p><b>Nombre Usuario: </b><%= @userPub.nombre %> </p>
+                <p><b>Ciudad: </b><%= @userPub.city.name + ", " + @userPub.region.name %></p>
+                <p><b>Correo: </b><%= @userPub.email %> </p>
 
                 <% if @transUser and @transUser.aceptado %>
                 <p style="color:red;"><b>Celular: <%= @carpool.celular %> </b> </p>
@@ -35,6 +35,7 @@
             <div class="row">
                     <div  class="comment-container" >
                         <div class="comments">
+                          <div class="first-comment"></div>
                             <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
                         </div>
                         <div class="comment-send"> 
@@ -47,7 +48,12 @@
 
         <div class="col-md-6 col-xs-12">
             <% if @userPub != current_user %>
-                    <div class="text-center"><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></div> 
+              <div class="row">
+                    <div class="text-center">
+                      <p><b>Lugar: </b> <%= @carpool.desde %></p>
+                      <p><b>Hora: </b> <%= @carpool.hora_desde.strftime("%H:%M") %></p>
+                      <p><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></p>
+                    </div> 
 
                     <% if @transUser %>
                         <div class="text-center">
@@ -61,18 +67,17 @@
                             <% end %>
                         </div>
                     <% else %>
-                    <div class="col-md-4 col-md-offset-4">
-                        <div class="text-center">
-                                        <b> Pedir asientos en carpool </b>
-                        </div>
-                         <%= form_for @transaccion , url: crear_transaccion_carpool_path do |f| %>
-                            <%= f.label :asientos %>
-                            <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }) %> <br>
-                            <%= f.submit "Realizar peticion", :class =>"btn btn-primary"%>
-                        <%end%>
+                    <div class="peticiones-container col-xs-offset-1">
+                                    <b> Pedir asientos en carpool </b>
+                    
+                     <%= form_for @transaccion , url: crear_transaccion_carpool_path do |f| %>
+                        <%= f.label :asientos %>
+                        <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }) %> <br>
+                        <%= f.submit "Realizar peticion", :class =>"btn btn-primary"%>
+                    <%end%>
                     </div>
                     <%end%>
-
+              </div>
             <% else %>
             <div class="carpool-container">
                 <div class="text-center"><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></div>
@@ -81,7 +86,7 @@
               <tr>
               <th> Usuario </th>
               <th> Ciudad </th>
-              <th> Asientos pedidos </th>
+              <th> N° de Asientos </th>
               <th>  Estado </th>
               <th>  Aceptar/Rechazar</th>
               </tr>
@@ -90,7 +95,7 @@
                     <TD>
                     <% if peticion.user.foto.thumb.url %>
                      <% img = peticion.user.foto.thumb.url %>
-                     <img src="<%= img  %>" alt="" class="center-block img-responsive">
+                     <img src="<%= img  %>" alt="" class="img-circle">
                     <% else %>
                       <img src="/assets/place_user.png", class="img-circle", style="width:30px;heigh:30px">
                     <% end %>
@@ -104,26 +109,30 @@
                   </td>
                   <td>
                     <% if peticion.aceptado.nil? %>
-                        Pendiente
+                        <span style="color:blue;">Pendiente</span>
                     <% elsif peticion.aceptado %>
-                        Aceptado
+                        <span style="color:green;">Aceptado</span>
                     <% else %>
-                        Rechazado
+                        <span style="color:red;">Rechazado</span>
                     <% end %>
                   </td>
                   <td>
                     <% if peticion.aceptado %>
-                        Aceptar
+                        <span class="glyphicon glyphicon-ok" style="color:grey;"></span>
                     <% else %>
-                    <%= link_to "Aceptar" , aceptar_transaccion_path(@evento, @carpool, peticion)
+                    <%= link_to aceptar_transaccion_path(@evento, @carpool, peticion) do 
                     %> 
+                    <span class="glyphicon glyphicon-ok" style="color:green;"></span>
+                    <% end %>
                     <% end %>
                     / 
-                    <% if !peticion.aceptado %>
-                        Rechazar
+                    <% if peticion.aceptado == false %>
+                        <span class="glyphicon glyphicon-remove" style="color:grey;"></span>
                     <% else %>
-                    <%= link_to "Rechazar" , rechazar_transaccion_path(@evento, @carpool, peticion)
-                    %>
+                    <%= link_to rechazar_transaccion_path(@evento, @carpool, peticion) do %>
+                    <span class="glyphicon glyphicon-remove" style="color:red;"></span> 
+                    <%end%>
+
                     <% end %>
                   </td>
                   </TR>
