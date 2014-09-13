@@ -29,7 +29,7 @@
 
         <div class="row">
           <div class="col-md-6">
-        <% if current_user.pasajes.first.nil? %>
+        <% if @pasajes %>
         <%= form_for @pasaje , url: reservar_pasaje_path do |f| %>
             <%= f.label "Cantidad de pasajes" %>
             <%= f.select :cantidad, ((1..5).map {|i| [i,i] }) %> <br>
@@ -38,7 +38,7 @@
           </div>
           <div class="col-md-6">
         <% end %>
-        <% if current_user.present? and current_user.publicacion_carpools.first.nil? %>
+        <% if current_user.present?  %>
           <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-primary'%>
         <% end %></p>
         </div>

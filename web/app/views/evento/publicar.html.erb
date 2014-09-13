@@ -53,11 +53,11 @@
             </div>
             <div class="field">
               <%= f.label "Fecha del evento" %><br>
-              <%= f.text_field :date , :class => "form-control", :type => "date"%>
+              <%= f.date_select :date , :class => "form-control"%>
             </div>
             <div class="field">
               <%= f.label "Hora del evento" %><br>
-              <%= f.text_field :time , :class => "form-control", :type => "time"%>
+              <%= f.time_select :time , :class => "form-control"%>
             </div>
             <div class="field">
               <p><%= f.label "Región" %><br>

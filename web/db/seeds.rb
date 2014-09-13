@@ -86,16 +86,32 @@ end
 print "-Creando carpool de prueba\n"
 if PublicacionCarpool.count == 0
 	user = User.where(email: "gortiz@alumnos.inf.utfsm.cl").first
+	user2 = User.where(email: "cbarraza@alumnos.inf.utfsm.cl").first
 	evento = Evento.take
+	evento2 = Evento.find(2)
 	user_evento = user.user_eventos.new(:evento_id => evento.id)
+	user_evento2 = user2.user_eventos.new(:evento_id => evento2.id)
 	if user_evento.save
-		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647", :hora_desde => Time.now)
+		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Chapilca, 761, La Serena, Chile", :asientos_disp => 3, :tipo_vehiculo => "Sedan", :celular => "98875647", :hora_desde => Time.now)
 		pub.save
 	else
 		user_evento=user.user_eventos.where(:evento_id => evento.id).first
-		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Lugar desde", :asientos_disp => 3, :tipo_vehiculo => "Tipo 1", :celular => "98875647", :hora_desde => Time.now)
+		pub = PublicacionCarpool.new(:user_evento_id => user_evento.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Chapilca, 761, La Serena, Chile", :asientos_disp => 3, :tipo_vehiculo => "Sedan", :celular => "98875647", :hora_desde => Time.now)
 		pub.save
 	end
+	if user_evento2.save
+		pub = PublicacionCarpool.new(:user_evento_id => user_evento2.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Chapilca, 761, La Serena, Chile", :asientos_disp => 3, :tipo_vehiculo => "Sedan", :celular => "98875647", :hora_desde => Time.now)
+		p1=pub.save
+	else
+		user_evento2=user2.user_eventos.where(:evento_id => evento.id).first
+		pub = PublicacionCarpool.new(:user_evento_id => user_evento2.id ,:fecha => Date.current, :descripcion => "Este es el carpool de prueba", :desde => "Chapilca, 761, La Serena, Chile", :asientos_disp => 3, :tipo_vehiculo => "Sedan", :celular => "98875647", :hora_desde => Time.now)
+		p1=pub.save
+	end
+	if p1
+		trans = user.transaccion_carpools.new(:asientos => 1,  :publicacion_carpool_id => pub.id , :aceptado => true)
+	end 
+
+
 	print "--Carpool creado\n"
 else
 	print "--Carpool Existente\n"

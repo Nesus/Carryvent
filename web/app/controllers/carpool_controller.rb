@@ -92,7 +92,7 @@ class CarpoolController < ApplicationController
       scheduler = Rufus::Scheduler.new
     
       if carpool.date_time < DateTime.current
-        fecha = DateTime.current + 10.minutes
+        fecha = DateTime.current + 1.minutes
       else 
         fecha = carpool.date_time
       end
