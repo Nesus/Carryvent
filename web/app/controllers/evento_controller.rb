@@ -89,6 +89,8 @@ class EventoController < ApplicationController
 
 	end
 
+	
+
 	def editar
 		@evento = Evento.find(params[:id])
 	end
@@ -96,6 +98,11 @@ class EventoController < ApplicationController
 	def update
 		evento = Evento.find(params[:id])
 		evento.update(evento_params)
+		if evento.update(evento_params)
+			redirect_to lista_eventos_publicador_path
+		else
+			render 'editar'
+		end
 	end
 
 

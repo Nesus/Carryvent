@@ -14,6 +14,7 @@ resources :rankings
   get '/publicar' => 'evento#publicar', as: :publicar_evento
   post '/publicar' => 'evento#new', as: :eventos
   get '/editar/:id' => 'evento#editar', as: :editar_evento
+  patch '/editar/:id' => 'evento#update', as: :update_evento
   get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
   get '/evento/:id' => 'evento#show', as: :mostrar_evento
 
