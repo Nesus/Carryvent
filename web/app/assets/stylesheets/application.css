@@ -17,3 +17,39 @@
  *= require bootstrap-social
  */
 
+/*Botones barra*/
+#botonesBarra{
+  max-width: 200px;
+  background-color: #ff8000;
+}
+
+#nombreUsuario{
+  padding-bottom: 8px;
+  padding-top: 7px;
+}
+
+#botonesBarraLogueado{
+  max-width: 350px;
+  background-color: #ff8000;
+  border:10px;
+}
+
+@media(max-width:767px) {
+  #bs-example-navbar-collapse-1{
+    position:absolute;
+    right: 1px;
+  }
+}
+
+.contenido{
+  min-height: 100%;
+  max-height: auto;
+}
+
+.footer{
+  background-color: #ff8000;
+  padding-bottom: 30px;
+  margin: 0px;
+  text-align: center;
+  color: #fff;
+}

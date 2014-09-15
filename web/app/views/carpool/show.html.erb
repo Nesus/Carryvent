@@ -58,19 +58,19 @@
                         <p><b>Descripción: <%= @carpool.descripcion %></b> </p>
                         <div class="asientos-container col-xs-offset-1">
                           <p>
-                            <%= image_tag "asiento.gif", id:"asiento1", onClick:"seleccionar(1)", value:"1"%>
-                            <%= image_tag "asiento.gif", id:"asiento2", onClick:"seleccionar(2)", value:"2"%>
-                            <%= image_tag "asiento.gif", id:"asiento3", onClick:"seleccionar(3)", value:"3"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento1", onClick:"seleccionar(1)", value:"1"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento2", onClick:"seleccionar(2)", value:"2"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento3", onClick:"seleccionar(3)", value:"3"%>
                           </p>
                           <p>
-                            <%= image_tag "asiento.gif", id:"asiento4", onClick:"seleccionar(4)", value:"4"%>
-                            <%= image_tag "asiento.gif", id:"asiento5", onClick:"seleccionar(5)", value:"5"%>
-                            <%= image_tag "asiento.gif", id:"asiento6", onClick:"seleccionar(6)", value:"6"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento4", onClick:"seleccionar(4)", value:"4"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento5", onClick:"seleccionar(5)", value:"5"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento6", onClick:"seleccionar(6)", value:"6"%>
                           </p>
                           <p>
-                            <%= image_tag "asiento.gif", id:"asiento7", onClick:"seleccionar(7)", value:"7"%>
-                            <%= image_tag "asiento.gif", id:"asiento8", onClick:"seleccionar(8)", value:"8"%>
-                            <%= image_tag "asiento.gif", id:"asiento9", onClick:"seleccionar(9)", value:"9"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento7", onClick:"seleccionar(7)", value:"7"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento8", onClick:"seleccionar(8)", value:"8"%>
+                            <%= image_tag "asientoSinSeleccionar.png", id:"asiento9", onClick:"seleccionar(9)", value:"9"%>
                           </p>
                         </div>
                       </div> 
@@ -172,10 +172,10 @@
       function seleccionar(numero) {
         for (var i = 1; i <= 9; i++) {
           if (i == numero){
-            document.getElementById('asiento'+i).src = "/assets/asiento2.gif";
+            document.getElementById('asiento'+i).src = "/assets/asientoSeleccionado.png";
           }
           else{
-            document.getElementById('asiento'+i).src = "/assets/asiento.gif";
+            document.getElementById('asiento'+i).src = "/assets/asientoSinSeleccionar.png";
           }
         }
       }
