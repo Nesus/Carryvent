@@ -61,7 +61,7 @@
             </div>
             <div class="field">
               <p><%= f.label "Región" %><br>
-              <%= f.select :region_id , @regiones.collect  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);"}%></p>
+              <%= f.select :region_id , @regiones.map  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);"}%></p>
             </div>  
             <div class="field">
               <p><%= f.label "Ciudad" %>

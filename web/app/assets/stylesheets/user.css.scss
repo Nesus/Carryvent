@@ -16,3 +16,62 @@
 	width: 100%;
 	overflow-y:auto;
 }
+
+/*Secciones Landing*/
+#homeLanding{
+  background: url("../assets/imagen_landing.jpg") center top no-repeat;
+  -webkit-background-size:contain;
+  -moz-background-size:contain;
+  -o-background-size:contain;
+  background-size:contain;
+  font-family:'Lato', sans-serif;
+  font-size:16px;
+  color:white;
+}
+
+@media(min-width:300px) {
+  #homeLanding{
+      height: 170px;
+  }
+}
+
+@media(min-width:530px) {
+  #homeLanding{
+      height: 260px;
+  }
+}
+
+@media(min-width:767px) {
+  #homeLanding{
+      height: 340px;
+  }
+}
+
+@media(min-width:992px) {
+  #homeLanding{
+      height: 410px;
+  }
+}
+
+@media(min-width:1200px) {
+    #homeLanding{
+        height: 450px;
+    }
+}
+
+#queQuienes{
+  padding-top: 0px;
+}
+
+/* Estrellas ranking*/
+.contenedorEstrellas{
+  font-size: 25px;
+}
+
+#estrellaGris{
+  color: #888; 
+}
+
+#estrellaColor{
+  color: #ff8000; 
+}
