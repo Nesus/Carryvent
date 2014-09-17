@@ -13,6 +13,12 @@ module Web
     Rails.application.config.assets.precompile += %w( efecto_grayscale.js )
 
     config.i18n.default_locale = 'es'
+
+
+    #Con esto al hacer Scaffold no muere el css#
+    config.generators do |g|
+        g.stylesheets false
+    end
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
