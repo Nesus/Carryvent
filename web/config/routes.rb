@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
-resources :rankings
+  ActiveAdmin.routes(self)
+  resources :rankings
   #comentarios
   resources :comments, :only =>[:create, :destroy]
 
@@ -9,28 +10,30 @@ resources :rankings
 
   #Rutas de eventos
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
-  get '/publicar' => 'evento#publicar', as: :publicar_evento
-  post '/publicar' => 'evento#new', as: :eventos
-  get '/editar/:id' => 'evento#editar', as: :editar_evento
-  patch '/editar/:id' => 'evento#update', as: :update_evento
-  get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
   get '/evento/:id' => 'evento#show', as: :mostrar_evento
+
+#  get '/publicar' => 'evento#publicar', as: :publicar_evento
+#  post '/publicar' => 'evento#new', as: :eventos
+#  get '/editar/:id' => 'evento#editar', as: :editar_evento
+#  patch '/editar/:id' => 'evento#update', as: :update_evento
+#  get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
 
 
   #Pasajes
   post '/evento/:id/reservar' => "evento#reservar_pasaje", as: :reservar_pasaje
 
   #Ruta organizadores
-  get '/organization/:id' => 'organization#show', as: :mostrar_organization
-  get '/publicarOrg' => 'organization#new', as: :publicar_organization
-  post '/publicarOrg' => 'organization#create', as: :crear_organization
-  get '/organization/edit/:id' => 'organization#edit', as: :editar_organization
-  post '/organization/edit/:id' => 'organization#update', as: :modificar_organization
+#  get '/organization/:id' => 'organization#show', as: :mostrar_organization
+#  get '/publicarOrg' => 'organization#new', as: :publicar_organization
+#  post '/publicarOrg' => 'organization#create', as: :crear_organization
+#  get '/organization/edit/:id' => 'organization#edit', as: :editar_organization
+#  post '/organization/edit/:id' => 'organization#update', as: :modificar_organization
 
   #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
   #testing
   get '/user/:id/editar' => 'user#editar', as: :editar_user
+
   #get '/user/:id/editarpasswd' => 'devise/passwords#edit',   :as => :edit_user_password
   #get '/user/:id/editarpasswd' => 'user#editarpasswd', as: :editarpasswd_user
 
@@ -44,6 +47,7 @@ resources :rankings
   get 'evento/carpool/:evento_id/:id/:transaction_id/accept' => 'carpool#aceptar_transaction', as: :aceptar_transaccion
   get 'evento/carpool/:evento_id/:id/:transaction_id/reject' => 'carpool#rechazar_transaction', as: :rechazar_transaccion
   get 'evento/carpool/:evento_id/:id/:transaction_id/delete' => 'carpool#delete_transaction' , as: :borrar_transaccion
+
   #match '/profile/:id/finish_signup' => 'users#finish_signup', via: [:get, :patch], :as => :finish_signup
 
   #Rutas para sobreescribir las rutas de devise
@@ -91,21 +95,19 @@ resources :rankings
       :via => Devise.mappings[:publicador].sign_out_via
   end
 
-  resource :user, only: [:edit] do
-    collection do
-      patch 'update_password'
-    end
-  end
+  #resource :user, only: [:edit] do
+  #  collection do
+  #    patch 'update_password'
+  #  end
+  #end
 
   authenticated :user do
     root :to => "evento#eventos", as: "authenticated_root"
   end
 
   authenticated :publicador do
-    root :to => "evento#eventos_publicador", as: "authenticated_publicador_root"
+    root :to => "admin/dashboard#index", as: "authenticated_publicador_root"
   end
-
-  
 
   root :to => 'user#index'
 

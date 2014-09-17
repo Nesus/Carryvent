@@ -10,7 +10,13 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
+ *= require carpool
+ *= require evento
+ *= require notifications
+ *= require organization
+ *= require round-about
+ *= require styles
+ *= require user
  *= require_self
  *= require bootstrap
  *= require font-awesome
