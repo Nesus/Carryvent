@@ -1,6 +1,4 @@
 class Pasaje < ActiveRecord::Base
-	#Notificaciones
-	include PublicActivity::Common
 	before_create :generate_code
 
 

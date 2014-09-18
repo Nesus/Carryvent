@@ -1,9 +1,11 @@
 class ReservaMailer < ActionMailer::Base
   default from: "noreplay@carryvent.cl"
 
-  def reserva(email)
-    @url  = 'http://example.com/login'
-    mail(to: email, subject: 'Welcome to My Awesome Site')
+  def reserva(user, evento, reserva)
+  	@user = user
+  	@evento = evento
+  	@reserva = reserva
+    mail(to: user.email, subject: 'Instrucciones para completar su compra')
   end
 
 end

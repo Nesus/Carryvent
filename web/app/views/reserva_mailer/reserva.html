@@ -4,14 +4,26 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1>Welcome to example.com, gemoya</h1>
+    <h1>Gracias por reservar tu pasaje con Carryvent</h1>
+    <p> <b>Informacion:</b> </p>
+    <p> Evento : <%=@evento.name %> </p>
+    <p> Cantidad de asientos : <%= @reserva.amount %> </p>
+    <p> Asientos :<%= @reserva.pasajes.select("asiento").map(&:asiento).to_sentence %></p>
+    <p>Válido hasta: <%= @reserva.ttl.to_s(:short) %></p>
+    <p> Monto: </p>
     <p>
-      You have successfully signed up to example.com,
-      your username is: moyisimo<br>
+      Para completar su compra siga las siguientes instrucciones:<br>
     </p>
     <p>
-      To login to the site, just follow this link: <%= @url %>.
+      1) Realice el depósito o transferencia online a los siguientes datos <br>
+      <p> Nombre: Persona carryvent </p>
+      <p> Rut : Rut carryvent</p>
+      <p> Cuenta: Cuenta carryvent </p>
+      <p> Banco : Banco carryvent </p>
     </p>
-    <p>Thanks for joining and have a great day!</p>
+      2) Envie un mail a <%= @evento.publicador.email %> con el comprobante de pago <br> 
+
+      3) Espere sus pasajes <br>
+    <p>Gracias por utilizar Carryvent</p>
   </body>
 </html>
