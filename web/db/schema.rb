@@ -45,16 +45,6 @@ ActiveRecord::Schema.define(version: 20140918221409) do
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
 
-  create_table "buses", force: true do |t|
-    t.integer  "bus_id"
-    t.string   "patente"
-    t.integer  "empresa_id"
-    t.integer  "asientos"
-    t.string   "tipo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"

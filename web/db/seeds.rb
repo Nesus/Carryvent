@@ -153,4 +153,19 @@ else
 	print "--Carpool Existente\n"
 end
 
+#Importando Categorias
+print "-Importando Categorias\n"
+categorias_text = File.read("db/dbCategorias/categorias.csv")
+categorias = CSV.parse(categorias_text, headers: true)
+
+if Category.count == 0
+	categorias.each do |row|
+		cat = Category.new(name: row["CATEGORIA_NAME"])
+		cat.save
+	end
+	print "--Categorias importadas\n"
+else
+	print "--Categorias ya fueron importadas\n"
+end
+
 print "FINISH\n"
