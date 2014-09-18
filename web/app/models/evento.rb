@@ -28,7 +28,7 @@ class Evento < ActiveRecord::Base
 	validates :subtitle, presence: true
 	validates :date , presence: true
 	validates :time , presence: true
-	validates :informations, presence: true
+	validates :information, presence: true
 	validates :publicador_id, presence: true
 
 	#geocoded
