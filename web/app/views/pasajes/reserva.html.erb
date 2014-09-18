@@ -1,0 +1,89 @@
+<%= form_for @reserva, url: crear_reserva_path do |f| %>
+<div class="container">
+	<div class="row">
+		<h2 class="page-header">Reserva tu pasaje a <%=@evento.name%></h2>
+
+		<% if @reserva.errors.any? %>
+	        <div class="row">
+	          <div id="error_explanation">
+	            <h2>
+	              <%= pluralize(@reserva.errors.count, "error") %> prohibited
+	              this article from being saved:
+	            </h2>
+	            <ul>
+	              <% @reserva.errors.full_messages.each do |msg| %>
+	                <li><%= msg %></li>
+	              <% end %>
+	            </ul>
+	          </div>
+	        </div>
+	      <% end %>
+
+		<div class="col-sm-6">
+			<div class="row">
+				<h3 class="page-header">Información</h3>
+				<p>Precio</p>
+				<p>Hora de salida</p>
+				<p>Lugar de salida</p>
+			</div>
+
+			<div class="row">
+				<h3 class="page-header">Selecciona el lugar donde te gustaria llegar</h3>
+			</div><!-- end location -->
+		</div> <!-- end information -->
+
+		<div class="col-sm-6">
+			<div class="row">
+				<h3 class="page-header">Elige tus  asientos</h3>
+			</div>
+			<div class="row">
+				<p class="text-center">Máx. 5 asientos</p>
+			</div>
+			<div class="row">
+				
+				<div class="col-sm-6 col-sm-offset-3">
+
+					<div class="busTipo">
+						<%= f.hidden_field :amount, value: 0, id:"seleccionados" %>
+						<table>
+						<% (1..46).each do |i| %>
+
+							<% if (i-1) % 4 == 0 %>
+							<tr class="centering">
+							<% end %>
+								<td>
+									<a href="#" id="asiento<%=i%>" onclick="seleccionar('asiento<%= i%>');event.preventDefault();" value="false"><%=image_tag "asientoSinSeleccionar.png"%></a>
+									<%=i%>
+									<input type="hidden" id="asiento<%=i%>tag"value="<%=i%>">
+								</td>	
+							<% if i-1 % 4 == 3 %>
+								</tr>
+							<% end %>
+						<% end %>
+						</table>
+					</div>	
+				</div>
+			</div><!-- end bus -->
+			<div class="row">
+				<div class="col-sm-4">
+					<%= image_tag "asientoSeleccionado.png" %>
+					Asiento Seleccionado
+				</div>
+				<div class="col-sm-4">
+					<%= image_tag "asientoSinSeleccionar.png" %>
+					Asiento Disponible
+				</div>
+				<div class="col-sm-4">
+					<%= image_tag "asientoOcupado.png" %>
+					Asiento Ocupado
+				</div>
+			</div>
+		</div><!-- end location + bus --> 
+	</div> <!-- end row -->
+
+	<div class="row text-center">
+		<%= f.submit "Enviar Reserva", class: "btn btn-primary"%>
+	</div>
+
+</div> <!-- end container -->
+<% end %>

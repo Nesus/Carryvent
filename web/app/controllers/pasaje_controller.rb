@@ -1,0 +1,2 @@
+class PasajeController < ApplicationController
+end

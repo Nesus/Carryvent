@@ -17,3 +17,6 @@
 
 # Ignore fotos
 /public/uploads/*
+
+#Ignore .lock
+Gemfile.lock

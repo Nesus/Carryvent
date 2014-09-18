@@ -1,4 +1,5 @@
 class Ranking < ActiveRecord::Base
+
 	#Notificaciones
 	include PublicActivity::Common
 

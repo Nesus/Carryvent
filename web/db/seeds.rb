@@ -34,6 +34,42 @@ else
 	print "--Publicador Existente\n"
 end
 
+
+
+
+#Importando datos de ciudad y regiones
+print "-Importando tablas de ciudades y regiones\n"
+regiones_text = File.read("db/dbCiudades/regiones.csv")	
+regiones = CSV.parse(regiones_text, headers: true)
+
+comunas_text = File.read("db/dbCiudades/comunas.csv")	
+comunas = CSV.parse(comunas_text, headers: true)
+
+if Region.count == 0
+	print "--Importando regiones\n"
+	regiones.each do |row|
+		reg = Region.new(id: row["REGION_ID"], name: row["REGION_NOMBRE"], short_name: row["REGION_ID"].to_s + "° Región")
+		reg.save
+	end
+else
+	print "--Regiones ya importadas\n"
+end
+
+if City.count == 0
+	print "--Importando ciudades\n"
+	comunas.each do |row|
+		region_id = row["COMUNA_PROVINCIA_ID"][0..-2]
+		cit = City.new(id: row["COMUNA_ID"], region_id: region_id, name: row["COMUNA_NOMBRE"] )
+		cit.save
+	end
+else
+	print "--Ciudades ya importadas\n"
+end
+
+
+
+
+
 #Buscamos el publicador
 publicador = Publicador.first
 
@@ -115,35 +151,6 @@ if PublicacionCarpool.count == 0
 	print "--Carpool creado\n"
 else
 	print "--Carpool Existente\n"
-end
-
-#Importando datos de ciudad y regiones
-print "-Importando tablas de ciudades y regiones\n"
-regiones_text = File.read("db/dbCiudades/regiones.csv")	
-regiones = CSV.parse(regiones_text, headers: true)
-
-comunas_text = File.read("db/dbCiudades/comunas.csv")	
-comunas = CSV.parse(comunas_text, headers: true)
-
-if Region.count == 0
-	print "--Importando regiones\n"
-	regiones.each do |row|
-		reg = Region.new(id: row["REGION_ID"], name: row["REGION_NOMBRE"], short_name: row["REGION_ID"].to_s + "° Región")
-		reg.save
-	end
-else
-	print "--Regiones ya importadas\n"
-end
-
-if City.count == 0
-	print "--Importando ciudades\n"
-	comunas.each do |row|
-		region_id = row["COMUNA_PROVINCIA_ID"][0..-2]
-		cit = City.new(id: row["COMUNA_ID"], region_id: region_id, name: row["COMUNA_NOMBRE"] )
-		cit.save
-	end
-else
-	print "--Ciudades ya importadas\n"
 end
 
 #Importando Categorias

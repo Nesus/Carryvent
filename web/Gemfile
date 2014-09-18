@@ -39,6 +39,8 @@ gem 'spring',        group: :development
 # Use debugger
 # gem 'debugger', group: [:development, :test]
 
+gem 'activeadmin', github: 'activeadmin'
+
 #login
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
@@ -65,6 +67,10 @@ gem 'simple_form'
 gem 'public_activity'
 
 gem 'mailboxer'
+
+gem 'rqrcode_png'
+
+gem 'ryanb-uniquify'
 #best
 #gem 'best_in_place', github: 'bernat/best_in_place' 
 
