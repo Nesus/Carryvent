@@ -12,7 +12,7 @@ class Evento < ActiveRecord::Base
 	has_many :users , through: :user_eventos
 	has_many :publicacion_carpool, through: :user_eventos
 	has_many :pasajes, through: :user_eventos
-	has_many :buses
+	#has_many :buses
 	
 	#Pertenece al publicador que lo publico
 	belongs_to :publicador
@@ -26,6 +26,9 @@ class Evento < ActiveRecord::Base
 	#Validaciones
 	validates :name, presence: true
 	validates :subtitle, presence: true
+	validates :date , presence: true
+	validates :time , presence: true
+	validates :information, presence: true
 	validates :publicador_id, presence: true
 
 	#geocoded

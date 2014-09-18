@@ -1,5 +1,5 @@
 class UserController < ApplicationController
-
+	#Usuarios no identificados pueden ver el index y el perfil de otros users
 	before_filter :authenticate_user!, :except => [:index, :perfil]
 	  
 	def index

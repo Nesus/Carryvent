@@ -29,7 +29,8 @@
             <%= f.text_field :nombre , :class => "form-control", :placeholder =>"Nombre"%></p>
 
             <p><%= f.label "Región" %><br>
-            <%= f.select :region_id , @regiones.collect  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);"}%></p>
+
+            <%= f.select :region_id , Region.all.map  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);"}%></p>
             
             <p><%= f.label :ciudad_id %>
             <%= f.select :city_id , {}, {include_blank: true}, {class: "form-control"}%></p>

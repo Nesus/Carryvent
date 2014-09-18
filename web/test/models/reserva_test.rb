@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class BusTest < ActiveSupport::TestCase
+class ReservaTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

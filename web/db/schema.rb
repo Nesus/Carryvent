@@ -11,7 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140904083113) do
+ActiveRecord::Schema.define(version: 20140918015119) do
+
+  create_table "active_admin_comments", force: true do |t|
+    t.string   "namespace"
+    t.text     "body"
+    t.string   "resource_id",   null: false
+    t.string   "resource_type", null: false
+    t.integer  "author_id"
+    t.string   "author_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "active_admin_comments", ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
+  add_index "active_admin_comments", ["namespace"], name: "index_active_admin_comments_on_namespace"
+  add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id"
 
   create_table "activities", force: true do |t|
     t.integer  "trackable_id"
@@ -29,16 +44,6 @@ ActiveRecord::Schema.define(version: 20140904083113) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
-
-  create_table "buses", force: true do |t|
-    t.integer  "bus_id"
-    t.string   "patente"
-    t.integer  "empresa_id"
-    t.integer  "asientos"
-    t.string   "tipo"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -177,18 +182,12 @@ ActiveRecord::Schema.define(version: 20140904083113) do
   end
 
   create_table "pasajes", force: true do |t|
-    t.integer  "user_evento_id"
-    t.integer  "oferta_id"
-    t.integer  "precio"
-    t.integer  "cantidad"
     t.string   "codigo"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "reserva"
+    t.integer  "reserva_id"
+    t.integer  "asiento"
   end
-
-  add_index "pasajes", ["oferta_id"], name: "index_pasajes_on_oferta_id"
-  add_index "pasajes", ["user_evento_id"], name: "index_pasajes_on_user_evento_id"
 
   create_table "publicacion_carpools", force: true do |t|
     t.integer  "user_evento_id"
@@ -253,6 +252,18 @@ ActiveRecord::Schema.define(version: 20140904083113) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "reservas", force: true do |t|
+    t.string   "code"
+    t.integer  "amount"
+    t.integer  "user_evento_id"
+    t.integer  "state"
+    t.datetime "ttl"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservas", ["user_evento_id"], name: "index_reservas_on_user_evento_id"
 
   create_table "transaccion_carpools", force: true do |t|
     t.integer  "user_id"

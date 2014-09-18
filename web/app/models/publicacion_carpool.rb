@@ -10,13 +10,14 @@ class PublicacionCarpool < ActiveRecord::Base
   acts_as_commentable
 
   #Validaciones
-
-  ##Asientos disponibles
   validates :asientos_disp , numericality: { only_integer: true , greater_than_or_equal_to: 0 }
   validates :asientos_disp , presence: true
+  validates :fecha, presence: true
+  validates :desde, presence: true
+  validates :celular, presence: true
+  validates :hora_desde, presence: true
   
-  ##Fecha
-
+  ##Asientos disponibles
   def asientos_libres
     asientos_disp - transaccion_carpools.sum(:asientos, :conditions => {:aceptado => true})
   end

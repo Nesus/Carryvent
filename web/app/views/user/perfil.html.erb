@@ -27,12 +27,12 @@
               <p><b>E-mail: </b> <%= @user.email %> </p>
               <% if @user.ranking %>
                 <p><b>Ranking Carpool: </b>
-                <div class="ec-stars-wrapper">
+                <div class="contenedorEstrellas">
                   <% for i in 0..(@user.ranking.round-1)%>
-                    <a id = "estrellaColor" >&#9733;</a>
+                    <span class="glyphicon glyphicon-star" id="estrellaColor"></span>
                   <% end %>
                   <% for i in 0..(4-@user.ranking.round)%>
-                    <a id = "estrellaGris" >&#9733;</a>
+                    <span class="glyphicon glyphicon-star" id="estrellaGris"></span>
                   <% end %>
                 </div></p>
               <% end %>
