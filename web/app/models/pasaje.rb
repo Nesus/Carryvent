@@ -1,14 +1,19 @@
 class Pasaje < ActiveRecord::Base
 	#Notificaciones
 	include PublicActivity::Common
+	before_create :generate_code
 
-	#Validaciones
-	validates :precio, presence: true
-	validates :codigo, presence: true
-	validates :reserva, presence: true
 
 	#Relaciones
   	belongs_to :user_evento
  	belongs_to :oferta
   	belongs_to :bus
+
+  	private
+	  	def generate_code
+    		self.codigo = loop do
+      			random_token = SecureRandom.urlsafe_base64(nil, false)
+      			break random_token unless Pasaje.exists?(codigo: random_token)
+   	 		end
+  		end
 end

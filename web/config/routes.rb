@@ -12,22 +12,12 @@ Rails.application.routes.draw do
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
   get '/evento/:id' => 'evento#show', as: :mostrar_evento
 
-#  get '/publicar' => 'evento#publicar', as: :publicar_evento
-#  post '/publicar' => 'evento#new', as: :eventos
-#  get '/editar/:id' => 'evento#editar', as: :editar_evento
-#  patch '/editar/:id' => 'evento#update', as: :update_evento
-#  get '/admin-eventos' => 'evento#eventos_publicador', as: :lista_eventos_publicador
-
-
   #Pasajes
-  post '/evento/:id/reservar' => "evento#reservar_pasaje", as: :reservar_pasaje
+  get '/evento/:id/reserva' => "pasajes#reserva", as: :reserva_pasaje
+  post '/evento/:id/reserva' => "pasajes#reserva_send", as: :crear_reserva
+  get '/evento/:id/reservado' => "pasajes#reservado", as: :pasaje_reservado
 
   #Ruta organizadores
-#  get '/organization/:id' => 'organization#show', as: :mostrar_organization
-#  get '/publicarOrg' => 'organization#new', as: :publicar_organization
-#  post '/publicarOrg' => 'organization#create', as: :crear_organization
-#  get '/organization/edit/:id' => 'organization#edit', as: :editar_organization
-#  post '/organization/edit/:id' => 'organization#update', as: :modificar_organization
 
   #Rutas de informacion de usuario
   get '/user/:id' => 'user#perfil', as: :perfil_user
