@@ -6338,3 +6338,7 @@ button.close {
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
+
+#eventosDeInteres {
+  height: 400px;
+}

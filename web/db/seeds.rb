@@ -23,6 +23,15 @@ else
 	print "--Usuario Existente\n"
 end
 
+#Gustos
+print "-Agregando Gustos\n"
+if Gusto.count == 0
+	gusto = Gusto.new(user_id: '1', category_id: '1')
+	gusto.save
+	print "--Gustos agregados\n"
+else
+	print "--Gustos existente\n"
+end
 
 #Publicador de prueba
 print "-Verificando Publicador de prueba\n"
@@ -82,15 +91,10 @@ eventos = CSV.parse(eventos_text, headers: true)
 if Evento.count == 0
 	print "--Importando evento\n"
 	eventos.each do |row|
-		ev = publicador.eventos.new(name: row["EVENTO_NAME"], information: row["EVENTO_INFORMATION"], subtitle: row["EVENTO_SUBTITLE"], address: row["EVENTO_ADDRESS"], region_id: row["REGION_ID"], city_id: row["COMUNA_ID"], date: row["EVENTO_DATE"], time: row["EVENTO_TIME"])
+		ev = publicador.eventos.new(name: row["EVENTO_NAME"], information: row["EVENTO_INFORMATION"], subtitle: row["EVENTO_SUBTITLE"], address: row["EVENTO_ADDRESS"], category_id: row["EVENTO_CATEGORY"], region_id: row["REGION_ID"], city_id: row["COMUNA_ID"], date: row["EVENTO_DATE"], time: row["EVENTO_TIME"])
 		#ev.raw_write_attribute(:image, row[6])
-		if Evento.count > 4
-			ev.image = File.open("app/assets/images/2.jpg")
-			ev.save
-		else
-			ev.image = File.open("app/assets/images/1.jpg")	
-			ev.save
-		end
+		ev.image = File.open("app/assets/images/"+(Evento.count+1).to_s+".jpg")
+		ev.save
 	end
 else
 	print "--Eventos ya importados\n"
