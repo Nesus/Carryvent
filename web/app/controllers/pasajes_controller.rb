@@ -2,6 +2,20 @@ class PasajesController < ApplicationController
 	def reserva
 		@evento = Evento.find(params[:id])
 		@reserva = Reserva.new
+		user_evento = UserEvento.where(evento_id: params[:id])
+		reservados = []
+		user_evento.each do |ue|
+			reservados += Reserva.where("user_evento_id = ? AND state <= ?", ue.id, 1)
+		end
+		pasajes = []
+		reservados.each do |r|
+			pasajes += Pasaje.where(reserva_id: r.id)
+		end
+		@asientos_no_disponibles = []
+		pasajes.each do |p|
+			@asientos_no_disponibles.push(p.asiento)
+		end
+		
 	end
 
 	def reserva_send

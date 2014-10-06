@@ -52,7 +52,11 @@
 							<tr class="centering">
 							<% end %>
 								<td>
-									<a href="#" id="asiento<%=i%>" onclick="seleccionar('asiento<%= i%>');event.preventDefault();" value="false"><%=image_tag "asientoSinSeleccionar.png"%></a>
+									<% if @asientos_no_disponibles.include?(i) %>
+										<%=image_tag "asientoOcupado.png"%></a>
+									<% else %>
+										<a href="#" id="asiento<%=i%>" onclick="seleccionar('asiento<%= i%>');event.preventDefault();" value="false"><%=image_tag "asientoSinSeleccionar.png"%></a>
+									<% end %>
 									<%=i%>
 									<input type="hidden" id="asiento<%=i%>tag"value="<%=i%>">
 								</td>	
