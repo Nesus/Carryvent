@@ -62,6 +62,9 @@ ActiveAdmin.register Evento do
     column "Fecha",:date
     column "Hora",:time
     column "Categoria", :category
+    column "Lista de Pasajeros" do |f|
+      link_to "Generar lista de pasajeros", "/admin/lista_de_pasajeros/listar?id=" + f.id.to_s, :method => :post
+    end
     actions
   end
 

@@ -1,4 +1,4 @@
-ActiveAdmin.register Publicador do
+ActiveAdmin.register Publicador, :as => "Publicadores" do
 
 
   # See permitted parameters documentation:
