@@ -47,7 +47,10 @@ class PasajesController < ApplicationController
 		reserva = Reserva.find(params[:id])
 		reserva.update(:state => 1)
 
+
+
 		##Enviar emails
+		VentaMailer.venta(reserva).deliver
 
 		##Enviar notificaciones
 	end
@@ -57,6 +60,8 @@ class PasajesController < ApplicationController
 	def reserva_params
 		params.require(:reserva).permit(:amount)
 	end
+
+	
 
 =begin
 	def reservar_pasaje
