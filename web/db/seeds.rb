@@ -100,27 +100,15 @@ else
 	print "--Eventos ya importados\n"
 end
 
-#evento = publocador.eventos.new(name: "Lollapalooza", subtitle: "La quinta edición 
-#	de Lollapalooza en suelo chileno comienza su camino a 7 meses para su realización. 
-#	El Parque O’Higgins abrirá sus puertas el 14 y 15 de marzo 2015 para recibir
-#	 a miles y seguir posicionando a Sudamérica como una de las plazas más importantes
-#	 del circuito de festivales en el mundo.", )
+print "-Creando Ruta de Prueba\n"
 
-#if cant < 6
-#	print "--Creando Eventos\n"
-#	lat =  -33.036625
-#	long =  -71.4837613
-#	(1..6).each do |i|
-#		i = i.to_s
-#		evento = publicador.eventos.new(name: "Evento " + i , subtitle: "Este es el evento " + i, latitude: lat , longitude: long )
-#		evento.image = File.open("app/assets/images/"+i+".jpg")
-#		evento.save
-#		lat = lat + 1
-#		long = long + 1
-#	end
-#else
-#	print "--Eventos Existentes\n"
-#end 
+if Route.count ==0
+	print "--Creando Ruta"
+	
+else 
+	print "--Ruta ya creada \n"
+
+end
 
 #Creando carpool de prueba
 print "-Creando carpool de prueba\n"
