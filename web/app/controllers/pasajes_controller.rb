@@ -1,7 +1,16 @@
 class PasajesController < ApplicationController
 	def reserva
 		@evento = Evento.find(params[:id])
+		@bus = @evento.buses.take
 		@reserva = Reserva.new
+		@points = @bus.route.points
+		i = 1
+		@hash = Gmaps4rails.build_markers(@points) do |point, marker|
+			marker.lat point[:lat]
+			marker.lng point[:long]
+			marker.infowindow point[:desc]
+			marker.json({ name: i.to_s})
+		end
 	end
 
 	def reserva_send
@@ -9,9 +18,10 @@ class PasajesController < ApplicationController
 		user_evento = current_user.user_eventos.new(:evento_id => evento.id)
 		state = 0
 		asientos = params["reserva"]["asientos"]
+		point = params["reserva"]["point"]
 
 		if user_evento.save
-			reserva = Reserva.new(:user_evento_id => user_evento.id,:amount =>reserva_params["amount"], :state => state)
+			reserva = Reserva.new(:user_evento_id => user_evento.id,:amount =>reserva_params["amount"], :state => state, :point => eval(point))
 			
 			if reserva.save
 				asientos.each do |i|
@@ -47,12 +57,11 @@ class PasajesController < ApplicationController
 		reserva = Reserva.find(params[:id])
 		reserva.update(:state => 1)
 
-
-
 		##Enviar emails
 		VentaMailer.venta(reserva).deliver
 
 		##Enviar notificaciones
+		redirect_to admin_reservas_path
 	end
 
 	private

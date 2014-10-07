@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141007031153) do
+ActiveRecord::Schema.define(version: 20141007062842) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20141007031153) do
     t.integer  "long"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.time     "time"
   end
 
   add_index "buses", ["evento_id"], name: "index_buses_on_evento_id"
@@ -277,6 +278,7 @@ ActiveRecord::Schema.define(version: 20141007031153) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "job_id"
+    t.text     "point"
   end
 
   add_index "reservas", ["user_evento_id"], name: "index_reservas_on_user_evento_id"
