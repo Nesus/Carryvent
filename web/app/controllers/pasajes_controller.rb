@@ -3,6 +3,7 @@ class PasajesController < ApplicationController
 		@evento = Evento.find(params[:id])
 		@bus = @evento.buses.take
 		@reserva = Reserva.new
+<<<<<<< HEAD
 		@points = @bus.route.points
 		i = 1
 		@hash = Gmaps4rails.build_markers(@points) do |point, marker|
@@ -11,6 +12,22 @@ class PasajesController < ApplicationController
 			marker.infowindow point[:desc]
 			marker.json({ name: i.to_s})
 		end
+=======
+		user_evento = UserEvento.where(evento_id: params[:id])
+		reservados = []
+		user_evento.each do |ue|
+			reservados += Reserva.where("user_evento_id = ? AND state <= ?", ue.id, 1)
+		end
+		pasajes = []
+		reservados.each do |r|
+			pasajes += Pasaje.where(reserva_id: r.id)
+		end
+		@asientos_no_disponibles = []
+		pasajes.each do |p|
+			@asientos_no_disponibles.push(p.asiento)
+		end
+		
+>>>>>>> e6de3429f42b33e151f7fad375d76256b14a8b9f
 	end
 
 	def reserva_send
