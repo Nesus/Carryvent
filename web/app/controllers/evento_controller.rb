@@ -10,6 +10,12 @@ class EventoController < ApplicationController
 	def eventos
 		eventos_list = Evento.all
 		@eventos= eventos_list.each_slice(6).to_a
+		gustos_list = Gusto.where(user_id: current_user.id)
+		eventos_de_interes = []
+		gustos_list.each do |gusto|
+			eventos_de_interes += Evento.where(category_id: gusto.category_id).to_a
+		end
+		@interes = eventos_de_interes.each_slice(3).to_a
 
   	end
 

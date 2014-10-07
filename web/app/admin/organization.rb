@@ -1,4 +1,4 @@
-ActiveAdmin.register Organization, :as => "Organizacion" do
+ActiveAdmin.register Organization, :as => "Organizaciones" do
 
 
   # See permitted parameters documentation:
