@@ -10,20 +10,22 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4" style="margin-top:5%;">
-            <h3>Ingresa a tu cuenta</h3>
-            <div class="col-md-10 col-md-offset-1">
-                <%= form_for(:user, url: user_session_path) do |f| %>
-                    <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email" %>
-                    <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder =>"Password" %>
-                    <div class="pull-right">
-                    <%= f.check_box :remember_me %> <%= f.label "Recordar" %>
-                    </div><br>
-                    <a class="btn btn-social btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
-                  <i class="fa fa-facebook"></i> Ingresar con Facebook </a>
+        <div class="col-md-4 blurry" style="margin-top:5%;">
+            <div class="unblurry">
+                <h3>Ingresa a tu cuenta</h3>
+                <div class="col-md-10 col-md-offset-1">
+                    <%= form_for(:user, url: user_session_path) do |f| %>
+                        <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email" %>
+                        <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder =>"Password" %>
+                        <div class="pull-right">
+                        <%= f.check_box :remember_me %> <%= f.label "Recordar" %>
+                        </div><br>
+                        <a class="btn btn-social btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
+                      <i class="fa fa-facebook"></i> Ingresar con Facebook </a>
 
-                  <div><%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style=>"margin-bottom:5px;" %></div>
-                <% end %>
+                      <div><%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style=>"margin-bottom:5px;" %></div>
+                    <% end %>
+                </div>
             </div>
         </div>
 
