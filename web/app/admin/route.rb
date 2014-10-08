@@ -15,4 +15,15 @@ ActiveAdmin.register Route do
   # end
 
 
+  #Filtros
+  filter :city, label:"Ciudad"
+  filter :region, label:"Region"
+
+  #Nombre del menu
+  menu :label => "Rutas"
+
+  #Campos permitidos
+  permit_params :city, :region, :points
+
+
 end

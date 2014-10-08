@@ -13,6 +13,11 @@ ActiveAdmin.register Reserva do
   #   permitted << :other if resource.something?
   #   permitted
   # end
+
+
+
+
+  
   index do
     column "Evento" do |f|
       link_to f.user_evento.evento.name, admin_evento_path(f.user_evento.evento)

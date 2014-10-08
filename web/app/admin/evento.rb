@@ -14,12 +14,12 @@ ActiveAdmin.register Evento do
   # end
 
   #Filtros
-  filter :name
-  filter :date
-  filter :time
-  filter :category
-  filter :region
-  filter :city
+  filter :name, label:"Nombre"
+  filter :date, label: "Fecha"
+  filter :time, label: "Tiempo"
+  filter :category, label:"Categoria"
+  filter :region, label:"Region"
+  filter :city, label:"Ciudad"
 
   #Orden en que se mostraran
   config.sort_order = "id_asc"

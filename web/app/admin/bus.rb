@@ -15,4 +15,5 @@ ActiveAdmin.register Bus do
   # end
 
 
+  permit_params :evento_id, :route_id, :price, :seats, :from, :time
 end
