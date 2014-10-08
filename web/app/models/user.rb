@@ -89,10 +89,12 @@ class User < ActiveRecord::Base
         city = location["current_location"]["city"]
         region = location["current_location"]["state"]
         ciudad = City.where(:name => city).first
-        region = Region.find(ciudad.region_id)
+        region = ciudad.region
 
-        user.city_id = ciudad.id
-        user.region_id = region.id
+        if ciudad and region
+          user.city_id = ciudad.id
+          user.region_id = region.id
+        end
         user.facebook_password = true
         user.remote_foto_url = auth.info.image.sub("_normal", "").sub("http://","https://") + "?type=large"
 
