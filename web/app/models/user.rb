@@ -89,8 +89,9 @@ class User < ActiveRecord::Base
         city = location["current_location"]["city"]
         region = location["current_location"]["state"]
         ciudad = City.where(:name => city).first
-        region = ciudad.region
-
+        if ciudad
+          region = ciudad.region
+        end
         if ciudad and region
           user.city_id = ciudad.id
           user.region_id = region.id
