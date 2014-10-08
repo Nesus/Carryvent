@@ -103,11 +103,30 @@ end
 print "-Creando Ruta de Prueba\n"
 
 if Route.count ==0
-	print "--Creando Ruta"
-	
+	print "--Creando Ruta\n"
+	#Cambiar esto por una ruta de verdad
+	city = City.take
+	points = [{:lat => 10, :long => 5, :desc => "Punto1"},{:lat => 5, :long => 10, :desc => "Punto2"}]
+	ruta = Route.new(points: points, city: city, region: city.region, comment: "Ruta de Prueba" )
+	ruta.save
 else 
 	print "--Ruta ya creada \n"
+end
 
+
+print "-Creando Bus de Prueba\n"
+if Bus.count == 0
+	evento = Evento.take
+	ruta = Route.take
+	price = 10000
+	seats= 46
+	from = "Lugar salida de prueba"
+	lat = 50
+	long = 20
+	time = Time.current
+
+	bus = Bus.new(evento: evento, route: ruta, price: price, seats: seats, from: from, lat: lat, long:long)
+	bus.save
 end
 
 #Creando carpool de prueba
