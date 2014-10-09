@@ -1,75 +1,86 @@
-<h2> Editar Perfil </h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <h1 class="text-center">
+        Editar Perfil
+      </h1>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+      <div class="account-wall_reg"> 
+        <%= form_for(:user, as: resource_name, method: :post, url: update_user_registration_path(current_user.id)) do |f| %>
+          <%= devise_error_messages! %>
 
-  <div>
-    <h4> Información personal </h4>
-    <div>
-      <%= f.label "Nombre" %><br>
-      <%= f.text_field :nombre, autofocus: true %> 
-    </div>
+          <div>
+            <h4> Información personal </h4>
+            <div>
+              <%= f.label "Nombre" %><br>
+              <%= f.text_field :nombre, autofocus: true %> 
+            </div>
 
-    <div>
-      <%= f.label "Región" %><br>
-      <%= f.select :region_id , Region.all.map  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);", style: "width: 250px"}%>
-    </div>
+            <div>
+              <%= f.label "Región" %><br>
+              <%= f.select :region_id , Region.all.map  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);", style: "width: 250px"}%>
+            </div>
 
-    <div>
-      <%= f.label "Ciudad" %><br>
-      <%= f.select :city_id , {}, {include_blank: true}, {class: "form-control", style: "width: 250px"}%>
-    </div>
-  </div>
+            <div>
+              <%= f.label "Ciudad" %><br>
+              <%= f.select :city_id , {}, {include_blank: true}, {class: "form-control", style: "width: 250px"}%>
+            </div>
+          </div>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+          <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+            <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+          <% end %>
 
-  <div>
-    <h4> Contraseña </h4>
-    <div>
-      <%= f.label "Nueva Contraseña" %> <i>(Deje en blanco si usted no desea cambiarla)</i><br>
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
+          <div>
+            <h4> Contraseña </h4>
+            <div>
+              <%= f.label "Nueva Contraseña" %> <i>(Deje en blanco si usted no desea cambiarla)</i><br>
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
 
-    <div>
-      <%= f.label "Confirmar Nueva Contraseña" %><br>
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
+            <div>
+              <%= f.label "Confirmar Nueva Contraseña" %><br>
+              <%= f.password_field :password_confirmation, autocomplete: "off" %>
+            </div>
 
-    <div>
-      <%= f.label "Contraseña Actual" %><br>
-      <%= f.password_field :current_password, autocomplete: "off" %>
-    </div>
-  </div>
+            <div>
+              <%= f.label "Contraseña Actual" %><br>
+              <%= f.password_field :current_password, autocomplete: "off" %>
+            </div>
+          </div>
 
-  <div>
-    <h4> Gustos </h4>
-    <table>
-      <tr>
-      <% @categorias.each do |cat| %>
-        <td>
-          <%= check_box(cat.name, "categoria", {}, cat.id, 0) %>  <%= cat.name %>
-        </td>
-        <% if cat.id%4 == 0 %>
-          </tr>
-          <tr>
+          <div>
+            <h4> Gustos </h4>
+            <table>
+              <tr>
+              <% Category.all.each do |cat| %>
+                <td>
+                  <% if @gustos.include?(cat.id)%>
+                    <%= check_box("gusto", cat.id, {checked: true}, 1, 0) %>  <%= cat.name %>
+                  <% else %>
+                    <%= check_box("gusto", cat.id, {}, 1, 0) %>  <%= cat.name %>
+                  <% end %>
+                </td>
+                <% if cat.id%3 == 0 %>
+                  </tr>
+                  <tr>
+                <% end %>
+              <% end %>
+              </tr>
+            </table>
+          </div>
+
+          <br>
+
+          <div>
+            <%= f.submit "Actualizar Información" %>
+          </div>
+
         <% end %>
-      <% end %>
-      </tr>
-    </table>
+      </div>
+    </div>
   </div>
-
-  <br>
-
-  <div>
-    <%= f.submit "Actualizar Información" %>
-  </div>
-
-<% end %>
-
-<%= link_to "Volver", :back %>
-
+</div>
 
 <script type="text/javascript">
   function filtroCiudades(region){

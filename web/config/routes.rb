@@ -66,9 +66,9 @@ Rails.application.routes.draw do
       get   '/confirm/resend' => 'devise/confirmations#new',    :as => :new_usern_confirmation
 
       # settings & cancellation
-      get '/cancel'   => 'devise/registrations#cancel', :as => :cancel_user_registration
-      get '/settings' => 'devise/registrations#edit',   :as => :edit_user_registration
-      put '/settings' => 'devise/registrations#update', :as => :update_user_registration
+      get '/cancel'   => 'registrations#cancel', :as => :cancel_user_registration
+      get '/settings' => 'registrations#edit',   :as => :edit_user_registration
+      post '/settings' => 'registrations#update', :as => :update_user_registration
 
       # account deletion
       delete '' => 'devise/registrations#destroy'

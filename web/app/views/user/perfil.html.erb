@@ -36,18 +36,18 @@
                   <% end %>
                 </div></p>
               <% end %>
-              <% if @user == current_user and current_user.facebook_password == false %>
+              <% if @user == current_user %>
 						    <a href="<%=edit_user_registration_path(@user)%>" class="btn btn-primary" style="float:right;">
                 <i class="glyphicon glyphicon-edit"></i> 
                 Editar Perfil </a>
               <% end %>
-							<!-- btn btn-lg btn-primary btn-block-->
-  						<!--
-  						<p><strong>Gustos: </strong>
-  							<span class="label label-info tags">Metal</span> 
-  							<span class="label label-info tags">Rock</span>
-  						</p>
-  						-->
+              <% if @gustos.length > 0 %>
+  						  <p><strong>Gustos: </strong>
+                  <% @gustos.each do |g| %>
+                    <span class="label label-info tags"><%= g %></span> 
+                  <% end %>
+  						  </p>
+              <% end %>
             </div><!--/col-->            
           </div><!--/row-->
     		</div><!--/panel-body-->
