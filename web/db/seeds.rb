@@ -106,7 +106,15 @@ if Route.count ==0
 	print "--Creando Ruta\n"
 	#Cambiar esto por una ruta de verdad
 	city = City.take
-	points = [{:lat => 10, :long => 5, :desc => "Punto1"},{:lat => 5, :long => 10, :desc => "Punto2"}]
+	points = [{:lat => -33.044249, :long => -71.604808, :desc => "Jumbo Valparaíso, Av. Argentina"},
+				{:lat => -33.025110, :long => -71.560471, :desc => "Alvarez con Ecuador"},
+				{:lat => -33.026299, :long => -71.553056, :desc => "Alvarez con Plaza Sucre"},
+				{:lat => -33.024282, :long => -71.549385, :desc => "Arlegui con Quillota"},
+				{:lat => -33.025318, :long => -71.552046, :desc => "Plaza de Viña"},
+				{:lat => -33.01989, :long => -71.55112, :desc => "4 Norte con Av. Libertad"},
+				{:lat => -33.009769, :long => -71.548859, :desc => "14 Norte con Av. Libertad"},
+				{:lat => -33.022520, :long => -71.547757, :desc => "Quillota con 1 Norte"},
+				{:lat => -33.031376, :long => -71.531951, :desc => "1 Norte, Plaza Miraflores"}]
 	ruta = Route.new(points: points, city: city, region: city.region, comment: "Ruta de Prueba" )
 	ruta.save
 else 

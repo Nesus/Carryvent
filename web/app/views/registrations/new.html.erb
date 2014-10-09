@@ -1,75 +1,58 @@
-<h2> Editar Perfil </h2>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-6 col-md-4 col-md-offset-4">
+      <h1 class="text-center login-title">
+        Registrarse
+      </h1>
+      <div class="account-wall_reg">       
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name), class: "form-signin" ) do |f| %>
+          <%= devise_error_messages! %>
+          <div>
+            <%= f.label :email %>
+            <%= f.email_field :email, autofocus: true , :class => "form-control", :placeholder =>"Email"  %>
+          </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+          <div>
+            <%= f.label "Contraseña" %>
+            <%= f.password_field :password, autocomplete: "off" , :class => "form-control", :placeholder =>"Contraseña"%>
+          </div>
 
-  <div>
-    <h4> Información personal </h4>
-    <div>
-      <%= f.label "Nombre" %><br>
-      <%= f.text_field :nombre, autofocus: true %> 
-    </div>
+          <div>
+            <%= f.password_field :password_confirmation, autocomplete: "off" , :class => "form-control", :placeholder =>"Confirmar Contraseña" %>
+          </div>
 
-    <div>
-      <%= f.label "Región" %><br>
-      <%= f.select :region_id , Region.all.map  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);", style: "width: 250px"}%>
-    </div>
+          <% if resource_name =! :user%>
+            <p><%= f.label :username %>
+           	<%= f.text_field :username , :class => "form-control", :placeholder =>"Username"%></p>
+          <% else %>
+            <p><%= f.label :nombre %>
+            <%= f.text_field :nombre , :class => "form-control", :placeholder =>"Nombre"%></p>
 
-    <div>
-      <%= f.label "Ciudad" %><br>
-      <%= f.select :city_id , {}, {include_blank: true}, {class: "form-control", style: "width: 250px"}%>
-    </div>
-  </div>
+            <p><%= f.label "Región" %><br>
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
+            <%= f.select :region_id , Region.all.map  {|r| [ r.name, r.id] }, {include_blank: true}, {class: "form-control", onchange: "filtroCiudades(this.selectedIndex);"}%></p>
+            
+            <p><%= f.label :ciudad_id %>
+            <%= f.select :city_id , {}, {include_blank: true}, {class: "form-control"}%></p>
 
-  <div>
-    <h4> Contraseña </h4>
-    <div>
-      <%= f.label "Nueva Contraseña" %> <i>(Deje en blanco si usted no desea cambiarla)</i><br>
-      <%= f.password_field :password, autocomplete: "off" %>
-    </div>
-
-    <div>
-      <%= f.label "Confirmar Nueva Contraseña" %><br>
-      <%= f.password_field :password_confirmation, autocomplete: "off" %>
-    </div>
-
-    <div>
-      <%= f.label "Contraseña Actual" %><br>
-      <%= f.password_field :current_password, autocomplete: "off" %>
-    </div>
-  </div>
-
-  <div>
-    <h4> Gustos </h4>
-    <table>
-      <tr>
-      <% @categorias.each do |cat| %>
-        <td>
-          <%= check_box(cat.name, "categoria", {}, cat.id, 0) %>  <%= cat.name %>
-        </td>
-        <% if cat.id%4 == 0 %>
-          </tr>
-          <tr>
+          <% end %>
+          <div>
+            <%= f.submit "Registrarse", :class => "btn btn-primary btn-block" %>
+          </div>
         <% end %>
-      <% end %>
-      </tr>
-    </table>
+      </div>
+      <% if resource_name == :user %>
+        <div class="col-lg-11 col-md-11 col-xs-11", style="float:none;margin:0 auto;">
+          <a class="btn btn-block btn-social btn-facebook", href="<%= omniauth_authorize_path(resource_name, :facebook)%>">
+          <i class="fa fa-facebook"></i> Ingresar con Facebook </a>
+        </div>
+      <%end%>
+    </div>
   </div>
+</div>
 
-  <br>
-
-  <div>
-    <%= f.submit "Actualizar Información" %>
-  </div>
-
-<% end %>
-
-<%= link_to "Volver", :back %>
-
+<br> 
+          <!--<%= render "devise/shared/links" %>-->
 
 <script type="text/javascript">
   function filtroCiudades(region){
@@ -201,3 +184,4 @@
     }
   }
 </script>
+
