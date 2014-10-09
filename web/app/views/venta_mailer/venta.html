@@ -10,8 +10,8 @@
     <p> Cantidad de asientos : <%= @reserva.amount %> </p>
     <p> Asientos :<%= @reserva.pasajes.select("asiento").map(&:asiento).to_sentence %></p>
     <p> Monto: monto </p>
-    <p><b>Códico pasaje:</b> código pasaje <br></p>
-    <p><b>Códico QR:</b> código QR <br></p>
+    <p><b>Código pasaje:</b> código pasaje <br></p>
+    <p><b>Código QR:</b> código QR <br></p>
     <% @reserva.pasajes.each do |r| %>
     <% qr = RQRCode::QRCode.new( r.codigo, :size => 4, :level => :h ) %>
     <% @png = qr.to_img.resize(200,200).to_data_url %>
