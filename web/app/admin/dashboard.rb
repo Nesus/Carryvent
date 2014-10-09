@@ -16,7 +16,7 @@ ActiveAdmin.register_page "Dashboard" do
             panel "Últimas Reservas" do
                 Reserva.find(:limit => 100, :order => 'created_at DESC') do |reserva|
 
-                    li link_to(reserva.user_evento.evento.name, admin_reserva_path(reserva))
+                    li link_to("Reserva de " +reserva.user_evento.user.nombre + "a "+ reserva.user_evento.evento.name, admin_reserva_path(reserva))
                 end
             end
         end

@@ -136,6 +136,31 @@ if Bus.count == 0
 	bus.update(:latitude => -33.04726 , :longitude => -71.60610)
 end
 
+print "-Creando Reserva de prueba \n"
+if Reserva.count == 0
+		evento = Evento.take
+		user = User.last
+		user_evento = user.user_eventos.new(:evento_id => evento.id)
+		state = 0
+		asientos =[1,2]
+		point = evento.bus.route.points[0]
+
+		if user_evento.save
+		reserva = Reserva.new(:user_evento_id => user_evento.id,:amount =>2, :state => state, :point => point)
+
+			if reserva.save
+				asientos.each do |i|
+					asiento = Pasaje.new(:reserva_id => reserva.id , :asiento => i.to_i)
+					asiento.save
+				end
+			end
+		end
+
+	#Creamos las notificaciones
+	reserva.create_activity :reserva, owner: user, recipient: evento.publicador, parameters: {cantidad: reserva.amount}
+	reserva.create_activity :notificacion, owner: evento.publicador, recipient: user
+end
+
 #Creando carpool de prueba
 print "-Creando carpool de prueba\n"
 if PublicacionCarpool.count == 0
