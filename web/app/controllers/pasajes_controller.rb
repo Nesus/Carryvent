@@ -1,4 +1,6 @@
 class PasajesController < ApplicationController
+	require 'json'
+
 	def reserva
 		@evento = Evento.find(params[:id])
 		@bus = @evento.bus
@@ -88,29 +90,30 @@ class PasajesController < ApplicationController
 		redirect_to admin_reservas_path
 	end
 
+
+	def list_pasajes
+
+		evento = Evento.find(params[:id])
+		list =[]
+		evento.reservas.aceptado.each do |reserva|
+			hash = {}
+			hash[:name] = reserva.user_evento.user.nombre
+			hash[:point] = reserva.point
+			hash[:amount] = reserva.amount
+			hash[:pasajes] = []
+			reserva.pasajes.each do |pasaje|
+				hash[:pasajes].push( {:asiento =>pasaje.asiento, :code => pasaje.codigo} )
+			end
+			list.push(hash)
+		end
+		json = list.to_json
+		render :json => json
+	end
+
 	private
 
 	def reserva_params
 		params.require(:reserva).permit(:amount)
 	end
-
-	
-
-=begin
-	def reservar_pasaje
-		evento = Evento.find(params[:id])
-		user_evento = current_user.user_eventos.new(:evento_id => evento.id)
-		pasaje = user_evento.pasajes.new(pasaje_params.merge(:precio => 10000))
-		if pasaje.save
-			#Se crean las notificaciones a los distintos participantes
-			pasaje.create_activity :reserva, owner: current_user, recipient: evento.publicador, parameters: {cantidad: pasaje.cantidad}
-			pasaje.create_activity :notificacion, owner: evento.publicador, recipient: current_user
-			redirect_to notifications_path
-		else 
-			##CAMBIAR ESTO
-			redirect_to root_path
-	end
-=end
-
 
 end
