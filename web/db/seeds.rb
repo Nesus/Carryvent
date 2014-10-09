@@ -128,11 +128,12 @@ if Bus.count == 0
 	ruta = Route.take
 	price = 10000
 	seats= 46
-	from = "Terminal rodoviario, Valparaiso, Chile"
+	from = "Av Pedro Montt 2851, Terminal Rodoviario Valparaíso"
 	time = Time.current
 
 	bus = Bus.new(evento: evento, route: ruta, price: price, seats: seats, from: from, time:time)
 	bus.save
+	bus.update(:latitude => -33.04726 , :longitude => -71.60610)
 end
 
 #Creando carpool de prueba
