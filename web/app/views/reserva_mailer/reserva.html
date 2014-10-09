@@ -36,11 +36,11 @@
         <th>Monto</th>
       </tr>
       <tr>
-        <td><%=@evento.name %></td>
+        <td><%= @evento.name %></td>
         <td><%= @reserva.amount %></td>
         <td><%= @reserva.pasajes.select("asiento").map(&:asiento).to_sentence %></td>
         <td><%= @reserva.ttl.to_s(:short) %></td>
-        <td>25000</td>
+        <td><%= @reserva.user_evento.evento.bus.price*@reserva.amount %></td>
       </tr>
       </table>
 
