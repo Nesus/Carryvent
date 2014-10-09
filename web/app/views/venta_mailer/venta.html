@@ -17,7 +17,6 @@
         <% @png = qr.to_img.resize(100,100).to_data_url %>
         <p><b>Asiento respectivo:</b> <%= r.asiento %>
         <%= image_tag @png %>
-        <img alt="Embedded Image" src="data:image/png;base64,<%=qr.to_s %>" />
     <% end %>
     <p><b>Lugar de salida del bus:</b> <%= @reserva.user_evento.evento.bus.from %>
     <p><b>Paradero:</b> <%= @reserva.point[:desc] %><br></p>
