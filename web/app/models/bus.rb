@@ -10,5 +10,5 @@ class Bus < ActiveRecord::Base
 
 	#geocoded
 	geocoded_by :from
-	before_save :geocode
+	before_create :geocode
 end
