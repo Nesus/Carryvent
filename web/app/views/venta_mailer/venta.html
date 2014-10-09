@@ -2,25 +2,69 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css">
+      .tabla-pasaje{
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      .tabla-pasaje th,
+      .tabla-pasaje td{
+        border: 1px solid orange;
+        text-align: center;
+      }
+      .image-size {
+        max-width: 30px;
+        max-height: 20px;
+      }
+
+    </style>
   </head>
   <body>
-    <h1>Se ha realizado la compra de tu(s) pasaje(s)</h1>
-    <p> <b>Información:</b> </p>
-    <p> Evento : <%=@evento.name %> </p>
-    <p> Cantidad de asientos : <%= @reserva.amount %> </p>
-    <p> Asientos :<%= @reserva.pasajes.select("asiento").map(&:asiento).to_sentence %></p>
-    <p> Monto: <%= @reserva.user_evento.evento.bus.price*@reserva.amount %></p>
-    <p><b>Código pasaje:</b> código pasaje <br></p>
-    <p><b>Código QR:</b> código QR <br></p>
-    <% @reserva.pasajes.each do |r| %>
+  <div id="content">
+      <h3><%= image_tag(attachments['photo1.png'].url) -%>Se ha realizado la compra de tu(s) pasaje(s) en Carryvent.</h3>
+      <p> <b>Información:</b> </p>
+
+      <table  style="width:75%" class="tabla-pasaje">
+      <tr>
+        <th>Evento</th>
+        <th>Cantidad de asientos</th>
+        <th>Número de asiento</th>
+        <th>Monto</th>
+        <th>Lugar de salida del bus</th>
+        <th>Paradero</th>
+        <th>Hora</th>
+      </tr>
+      <tr>
+        <td><%=@evento.name %></td>
+        <td><%= @reserva.amount %></td>
+        <td><%= @reserva.pasajes.select("asiento").map(&:asiento).to_sentence %></td>
+        <td><%= @reserva.user_evento.evento.bus.price*@reserva.amount %></td>
+        <td><%= @reserva.user_evento.evento.bus.from %></td>
+        <td><%= @reserva.point[:desc] %></td>
+        <td>Hora</td>
+      </tr>
+      </table>
+
+      <p> <b>Códigos QR que autentifican su pasaje</b></p>
+
+      <table  style="width:75%" class="tabla-pasaje">
+        
+        <tr>
+        <% @reserva.pasajes.each do |r| %>
         <% qr = RQRCode::QRCode.new( r.codigo, :size => 4, :level => :h ) %>
         <% @png = qr.to_img.resize(100,100).to_data_url %>
-        <p><b>Asiento respectivo:</b> <%= r.asiento %>
-        <%= image_tag @png %>
-    <% end %>
-    <p><b>Lugar de salida del bus:</b> <%= @reserva.user_evento.evento.bus.from %>
-    <p><b>Paradero:</b> <%= @reserva.point[:desc] %><br></p>
-    <p><b>Horario:</b> hora <br></p>
-    <p>Gracias por utilizar Carryvent</p>
+        <td><p><b>Asiento respectivo:</b> <%= r.asiento %>
+        <br> <%= image_tag @png %>
+        <% end %></td>
+
+        </tr>
+      </table>
+
+      <p>Gracias por utilizar Carryvent</p>
+<%= image_tag(attachments['photo.png'].url, :size => '200x100') -%>
+    </div>
+
+
   </body>
 </html>
