@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  evento_id: 
+  route_id: 
+  price: 1
+  seats: 1
+  from: MyString
+  lat: 1
+  long: 1
+
+two:
+  evento_id: 
+  route_id: 
+  price: 1
+  seats: 1
+  from: MyString
+  lat: 1
+  long: 1

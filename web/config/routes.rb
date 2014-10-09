@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   get '/evento/:id/reserva' => "pasajes#reserva", as: :reserva_pasaje
   post '/evento/:id/reserva' => "pasajes#reserva_send", as: :crear_reserva
   get '/evento/:id/reservado' => "pasajes#reservado", as: :pasaje_reservado
+  post '/reserva/concretar/:id' => "pasajes#aceptar_reserva", as: :concretar_reserva
 
   #Ruta organizadores
 

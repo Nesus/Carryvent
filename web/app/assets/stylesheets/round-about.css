@@ -4,6 +4,27 @@
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
 
+.blurry{
+	/* 70% opacity for supported browsers */
+	background-color: rgba(0, 0, 0, 0.7);
+
+	/* IE 5.5+ support #BB000000 is ~70% opacity on black */
+	filter:progid:DXImageTransform.Microsoft.gradient(
+	startColorstr=#BB000000, endColorstr=#BB000000
+	);
+
+	/* IE 8 support */
+	-ms-filter: "progid:DXImageTransform.Microsoft.gradient(
+	startColorstr=#BB000000, endColorstr=#BB000000
+	)";
+
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	margin-left:15px;
+	margin-right:15px;
+}
+
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }

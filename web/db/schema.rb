@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140918221409) do
+ActiveRecord::Schema.define(version: 20141007062842) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -44,6 +44,22 @@ ActiveRecord::Schema.define(version: 20140918221409) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type"
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type"
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type"
+
+  create_table "buses", force: true do |t|
+    t.integer  "evento_id"
+    t.integer  "route_id"
+    t.integer  "price"
+    t.integer  "seats"
+    t.string   "from"
+    t.integer  "lat"
+    t.integer  "long"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.time     "time"
+  end
+
+  add_index "buses", ["evento_id"], name: "index_buses_on_evento_id"
+  add_index "buses", ["route_id"], name: "index_buses_on_route_id"
 
   create_table "categories", force: true do |t|
     t.string   "name"
@@ -262,9 +278,22 @@ ActiveRecord::Schema.define(version: 20140918221409) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "job_id"
+    t.text     "point"
   end
 
   add_index "reservas", ["user_evento_id"], name: "index_reservas_on_user_evento_id"
+
+  create_table "routes", force: true do |t|
+    t.text     "points"
+    t.integer  "city_id"
+    t.integer  "region_id"
+    t.string   "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "routes", ["city_id"], name: "index_routes_on_city_id"
+  add_index "routes", ["region_id"], name: "index_routes_on_region_id"
 
   create_table "transaccion_carpools", force: true do |t|
     t.integer  "user_id"

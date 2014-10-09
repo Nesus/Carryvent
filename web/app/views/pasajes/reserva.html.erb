@@ -22,13 +22,32 @@
 		<div class="col-sm-6">
 			<div class="row">
 				<h3 class="page-header">Información</h3>
-				<p>Precio</p>
+				<p><b>Precio:</b> <%= @bus.price %> Pesos </p>
 				<p>Hora de salida</p>
-				<p>Lugar de salida</p>
+				<p><b>Lugar de salida </b><%= @bus.from%> </p>
 			</div>
 
 			<div class="row">
 				<h3 class="page-header">Selecciona el lugar donde te gustaria llegar</h3>
+				<div class="row">
+					<%= label_tag "Donde quieres bajar" %>
+					<%= f.select :point,  options_for_select((@points.map {|point| [point[:desc],point.to_s] })), {} ,{:class => "form-control"} %>
+
+				</div>
+				<div class="row">
+				          <div style='width: 250px;'>
+				            <div id="map" style='width: 600px; height: 250px;'></div>
+				          </div>          
+				          <script type="text/javascript">
+				            handler = Gmaps.build('Google');
+				            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+				              markers = handler.addMarkers(<%=raw @hash.to_json %>);
+				              handler.bounds.extendWith(markers);
+				              handler.fitMapToBounds();
+				            })
+				          </script>
+				</div>
+
 			</div><!-- end location -->
 		</div> <!-- end information -->
 
@@ -46,7 +65,7 @@
 					<div class="busTipo">
 						<%= f.hidden_field :amount, value: 0, id:"seleccionados" %>
 						<table>
-						<% (1..46).each do |i| %>
+						<% (1..@bus.seats).each do |i| %>
 
 							<% if (i-1) % 4 == 0 %>
 							<tr class="centering">

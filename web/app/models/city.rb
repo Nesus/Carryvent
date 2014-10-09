@@ -3,7 +3,7 @@ class City < ActiveRecord::Base
 	validates :name , :presence => true
 
 	#relaciones
-	belongs_to :region , :class_name => 'City', :foreign_key => 'region_id'
+	belongs_to :region
 	has_many :users
 	has_many :eventos
 end

@@ -15,4 +15,28 @@ ActiveAdmin.register Reserva do
   # end
 
 
+
+
+  
+  index do
+    column "Evento" do |f|
+      link_to f.user_evento.evento.name, admin_evento_path(f.user_evento.evento)
+    end
+    column "Cantidad de asientos", :amount
+    column "Vencimiento", :ttl
+    column "Estado" do |f|
+      if f.state == 0
+        "Pendiente"
+      elsif f.state == 1
+        "Ya pagado"
+      else
+        "Vencido"
+      end
+    end
+    column "Finalizar Reserva" do |f|
+      if f.state == 0
+        link_to "Concretar Compra", concretar_reserva_path(f) , :method => :post
+      end
+    end
+  end
 end

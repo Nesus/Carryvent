@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
   has_many :user_eventos
   has_many :eventos , through: :user_eventos
   has_many :publicacion_carpools, through: :user_eventos
-  has_many :pasajes, through: :user_eventos
+  has_many :reservas, through: :user_eventos
+
 
   has_many :gustos
   has_many :categories, through: :gustos
@@ -89,10 +90,13 @@ class User < ActiveRecord::Base
         city = location["current_location"]["city"]
         region = location["current_location"]["state"]
         ciudad = City.where(:name => city).first
-        region = Region.find(ciudad.region_id)
-
-        user.city_id = ciudad.id
-        user.region_id = region.id
+        if ciudad
+          region = ciudad.region
+        end
+        if ciudad and region
+          user.city_id = ciudad.id
+          user.region_id = region.id
+        end
         user.facebook_password = true
         user.remote_foto_url = auth.info.image.sub("_normal", "").sub("http://","https://") + "?type=large"
 

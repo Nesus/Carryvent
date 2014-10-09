@@ -22,9 +22,27 @@ class Reserva < ActiveRecord::Base
 
 	has_many :pasajes
 
+
+	#Para guardar el punto
+	serialize :point
+
+
+	def pasajes_list
+		if self.pasajes.count > 0
+			pasajes = ""
+			self.pasajes.each do |pasaje|
+				pasajes = pasajes + ", " + pasaje.asiento.to_s
+			end
+			return pasajes[1..-1]
+		else 
+			return nil
+		end	
+	end
+
+
 	private
 		def generate_ttl
-			self.ttl = DateTime.current + 1.minutes
+			self.ttl = DateTime.current + 3.days
   	    	scheduler = Rufus::Scheduler.new
   	    	job_id = scheduler.in self.ttl.to_s do
   	    		if Reserva.find(self.id).state == 0

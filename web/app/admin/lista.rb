@@ -7,13 +7,20 @@ ActiveAdmin.register_page "Lista de Pasajeros" do
   end
 
   content do
-    usuariosEvento = UserEvento.where(evento_id: params[:id])
-    usuarios = []
-    usuariosEvento.each do |user|
-      usuarios += User.where(id: user.user_id).to_a
-    end
-    table_for usuarios.each do
-      column "Nombre", :nombre 
+    evento = Evento.find(params[:id])
+    table_for evento.reservas.aceptado.each do
+      column "Nombre" do |f|
+        f.user_evento.user.nombre
+      end
+      column "Cantidad Pasajes" do |f|
+        f.amount.to_s + " Pasajes"
+      end
+      column "Lugar donde se bajará" do |f|
+        f.point[:desc]
+      end
+      column "Asientos" do |f|
+        f.pasajes_list
+      end
     end  
   end
 
