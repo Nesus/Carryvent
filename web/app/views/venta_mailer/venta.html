@@ -5,19 +5,21 @@
   </head>
   <body>
     <h1>Se ha realizado la compra de tu(s) pasaje(s)</h1>
-    <p> <b>Informacion:</b> </p>
+    <p> <b>Información:</b> </p>
     <p> Evento : <%=@evento.name %> </p>
     <p> Cantidad de asientos : <%= @reserva.amount %> </p>
     <p> Asientos :<%= @reserva.pasajes.select("asiento").map(&:asiento).to_sentence %></p>
-    <p> Monto: monto </p>
+    <p> Monto: <%= @reserva.user_evento.evento.bus.price*@reserva.amount %></p>
     <p><b>Código pasaje:</b> código pasaje <br></p>
     <p><b>Código QR:</b> código QR <br></p>
     <% @reserva.pasajes.each do |r| %>
         <% qr = RQRCode::QRCode.new( r.codigo, :size => 4, :level => :h ) %>
-        <% @png = qr.to_img.resize(200,200).to_data_url %>
+        <% @png = qr.to_img.resize(100,100).to_data_url %>
+        <p><b>Asiento respectivo:</b> <%= r.asiento %>
         <%= image_tag @png %>
     <% end %>
-    <p><b>Paradero:</b> paradero <br></p>
+    <p><b>Lugar de salida del bus:</b> <%= @reserva.user_evento.evento.bus.from %>
+    <p><b>Paradero:</b> <%= @reserva.point[:desc] %><br></p>
     <p><b>Horario:</b> hora <br></p>
     <p>Gracias por utilizar Carryvent</p>
   </body>
