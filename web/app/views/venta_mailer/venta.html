@@ -42,7 +42,7 @@
         <td><%= @reserva.user_evento.evento.bus.price*@reserva.amount %></td>
         <td><%= @reserva.user_evento.evento.bus.from %></td>
         <td><%= @reserva.point[:desc] %></td>
-        <td>Hora</td>
+        <td><%= @reserva.user_evento.evento.bus.time.strftime("%H:%M") + " " +"hrs" %></td>
       </tr>
       </table>
 
