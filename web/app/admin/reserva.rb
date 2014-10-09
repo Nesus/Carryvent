@@ -53,7 +53,12 @@ ActiveAdmin.register Reserva do
       end
 
       if ad.state == 0
-        row "Vencimiento", :ttl
+        row "Reserva" do
+          link_to "Concretar Compra", concretar_reserva_path(ad) , :method => :post
+        end
+        row "Vencimiento" do 
+          ad.ttl
+        end
       end
 
       row "Estado" do
