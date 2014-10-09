@@ -8,4 +8,8 @@ class Route < ActiveRecord::Base
 
   #Tiene muchos buses relacionados
   has_many :buses
+
+	def to_s
+  		self.comment
+	end
 end

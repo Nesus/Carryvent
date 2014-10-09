@@ -3,9 +3,9 @@ class Pasaje < ActiveRecord::Base
 
 
 	#Relaciones
-  	belongs_to :user_evento
+  belongs_to :user_evento
  	belongs_to :oferta
-  	belongs_to :bus
+  belongs_to :bus
 
   	private
 	  	def generate_code

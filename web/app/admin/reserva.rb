@@ -1,6 +1,6 @@
 ActiveAdmin.register Reserva do
 
-
+  actions :all, except: [:edit, :destroy]
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -38,5 +38,38 @@ ActiveAdmin.register Reserva do
         link_to "Concretar Compra", concretar_reserva_path(f) , :method => :post
       end
     end
+    actions
   end
+
+
+  show do |ad|
+    attributes_table do
+      row "Evento" do
+        ad.user_evento.evento
+      end
+      row :amount, label: "Cantidad"
+      row "Monto" do
+        ad.amount * ad.user_evento.evento.bus.price
+      end
+
+      if ad.state == 0
+        row "Vencimiento", :ttl
+      end
+
+      row "Estado" do
+        if ad.state == 0
+          "Pendiente"
+        elsif ad.state == 1
+          "Pagado"
+        else
+          "Vencido"
+        end
+      end
+      row "Asientos" do
+        ad.pasajes_list
+      end
+    end
+  end
+
+
 end
