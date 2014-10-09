@@ -23,7 +23,7 @@
 			<div class="row">
 				<h3 class="page-header">Información</h3>
 				<p><b>Precio:</b> <%= @bus.price %> Pesos </p>
-				<p>Hora de salida</p>
+				<p><b>Hora de salida:</b> <%= @bus.time.strftime("%H:%M:%S") %></p>
 				<p><b>Lugar de salida </b><%= @bus.from%> </p>
 			</div>
 

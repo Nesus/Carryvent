@@ -1,7 +1,7 @@
 class PasajesController < ApplicationController
 	def reserva
 		@evento = Evento.find(params[:id])
-		@bus = @evento.buses.take
+		@bus = @evento.bus
 		@reserva = Reserva.new
 		@points = @bus.route.points
 		i = 1
@@ -11,6 +11,14 @@ class PasajesController < ApplicationController
 			marker.infowindow point[:desc]
 			marker.json({ name: i.to_s})
 		end
+		
+		hashFrom = Gmaps4rails.build_markers(@bus) do |point, marker|
+			marker.lat point.latitude
+			marker.lng point.longitude
+			marker.json({:infowindow => "Lugar de salida", :picture => {:url => "/assets/minilogo.png", :width => 36, :height => 36}})
+		end
+		@hash = @hash + hashFrom
+
 		user_evento = UserEvento.where(evento_id: params[:id])
 		reservados = []
 		user_evento.each do |ue|
@@ -74,6 +82,9 @@ class PasajesController < ApplicationController
 		VentaMailer.venta(reserva).deliver
 
 		##Enviar notificaciones
+		reserva.create_activity :completada, owner: reserva.user_evento.evento.publicador, recipient: reserva.user_evento.user
+
+
 		redirect_to admin_reservas_path
 	end
 

@@ -81,6 +81,9 @@ group :development, :test do
     gem 'rails-erd'
 end
 
+# Para guardar como pdf
+gem 'wicked_pdf'
 
+#Para markers
 gem 'gmaps4rails'
 gem 'geocoder'

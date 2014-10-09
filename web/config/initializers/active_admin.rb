@@ -224,7 +224,7 @@ ActiveAdmin.setup do |config|
   #
   #   end
   config.download_links = false
-  config.download_links = [:pdf]
+
 
   # == Pagination
   #

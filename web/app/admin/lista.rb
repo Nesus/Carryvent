@@ -1,7 +1,6 @@
 ActiveAdmin.register_page "Lista de Pasajeros" do
 
   menu false
-
   page_action :listar, :method => :post do
     redirect_to "/admin/lista_de_pasajeros?id=" + params[:id]
   end
@@ -21,7 +20,7 @@ ActiveAdmin.register_page "Lista de Pasajeros" do
       column "Asientos" do |f|
         f.pasajes_list
       end
-    end  
+    end 
   end
 
 end

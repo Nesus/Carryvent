@@ -120,12 +120,10 @@ if Bus.count == 0
 	ruta = Route.take
 	price = 10000
 	seats= 46
-	from = "Lugar salida de prueba"
-	lat = 50
-	long = 20
+	from = "Terminal rodoviario, Valparaiso, Chile"
 	time = Time.current
 
-	bus = Bus.new(evento: evento, route: ruta, price: price, seats: seats, from: from, lat: lat, long:long)
+	bus = Bus.new(evento: evento, route: ruta, price: price, seats: seats, from: from, time:time)
 	bus.save
 end
 

@@ -13,7 +13,7 @@ class Evento < ActiveRecord::Base
 	has_many :publicacion_carpool, through: :user_eventos
 	has_many :pasajes, through: :user_eventos
 	has_many :reservas, through: :user_eventos
-	has_many :buses
+	has_one :bus
 	
 	#Pertenece al publicador que lo publico
 	belongs_to :publicador
