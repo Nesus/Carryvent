@@ -32,7 +32,8 @@ class User < ActiveRecord::Base
   has_many :user_eventos
   has_many :eventos , through: :user_eventos
   has_many :publicacion_carpools, through: :user_eventos
-  has_many :pasajes, through: :user_eventos
+  has_many :reservas, through: :user_eventos
+
 
   has_many :gustos
   has_many :categories, through: :gustos

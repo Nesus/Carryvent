@@ -26,6 +26,20 @@ class Reserva < ActiveRecord::Base
 	#Para guardar el punto
 	serialize :point
 
+
+	def pasajes_list
+		if self.pasajes.count > 0
+			pasajes = ""
+			self.pasajes.each do |pasaje|
+				pasajes = pasajes + ", " + pasaje.asiento.to_s
+			end
+			return pasajes[1..-1]
+		else 
+			return nil
+		end	
+	end
+
+
 	private
 		def generate_ttl
 			self.ttl = DateTime.current + 3.days
