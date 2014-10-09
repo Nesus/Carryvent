@@ -105,7 +105,11 @@
 	</div> <!-- end row -->
 
 	<div class="row text-center">
-		<%= f.submit "Enviar Reserva", class: "btn btn-primary"%>
+		<% if @reservado %>
+			<p>Usted ya realizó una reserva</p>
+		<% else %>
+			<%= f.submit "Enviar Reserva", class: "btn btn-primary"%>
+		<% end %>
 	</div>
 
 </div> <!-- end container -->

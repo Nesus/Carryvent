@@ -14,8 +14,7 @@
     <p><b>Código QR:</b> código QR <br></p>
     <% @reserva.pasajes.each do |r| %>
         <% qr = RQRCode::QRCode.new( r.codigo, :size => 4, :level => :h ) %>
-        <% @png = qr.to_img.resize(200,200).to_data_url %>
-        <%= image_tag @png %>
+        <img alt="Embedded Image" src="data:image/png;base64,<%=qr.to_s %>" />
     <% end %>
     <p><b>Paradero:</b> paradero <br></p>
     <p><b>Horario:</b> hora <br></p>

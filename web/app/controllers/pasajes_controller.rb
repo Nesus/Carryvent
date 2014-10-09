@@ -6,6 +6,15 @@ class PasajesController < ApplicationController
 		@bus = @evento.bus
 		@reserva = Reserva.new
 		@points = @bus.route.points
+		user_evento = current_user.user_eventos.where(:evento_id => @evento.id).take
+		if user_evento
+			if user_evento.reserva.nil?
+				@reservado = false
+			else
+				@reservado = true
+			end
+
+		end
 		i = 1
 		@hash = Gmaps4rails.build_markers(@points) do |point, marker|
 			marker.lat point[:lat]
