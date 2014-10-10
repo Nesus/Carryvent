@@ -4,7 +4,7 @@
     	<div class="col-md-7">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
-                    <%= image_tag "logoCarryvent.png", :class => "img-responsive" %>
+                    <%= image_tag "logoCarryvent.png", :class => "img-responsive", :style => "float:none; margin:0 auto;" %>
                     <h4>Registrate en Carryvent y conoce una nueva forma de viajar a tus eventos favoritos.</h4>
                 <%= link_to "Registrate", new_user_registration_path, :class=> "btn btn-primary pull-right", :style => "margin-top:5px;"%>
                 </div>
@@ -20,10 +20,17 @@
                         <div class="pull-right">
                         <%= f.check_box :remember_me %> <%= f.label "Recordar" %>
                         </div><br>
-                        <a class="btn btn-social btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
-                      <i class="fa fa-facebook"></i> Ingresar con Facebook </a>
 
-                      <div><%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style=>"margin-bottom:5px;" %></div>
+                    <div class="row">
+                        <a class="btn btn-social btn-sm btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
+                            <i class="fa fa-facebook"></i> Ingresar con Facebook 
+                        </a>
+
+     
+                        <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style=>"margin-bottom:5px;" %>
+                        </div>
+                    </div>
+
                     <% end %>
                 </div>
             </div>
@@ -51,3 +58,6 @@
 <!-- Landing -->
 
 
+<script type="text/javascript">
+    $('#homeLanding').backstretch("http://1.bp.blogspot.com/-3eWD2VHRkoY/UfzXlUXLPuI/AAAAAAAADTc/kYogED4S9bE/s0/Armin_van_Buuren_Ultra_Music_Festival_1920x1080.jpg");
+</script>

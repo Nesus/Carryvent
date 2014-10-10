@@ -6,19 +6,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   before_filter :configure_permitted_parameters, if: :devise_controller?
 
-  #helper_method :publicadors?
   protected
-
-  #def publicadors?
-  #  false
-  #end
-
-  #def authorize
-  #  unless publicadors?
-  #    flash[:error] = "Acceso denegado"
-  #    redirect_to root_path
-   #   false
-  #end
 
   #Damos acceso a devise a los datos necesarios para logearse, registrarse y updatear la cuenta
   def configure_permitted_parameters

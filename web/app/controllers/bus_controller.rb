@@ -1,2 +1,0 @@
-class BusController < ApplicationController
-end

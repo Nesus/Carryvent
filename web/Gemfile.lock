@@ -53,6 +53,8 @@ GEM
     arel (5.0.1.20140414130214)
     awesome_nested_set (3.0.1)
       activerecord (>= 4.0.0, < 5)
+    backstretch-rails (2.0.4)
+      railties (> 3.1)
     bcrypt (3.1.7)
     bourbon (3.2.3)
       sass (~> 3.2)
@@ -258,6 +260,7 @@ DEPENDENCIES
   activeadmin!
   acts_as_commentable_with_threading
   awesome_nested_set (>= 3.0.0.rc.5)
+  backstretch-rails
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
