@@ -42,6 +42,26 @@
 }
 
 /* Para que el navbar no se pege */
+html, body {
+  height: 100%;
+}
+
 body {
     padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
+
+#wrap {
+  min-height: 100%;
+}
+#main {
+  overflow:auto;
+  padding-bottom:40px; /* this needs to be bigger than footer height*/
+}
+
+.footer {
+  position: relative;
+  margin-top: -300px; /* negative value of footer height */
+  height: 300px;
+  clear:both;
+  padding-top:20px;
+} 

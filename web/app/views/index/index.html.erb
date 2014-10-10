@@ -1,6 +1,6 @@
 <!-- Page Content -->    
-<div class="container-fluid" id="homeLanding">
-    <div  class="row">
+<div class="container-fluid" >
+    <div  class="row" id="homeLanding" style="padding-bottom:20px;"> 
     	<div class="col-md-7">
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
@@ -21,13 +21,16 @@
                         <%= f.check_box :remember_me %> <%= f.label "Recordar" %>
                         </div><br>
 
-                    <div class="row">
-                        <a class="btn btn-social btn-sm btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
-                            <i class="fa fa-facebook"></i> Ingresar con Facebook 
-                        </a>
+                        <div class="row">
+                            <div class="col-xs-8">
+                                <a class="btn btn-social btn-sm btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
+                                    <i class="fa fa-facebook"></i> Ingresar con Facebook 
+                                </a>
+                            </div>
 
-     
-                        <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style=>"margin-bottom:5px;" %>
+                            <div class="col-xs-4">
+                            <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style=>"margin-bottom:5px;" %>
+                            </div>
                         </div>
                     </div>
 
@@ -35,11 +38,6 @@
                 </div>
             </div>
         </div>
-
-    </div>
- </div>
-
- <div class="container">    
     <!-- ¿Qué es Carryvent? -->
     <div id="queQuienes" class="row" >
             <div class="col-xs-12 col-md-6">

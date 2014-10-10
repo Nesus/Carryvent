@@ -29,36 +29,6 @@
 max-width: none;
 }
 
-@media(min-width:300px) {
-  #homeLanding{
-      height: 170px;
-  }
-}
-
-@media(min-width:530px) {
-  #homeLanding{
-      height: 260px;
-  }
-}
-
-@media(min-width:767px) {
-  #homeLanding{
-      height: 340px;
-  }
-}
-
-@media(min-width:992px) {
-  #homeLanding{
-      height: 410px;
-  }
-}
-
-@media(min-width:1200px) {
-    #homeLanding{
-        height: 450px;
-    }
-}
-
 #queQuienes{
   padding-top: 0px;
 }
