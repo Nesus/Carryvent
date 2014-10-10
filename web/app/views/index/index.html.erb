@@ -5,8 +5,11 @@
             <div class="row">
                 <div class="col-md-6 col-md-offset-3">
                     <%= image_tag "logoCarryvent.png", :class => "img-responsive", :style => "float:none; margin:0 auto;" %>
-                    <h4>Registrate en Carryvent y conoce una nueva forma de viajar a tus eventos favoritos.</h4>
-                <%= link_to "Registrate", new_user_registration_path, :class=> "btn btn-primary pull-right", :style => "margin-top:5px;"%>
+
+                    <div class="blurry" style="padding:10px 10px 10px 10px;">
+                        <h4>Registrate en Carryvent y conoce una nueva forma de viajar a tus eventos favoritos.</h4>
+                        <%= link_to "Regístrate", new_user_registration_path, :class=> "btn btn-primary btn-block"%>
+                    </div>
                 </div>
             </div>
         </div>
@@ -57,5 +60,9 @@
 
 
 <script type="text/javascript">
-    $('#homeLanding').backstretch("/assets/imagen_landing.jpg");
+    $('#homeLanding').backstretch([
+        "/assets/imagen_landing.jpg",
+        "/assets/imagen_landing2.jpg",
+        "http://espaciomusica.com/wp-content/uploads/conseguir-entradas-para-cualquier-concierto.jpg"
+        ],{duration: 4000, fade:1000});
 </script>
