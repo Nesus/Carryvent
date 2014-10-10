@@ -3,6 +3,11 @@ class UserController < ApplicationController
 	before_filter :authenticate_user!, :except => [:index, :perfil]
 	  
 	def index
+		eventos_de_interes = []
+		current_user.gustos.each do |gusto|
+			eventos_de_interes += gusto.category.eventos.to_a
+		end
+		@interes = eventos_de_interes.each_slice(3).to_a
 	end
 
 	def perfil

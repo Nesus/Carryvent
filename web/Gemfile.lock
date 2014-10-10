@@ -270,6 +270,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  jquery-ui-rails
   mailboxer
   mini_magick
   omniauth-facebook

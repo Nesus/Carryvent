@@ -7,4 +7,13 @@ class NotificationsController < ApplicationController
 		end
 			
 	end
+
+	def checking_new
+
+
+	end
+
+	def showing_recent
+
+	end
 end

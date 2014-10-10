@@ -91,3 +91,4 @@ gem 'geocoder'
 
 #Plugind jquery
 gem 'backstretch-rails'
+gem 'jquery-ui-rails'

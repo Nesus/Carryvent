@@ -1,63 +1,122 @@
-<!-- Page Content -->    
-<div class="container-fluid" id="homeLanding">
-    <div  class="row">
-    	<div class="col-md-7">
-            <div class="row">
-                <div class="col-md-6 col-md-offset-3">
-                    <%= image_tag "logoCarryvent.png", :class => "img-responsive", :style => "float:none; margin:0 auto;" %>
-                    <h4>Registrate en Carryvent y conoce una nueva forma de viajar a tus eventos favoritos.</h4>
-                <%= link_to "Registrate", new_user_registration_path, :class=> "btn btn-primary pull-right", :style => "margin-top:5px;"%>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 blurry" style="margin-top:5%;">
-            <div class="unblurry">
-                <h3>Ingresa a tu cuenta</h3>
-                <div class="col-md-10 col-md-offset-1">
-                    <%= form_for(:user, url: user_session_path) do |f| %>
-                        <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email" %>
-                        <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder =>"Password" %>
-                        <div class="pull-right">
-                        <%= f.check_box :remember_me %> <%= f.label "Recordar" %>
-                        </div><br>
+<div class="container">
+	<% if @interes.count != 0 %>
+	<!-- Eventos de tu interes -->
+	<div class="row">
+		<h2 class="page-header">Eventos de interés</h2>
+		<!-- Creando las ventanitas de evento -->
+		<div class="container-fluid">
+			<div id="heroSlider2" class="carousel slide">
+				<div class="carousel-inner">
+					<% primer = true %>
+					<% @interes.each do |eventos| %>
+						<% if primer %>
+							<div class="active item">
+								<div id="eventosDeInteres" class="hero-unit">
+								<% eventos.each do |evento| %>
+									<div class="col-lg-4 col-sm-6 text-center">
+										<!-- Hipervinculo en la imagen, si no hay dejamos un placeholder-->
+										<!-- Editar el placeholder para version final -->
 
-                    <div class="row">
-                        <a class="btn btn-social btn-sm btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
-                            <i class="fa fa-facebook"></i> Ingresar con Facebook 
-                        </a>
+										<%= link_to mostrar_evento_path(evento), 'data-no-turbolink' => true  do %>
+										
+											<% if evento.image.present? %>
+												<% img = evento.image %>
+											<% else %>
+												<% img = 'http://placehold.it/200x200' %>
+											<% end %> 
 
-     
-                        <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style=>"margin-bottom:5px;" %>
-                        </div>
-                    </div>
+											<%= image_tag img , :class => "img-square img-responsive img-center" %>
 
-                    <% end %>
-                </div>
-            </div>
-        </div>
+										<% end %>
 
-    </div>
- </div>
+										<h3><%= evento.name %> </h3>
+										<p> <%= evento.subtitle %> </p>
+									</div>
+								<%end%>
+								</div>
+							</div>
+							<% primer = false %>
+						<% else %>
+							<div class="item">
+								<div id="eventosDeInteres" class="hero-unit">
+								<!-- INICIO-->
+									<% eventos.each do |evento| %>
+										<div class="col-lg-4 col-sm-6 text-center">
+										<!-- Hipervinculo en la imagen, si no hay dejamos un placeholder-->
+										<!-- Editar el placeholder para version final -->
+											<a href="<%= mostrar_evento_path(evento) %>">
 
- <div class="container">    
-    <!-- ¿Qué es Carryvent? -->
-    <div id="queQuienes" class="row" >
-            <div class="col-xs-12 col-md-6">
-                <h2>¿Qué es Carryvent?</h2>
-                <p align="justify" style="text-indent: 25px">Carryvent es la solución para las personas que asisten a eventos masivos, proporcionando transporte de ida y vuelta. Será el nexo con el servicio de buses y los usuarios, dando la oportunidad de juntarse en grupos de amigos para asistir a los eventos. Además, tendremos un espacio reservado para los que viajan solos en sus autos particulares, donde podrán realizar una publicación de carpool.</p>
-            </div>
+											<img class="img-square img-responsive img-center" src="
+											<% if evento.image.present? %>
+												<%= evento.image %>
+											<% else %>
+												http://placehold.it/200x200
+											<% end %> 
+											" alt="">
+											</a>
+										<h3><%= evento.name %> </h3>
+										<p> <%= evento.subtitle %> </p>
+										</div>
+									<% end %>
+									<!-- FIN-->                  
+									</div>
+							</div>
+						<% end %>
+					<% end %>
+					</div>
+				<a class="left carousel-control" href="#heroSlider2" data-slide="prev">‹</a>
+				<a class="right carousel-control" href="#heroSlider2" data-slide="next">›</a>
+			</div>
+		</div>
+	</div>
 
-    <!-- ¿Quienes somos? -->
-            <div class="col-xs-12 col-md-6">
-                <h2>¿Quienes somos?</h2>
-                <p align="justify" style="text-indent: 25px">Somos un equipo de cuatro compañeros de Informática, de la Universidad Técnica Federico Santa María, Valparaíso. Que se preocupa por la seguridad de las personas que no tienen como trasladarse cuando asisten a eventos masivos. Por esta razón, es que decidimos aventurarnos en este proyecto y crear “Carryvent”.</p>
-            </div>
-    </div>
+	<% end %>
+	<div class="row">
+		<div class="panel-group" id="accordion">
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+		          ¿Que es un Carpool?
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseOne" class="panel-collapse collapse">
+		      <div class="panel-body">
+		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+		          ¿Cómo realizo una publicacíón Carpool?
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseTwo" class="panel-collapse collapse">
+		      <div class="panel-body">
+		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		      </div>
+		    </div>
+		  </div>
+		  <div class="panel panel-default">
+		    <div class="panel-heading">
+		      <h4 class="panel-title">
+		        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+		          ¿Cómo me uno a un Carpool?
+		        </a>
+		      </h4>
+		    </div>
+		    <div id="collapseThree" class="panel-collapse collapse">
+		      <div class="panel-body">
+		        Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</div>
 
-</div>
-<!-- Landing -->
 
-
-<script type="text/javascript">
-    $('#homeLanding').backstretch("http://1.bp.blogspot.com/-3eWD2VHRkoY/UfzXlUXLPuI/AAAAAAAADTc/kYogED4S9bE/s0/Armin_van_Buuren_Ultra_Music_Festival_1920x1080.jpg");
-</script>
+</div>	

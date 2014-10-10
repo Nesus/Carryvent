@@ -10,12 +10,11 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require carpool
- *= require evento
+ *= require index
  *= require notifications
- *= require round-about
- *= require styles
- *= require reserva
+ *= require publicacion
+ *= require registro
+ *= require upload-preview
  *= require user
  *= require_self
  *= require bootstrap
@@ -23,12 +22,7 @@
  *= require bootstrap-social
  */
 
-/*Botones barra*/
-#botonesBarra{
-  max-width: 200px;
-  background-color: #ff8000;
-}
-
+/*Parte de usuario navbar*/
 #nombreUsuario{
   padding-bottom: 8px;
   padding-top: 7px;
@@ -47,15 +41,7 @@
   }
 }
 
-.contenido{
-  min-height: 100%;
-  max-height: auto;
-}
-
-.footer{
-  background-color: #ff8000;
-  padding-bottom: 30px;
-  margin: 0px;
-  text-align: center;
-  color: #fff;
+/* Para que el navbar no se pege */
+body {
+    padding-top: 70px; /* Required padding for .navbar-fixed-top. Remove if using .navbar-static-top. Change if height of navigation changes. */
 }
