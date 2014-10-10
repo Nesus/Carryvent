@@ -19,4 +19,7 @@
 //= require gmaps/google
 
 //= require turbolinks
+
+//= require jquery.backstretch
+
 //= require_tree .

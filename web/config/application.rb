@@ -10,8 +10,7 @@ module Web
   class Application < Rails::Application
 
     Rails.root.join("vendor","assets", "fonts")
-    Rails.application.config.assets.precompile += %w( efecto_grayscale.js )
-
+    
     config.i18n.default_locale = 'es'
 
 
