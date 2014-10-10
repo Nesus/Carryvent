@@ -53,6 +53,18 @@ class User < ActiveRecord::Base
   end
 
 
+  def ciudad_region
+    ciudadRegion = ""
+    if self.city
+      ciudadRegion += self.city.name + " "
+    end
+
+    if self.region
+      ciudadRegion += self.region.name
+    end
+    return ciudadRegion
+
+  end
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
     identity = RedSocial.find_for_oauth(auth)

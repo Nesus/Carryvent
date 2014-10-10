@@ -15,25 +15,24 @@
         </div>
         <div class="col-md-4 blurry" style="margin-top:5%;">
             <div class="unblurry">
-                <h3>Ingresa a tu cuenta</h3>
+                <h4>Ingresa a tu cuenta</h4>
                 <div class="col-md-10 col-md-offset-1">
                     <%= form_for(:user, url: user_session_path) do |f| %>
                         <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email" %>
                         <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder =>"Password" %>
                         <div class="pull-right">
                         <%= f.check_box :remember_me %> <%= f.label "Recordar" %>
-                        </div><br>
+                        </div>
 
                         <div class="row">
-                            <div class="col-xs-8">
-                                <a class="btn btn-social btn-sm btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
-                                    <i class="fa fa-facebook"></i> Ingresar con Facebook 
-                                </a>
-                            </div>
+                                <a class="btn btn-social btn-facebook pull-left", href="<%= omniauth_authorize_path(:user, :facebook)%>">
+                                        <i class="fa fa-facebook"></i> <span class="hidden-xs">Facebook</span> <span class="visible-xs">FB</span>
+                                    </a>
 
-                            <div class="col-xs-4">
-                            <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style=>"margin-bottom:5px;" %>
-                            </div>
+                                <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style => "margin-bottom:5px;" %>
+                        </div>
+
+
                         </div>
                     </div>
 
@@ -63,6 +62,5 @@
     $('#homeLanding').backstretch([
         "/assets/imagen_landing.jpg",
         "/assets/imagen_landing2.jpg",
-        "http://espaciomusica.com/wp-content/uploads/conseguir-entradas-para-cualquier-concierto.jpg"
         ],{duration: 4000, fade:1000});
 </script>

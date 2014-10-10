@@ -2,10 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.carousel{
-  margin-bottom:0px;
-}
-
 .asistidos-container{
 	height: 300px;
 	background-color: #fff5f0;
