@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   require 'net/http'
   require "uri"
 
+  #Para last_checked
+  before_create :timestamp
+
   #Para subir fotos
   mount_uploader :foto, FotoUploader
 
@@ -160,5 +163,10 @@ class User < ActiveRecord::Base
       print http
       return http
 
+  end
+
+
+  def timestamp
+    self.last_checked = DateTime.now
   end
 end

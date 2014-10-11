@@ -1,6 +1,7 @@
 class Publicador < ActiveRecord::Base
  	# Include default devise modules. Others available are:
   	# :confirmable, :lockable, :timeoutable and :omniauthable
+    before_save :timestamp
     has_many :eventos
 
   	validates :username, :uniqueness => {:case_sensitive => false }
@@ -16,6 +17,11 @@ class Publicador < ActiveRecord::Base
     else
       where(conditions).first
     end
+  end
+
+  private
+  def timestamp
+    self.last_checked = DateTime.now
   end
 end
 

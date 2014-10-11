@@ -49,7 +49,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                   <li class="<%=params[:action] == 'index' ? 'active' : '' %>">
+                   <li class="<%=((params[:action] == 'index') and (params[:controller]!= "notifications")) ? 'active' : '' %>">
                     <%= link_to "Inicio", root_path%>
                    </li> 
 
@@ -58,14 +58,25 @@
                     <li class="<%=params[:action] == 'eventos' ? 'active' : '' %>">
                         <%= link_to "Eventos", lista_eventos_user_path %>
                     </li>
-                    <li><%= link_to "Notificaciones", notifications_path %></li>
+                    
+                    <li class="<%=((params[:action] == 'index') and (params[:controller]== "notifications")) ? 'active' : '' %>"><%= link_to notifications_path do%>
+                        
+                            <span class="badge <%= @activitiesCount > 0 ? 'alert-warning': ''%>" id="cantidadNotifications" ><%=@activitiesCount%></span>  Notificaciones
+
+                        <% end %>
+                    </li>
                   <% elsif publicador_signed_in? %>
 
                    'active' if params[:controller] == 'index' and params[:action] == 'index'
                     <li> <%= link_to "Publicar Evento", publicar_evento_path %></li>
                     <li> <%= link_to "Agregar Organizacion", publicar_organization_path %></li>
                     <li><%= link_to "Administrar Eventos", lista_eventos_publicador_path %></li></li>
-                    <li><%= link_to "Notificaciones", notifications_path %></li>
+                    <li><%= link_to notifications_path do%>
+
+                            <span class="badge" id="cantidadNotifications"><%=activitiesCount%></span>Notificaciones
+
+                        <% end %>
+                    </li>
 
                     <li><%= link_to "Logout", destroy_publicador_session_path, :method => :delete %></li>
                   <% end %>
