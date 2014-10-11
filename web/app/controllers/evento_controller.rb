@@ -49,6 +49,23 @@ class EventoController < ApplicationController
 		end
 	end
 
+	#########################
+	# 			Operario 				#
+	#########################
+
+	def list_eventos
+		eventos = Evento.all
+		list =[]
+		eventos.each do |evento|
+			hash = {}
+			hash[:name] = evento.name
+			hash[:date] = evento.date
+			hash[:time] = evento.time
+			list.push(hash)
+		end
+		json = list.to_json
+		render :json => json
+	end
 
 	#########################
 	# 		Publicador 		#
@@ -103,5 +120,6 @@ class EventoController < ApplicationController
 	  end
 	  def pasaje_params
 	  	params.require(:pasaje).permit(:cantidad)
-	  end
+	  end	
+
 end

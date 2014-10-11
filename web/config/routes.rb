@@ -11,13 +11,14 @@ Rails.application.routes.draw do
   #Rutas de eventos
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
   get '/evento/:id' => 'evento#show', as: :mostrar_evento
+  get '/operario/list_eventos' => "evento#list_eventos", as: :list_eventos
 
   #Pasajes
   get '/evento/:id/reserva' => "pasajes#reserva", as: :reserva_pasaje
   post '/evento/:id/reserva' => "pasajes#reserva_send", as: :crear_reserva
   get '/evento/:id/reservado' => "pasajes#reservado", as: :pasaje_reservado
   post '/reserva/concretar/:id' => "pasajes#aceptar_reserva", as: :concretar_reserva
-  get '/admin/list_evento/:id' => "pasajes#list_pasajes", as: :list_pasajes
+  get '/operario/list_pasajes/:id' => "pasajes#list_pasajes", as: :list_pasajes
 
 
   #Ruta organizadores
