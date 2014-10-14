@@ -96,7 +96,7 @@
                      <%= form_for @transaccion , url: crear_transaccion_carpool_path do |f| %>
                         <%= f.label :asientos %>
                         <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }) %> <br>
-                        <%= f.submit "Realizar peticion", :class =>"btn btn-primary"%>
+                        <%= f.submit "Realizar petición", :class =>"btn btn-primary"%>
                     <%end%>
                     </div>
                     <%end%>
