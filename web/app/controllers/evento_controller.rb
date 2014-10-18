@@ -1,6 +1,6 @@
 class EventoController < ApplicationController
 
-	before_filter :authenticate_publicador!, :except => [:eventos, :show, :reservar_pasaje]  
+	before_filter :authenticate_publicador!, :except => [:eventos, :show, :reservar_pasaje, :list_eventos]  
 
 	############################
 	#			USER           #
@@ -54,17 +54,18 @@ class EventoController < ApplicationController
 	#########################
 
 	def list_eventos
-		eventos = Evento.all
-		list =[]
+		eventos = Evento.where("date > CURRENT_TIMESTAMP AND strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
+		json = {}
+		json[:eventos] = []
 		eventos.each do |evento|
 			hash = {}
+			hash[:id] = evento.id
 			hash[:name] = evento.name
 			hash[:date] = evento.date
 			hash[:time] = evento.time
-			list.push(hash)
+			json[:eventos].push(hash)
 		end
-		json = list.to_json
-		render :json => json
+		render :json => json.to_json
 	end
 
 	#########################
