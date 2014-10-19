@@ -61,8 +61,10 @@ class EventoController < ApplicationController
 			hash = {}
 			hash[:id] = evento.id
 			hash[:name] = evento.name
-			hash[:date] = evento.date
-			hash[:time] = evento.time
+			hash[:date] = evento.date.strftime("%d/%m/%Y")
+			hash[:time] = evento.time.strftime("%H:%M")
+			hash[:address] = evento.address
+			hash[:image] = evento.image.small.url
 			json[:eventos].push(hash)
 		end
 		render :json => json.to_json
