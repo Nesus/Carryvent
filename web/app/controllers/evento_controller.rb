@@ -1,6 +1,6 @@
 class EventoController < ApplicationController
 
-	before_filter :authenticate_publicador!, :except => [:eventos, :show, :reservar_pasaje]  
+	before_filter :authenticate_publicador!, :except => [:eventos, :show, :reservar_pasaje, :list_eventos]  
 
 	############################
 	#			USER           #
@@ -49,6 +49,26 @@ class EventoController < ApplicationController
 		end
 	end
 
+	#########################
+	# 			Operario 				#
+	#########################
+
+	def list_eventos
+		eventos = Evento.where("date > CURRENT_TIMESTAMP AND strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
+		json = {}
+		json[:eventos] = []
+		eventos.each do |evento|
+			hash = {}
+			hash[:id] = evento.id
+			hash[:name] = evento.name
+			hash[:date] = evento.date.strftime("%d/%m/%Y")
+			hash[:time] = evento.time.strftime("%H:%M")
+			hash[:address] = evento.address
+			hash[:image] = evento.image.small.url
+			json[:eventos].push(hash)
+		end
+		render :json => json.to_json
+	end
 
 	#########################
 	# 		Publicador 		#
@@ -103,5 +123,6 @@ class EventoController < ApplicationController
 	  end
 	  def pasaje_params
 	  	params.require(:pasaje).permit(:cantidad)
-	  end
+	  end	
+
 end
