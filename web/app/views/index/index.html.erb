@@ -23,13 +23,14 @@
                     </div>
                     <div class="row" style="padding-top:0px;padding-left:10px; padding-right:10px;">
                             <%= f.check_box :remember_me %> <%= f.label "Recordar" %>
+                            <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style => "margin-bottom:5px;" %>
                     </div>   
                     <div class="row" style="padding-top:0px;padding-left:10px; padding-right:10px;padding-bottom:15px;">
-                        <%= link_to(omniauth_authorize_path(:user, :facebook),:class=>"btn btn-social btn-facebook pull-left") do %>
-                                <i class="fa fa-facebook"></i> <span class="hidden-xs">Conectarse</span> <span class="visible-xs">FB</span>
+                        <p>También puedes ingresar utilizando Facebook.</p>
+                        
+                        <%= link_to(omniauth_authorize_path(:user, :facebook),:class=>"btn btn-social btn-facebook btn-block") do %>
+                                <i class="fa fa-facebook"></i> <span class="hidden-xs">Ingresar con Facebook</span> <span class="visible-xs">Conectarse</span>
                         <% end %>
-
-                        <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style => "margin-bottom:5px;" %>
                     </div>
                     <% end %>
             </div>
