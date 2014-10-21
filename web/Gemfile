@@ -92,3 +92,6 @@ gem 'geocoder'
 #Plugind jquery
 gem 'backstretch-rails'
 gem 'jquery-ui-rails'
+
+#iconos 
+gem "font-awesome-rails"

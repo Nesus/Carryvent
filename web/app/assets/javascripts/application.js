@@ -15,6 +15,8 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.backstretch
+//= require isotope.pkgd
+//= require ba-hashchange.min
 
 //= require bootstrap
 //= require underscore
