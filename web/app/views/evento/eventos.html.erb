@@ -22,7 +22,7 @@
 
 					<div class="thumbnail text-center">
 						<%= link_to mostrar_evento_path(evento), 'data-no-turbolink' => true  do %>
-							<%= image_tag evento.image.url , :class=>"img-responsive " %>
+							<%= image_tag evento.image.url , {:class=>"img-responsive", :style=>"margin-top:10px;"} %>
 						<% end %>
             <hr>
 						<h3><%= evento.name %></h3>
@@ -30,7 +30,7 @@
 						<h4><i class="fa fa-calendar"></i><%= evento.date.to_s(:short) %></h4>
             <hr>
             <h5>
-              <div class="row" style="padding:0 0 0 0; margin:0 0 0 0;">
+              <div class="row" style="padding:0 0 0 0;">
               <div class="col-xs-6">
                 <% if evento.bus %>
                     <span class="top" title="Buses Carryvent" data-original-title="Tooltip on right"><i class="fa fa-bus" style="color:orange;"></i> Disponibles</span>  
