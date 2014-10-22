@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   #activity
   resources :notifications
+  get '/checkNewNotification' => "notifications#checking_new" , as: :checking_new
 
   #Rutas de eventos
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
@@ -96,14 +97,14 @@ Rails.application.routes.draw do
   #end
 
   authenticated :user do
-    root :to => "evento#eventos", as: "authenticated_root"
+    root :to => "user#index", as: "authenticated_root"
   end
 
   authenticated :publicador do
     root :to => "admin/dashboard#index", as: "authenticated_publicador_root"
   end
 
-  root :to => 'user#index'
+  root :to => 'index#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

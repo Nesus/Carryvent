@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   require 'net/http'
   require "uri"
 
+  #Para last_checked
+  before_create :timestamp
+
   #Para subir fotos
   mount_uploader :foto, FotoUploader
 
@@ -53,6 +56,18 @@ class User < ActiveRecord::Base
   end
 
 
+  def ciudad_region
+    ciudadRegion = ""
+    if self.city
+      ciudadRegion += self.city.name + " "
+    end
+
+    if self.region
+      ciudadRegion += self.region.name
+    end
+    return ciudadRegion
+
+  end
   def self.find_for_oauth(auth, signed_in_resource = nil)
     # Get the identity and user if they exist
     identity = RedSocial.find_for_oauth(auth)
@@ -148,5 +163,10 @@ class User < ActiveRecord::Base
       print http
       return http
 
+  end
+
+
+  def timestamp
+    self.last_checked = DateTime.now
   end
 end

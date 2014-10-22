@@ -13,6 +13,8 @@
 //= require jquery
 //= require jquery.turbolinks
 //= require jquery_ujs
+//= require jquery-ui
+//= require jquery.backstretch
 
 //= require bootstrap
 //= require underscore
@@ -20,6 +22,6 @@
 
 //= require turbolinks
 
-//= require jquery.backstretch
+
 
 //= require_tree .

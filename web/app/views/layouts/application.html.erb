@@ -8,7 +8,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title> Carryvent - <%= yield(:title).empty? ? "¡Viaja Seguro!" : yield(:title) %></title>
+    <%= favicon_link_tag 'favicon.ico' %>
+    <title> Carryvent - <%= yield(:title).empty? ? "¡Viaja con nosotros!" : yield(:title) %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag :defaults, 'efecto_grayscale' %>
@@ -41,22 +42,41 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="<%=root_path %>"><b>Carryvent</b></a>
+                <a class="navbar-brand" href="<%=root_path %>">
+                    <%=image_tag "minilogo.png" %><b> Carryvent</b>
+                </a>
             </div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
-                   <li><%= link_to "Inicio", root_path %></li> 
+                   <li class="<%=((params[:action] == 'index') and (params[:controller]!= "notifications")) ? 'active' : '' %>">
+                    <%= link_to "Inicio", root_path%>
+                   </li> 
 
                   <% if user_signed_in? %>
 
-                    <li id="botonesBarraLogueado"><%= link_to "Eventos", lista_eventos_user_path %></li>
-                    <li><%= link_to "Notificaciones", notifications_path %></li>
+                    <li class="<%=params[:action] == 'eventos' ? 'active' : '' %>">
+                        <%= link_to "Eventos", lista_eventos_user_path %>
+                    </li>
+                    
+                    <li class="<%=((params[:action] == 'index') and (params[:controller]== "notifications")) ? 'active' : '' %>"><%= link_to notifications_path do%>
+                        
+                            <span class="badge <%= @activitiesCount > 0 ? 'alert-warning': ''%>" id="cantidadNotifications" ><%=@activitiesCount%></span>  Notificaciones
+
+                        <% end %>
+                    </li>
                   <% elsif publicador_signed_in? %>
+
+                   'active' if params[:controller] == 'index' and params[:action] == 'index'
                     <li> <%= link_to "Publicar Evento", publicar_evento_path %></li>
                     <li> <%= link_to "Agregar Organizacion", publicar_organization_path %></li>
                     <li><%= link_to "Administrar Eventos", lista_eventos_publicador_path %></li></li>
-                    <li><%= link_to "Notificaciones", notifications_path %></li>
+                    <li><%= link_to notifications_path do%>
+
+                            <span class="badge" id="cantidadNotifications"><%=activitiesCount%></span>Notificaciones
+
+                        <% end %>
+                    </li>
 
                     <li><%= link_to "Logout", destroy_publicador_session_path, :method => :delete %></li>
                   <% end %>
@@ -89,14 +109,22 @@
         <!-- /.container -->
     </nav>
 
-<!--<div class="contenido"> -->
-  <%= yield %>
-<!--</div> -->
-<hr class="container">
+
+<div id="wrap">
+  <div id="main">
+    <%= yield %>
+  </div>
+</div>
+<footer class="footer"></footer>
+
 
 <!-- Footer -->
-<footer class="footer">
-    <p>Copyright &copy; Carryvent 2014</p>
+<footer class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <div class="text-center">
+            <p>Copyright &copy; Carryvent 2014</p>
+        </div>
+    </div>
 </footer>
 
 </body>

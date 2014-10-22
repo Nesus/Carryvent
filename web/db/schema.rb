@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141009014835) do
+ActiveRecord::Schema.define(version: 20141011004157) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -233,6 +233,7 @@ ActiveRecord::Schema.define(version: 20141009014835) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "username"
+    t.datetime "last_checked"
   end
 
   add_index "publicadors", ["email"], name: "index_publicadors_on_email", unique: true
@@ -335,6 +336,7 @@ ActiveRecord::Schema.define(version: 20141009014835) do
     t.integer  "region_id"
     t.float    "ranking"
     t.boolean  "facebook_password"
+    t.datetime "last_checked"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true

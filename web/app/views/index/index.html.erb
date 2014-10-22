@@ -1,0 +1,79 @@
+<!-- Page Content -->    
+<div class="container-fluid" >
+    <div  class="row" id="homeLanding" style="padding-bottom:20px;"> 
+    	<div class="col-md-7">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <%= image_tag "logoCarryvent.png", :class => "img-responsive"%>
+
+                    <div class="blurry" style="padding:10px 10px 10px 10px;">
+                        <h4>Registrate en Carryvent y conoce una nueva forma de viajar a tus eventos favoritos.</h4>
+                        <%= link_to "Regístrate", new_user_registration_path, :class=> "btn btn-primary btn-block"%>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 blurry" style="margin-top:7%;">
+            <div class="unblurry">
+                <h4>Ingresa a tu cuenta</h4>
+                    <%= form_for(:user, url: user_session_path) do |f| %>
+                    <div class="row" style="padding-top:0px; padding-left:10px; padding-right:10px;">
+                        <%= f.email_field :email, autofocus: true, :class => "form-control", :placeholder => "Email" %>
+                        <%= f.password_field :password, autocomplete: "off", :class => "form-control", :placeholder =>"Password" %>
+                    </div>
+                    <div class="row" style="padding-top:0px;padding-left:10px; padding-right:10px;">
+                            <%= f.check_box :remember_me %> <%= f.label "Recordar" %>
+                    </div>   
+                    <div class="row" style="padding-top:0px;padding-left:10px; padding-right:10px;padding-bottom:15px;">
+                        <%= link_to(omniauth_authorize_path(:user, :facebook),:class=>"btn btn-social btn-facebook pull-left") do %>
+                                <i class="fa fa-facebook"></i> <span class="hidden-xs">Conectarse</span> <span class="visible-xs">FB</span>
+                        <% end %>
+
+                        <%= f.submit "Ingresar", :class=> "btn btn-primary pull-right", :style => "margin-bottom:5px;" %>
+                    </div>
+                    <% end %>
+            </div>
+        </div>
+    </div>
+    <!-- ¿Qué es Carryvent? -->
+    <div id="queQuienes" class="row" >
+            <div class="col-xs-12 col-md-6">
+                <h2>¿Qué es Carryvent?</h2>
+                <p align="justify" style="text-indent: 25px">Carryvent es la solución para las personas que asisten a eventos masivos, proporcionando transporte de ida y vuelta. Será el nexo con el servicio de buses y los usuarios, dando la oportunidad de juntarse en grupos de amigos para asistir a los eventos. Además, tendremos un espacio reservado para los que viajan solos en sus autos particulares, donde podrán realizar una publicación de carpool.</p>
+            </div>
+
+    <!-- ¿Quienes somos? -->
+            <div class="col-xs-12 col-md-6">
+                <h2>¿Quienes somos?</h2>
+                <p align="justify" style="text-indent: 25px">Somos un equipo de cuatro compañeros de Informática, de la Universidad Técnica Federico Santa María, Valparaíso. Que se preocupa por la seguridad de las personas que no tienen como trasladarse cuando asisten a eventos masivos. Por esta razón, es que decidimos aventurarnos en este proyecto y crear “Carryvent”.</p>
+            </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-10 col-md-offset-1">
+            <h4 class="page-header text-center">Auspician</h4>
+            <div class="row">
+                <div class="col-md-4">
+                    <%=image_tag "logo-usm.png", :class => "img-responsive" %>
+                </div>
+                <div class="col-md-4">
+                    <%=image_tag "inf-logo.png", :class => "img-responsive" %>
+                </div>
+                <div class="col-md-4">
+                    <%= image_tag "banner-home2014.png", :class => "img-responsive" %>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+<!-- Landing -->
+
+
+<script type="text/javascript">
+    $('#homeLanding').backstretch([
+        "/assets/imagen_landing.jpg",
+        "/assets/imagen_landing2.jpg",
+        ],{duration: 4000, fade:1000});
+</script>

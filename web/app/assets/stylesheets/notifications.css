@@ -10,3 +10,12 @@
     padding-left: 5px;
   }
 }
+
+.notificationsList {
+    width: 400px;
+    height: 600px;
+    background: white;
+    position: absolute;
+    overflow-y: scroll; 
+    display: none;
+}

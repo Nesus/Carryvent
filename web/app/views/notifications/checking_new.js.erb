@@ -1,0 +1,7 @@
+var cantidad = <%= @activities.to_i %>;
+var cant = $("#cantidadNotifications");
+cant.text(cantidad);
+if(parseInt(cant.text()) > 0){
+	cant.addClass("alert-danger");
+}
+NotificationPoller.poll();

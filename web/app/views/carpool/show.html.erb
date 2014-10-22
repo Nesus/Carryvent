@@ -24,7 +24,7 @@
 
                 <div class="col-md-10 col-xs-8">
                 <p><b>Nombre Usuario: </b><%= @userPub.nombre %> </p>
-                <p><b>Ciudad: </b><%= @userPub.city.name + ", " + @userPub.region.name %></p>
+                <p><b>Ciudad: </b><%= @userPub.ciudad_region %></p>
                 <p><b>Correo: </b><%= @userPub.email %> </p>
 
                 <% if @transUser and @transUser.aceptado %>
@@ -96,16 +96,16 @@
                      <%= form_for @transaccion , url: crear_transaccion_carpool_path do |f| %>
                         <%= f.label :asientos %>
                         <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }) %> <br>
-                        <%= f.submit "Realizar peticion", :class =>"btn btn-primary"%>
+                        <%= f.submit "Realizar petición", :class =>"btn btn-primary"%>
                     <%end%>
                     </div>
                     <%end%>
               </div>
             <% else %>
-            <div class="carpool-container">
+            <div class="publicacion-container">
                 <div class="text-center"><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></div>
             <% if !@peticiones.nil? %>
-              <TABLE class="tabla-carpools">
+              <TABLE class="tabla-publicacion">
               <tr>
               <th> Usuario </th>
               <th> Ciudad </th>

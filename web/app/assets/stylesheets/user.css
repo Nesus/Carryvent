@@ -2,11 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.container-full {
-  margin: 0 auto;
-  width: 100%;
-}
-
 .asistidos-container{
 	height: 300px;
 	background-color: #fff5f0;
@@ -31,36 +26,6 @@
 }
 #backstretch > img {
 max-width: none;
-}
-
-@media(min-width:300px) {
-  #homeLanding{
-      height: 170px;
-  }
-}
-
-@media(min-width:530px) {
-  #homeLanding{
-      height: 260px;
-  }
-}
-
-@media(min-width:767px) {
-  #homeLanding{
-      height: 340px;
-  }
-}
-
-@media(min-width:992px) {
-  #homeLanding{
-      height: 410px;
-  }
-}
-
-@media(min-width:1200px) {
-    #homeLanding{
-        height: 450px;
-    }
 }
 
 #queQuienes{
