@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView 
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+	<HorizontalScrollView 
+	    android:layout_width="wrap_content" 
+	    android:layout_height="wrap_content" 
+	    android:gravity="center">
+
+	        
+	    <RelativeLayout 
+	        android:layout_width="wrap_content" 
+	        android:layout_height="wrap_content">
+
+	    	<TextView 
+	    	    android:id="@+id/textoListaPasajeros" 
+	    	    android:layout_width="wrap_content" 
+	    	    android:layout_height="wrap_content" 
+	    	    android:text="@string/listaPasajeros" />
+
+	    	<TableLayout 
+	    	    android:id="@+id/tablaPasajes" 
+	    	    android:layout_width="wrap_content" 
+	    	    android:layout_height="wrap_content" 
+	    	    android:layout_alignParentLeft="true" 
+	    	    android:layout_below="@+id/textoListaPasajeros" 
+	    	    android:layout_marginLeft="20dp"
+	    	    android:layout_marginTop="45dp">
+
+	        	<TableRow 
+	        	    android:id="@+id/encabezados" 
+	        	    android:layout_width="wrap_content" 
+	        	    android:layout_height="wrap_content">
+
+	            	<TextView 
+	            	    android:id="@+id/nombre" 
+	            	    android:layout_width="wrap_content" 
+	            	    android:layout_height="wrap_content" 
+	            	    android:layout_marginLeft="5dp" 
+	            	    android:layout_marginRight="5dp" 
+	            	    android:gravity="center" 
+	            	    android:text="@string/nombreUsuario" />
+
+	            	<TextView 
+	            	    android:id="@+id/numAsiento" 
+	            	    android:layout_width="wrap_content" 
+	            	    android:layout_height="wrap_content" 
+	            	    android:layout_marginLeft="5dp" 
+	            	    android:layout_marginRight="5dp" 
+	            	    android:gravity="center" 
+	            	    android:text="@string/numeroAsiento" />
+
+	            	<TextView 
+	            	    android:id="@+id/estadoPasaje" 
+	            	    android:layout_width="wrap_content" 
+	            	    android:layout_height="wrap_content" 
+	            	    android:layout_marginLeft="5dp" 
+	            	    android:layout_marginRight="5dp" 
+	            	    android:gravity="center" 
+	            	    android:text="@string/estadoPasaje" />
+
+	        	</TableRow>	        
+	    	</TableLayout>
+		</RelativeLayout>
+	</HorizontalScrollView>
+</ScrollView>

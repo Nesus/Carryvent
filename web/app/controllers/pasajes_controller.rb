@@ -103,20 +103,19 @@ class PasajesController < ApplicationController
 	def list_pasajes
 
 		evento = Evento.find(params[:id])
-		list =[]
+		json = {}
+		json[:pasajes] = []
 		evento.reservas.aceptado.each do |reserva|
-			hash = {}
-			hash[:name] = reserva.user_evento.user.nombre
-			hash[:point] = reserva.point
-			hash[:amount] = reserva.amount
-			hash[:pasajes] = []
 			reserva.pasajes.each do |pasaje|
-				hash[:pasajes].push( {:asiento =>pasaje.asiento, :code => pasaje.codigo} )
-			end
-			list.push(hash)
+				hash = {}
+				hash[:name] = reserva.user_evento.user.nombre
+				hash[:point] = reserva.point
+				hash[:asiento] = pasaje.asiento
+				hash[:code] = pasaje.codigo
+				json[:pasajes].push(hash)
+			end	
 		end
-		json = list.to_json
-		render :json => json
+		render :json => json.to_json
 	end
 
 	private

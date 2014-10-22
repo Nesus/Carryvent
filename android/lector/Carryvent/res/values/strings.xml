@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Carryvent</string>
+    <string name="action_settings">Settings</string>
+    <string name="listaEventos">Lista de Eventos</string>
+    <string name="listaPasajeros">Lista de Pasajeros</string>
+    <string name="seleccioneEvento">Seleccione un evento</string>
+    <string name="obtenerLista">Obtener lista de pasajeros</string>
+    <string name="obtenerRuta">Obtener ruta de viaje</string>
+    <string name="nombreUsuario">Nombre Usuario</string>
+    <string name="numeroAsiento">N° Asiento</string>
+    <string name="estadoPasaje">Estado</string>
+
+</resources>
