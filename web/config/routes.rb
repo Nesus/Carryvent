@@ -97,7 +97,7 @@ Rails.application.routes.draw do
   #end
 
   authenticated :user do
-    root :to => "user#index", as: "authenticated_root"
+    root :to => "evento#eventos", as: "authenticated_root"
   end
 
   authenticated :publicador do

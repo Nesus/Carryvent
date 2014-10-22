@@ -97,3 +97,4 @@ gem 'jquery-ui-rails'
 gem "font-awesome-rails"
 gem 'fittextjs_rails'
 gem 'underscore-rails'
+gem "breadcrumbs_on_rails"

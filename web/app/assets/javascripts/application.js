@@ -16,6 +16,7 @@
 //= require jquery-ui
 //= require jquery.backstretch
 //= require isotope.pkgd
+//= require fittext
 
 //= require bootstrap
 //= require underscore

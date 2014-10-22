@@ -4238,7 +4238,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 .navbar-inverse .navbar-nav > .active > a:hover,
 .navbar-inverse .navbar-nav > .active > a:focus {
   color: #fff;
-  background-color: #F25539;
+  background-color: #FFAC59;
 }
 .navbar-inverse .navbar-nav > .disabled > a,
 .navbar-inverse .navbar-nav > .disabled > a:hover,
@@ -4270,7 +4270,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
 }
 @media (max-width: 767px) {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .dropdown-header {
-    border-color: #F25539;
+    border-color: #FFAC59;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu .divider {
     background-color: #fff;
@@ -4287,7 +4287,7 @@ fieldset[disabled] .navbar-default .btn-link:focus {
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:hover,
   .navbar-inverse .navbar-nav .open .dropdown-menu > .active > a:focus {
     color: #fff;
-    background-color: #F25539;
+    background-color: #FFAC59;
   }
   .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a,
   .navbar-inverse .navbar-nav .open .dropdown-menu > .disabled > a:hover,
@@ -6254,7 +6254,7 @@ button.close {
 
 #tabs input:checked + label {
   background: #eee;
-  color: #f25539;
+  color: #FFAC59;
   z-index: 6;
   line-height: 45px;
   height: 45px;

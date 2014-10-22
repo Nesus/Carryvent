@@ -1,7 +1,22 @@
 <% title "Eventos" %>
 <div class="container">
 	<h2 class="page-header">Próximos Eventos</h2>
-	<div class="row text-center hidden-xs" >
+	 <ol class="breadcrumb">
+    	<%= render_breadcrumbs :tag => :li, :separator => "" %>
+  	</ol>
+	<div class="row visible-xs" style="padding:0 0 0 0;">
+		<h3>Filtrar Eventos</h3>
+		<select class="form-control" id="filters">
+			<option value="*">Mostrar Todos</option>
+			<% @categorias.each do |categorias| %>
+				<% categorias.each do |categoria| %>
+					<option value=".<%=categoria.name %>" > <%=categoria.name%> </option>
+				<% end %>
+			<% end %>
+		</select>
+		<hr>
+	</div>
+	<div class="row text-center hidden-xs" style="padding:0 0 0 0;">
 		<% categorias = @categorias[0]%>
 		<div class="btn-group" id="filters1">
 			<button type="button" class="button btn btn-default"  data-filter="*"> Mostrar Todos</button>
@@ -83,6 +98,12 @@ $('#filters1 , #filters2').on( 'click', 'button', function() {
   var filterValue = $(this).attr('data-filter');
   $posts.isotope({ filter: filterValue });
 });
+// filter items on button click
+$('#filters').on( 'change', function() {
+  var filterValue = $(this).val();
+  $posts.isotope({ filter: filterValue });
+});
+
 
 $(".top").tooltip({
     placement: "top"

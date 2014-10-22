@@ -9,6 +9,9 @@
   <!-- Eventos -->
   <div class="row">
       <h2 class="page-header"><%= @evento.name %></h2>
+      <ol class="breadcrumb">
+        <%= render_breadcrumbs :tag => :li, :separator => "" %>
+      </ol>
       <div class="col-md-3" style="padding-top:25px;">
         <% if @evento.image %>
             <img class="thumbnail img-square img-responsive img-center" src="<%= @evento.image %>" alt="">
@@ -74,12 +77,7 @@
           <div class="publicacion-container panel">
           	<% if !@publicacionCarpools.nil? %>
   	          <TABLE class="table">
-                <tr>
-                <th> Usuario </th>
-                <th> Ciudad </th>
-                <th> Asientos disponibles </th>
-                <th>  Detalles</th>
-                </tr>
+                <% if @publicacionCarpools.count > 0 %>
                 <% @publicacionCarpools.each do |pub| %>
   	              <TR>
   	                <TD>
@@ -101,7 +99,7 @@
                     <% if current_user %>   
   	                  <%= link_to  mostrar_carpool_path(@evento.id, pub.id) do %>
                         <i class="fa fa-bars"></i>
-                          Detalle
+                          Inscribete!
                       <% end %>
                     <% else %>
                       Detalle
@@ -110,6 +108,15 @@
   	              </TR>
   	            <% end %>
   	          </TABLE> 
+              <% else %>
+              <span class="text-center">
+                <div class="panel-body">
+                  <h4>No hay publicaciones de Carpool en este momento</h4>
+                </div>
+                <table class="table">
+                </table>
+              </span>
+              <% end %>
   				  <% end %>
           </div>
         </div>

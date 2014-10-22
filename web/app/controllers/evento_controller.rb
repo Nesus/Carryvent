@@ -1,13 +1,15 @@
 class EventoController < ApplicationController
 
 	before_filter :authenticate_publicador!, :except => [:eventos, :show, :reservar_pasaje, :list_eventos]  
-
+	add_breadcrumb "Inicio", :root_path
 	############################
 	#			USER           #
 	############################
 
 	#Mostrar todos los eventos 
 	def eventos
+		add_breadcrumb "Eventos", :lista_eventos_user_path
+
 		#@eventos = Evento.where("date > ? OR date = ?", Date.current, Date.current).order('date ASC')
   		@eventos = Evento.all
   		@categorias = Category.all
@@ -19,6 +21,11 @@ class EventoController < ApplicationController
   	#Mostramos el evento
 	def show
 		@evento = Evento.find(params[:id])
+
+		add_breadcrumb "Eventos", :lista_eventos_user_path
+		add_breadcrumb @evento.name, :mostrar_evento_path
+
+
 		@publicacionCarpools = PublicacionCarpool.joins(user_evento: [:user, :evento]).where(eventos:{id: params[:id]})
 		@comments = @evento.comment_threads.order('created_at desc')
         
@@ -47,7 +54,7 @@ class EventoController < ApplicationController
 	end
 
 	#########################
-	# 			Operario 				#
+	# 			Operario 	#
 	#########################
 
 	def list_eventos

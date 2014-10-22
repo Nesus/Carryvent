@@ -3,7 +3,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <h2>Publicar Carpool</h2>
+      <h2 class="page-header">Publicar Carpool</h2>
+      <ol class="breadcrumb">
+        <%= render_breadcrumbs :tag => :li, :separator => "" %>
+      </ol>
       <div class="account-wall_reg">
     <%= form_for @publicacioncarpool, url: new_publicar_carpool_path  do |f| %>
 

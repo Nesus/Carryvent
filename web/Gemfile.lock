@@ -59,6 +59,7 @@ GEM
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
+    breadcrumbs_on_rails (2.3.0)
     builder (3.2.2)
     carrierwave (0.10.0)
       activemodel (>= 3.2.0)
@@ -266,6 +267,7 @@ DEPENDENCIES
   acts_as_commentable_with_threading
   awesome_nested_set (>= 3.0.0.rc.5)
   backstretch-rails
+  breadcrumbs_on_rails
   carrierwave
   coffee-rails (~> 4.0.0)
   devise
