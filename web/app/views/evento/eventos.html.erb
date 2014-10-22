@@ -18,16 +18,16 @@
 	</div>
 	<div class="isotope row" id="posts">
 		<% @eventos.each do |evento| %>
-			<div class="post item span4 <%=evento.category.name%> col-xs-6 col-md-3">
+			<div class="post item span4 <%=evento.category.name%>  col-md-3">
 
 					<div class="thumbnail text-center">
 						<%= link_to mostrar_evento_path(evento), 'data-no-turbolink' => true  do %>
 							<%= image_tag evento.image.url , {:class=>"img-responsive", :style=>"margin-top:10px;"} %>
 						<% end %>
             <hr>
-						<h3><%= evento.name %></h3>
-						<h4><i class="fa fa-map-marker"></i><%= evento.address %> </h4>
-						<h4><i class="fa fa-calendar"></i><%= evento.date.to_s(:short) %></h4>
+						<h4><%= evento.name %></h4>
+						<h5><i class="fa fa-map-marker"></i> <%= evento.address %> </h5>
+						<h5><i class="fa fa-calendar"></i> <%= evento.date.to_s(:short) %></h5>
             <hr>
             <h5>
               <div class="row" style="padding:0 0 0 0;">
@@ -58,12 +58,26 @@
 </div>
 
 <script type="text/javascript">
-var $posts = $("#posts")
+
 // Isotopize the posts.
-$posts.isotope({
-  itemSelector : '.item',
-  layoutMode: 'fitRows'
-});
+
+var $posts = $("#posts");
+var $doc = $(document);
+
+function load(){
+	$posts.imagesLoaded(isotoper);
+}
+
+function isotoper(){
+	$posts.isotope({
+				itemSelector : '.item',
+				layoutMode: 'cellsByRow'
+	});
+}
+
+$doc.on('ready', load);
+
+
 // filter items on button click
 $('#filters1 , #filters2').on( 'click', 'button', function() {
   var filterValue = $(this).attr('data-filter');
@@ -73,4 +87,5 @@ $('#filters1 , #filters2').on( 'click', 'button', function() {
 $(".top").tooltip({
     placement: "top"
 });
+jQuery("h4").fitText();
 </script>

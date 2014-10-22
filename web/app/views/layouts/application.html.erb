@@ -12,7 +12,6 @@
     <title> Carryvent - <%= yield(:title).empty? ? "¡Viaja con nosotros!" : yield(:title) %></title>
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-    <%= javascript_include_tag :defaults, 'efecto_grayscale' %>
     <%= csrf_meta_tags %>
 
 
@@ -119,7 +118,7 @@
 
 
 <!-- Footer -->
-<footer class="navbar navbar-default navbar-fixed-bottom">
+<footer class="navbar navbar-default navbar-fixed-bottom hidden-xs">
     <div class="container">
         <div class="text-center">
             <p>Copyright &copy; Carryvent 2014</p>

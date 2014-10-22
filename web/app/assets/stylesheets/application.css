@@ -34,13 +34,6 @@
   border:10px;
 }
 
-@media(max-width:767px) {
-  #bs-example-navbar-collapse-1{
-    position:absolute;
-    right: 1px;
-  }
-}
-
 /* Para que el navbar no se pege */
 html, body {
   height: 100%;

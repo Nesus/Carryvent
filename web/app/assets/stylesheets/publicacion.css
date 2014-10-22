@@ -1,10 +1,18 @@
 // Place all the styles related to the carpool controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+html, body, .row, .col-md-5 { height: 100% }
+
+#map {
+	width:100%;
+ 	height:250px;
+}
 /*Reserva de pasajes */
 .centering{
     text-align:center;
 }
+
 /* Evento y carpool */
 .publicacion-container{
 	height: 300px;
