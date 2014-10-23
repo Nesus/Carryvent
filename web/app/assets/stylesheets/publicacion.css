@@ -4,6 +4,12 @@
 
 html, body, .row, .col-md-5 { height: 100% }
 
+.panel{
+	background-color: #fff5f0 ! important;
+
+
+}
+
 #map {
 	width:100%;
  	height:250px;
@@ -92,40 +98,4 @@ html, body, .row, .col-md-5 { height: 100% }
 .comments{
 	height:160px;
 	overflow-y:auto;
-}
-
-/* Publicador Evento*/
-
-.panel-eventos{
-	height: 300px;
-	  background-color: #fff5f0;
-  	-webkit-border-radius: 6px;
-  	-moz-border-radius: 6px;
-  	border-radius: 6px;
-	position:relative;
-	padding-top:5px;
-	padding-bottom: 5px;
-	padding-left: 10px;
-	padding-right: 10px; 
-	overflow-y: scroll;
-}
-.table-eventos{
-    border-collapse: collapse;
-    width: 100%;
-}
-
-.table-eventos th,
-.table-eventos td{
-	border: 1px solid orange;
-	text-align: center;
-}
-
-#publicarEvento{
-  height: auto;
-}
-
-@media(max-width:750px) {
-  #publicarEvento{
-    width: auto;
-  }
 }
