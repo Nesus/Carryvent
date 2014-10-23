@@ -27,6 +27,8 @@
     
     <script src='//google-maps-utility-library-v3.googlecode.com/svn/trunk/richmarker/src/richmarker-compiled.js' type='text/javascript'></script>
 
+   
+
 </head>
 
 <body>
@@ -57,13 +59,6 @@
                     <li class="<%=params[:action] == 'eventos' ? 'active' : '' %>">
                         <%= link_to "Eventos", lista_eventos_user_path %>
                     </li>
-                    
-                    <li class="<%=((params[:action] == 'index') and (params[:controller]== "notifications")) ? 'active' : '' %>"><%= link_to notifications_path do%>
-                        
-                            <span class="badge <%= @activitiesCount > 0 ? 'alert-warning': ''%>" id="cantidadNotifications" ><%=@activitiesCount%></span>  Notificaciones
-
-                        <% end %>
-                    </li>
                   <% elsif publicador_signed_in? %>
 
                    'active' if params[:controller] == 'index' and params[:action] == 'index'
@@ -83,6 +78,15 @@
 
                 <% if user_signed_in? %>
                  <ul class="nav navbar-nav navbar-right">
+                    <li class="<%=((params[:action] == 'index') and (params[:controller]== "notifications")) ? 'active' : '' %>">
+                        <%= link_to notifications_path do%>
+                            <span class="bottom" title="Notificaciones" data-original-title="Tooltip on right">
+                                <span class="badge <%= @activitiesCount > 0 ? 'alert-warning': ''%>" id="cantidadNotifications" ><%=@activitiesCount%></span>
+                                <i class="fa fa-inbox fa-lg"></i><span class="visible-xs visible-sm">Notificaciones</span> 
+                            </span>
+                        <% end %>
+                    </li>
+                    
                     <li class="dropdown">
                         <a id="nombreUsuario" href="#" data-toggle="dropdown" class="dropdown-toggle"> 
                         <% if current_user.foto.present? %>
@@ -125,6 +129,12 @@
         </div>
     </div>
 </footer>
+
+ <script type="text/javascript">
+    $(".bottom").tooltip({
+        placement: "bottom"
+    });
+    </script>
 
 </body>
 </html>
