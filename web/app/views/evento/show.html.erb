@@ -21,24 +21,24 @@
       </div>
 
       <div class="col-md-5">
-        <p><b>Descripción: </b><%= @evento.subtitle %> </p>
-        <p><b>Lugar: </b><%= @evento.address %> </p>
+        <h4><b>Descripción: </b><%= @evento.subtitle %> </h4>
+        <h4><b>Lugar: </b><%= @evento.address %> </h4>
         <%if !@evento.information.nil? %>
-          <p><b>Información Extra: </b><%= @evento.information %> </p>
+          <h4><b>Información Extra: </b><%= @evento.information %> </h4>
         <% end %>
-        <p><b>Fecha: </b><%= @evento.date.strftime("%d/%m/%Y") %> </p>
-        <p><b>Hora:  </b><%= @evento.time.strftime("%H:%M") %> </p>
-        <p><b>Estado de los pasajes: </b>
+        <h4><b><i class="fa fa-calendar"></i> Fecha: </b><%= @evento.date.strftime("%d/%m/%Y") %> </h4>
+        <h4><b><i class="fa fa-clock-o"></i> Hora:  </b><%= @evento.time.strftime("%H:%M") %> </h4>
+        <h4><b>Estado de los pasajes: </b>
           <% if @evento.bus %>
             <% if @evento.date > Date.current %>
-               Etapa de Reserva </p>
+               Etapa de Reserva 
             <% else %>
-              Evento ya finalizado </p>
+              Evento ya finalizado 
             <% end %>
           <% else %>
-            No hay Buses Asignados</p>
+            No hay Buses Asignados
           <% end %>
-
+        </h4>
         <div class="row">
             <% if @evento.bus and current_user.present? and @evento.date > Date.current%>
                 <%= link_to "Reserva tus pasajes", reserva_pasaje_path, class: 'btn btn-primary btn-block btn-lg' %>
@@ -71,7 +71,7 @@
       <div class="col-md-6">
         <div class="row" style="padding:0 0 0 0;">
           <h4 class="pull-left">Ofertas Carpool</h4>  
-          <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-primary btn-sm pull-right' ,:style=>"padding-right:20px;"%>
+          <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-primary btn-sm pull-right' ,:style=>"margin-right:20px;"%>
         </div>
         <div class="row" style="padding:0 0 0 0;">
           <div class="publicacion-container panel">
@@ -79,8 +79,19 @@
   	          <TABLE class="table">
                 <tr>
                   <th><i class="fa fa-user"></i> Publicador</th>
-                  <th><i class="fa fa-map-marker"></i> Salida</th>
-                  <th><i class="fa fa-child"></i> <span id="disponibles">Asientos Disponibles</span></th>
+                  <th>
+                    <span class="bottom" title="Lugar de Salida" data-original-title="Tooltip on right"> 
+                      <span class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                      </span>
+                      Salida </span>
+                  </th>
+                  <th>
+                    <span class="bottom" title="Asientos disponibles" data-original-title="Tooltip on right">
+                      <i class="fa fa-child"></i> Disponibles
+                    </span>
+                  </th>
 
                 </tr>
                 <% if @publicacionCarpools.count > 0 %>
@@ -148,5 +159,9 @@
   </div>
 </div>
 <script type="text/javascript">
+
+$(".bottom").tooltip({
+    placement: "bottom"
+});
 $("#disponibles").fitText()
 </script>

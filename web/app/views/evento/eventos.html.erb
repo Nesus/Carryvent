@@ -94,20 +94,19 @@ var $posts = $("#posts");
 var $doc = $(document);
 
 
-
-
-
-
-
-$doc.on('ready',function(){
-		$posts.imagesLoaded(function(){
-			$posts.isotope({
-						itemSelector : '.item',
-						layoutMode: 'fitRows'
-			});
+var load;
+load =function(){
+	$posts.imagesLoaded(function(){
+		$posts.isotope({
+					itemSelector : '.item',
+					layoutMode: 'fitRows'
 		});
 	});
+}
 
+
+$doc.ready(load);
+$doc.on('page:load',load);
 
 // filter items on button click
 $('#filters1 , #filters2').on( 'click', 'button', function() {

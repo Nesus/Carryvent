@@ -97,13 +97,11 @@
     
     }
   }
-</script>
-
-<script type="text/javascript">
+  
   $(function() {
     $( "#publicacion_carpool_fecha" ).datepicker();
   });
     $(function() {
-    $( "#publicacion_carpool_hora_desde" ).timepicker({ timeFormat: 'H:i' });
+    $( "#publicacion_carpool_hora_desde" ).timepicker({ timeFormat: 'H:i', defaultTime: new Date() });
   });
 </script>
