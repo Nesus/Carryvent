@@ -1,8 +1,73 @@
 <% title "Notificaciones" %>
 <div class="container">
+	<h1 class="page-header">Notificaciones</h1>
+	<div class="col-md-3">
+		<ul class="nav nav-pills nav-stacked orange" id="notificationTab">
+			<li class="active" ><a href="#new" data-toggle="tab">No Leidas</a></li>
+			<li><a href="#old" data-toggle="tab">Anteriores</a></li>
+	  	</ul>
+  	</div>
+  	<div class="col-md-8">
+  		 <div class="tab-content">
+		    <div id="new" class="tab-pane active">
+		    	<div class="panel panel-default">
+		    		<div class="panel-heading">
+   						<h3 class="panel-title">Notificaciones sin leer</h3>
+  					</div>
+  					<div class="panel-body">
+				       	<% if @activities.count > 0 %>
+							<% @activities.each do |activity| %>
+				  				<div class="activity">
+				  				<h4>
+				  					<%= render_activity activity%>
+				  					<small><%= l activity.created_at, format: :long %></small>
+				  				</h4>
+				  				<hr>
+				  				</div>
+							<% end %>
+						<%else%>
+							<h4 class="text-center">No Tiene notificaciones sin leer</h4>
+						<% end %>
+					</div>
+				</div>
+		    </div>
+		    <div id="old" class="tab-pane">
+		    <div class="panel panel-default">
+		    		<div class="panel-heading">
+   						<h3 class="panel-title">Notificaciones anteriores</h3>
+  					</div>
+  					<div class="panel-body">
+				       	<% if @activitiesOld.count > 0 %>
+							<% @activitiesOld.each do |activity| %>
+				  				<div class="activity">
+				  				<h4>
+				  					<%= render_activity activity%>
+				  					<small><%= l activity.created_at, format: :long %></small>
+				  				</h4>
+				  				<hr>
+				  				</div>
+							<% end %>
+						<%else%>
+							<h4 class="text-center">No Tiene notificaciones</h4>
+						<% end %>
+					</div>
+				</div>
+		    </div>
+  		</div><!-- /.tab-content -->
+  	</div>
 
+</div>
+
+
+<script type="text/javascript">
+$('#notificationTab a').click(function (e) {
+  e.preventDefault()
+  $(this).tab('show')
+})
+</script>
+<!--
   <div class="col-md-5 col-md-offset-4">
-	<h1>Notificaciones</h1>
+	<h1 class="page-header">Notificaciones</h1>
 
 	Últimas actividades:
 	<% @activities.each do |activity| %>
@@ -12,6 +77,4 @@
 	  </div>
 	<% end %>
 	</div>
-</div>
-
-
+-->
