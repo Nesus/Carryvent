@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get '/feriadesoftware' => redirect('http://feriadesoftware.cl')
+  get '/informatica' => redirect('http://inf.utfsm.cl')
+  get '/facebook' => redirect('https://www.facebook.com/Carryvent')
+  get '/usm' => redirect('http://www.usm.cl')
   ActiveAdmin.routes(self)
   resources :rankings
   #comentarios
