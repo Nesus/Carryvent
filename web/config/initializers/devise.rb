@@ -15,7 +15,7 @@ Devise.setup do |config|
   config.authentication_keys = [ :username ]
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
 
-  if Rails.env.production?
+  if ENV["PRODUCTION"] == "True"
     config.omniauth :facebook, "749613061749643", "0be6ad6222895c2f46749e82deed11d8", :scope => 'email, user_location'
    # set the app parameter
   else  
