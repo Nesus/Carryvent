@@ -1,14 +1,9 @@
 // Place all the styles related to the carpool controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-/*
+
 html, body, .row, .col-md-5 { height: 100% }
-.panel{
-	background-color: #fff5f0 ! important;
 
-
-}
-*/
 #map {
  	height:250px;
 }
