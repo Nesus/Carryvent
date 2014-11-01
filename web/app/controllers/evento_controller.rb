@@ -1,6 +1,6 @@
 class EventoController < ApplicationController
 
-	before_filter :authenticate_publicador!, :except => [:eventos, :show, :reservar_pasaje, :list_eventos]  
+	before_filter :authenticate_publicador!, :except => [:eventos, :show, :reservar_pasaje, :list_eventos, :ruta_evento]  
 
 	############################
 	#			USER           #
@@ -54,7 +54,8 @@ class EventoController < ApplicationController
 	#########################
 
 	def list_eventos
-		eventos = Evento.where("date > CURRENT_TIMESTAMP AND strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
+		eventos = Evento.where("strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
+		#eventos = Evento.where("date > CURRENT_TIMESTAMP AND strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
 		json = {}
 		json[:eventos] = []
 		eventos.each do |evento|
@@ -67,6 +68,31 @@ class EventoController < ApplicationController
 			hash[:image] = evento.image.small.url
 			json[:eventos].push(hash)
 		end
+		render :json => json.to_json
+	end
+
+	def ruta_evento
+		evento = Evento.find(params[:id])
+		bus = Bus.where(evento_id: params[:id])[0]
+		puntos = []
+		lugares = []
+		usuarioEvento = UserEvento.where(evento_id: params[:id])
+		usuarioEvento.each do |ue|
+			reserva = Reserva.where("user_evento_id = " + ue.id.to_s + " AND state = 1")
+			reserva.each do |r|
+				if !lugares.include? r.point[:desc]
+					lugares.push(r.point[:desc])
+					puntos.push([r.point[:lat], r.point[:long]])
+				end
+			end
+		end
+		json = {}
+		json[:ruta] = []
+		hash = {}
+		hash[:inicio] = [evento.latitude, evento.longitude]
+		hash[:fin] = [bus.latitude, bus.longitude]
+		hash[:waypoints] = puntos
+		json[:ruta].push(hash)
 		render :json => json.to_json
 	end
 
