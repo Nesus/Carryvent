@@ -15,7 +15,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.view.Menu;
 import android.view.View;
@@ -36,7 +35,8 @@ public class ListaEventos extends Activity {
 	Button obtenerLista, obtenerRuta;
 	Map<String, String[]> informacionEventos = new HashMap<String, String[]>();
 	List<String> nombreEventos = new ArrayList<String>();
-	DataBase database = new DataBase(this);
+	DataBasePasajes databasePasajes = new DataBasePasajes(this);
+	DataBaseRuta databaseRuta = new DataBaseRuta(this);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +54,7 @@ public class ListaEventos extends Activity {
 		
 		nombreEventos.add("- Seleccione un evento -");
 		new JSONParseEventos().execute("http://192.168.0.2:3000/operario/list_eventos");
+		//new JSONParseEventos().execute("http://10.10.9.179:3000/operario/list_eventos");
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 			android.R.layout.simple_spinner_item, nombreEventos);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -76,9 +77,17 @@ public class ListaEventos extends Activity {
 		  se eliminan estos elementos de la base de datos y se cargan los nuevo.
 		  Finalmente se muestra un mensaje avisando que todo se a cargado.*/
 		Context context = getApplicationContext();
-		database.dropPasajes();
+		databasePasajes.dropPasajes();
 		new JSONParsePasajes().execute("http://192.168.0.2:3000/operario/list_pasajes/"+informacionEventos.get(listaEventos.getSelectedItem().toString())[0]);
+		//new JSONParsePasajes().execute("http://10.10.9.179:3000/operario/list_pasajes/"+informacionEventos.get(listaEventos.getSelectedItem().toString())[0]);
 		Toast.makeText(context, "Datos cargados", Toast.LENGTH_SHORT).show();
+	}
+	
+	public void obtenerRuta(View v){
+		Context context = getApplicationContext();
+		databaseRuta.dropRuta();
+		new JSONParseRuta().execute("http://192.168.0.2:3000/operario/ruta_evento/"+informacionEventos.get(listaEventos.getSelectedItem().toString())[0]);
+		Toast.makeText(context, "Ruta cargada", Toast.LENGTH_SHORT).show();
 	}
 	
 	// Clase para realizar la conexión y obtener el Json de eventos
@@ -138,7 +147,40 @@ public class ListaEventos extends Activity {
 					String code = c.getString("code");
 					String name = c.getString("name");
 					String asiento = c.getString("asiento");
-					database.agregarPasaje(code, name, asiento);		
+					databasePasajes.agregarPasaje(code, name, asiento);		
+				}
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	// Clase para realizar la conexión y obtener el Json de la Ruta
+	public class JSONParseRuta extends AsyncTask<String, String, JSONObject> {
+		
+		protected void onPreExecute() {
+			super.onPreExecute();
+		}
+		
+		@Override
+		protected JSONObject doInBackground(String... arg0) {
+			String url = (String)arg0[0];
+			ConectarJson jParser = new ConectarJson();
+			JSONObject json = jParser.getJSON(url);
+			return json;
+		}
+		
+		@Override
+		protected void onPostExecute(JSONObject json) {
+			try {
+				JSONArray ruta = json.getJSONArray("ruta");
+				JSONArray waypoints;				
+				JSONObject c = ruta.getJSONObject(0);
+				waypoints = c.getJSONArray("waypoints");
+				databaseRuta.agregarPunto(1, c.getJSONArray("inicio").getDouble(0), c.getJSONArray("inicio").getDouble(1));
+				databaseRuta.agregarPunto(2, c.getJSONArray("fin").getDouble(0), c.getJSONArray("fin").getDouble(1));
+				for (int i = 0; i < waypoints.length(); i++){
+					databaseRuta.agregarPunto(i+3, waypoints.getJSONArray(i).getDouble(0), waypoints.getJSONArray(i).getDouble(1));
 				}
 			} catch (JSONException e) {
 				e.printStackTrace();
@@ -165,6 +207,7 @@ public class ListaEventos extends Activity {
 				fecha.setText("Fecha: " + informacionEventos.get(parent.getItemAtPosition(pos).toString())[3]);
 				hora.setText("Hora: " + informacionEventos.get(parent.getItemAtPosition(pos).toString())[4]);
 				new ImageGet().execute("http://192.168.0.2:3000" + informacionEventos.get(parent.getItemAtPosition(pos).toString())[5]);
+				//new ImageGet().execute("http://10.10.9.179:3000" + informacionEventos.get(parent.getItemAtPosition(pos).toString())[5]);
 				obtenerLista.setVisibility(View.VISIBLE);
 				obtenerRuta.setVisibility(View.VISIBLE);
 			}

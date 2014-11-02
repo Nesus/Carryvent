@@ -9,7 +9,8 @@ import android.view.View;
 
 public class Carryvent extends Activity {
 
-	DataBase database = new DataBase(this);
+	DataBasePasajes databasePasajes = new DataBasePasajes(this);
+	DataBaseRuta databaseRuta = new DataBaseRuta(this);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +32,11 @@ public class Carryvent extends Activity {
 	
 	public void listaPasajeros(View v){
 		Intent intent = new Intent(this, ListaPasajeros.class);
+		startActivity(intent);
+	}
+	
+	public void mostrarRuta(View v){
+		Intent intent = new Intent(this, Ruta.class);
 		startActivity(intent);
 	}
 

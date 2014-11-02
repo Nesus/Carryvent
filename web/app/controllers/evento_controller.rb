@@ -54,7 +54,7 @@ class EventoController < ApplicationController
 	#########################
 
 	def list_eventos
-		eventos = Evento.where("strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
+		eventos = Evento.all
 		#eventos = Evento.where("date > CURRENT_TIMESTAMP AND strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
 		json = {}
 		json[:eventos] = []

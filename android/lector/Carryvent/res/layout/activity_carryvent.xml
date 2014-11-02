@@ -18,7 +18,7 @@
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentTop="true"
 	        android:layout_centerHorizontal="true"
-	        android:layout_marginTop="126dp"
+	        android:layout_marginTop="100dp"
 	        android:onClick="listaEventos"
 	        android:text="@string/listaEventos" />
 
@@ -26,10 +26,21 @@
 	        android:id="@+id/botonPasajeros"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/botonEventos"
 	        android:layout_centerHorizontal="true"
-	        android:layout_centerVertical="true"
+	        android:layout_marginTop="16dp"
 	        android:onClick="listaPasajeros"
 	        android:text="@string/listaPasajeros" />
+	    
+	    <Button
+	        android:id="@+id/botonRuta"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_below="@+id/botonPasajeros"
+	        android:layout_centerHorizontal="true"
+	        android:layout_marginTop="16dp"
+	        android:onClick="mostrarRuta"
+	        android:text="@string/mostrarRuta" />
 	    
 	</RelativeLayout>
 

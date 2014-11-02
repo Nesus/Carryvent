@@ -37,6 +37,7 @@ public class ConectarJson {
 			while ((data = reader.readLine()) != null){
 				webPage += data + "\n";
 			}
+			reader.close();
 			is.close();
 			conn.disconnect();
 			json = webPage;
