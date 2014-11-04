@@ -212,4 +212,11 @@
         break;
     }
   }
+
+function load(){
+  var region = $("#user_region_id").selectedIndex;
+  filtroCiudades(region);
+}
+$(document).ready(load);
+$(document).on("page:load", load); 
 </script>

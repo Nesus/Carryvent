@@ -155,6 +155,10 @@
       </div>
   </div>
 </div>
+<<<<<<< HEAD
+
+        
+=======
 <script type="text/javascript">
 
 $(".bottom").tooltip({
@@ -162,3 +166,4 @@ $(".bottom").tooltip({
 });
 $("#disponibles").fitText()
 </script>
+>>>>>>> 9565b0197f79c2a40ebb7019601636e367960552

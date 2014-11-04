@@ -1,8 +1,17 @@
 class PasajesController < ApplicationController
 	require 'json'
 
+
+	add_breadcrumb "Inicio", :root_path
+	add_breadcrumb "Eventos", :lista_eventos_user_path
+
 	def reserva
 		@evento = Evento.find(params[:id])
+
+		add_breadcrumb @evento.name, mostrar_evento_path(@evento)
+		add_breadcrumb "Reserva",:reserva_pasaje_path
+
+
 		@bus = @evento.bus
 		@reserva = Reserva.new
 		@points = @bus.route.points
@@ -81,6 +90,9 @@ class PasajesController < ApplicationController
 	end
 
 	def reservado
+		evento = Evento.find(params[:id])
+		add_breadcrumb evento.name, mostrar_evento_path(evento)
+		add_breadcrumb "Reservado", :pasaje_reservado_path
 
 	end
 

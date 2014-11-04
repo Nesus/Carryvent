@@ -1,11 +1,12 @@
 <% title "Reservar Pasajes" %>
 <%= form_for @reserva, url: crear_reserva_path do |f| %>
 <div class="container">
-	<div class="row">
-		<h2 class="page-header">Reserva tu pasaje a <%=@evento.name%></h2>
-
+	<h2 class="page-header">Reserva tu pasaje a <%=@evento.name%></h2>
+		<ol class="breadcrumb">
+        	<%= render_breadcrumbs :tag => :li, :separator => "" %>
+    	</ol>
 		<% if @reserva.errors.any? %>
-	        <div class="row">
+	        <div class="row" style="padding:0 0 0 0;">
 	          <div id="error_explanation">
 	            <h2>
 	              <%= pluralize(@reserva.errors.count, "error") %> prohibited
@@ -21,7 +22,7 @@
 	      <% end %>
 
 		<div class="col-sm-6">
-			<div class="row">
+			<div class="row" style="padding:0 0 0 0;">
 				<h3 class="page-header">Información</h3>
 				<p><b>Precio:</b> <%= @bus.price %> Pesos </p>
 				<p><b>Hora de salida:</b> <%= @bus.time.strftime("%H:%M:%S") %></p>
@@ -53,7 +54,7 @@
 		</div> <!-- end information -->
 
 		<div class="col-sm-6">
-			<div class="row">
+			<div class="row" style="padding:0 0 0 0;">
 				<h3 class="page-header">Elige tus  asientos</h3>
 			</div>
 			<div class="row">

@@ -20,6 +20,8 @@
  *= require bootstrap
  *= require font-awesome
  *= require bootstrap-social
+ *= require jquery-ui
+ *= require jquery.timepicker
  */
 
 /*Parte de usuario navbar*/
@@ -32,13 +34,6 @@
   max-width: 350px;
   background-color: #ff8000;
   border:10px;
-}
-
-@media(max-width:767px) {
-  #bs-example-navbar-collapse-1{
-    position:absolute;
-    right: 1px;
-  }
 }
 
 /* Para que el navbar no se pege */

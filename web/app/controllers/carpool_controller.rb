@@ -3,12 +3,19 @@ class CarpoolController < ApplicationController
   #Restringiendo usuarios no conectados solo a ver carpool
 	before_filter :authenticate_user!, :except => [:show]
 
+  add_breadcrumb "Inicio", :root_path
+  add_breadcrumb "Eventos", :lista_eventos_user_path
+
   #######################
   # Publicar y mostrar  #
   #######################
 
 	#Vista de publicar carpool
 	def publicar
+    evento = Evento.find(params[:evento_id])
+    add_breadcrumb evento.name, mostrar_evento_path(evento)
+    add_breadcrumb "Publicar", :publicar_carpool_path
+
 		@publicacioncarpool = PublicacionCarpool.new
 	end
 
@@ -42,6 +49,10 @@ class CarpoolController < ApplicationController
 
 	#Mostramos todo lo relevante a la publicacion carpool
 	def show
+    evento = Evento.find(params[:evento_id])
+    add_breadcrumb evento.name, mostrar_evento_path(evento)
+    add_breadcrumb "Carpool", :mostrar_carpool_path
+
 		@evento = Evento.find(params[:evento_id])
 		@carpool = PublicacionCarpool.find(params[:id])
 		@userPub = User.joins(user_eventos: [:user, :evento, :publicacion_carpool]).where(publicacion_carpools: {id: params[:id]}).first

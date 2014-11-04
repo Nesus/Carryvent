@@ -5,7 +5,7 @@
     <% if comment.user.foto.thumb.url %>
     <%= image_tag comment.user.foto.thumb.url %>
     <%else %>
-    <%= image_tag "/assets/place_user.png", :style => "width:30px;heigh:30px;" %>
+    <%= image_tag "place_user.png", :style => "width:30px;heigh:30px;" %>
 
     <%end %>
     <%= link_to comment.user.nombre, perfil_user_path(comment.user) %>

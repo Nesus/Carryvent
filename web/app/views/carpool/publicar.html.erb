@@ -3,12 +3,15 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-4 col-md-offset-4">
-      <h2>Publicar Carpool</h2>
+      <h2 class="page-header">Publicar Carpool</h2>
+      <ol class="breadcrumb">
+        <%= render_breadcrumbs :tag => :li, :separator => "" %>
+      </ol>
       <div class="account-wall_reg">
     <%= form_for @publicacioncarpool, url: new_publicar_carpool_path  do |f| %>
 
         <% if @publicacioncarpool.errors.any? %>
-        <div class="row">
+        <div class="row" style="padding-top:0px;">
           <div id="error_explanation">
             <h2>
               <%= pluralize(@publicacioncarpool.errors.count, "error") %> prohibited
@@ -23,13 +26,13 @@
         </div>
       <% end %>
       <div class="row">
-          <div class="field col-md-8">
+          <div class="field col-md-6">
             <%= f.label "Fecha de Salida" %> <br>
-            <%= f.date_select :fecha %>
+            <%= f.text_field :fecha %>
           </div>
-          <div class="field col-md-4">
-            <%= f.label "Hora de Salida" %><br>
-            <%= f.time_select :hora_desde %>
+          <div class="field col-md-6">
+            <%= f.label "Hora Aproximada de Salida" %><br>
+            <%= f.text_field :hora_desde %>
           </div>
       </div>
       <div class="row">
@@ -94,4 +97,11 @@
     
     }
   }
+  
+  $(function() {
+    $( "#publicacion_carpool_fecha" ).datepicker();
+  });
+    $(function() {
+    $( "#publicacion_carpool_hora_desde" ).timepicker({ timeFormat: 'H:i', defaultTime: new Date() });
+  });
 </script>

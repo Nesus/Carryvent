@@ -92,3 +92,11 @@ gem 'geocoder'
 #Plugind jquery
 gem 'backstretch-rails'
 gem 'jquery-ui-rails'
+gem 'imagesLoaded_rails'
+gem 'jquery-timepicker-rails'
+
+#iconos 
+gem "font-awesome-rails"
+gem 'fittextjs_rails'
+gem 'underscore-rails'
+gem "breadcrumbs_on_rails"
