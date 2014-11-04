@@ -1,0 +1,59 @@
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+
+
+<div id="map-canvas" style="height:400px; width:600px; float: none; margin: 0 auto;"></div>
+<script>
+
+var map;
+var directionsDisplay;
+var directionsService = new google.maps.DirectionsService();
+
+function initialize() {
+  directionsDisplay = new google.maps.DirectionsRenderer();
+  var mapOptions = {
+    zoom: 15,
+    center: new google.maps.LatLng(-33.05061, -71.60266399)
+  };
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    directionsDisplay.setMap(map);
+}
+
+
+
+function calcRoute() {
+  var start = new google.maps.LatLng(<%=inicio.latitude%>, <%=inicio.longitude%>);
+  var end = new google.maps.LatLng(<%=fin.latitude%>,<%= fin.longitude%>);
+   var waypts = [];
+  
+  <% puntos.each do |punto| %>
+
+    waypts.push({location:new google.maps.LatLng(<%=punto[:lat] %>,<%= punto[:long]%>), stopover: true });
+  <% end %>
+
+   
+
+
+  var request = {
+      origin: start,
+      destination: end,
+      waypoints: waypts,
+      optimizeWaypoints: true,
+      travelMode: google.maps.TravelMode.DRIVING
+  };
+  
+  directionsService.route(request, function(response, status) {
+    if (status == google.maps.DirectionsStatus.OK) {
+      directionsDisplay.setDirections(response);
+      var route = response.routes[0];
+      // For each route, display summary information.
+    }
+  });
+}
+
+
+google.maps.event.addDomListener(window, 'load', function(){
+  initialize();
+  calcRoute();
+});
+
+</script>

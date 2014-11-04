@@ -57,7 +57,7 @@ ActiveAdmin.register Evento do
     end
     column "Nombre",:name
     column "Subtitulo",:subtitle
-    column "Direccion",:address
+    column "Direccioó",:address
     column "Informacion Extra",:information
     column "Fecha",:date
     column "Hora",:time
@@ -65,6 +65,10 @@ ActiveAdmin.register Evento do
     column "Lista de Pasajeros" do |f|
       link_to "Generar lista de pasajeros", "/admin/lista_de_pasajeros/listar?id=" + f.id.to_s, :method => :post
     end
+    column "Obtener ruta dinámica" do |f|
+      link_to "Obtener ruta", "/admin/ruta_dinamica/ruta?id=" + f.id.to_s, :method => :post
+    end
+
     actions
   end
 
