@@ -1,8 +1,8 @@
 <% title "Perfil de " + @user.nombre %>
 <!-- Page Content -->
 
-<div class="container">
 
+<div class="container">
   <!-- Perfil -->
   <div class="container">
   	<div class="row">
@@ -61,8 +61,59 @@
         <div class="col-md-6 col-xs-12">
           <h4>Eventos Asistidos</h4>
           <div  class="asistidos-container" >
-
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td>Nombre</td>
+                  <td>Fecha</td>
+                  <td>Pasajes</td>
+                </tr>
+              </thead>
+              <tbody>
+                <% @userEventosAceptados.each do |ea| %>
+                <tr>
+                  <td><%= ea.user_evento.evento.name %></td>
+                  <td><%= ea.user_evento.evento.date %></td>
+                  <td>
+                    <% ea.pasajes.each do |p| %>
+                      <div class="panel panel-default">
+                        <div class="panel-body">
+                          <% qr = RQRCode::QRCode.new( p.codigo, :size => 4, :level => :h ) %>
+                          <% @png = qr.to_img.resize(30,30).to_data_url %>
+                          <center><%= image_tag @png %></center>
+                        </div>
+                        <div class="panel-footer"><center>Asiento n° <%= p.asiento %></center></div>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+                <% end %>
+              </tbody>
+            </table>
           </div>
+        </div>
+        <div class="col-md-6 col-xs-12">
+          <h4>Carpools Publicados</h4>
+          <table class="table table-striped">
+              <thead>
+                <tr>
+                  <td>Nombre</td>
+                  <td>Fecha</td>
+                  <td>Tipo Vehiculo</td>
+                  <td></td>
+                </tr>
+              </thead>
+              <tbody>
+                <% @userCarpools.each do |c| %>
+                  <tr>
+                    <td><%= c.evento.name %></td>
+                    <td><%= c.fecha %></td>
+                    <td><%= c.tipo_vehiculo %></td>
+                    <td><%= link_to "Ver los detalles", mostrar_carpool_path(c.evento.id, c.id) %></td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
         </div>
       </div>
     </div>

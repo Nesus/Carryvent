@@ -21,6 +21,7 @@ class Reserva < ActiveRecord::Base
 	belongs_to :user_evento
 
 	has_many :pasajes
+	
 
 
 	#Para guardar el punto
