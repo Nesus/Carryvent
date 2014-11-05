@@ -1,0 +1,169 @@
+<% title @evento.name %>
+<!-- Page Content -->
+
+<div class="container">
+
+  <!-- Eventos -->
+  <div class="row">
+      <h2 class="page-header"><%= @evento.name %></h2>
+      <ol class="breadcrumb">
+        <%= render_breadcrumbs :tag => :li, :separator => "" %>
+      </ol>
+      <div class="col-md-3" style="padding-top:25px;">
+        <% if @evento.image %>
+            <img class="thumbnail img-square img-responsive img-center" src="<%= @evento.image %>" alt="">
+        <% else %>
+         <img class="thumbnail img-square img-responsive img-center" src="http://placehold.it/200x200" alt="">
+        <% end %>
+      </div>
+
+      <div class="col-md-5">
+        <h4><b>Descripción: </b><%= @evento.subtitle %> </h4>
+        <h4><b>Lugar: </b><%= @evento.address %> </h4>
+        <%if !@evento.information.nil? %>
+          <h4><b>Información Extra: </b><%= @evento.information %> </h4>
+        <% end %>
+        <h4><b><i class="fa fa-calendar"></i> Fecha: </b><%= @evento.date.strftime("%d/%m/%Y") %> </h4>
+        <h4><b><i class="fa fa-clock-o"></i> Hora:  </b><%= @evento.time.strftime("%H:%M") %> </h4>
+        <h4><b>Estado de los pasajes: </b>
+          <% if @evento.bus %>
+            <% if @evento.date > Date.current %>
+               Etapa de Reserva 
+            <% else %>
+              Evento ya finalizado 
+            <% end %>
+          <% else %>
+            No hay Buses Asignados
+          <% end %>
+        </h4>
+        <div class="row">
+            <% if @evento.bus and current_user.present? and @evento.date > Date.current%>
+                <%= link_to "Reserva tus pasajes", reserva_pasaje_path, class: 'btn btn-primary btn-block btn-lg' %>
+            <% else %>
+              <%= link_to "Reserva tus pasajes", reserva_pasaje_path,  class: 'btn btn-primary btn-block btn-lg disabled' , style: "background-color:gray;border-color:gray;" %>
+            <% end %>
+        </div>
+      </div>
+      <div class="col-md-3">
+
+          
+          <div id="map"></div>
+          
+          <script type="text/javascript">
+            handler = Gmaps.build('Google');
+            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+              markers = handler.addMarkers(<%=raw @hash.to_json %>);
+              handler.bounds.extendWith(markers);
+              handler.fitMapToBounds();
+            })
+          </script>
+
+
+        <!-- <img class="img-square img-responsive img-center" src="http://placehold.it/200x200" alt=""> -->
+      </div>
+  </div>
+  <hr>
+  <div class="row">
+
+      <div class="col-md-6">
+        <div class="row" style="padding:0 0 0 0;">
+          <h4 class="pull-left">Ofertas Carpool</h4>  
+          <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-primary btn-sm pull-right' ,:style=>"margin-right:20px;"%>
+        </div>
+        <div class="row" style="padding:0 0 0 0;">
+          <div class="publicacion-container panel">
+          	<% if !@publicacionCarpools.nil? %>
+  	          <TABLE class="table">
+                <tr>
+                  <th><i class="fa fa-user"></i> Publicador</th>
+                  <th>
+                    <span class="bottom" title="Lugar de Salida" data-original-title="Tooltip on right"> 
+                      <span class="fa-stack">
+                        <i class="fa fa-circle fa-stack-2x"></i>
+                        <i class="fa fa-map-marker fa-stack-1x fa-inverse"></i>
+                      </span>
+                      Salida </span>
+                  </th>
+                  <th>
+                    <span class="bottom" title="Asientos disponibles" data-original-title="Tooltip on right">
+                      <i class="fa fa-child"></i> Disponibles
+                    </span>
+                  </th>
+
+                </tr>
+                <% if @publicacionCarpools.count > 0 %>
+                <% @publicacionCarpools.each do |pub| %>
+  	              <TR class="text-center">
+  	                <TD>
+                      <% if pub.user_evento.user.foto.thumb.url %>
+                       <% img = pub.user_evento.user.foto.thumb.url %>
+                       <img src="<%= img  %>" alt="" class="img-circle">
+                      <% else %>
+                        <img src="/assets/place_user.png", class="img-circle", style="width:30px;heigh:30px">
+                      <% end %>
+                      <%= link_to pub.user_evento.user.nombre, perfil_user_path(pub.user_evento.user) %>
+  	                </TD>
+  	                <TD>
+  	                  <%= pub.user_evento.user.city.name%>
+  	                </TD>
+                    <td>
+                      <b><%= pub.asientos_libres %> Asientos</b>
+                    </td>
+  	                <TD>
+                    <% if current_user %>   
+  	                  <%= link_to  mostrar_carpool_path(@evento.id, pub.id) do %>
+                        <i class="fa fa-bars"></i>
+                        Ve los detalles e
+                          Inscribete!
+                      <% end %>
+                    <% else %>
+                      Detalle
+                    <% end %>
+  	                </TD>
+  	              </TR>
+  	            <% end %>
+  	          </TABLE> 
+              <% else %>
+              <span class="text-center">
+                <div class="panel-body">
+                  <h4>No hay publicaciones de Carpool en este momento</h4>
+                </div>
+                <table class="table">
+                </table>
+              </span>
+              <% end %>
+  				  <% end %>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="col-md-6">
+        <h4>Comenta en este Evento</h4>
+        <div  class="panel comment-container" >
+          <div class="comments">
+            <div class="first-comment"></div>
+            <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
+          </div>
+
+        <% if current_user %>
+          <div class="comment-send"> 
+            <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
+        </div>
+        <% end %>
+        </div>
+      </div>
+  </div>
+</div>
+<<<<<<< HEAD
+
+        
+=======
+<script type="text/javascript">
+
+$(".bottom").tooltip({
+    placement: "bottom"
+});
+$("#disponibles").fitText()
+</script>
+>>>>>>> 9565b0197f79c2a40ebb7019601636e367960552

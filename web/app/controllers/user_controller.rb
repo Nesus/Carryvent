@@ -18,6 +18,11 @@ class UserController < ApplicationController
 		gustoUser.each do |gu|
 			@gustos.push(Category.find(gu.category_id).name)
 		end
+
+
+
+
+
 	end
 
 	def edit
@@ -27,6 +32,8 @@ class UserController < ApplicationController
 	def editar
 		@user = User.find(params[:id])
 	end
+
+
 
 	
 end
