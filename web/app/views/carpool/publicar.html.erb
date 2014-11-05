@@ -33,8 +33,7 @@
           </div>
           <div class="field col-md-6">
             <%= f.label "Hora Aproximada de Salida" %><br>
-            <%= f.text_field :hora_desde, :class => "form-control hidden-xs hidden-sm" %>
-            <%= f.time_select :hora_desde, :class =>"form-control visible-xs visible-sm"%>
+            <%= f.text_field :hora_desde, :class => "form-control" %>
           </div>
       </div>
       <div class="row">
@@ -49,10 +48,10 @@
           <%= f.select :tipo_vehiculo, options_for_select([["Sedan","Sedan"], ["Camioneta","Camioneta"], ["Minibus","Minibus"]]),{include_blank: false}, {class: "form-control", onchange: "maxLibres();"}%>
         </div>
         <div class="field col-md-6">
-          <%= f.label "Asientos Disponibles" %>
-          <div class="col-md-1 col-md-offset-2">
+          <%= f.label "Asientos Disponibles" %><br>
+          <div class="text-center">
             <%= f.select :asientos_disp, ((1..3).map {|i| [i,i]}), {}, {style: "width: 60px;", class: "form-control"}  %>
-          </div>
+          </div>    
         </div>
       </div>
          <div class="field">

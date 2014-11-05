@@ -79,11 +79,10 @@ ActiveAdmin.register Evento do
     f.inputs "Datos Evento" do
       f.input :name, :label => "Nombre"
       
-      f.input :picture,:label => "Imagen", :as => :file
+      f.input :image,:label => "Imagen", :as => :file
       
       f.input :information
       f.input :category
-      f.input :organization
     end
 
     f.inputs "Datos de direccion" do
@@ -96,6 +95,21 @@ ActiveAdmin.register Evento do
       f.input :date, :label =>"Fecha"
       f.input :time, :label => "Hora"
     end
+
     f.actions
+  end
+
+
+  controller do
+    def create
+      @evento = Evento.new(evento_params)
+      @evento.publicador = current_publicador
+      create!
+    end
+
+    private
+    def evento_params
+      params.require(:evento).permit(:name, :address, :information, :image, :date, :time, :category_id, :organization_id, :region_id, :city_id)
+    end
   end
 end
