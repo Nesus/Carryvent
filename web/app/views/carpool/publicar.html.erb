@@ -1,3 +1,4 @@
+ <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
 <% title "Publicar Carpool" %>
 
 <div class="container-fluid">
@@ -28,17 +29,18 @@
       <div class="row">
           <div class="field col-md-6">
             <%= f.label "Fecha de Salida" %> <br>
-            <%= f.text_field :fecha %>
+            <%= f.text_field :fecha, :readonly=> "true" %>
           </div>
           <div class="field col-md-6">
             <%= f.label "Hora Aproximada de Salida" %><br>
-            <%= f.text_field :hora_desde %>
+            <%= f.text_field :hora_desde, :class => "form-control hidden-xs hidden-sm" %>
+            <%= f.time_select :hora_desde, :class =>"form-control visible-xs visible-sm"%>
           </div>
       </div>
       <div class="row">
         <div class="field col-md-12">
           <%= f.label "Lugar de Salida" %>
-          <%= f.text_field :desde , :class => "form-control", :placeholder => "ej: Calle, Número, Ciudad, Pais" %>
+          <%= f.text_field :desde , :class => "form-control", :onFocus=> "geolocate()", :placeholder => "ej: Calle, Número, Ciudad, Pais" %>
         </div>
       </div>
       <div class="row">
@@ -99,9 +101,47 @@
   }
   
   $(function() {
-    $( "#publicacion_carpool_fecha" ).datepicker();
+    $("#publicacion_carpool_fecha").datepicker();
   });
-    $(function() {
-    $( "#publicacion_carpool_hora_desde" ).timepicker({ timeFormat: 'H:i', defaultTime: new Date() });
+  $(function() {
+    $("#publicacion_carpool_hora_desde").timepicker({ timeFormat: 'H:i', defaultTime: new Date() });
   });
+
+
+  function optioner(){
+      $("#mini_hora").timepicker('option',{useSelect: true});
+  }
+
+// This example displays an address form, using the autocomplete feature
+// of the Google Places API to help users fill in the information.
+
+var placeSearch, autocomplete;
+
+function initialize() {
+
+  // Create the autocomplete object, restricting the search
+  // to geographical location types.
+  autocomplete = new google.maps.places.Autocomplete(
+      /** @type {HTMLInputElement} */(document.getElementById('publicacion_carpool_desde')),
+      { types: ['geocode'] });
+  // When the user selects an address from the dropdown,
+  // populate the address fields in the form.
+  google.maps.event.addListener(autocomplete);
+}
+
+// Bias the autocomplete object to the user's geographical location,
+// as supplied by the browser's 'navigator.geolocation' object.
+function geolocate() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      var geolocation = new google.maps.LatLng(
+          position.coords.latitude, position.coords.longitude);
+      autocomplete.setBounds(new google.maps.LatLngBounds(geolocation,
+          geolocation));
+    });
+  }
+}
+$(document).ready(function(){
+  initialize();
+});
 </script>
