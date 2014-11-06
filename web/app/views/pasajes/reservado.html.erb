@@ -5,14 +5,11 @@
 		<ol class="breadcrumb">
         	<%= render_breadcrumbs :tag => :li, :separator => "" %>
     	</ol>
-		<div class="row" style="padding:0 0 0 0;">
-			<p><i class="fa fa-thumbs-up" style="color:blue;"></i>Su reserva se ha generado, le llegará un mail a <%= current_user.email %> con la información para completar su compra.</p>
+		<div class="row text-center" style="padding:0 0 0 0;">
+			<h2><i class="fa fa-thumbs-up" style="color:blue;"></i>Su reserva se ha generado, le llegará un mail a <%= current_user.email %> con la información para completar su compra.</h2>
 		</div>
 
 
 	</div>
 
 </div>
-<script type="text/javascript">
- jQuery("p").fitText(2);
-</script>
