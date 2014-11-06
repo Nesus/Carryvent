@@ -26,7 +26,6 @@ class Evento < ActiveRecord::Base
 
 	#Validaciones
 	validates :name, presence: true
-	validates :subtitle, presence: true
 	validates :date , presence: true
 	validates :time , presence: true
 	validates :information, presence: true
