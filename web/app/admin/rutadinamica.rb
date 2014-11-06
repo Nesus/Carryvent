@@ -14,8 +14,6 @@ ActiveAdmin.register_page "Ruta dinámica" do
 
     render partial: 'ruta', locals: {puntos: @puntos, inicio: @inicio, fin: @fin}
 
-
-
   end
 
 end

@@ -23,6 +23,7 @@
 //= require jquery.validate.additional-methods
 //= require jquery.validate.localization/messages_es
 //= require bootstrap
+//= require bootstrap-rating.min
 //= require underscore
 //= require gmaps/google
 

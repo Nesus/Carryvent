@@ -19,6 +19,8 @@ class RankingsController < ApplicationController
 
   # GET /rankings/1/edit
   def edit
+    ranking = Ranking.find(params[:id])
+    @user = User.find(ranking.user_id)
   end
 
   # POST /rankings
@@ -28,7 +30,7 @@ class RankingsController < ApplicationController
 
     respond_to do |format|
       if @ranking.save
-        format.html { redirect_to @ranking, notice: 'Ranking was successfully created.' }
+        format.html { redirect_to @ranking }
         format.json { render :show, status: :created, location: @ranking }
       else
         format.html { render :new }

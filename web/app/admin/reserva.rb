@@ -19,6 +19,9 @@ ActiveAdmin.register Reserva do
 
   
   index do
+    column "Usuario" do |f|
+      f.user_evento.user.nombre
+    end
     column "Evento" do |f|
       link_to f.user_evento.evento.name, admin_evento_path(f.user_evento.evento)
     end

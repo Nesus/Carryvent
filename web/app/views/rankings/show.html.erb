@@ -1,23 +1,31 @@
 
 <div class="container">
-
+<h1 class="page-header">Gracias por responder</h1>
   <div class="col-md-5 col-md-offset-4">
-    <p id="notice"><%= notice %></p>
-    <% if @ranking.assist %>
-    <h1>Gracias por responder</h1>
-    <p>
-      <strong>Valoración:</strong>
-      <%= @ranking.value %>
-    </p>
-
-    <p>
-      <strong>Comentario:</strong>
-      <%= @ranking.comment %>
-    </p>
-
-    <% else %>
-    <h1>Gracias por responder</h1>
-    <% end %>
+    <div class="panel panel-default">
+      <% if @ranking.assist %>
+        <div class="panel-heading">
+          <h2 class="panel-title">Respuestas</h2>
+        </div>
+        <div class="panel-body">
+          <div >
+            <h3>Valoración:</h3>
+            <style type="text/css">
+              .rating-symbol{
+                color:orange;
+              }
+            </style>
+            <input type="hidden" class="rating" readonly= "true" data-start="1" data-stop="6" value="<%= @ranking.value %>"/> 
+          </div>
+          <hr>
+          <div >
+            <h3>Comentario:</h3>
+            <%= @ranking.comment %>
+          </div>
+        </div>
+      <% else %>
+      <h1>Gracias por responder</h1>
+      <% end %>
   </div>
-
+  </div>
 </div>

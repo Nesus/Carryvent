@@ -1,7 +1,9 @@
+
+
 <div class="container">
 
 	<div class="col-md-5 col-md-offset-4">
-		<h1>Evalúa al usuario </h1>
+		<h1>Evalúa a <%= @user.nombre %> </h1>
 
 		<%= render 'form' %>
 	</div>
@@ -13,13 +15,22 @@ function abrirCampos(){
 	var check = $("#ranking_assist").is(':checked');
 
 	if(check){
+		$(".rating-symbol").css("color", "orange");
 		$("#ranking_value").prop('disabled', false);
 		$("#ranking_comment").prop('disabled', false);
-
 	}
 	else{
+		$(".rating-symbol").css("color", "grey");
 		$("#ranking_value").prop('disabled', true);
 		$("#ranking_comment").prop('disabled', true);
+		$("#ranking_value").val(0);
+		$("#cantidad").html($("#ranking_value").val());
+		$("#ranking_comment").val("");
 	}
 }
+
+$('#ranking_value').on('change', function () {
+  $("#cantidad").html($("#ranking_value").val());
+});
+
 </script>
