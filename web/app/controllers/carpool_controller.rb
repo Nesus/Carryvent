@@ -15,7 +15,7 @@ class CarpoolController < ApplicationController
     evento = Evento.find(params[:evento_id])
     add_breadcrumb evento.name, mostrar_evento_path(evento)
     add_breadcrumb "Publicar", :publicar_carpool_path
-
+    
 		@publicacioncarpool = PublicacionCarpool.new
 	end
 

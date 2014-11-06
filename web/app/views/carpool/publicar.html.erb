@@ -1,4 +1,9 @@
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=places"></script>
+<style type="text/css">
+  .error-carpool{
+    color:#FF0000; 
+  }
+</style>
 <% title "Publicar Carpool" %>
 
 <div class="container-fluid">
@@ -64,7 +69,7 @@
         </div>
 
         <div class="actions">
-          <%= f.submit "Crear Publicación carpool", :class => "btn btn-primary btn-block" %>
+          <%= f.submit "Crear Publicación carpool", :class => "btn btn-primary btn-block", :onClick=> "validate()" %>
         </div>
     
     <% end %>
@@ -142,5 +147,24 @@ function geolocate() {
 }
 $(document).ready(function(){
   initialize();
+  $("#new_publicacion_carpool").validate({
+    errorClass: "error-carpool",
+    rules: {
+        "publicacion_carpool[fecha]": {required: true},
+        "publicacion_carpool[hora_desde]": {required: true},
+        "publicacion_carpool[desde]": {required: true},
+        "publicacion_carpool[tipo_vehiculo]": {required: true},
+        "publicacion_carpool[asientos_disp]":{required: true},
+        "publicacion_carpool[celular]": {required: true},
+        "publicacion_carpool[descripcion]": {required: true}
+    }
+  });
 });
+
+function validate(){
+  if(!($("#new_publicacion_carpool").valid())){
+    event.preventDefault();
+  }
+}
+
 </script>

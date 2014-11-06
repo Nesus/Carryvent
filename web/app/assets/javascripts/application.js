@@ -18,9 +18,10 @@
 //= require isotope.pkgd
 //= require fittext
 //= require imagesloaded
-//= require jquery.sticky-kit.min
 //= require jquery.timepicker
-
+//= require jquery.validate
+//= require jquery.validate.additional-methods
+//= require jquery.validate.localization/messages_es
 //= require bootstrap
 //= require underscore
 //= require gmaps/google

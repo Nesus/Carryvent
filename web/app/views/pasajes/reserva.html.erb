@@ -110,9 +110,22 @@
 		<% if @reservado %>
 			<p>Usted ya realizó una reserva</p>
 		<% else %>
-			<%= f.submit "Enviar Reserva", class: "btn btn-primary"%>
+			<button type="submit" class="btn btn-primary" onClick= "load();" id="enviar">
+                Enviar Reserva
+            </button>
 		<% end %>
 	</div>
 
 </div> <!-- end container -->
 <% end %>
+
+<script type="text/javascript">
+	function load(){
+		send = $("#enviar")
+		send.attr('disabled','disabled');
+		send.html('Enviando <i class="fa fa-spinner fa-spin"></i>');
+		$('form#new_reserva').submit();
+		
+	}
+
+</script>
