@@ -10,7 +10,7 @@
 			<option value="*">Mostrar Todos</option>
 			<% @categorias.each do |categorias| %>
 				<% categorias.each do |categoria| %>
-					<option value=".<%=categoria.name %>" > <%=categoria.name%> </option>
+					<option value=".<%=categoria.name.gsub(" ", "-") %>" > <%=categoria.name%> </option>
 				<% end %>
 			<% end %>
 		</select>
@@ -21,19 +21,19 @@
 		<div class="btn-group" id="filters1">
 			<button type="button" class="button btn btn-default"  data-filter="*"> Mostrar Todos</button>
 			<% categorias.each do |categoria| %>
-				<button type="button" class="button btn btn-default"  data-filter=".<%=categoria.name %>"><%=categoria.name%></button>
+				<button type="button" class="button btn btn-default"  data-filter=".<%=categoria.name.gsub(" ", "-") %>"><%=categoria.name%></button>
 			<% end %>
 		</div>
 		<% categorias = @categorias[1]%>
 		<div class="btn-group" id="filters2">
 			<% categorias.each do |categoria| %>
-				<button type="button" class="button btn btn-default" data-filter=".<%=categoria.name %>"><%=categoria.name%></button>
+				<button type="button" class="button btn btn-default" data-filter=".<%=categoria.name.gsub(" ", "-") %>"><%=categoria.name%></button>
 			<% end %>
 		</div>
 	</div>
 	<div class="isotope row" id="posts">
 		<% @eventos.each do |evento| %>
-			<div class="item <%=evento.category.name%>  col-md-3 col-xs-6">
+			<div class="item <%=evento.category.name.gsub(" ", "-")%>  col-md-3 col-xs-6">
 
 					<div class="thumbnail text-center">
 						<%= link_to mostrar_evento_path(evento), 'data-no-turbolink' => true  do %>
