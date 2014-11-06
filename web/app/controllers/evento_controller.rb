@@ -1,6 +1,6 @@
 class EventoController < ApplicationController
 
-	before_filter :authenticate_user!, :except => [:eventos, :show, :list_eventos]  
+	before_filter :authenticate_user!, :except => [:eventos, :show, :list_eventos, :ruta_evento]  
 	add_breadcrumb "Inicio", :root_path
 	############################
 	#			USER           #
@@ -58,7 +58,7 @@ class EventoController < ApplicationController
 	#########################
 
 	def list_eventos
-		Evento.where("date > CURRENT_TIMESTAMP AND strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
+		eventos = Evento.where("date > CURRENT_TIMESTAMP AND strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
 		json = {}
 		json[:eventos] = []
 		eventos.each do |evento|
