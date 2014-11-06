@@ -46,6 +46,7 @@ class User < ActiveRecord::Base
   belongs_to :city
   belongs_to :region
 
+
   def ranking
     sum = self.rankings.sum(:value,  :conditions => {:assist => true})
     if sum

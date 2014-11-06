@@ -12,12 +12,17 @@ class UserController < ApplicationController
 
 	def perfil
 		@user = User.find(params[:id])
-		@userEventos = @user.user_eventos
+		
+		@userEventosAceptados = @user.reservas.aceptado
+		@userCarpools = @user.publicacion_carpools
+		#u.reservas.aceptado.first.user_evento.evento.name
 		gustoUser = Gusto.where(user_id: @user.id)
 		@gustos = []
 		gustoUser.each do |gu|
 			@gustos.push(Category.find(gu.category_id).name)
 		end
+
+
 
 
 
