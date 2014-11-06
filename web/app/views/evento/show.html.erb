@@ -68,12 +68,12 @@
       <div class="col-md-6">
         <div class="row" style="padding:0 0 0 0;">
           <h4 class="pull-left">Ofertas Carpool</h4>  
-          <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-primary btn-sm pull-right' ,:style=>"margin-right:20px;"%>
+          <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-primary btn-sm pull-right' ,:style=>"margin-right:20px;", 'data-no-turbolink' => true %>
         </div>
         <div class="row" style="padding:0 0 0 0;">
           <div class="publicacion-container panel">
-          	<% if !@publicacionCarpools.nil? %>
-  	          <TABLE class="table">
+              <% if @publicacionCarpools.count > 0 %>
+                <TABLE class="table">
                 <tr>
                   <th><i class="fa fa-user"></i> Publicador</th>
                   <th>
@@ -91,7 +91,6 @@
                   </th>
 
                 </tr>
-                <% if @publicacionCarpools.count > 0 %>
                 <% @publicacionCarpools.each do |pub| %>
   	              <TR class="text-center">
   	                <TD>
@@ -132,7 +131,6 @@
                 </table>
               </span>
               <% end %>
-  				  <% end %>
           </div>
         </div>
       </div>

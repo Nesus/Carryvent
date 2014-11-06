@@ -1,6 +1,6 @@
 class EventoController < ApplicationController
 
-	before_filter :authenticate_publicador!, :except => [:eventos, :show, :reservar_pasaje, :list_eventos]  
+	before_filter :authenticate_user!, :except => [:eventos, :show, :list_eventos]  
 	add_breadcrumb "Inicio", :root_path
 	############################
 	#			USER           #
@@ -10,8 +10,8 @@ class EventoController < ApplicationController
 	def eventos
 		add_breadcrumb "Eventos", :lista_eventos_user_path
 
-		#@eventos = Evento.where("date > ? OR date = ?", Date.current, Date.current).order('date ASC')
-  		@eventos = Evento.all
+		@eventos = Evento.where("date > ? OR date = ?", Date.current, Date.current).order('date ASC')
+  		#@eventos = Evento.all
   		@categorias = Category.all
   		cantidad =@categorias.length .to_i/2
   		cantidad = cantidad.ceil
@@ -73,52 +73,6 @@ class EventoController < ApplicationController
 		end
 		render :json => json.to_json
 	end
-
-	#########################
-	# 		Publicador 		#
-	#########################
-
-  	#Mostrarle los eventos al publicador
-  	def eventos_publicador
-		@eventos = Evento.all
-	end
-
-	#Formulario creacion de eventos
-	def publicar
-		@evento = Evento.new
-		@ciudades = City.all
-		@regiones = Region.all
-		@organizations = Organization.all
-	end
-
-	#Se crea el nuevo evento
-	def new
-		@publicador = Publicador.find(current_publicador.id)
-		@evento = @publicador.eventos.create(evento_params)
-		if @evento.save
-			redirect_to lista_eventos_publicador_path
-		else
-			render 'publicar'
-		end
-
-	end
-
-	
-
-	def editar
-		@evento = Evento.find(params[:id])
-	end
-
-	def update
-		evento = Evento.find(params[:id])
-		evento.update(evento_params)
-		if evento.update(evento_params)
-			redirect_to lista_eventos_publicador_path
-		else
-			render 'editar'
-		end
-	end
-
 
 	#Tomamos solamente los parametros de evento que necesitamos
 	private
