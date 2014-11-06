@@ -72,7 +72,7 @@ public class ListaPasajeros extends Activity {
 		cabeceraNombre.setText("Nombre Usuario");
 		cabeceraNumAsiento = new TextView(this);
 		cabeceraNumAsiento.setGravity(Gravity.CENTER_HORIZONTAL);
-		cabeceraNumAsiento.setText("Nï¿½ Asiento");
+		cabeceraNumAsiento.setText("N° Asiento");
 		cabeceraEstadoPasaje = new TextView(this);
 		cabeceraEstadoPasaje.setGravity(Gravity.CENTER_HORIZONTAL);
 		cabeceraEstadoPasaje.setText("Estado");

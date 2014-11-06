@@ -1,76 +1,150 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="@drawable/background" >
 
-    <TextView
-        android:id="@+id/textoListaPasajeros"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/listaPasajeros" />
-
-    <Button
-        android:id="@+id/leerCodigo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textoListaPasajeros"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="54dp"
-        android:onClick="leerCodigo"
-        android:text="@string/leerCodigo" />
-
-    <ScrollView
-        android:id="@+id/scrollView1"
+    <LinearLayout
+        android:id="@+id/cabecera"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/leerCodigo" >
+	    android:layout_height="wrap_content"
+	    android:layout_marginTop="20dp"
+	    android:layout_gravity="center_horizontal"
+	    android:gravity="center"
+	    android:baselineAligned="false"
+	    android:weightSum="10"
+	    android:orientation="horizontal">
+	    
+	    <LinearLayout 
+	        android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:gravity="left"
+		    android:layout_weight="8"
+		    android:orientation="vertical">
 
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center" >
+		    <TextView
+		        android:id="@+id/textoListaPasajeros"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="@string/listaPasajeros" />
+		</LinearLayout>
+	</LinearLayout>
 
-            <TableLayout
-                android:id="@+id/tablaPasajes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="10dp" >
+    <LinearLayout
+        android:id="@+id/opciones"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/cabecera"
+	    android:layout_gravity="center_horizontal"
+	    android:gravity="center"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginBottom="5dp"
+	    android:baselineAligned="false"
+	    android:weightSum="10"
+	    android:orientation="horizontal">	
+		
+	    <LinearLayout 
+	        android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:gravity="center"
+		    android:layout_weight="8"
+		    android:orientation="vertical">
+		    
+		    <RadioGroup
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="horizontal"
+		        android:weightSum="2" >
+		
+		        <RadioButton
+		            android:id="@+id/ida"
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:checked="true"
+		            android:onClick="idaORegreso"
+		            android:text="@string/ida" />
 
-                <TableRow
-                    android:id="@+id/encabezados"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" >
-                </TableRow>
-            </TableLayout>
-        </HorizontalScrollView>
-    </ScrollView>
+		        <RadioButton
+		            android:id="@+id/regreso"
+		            android:layout_width="0dp"
+		            android:layout_height="wrap_content"
+		            android:layout_weight="1"
+		            android:onClick="idaORegreso"
+		            android:text="@string/regreso" />
 
-    <RadioGroup
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/textoListaPasajeros"
-        android:orientation="horizontal" >
-
-        <RadioButton
-            android:id="@+id/ida"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="60dp"
-            android:layout_marginTop="10dp"
-            android:checked="true"
-            android:onClick="idaORegreso"
-            android:text="@string/ida" />
-
-        <RadioButton
-            android:id="@+id/regreso"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="50dp"
-            android:onClick="idaORegreso"
-            android:text="@string/regreso" />
-
-    </RadioGroup>
+		    </RadioGroup>
+		</LinearLayout>
+	</LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/boton"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/opciones"
+	    android:layout_gravity="center_horizontal"
+	    android:gravity="center"
+	    android:layout_marginTop="5dp"
+	    android:layout_marginBottom="5dp"
+	    android:baselineAligned="false"
+	    android:weightSum="10"
+	    android:orientation="horizontal">	
+		
+	    <LinearLayout 
+	        android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center_horizontal"
+		    android:gravity="center"
+		    android:layout_weight="8"
+		    android:orientation="vertical">    
+		    
+		    <Button
+		        android:id="@+id/leerCodigo"
+		        android:background="@drawable/button"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:onClick="leerCodigo"
+		        android:textColor="#fff"
+			    android:textSize="25sp"
+		        android:text="@string/leerCodigo" />
+		</LinearLayout>
+	</LinearLayout>
+	
+    <LinearLayout
+        android:id="@+id/informacion"
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/boton"
+	    android:layout_gravity="center_horizontal"
+	    android:gravity="center"
+	    android:baselineAligned="false"
+	    android:weightSum="10"
+	    android:orientation="horizontal">
+    
+	    <ScrollView
+	        android:id="@+id/scrollView1"
+	        android:layout_width="0dp"
+	        android:layout_height="match_parent"
+	        android:layout_weight="8"
+	        android:layout_marginBottom="20dp" >
+	
+	        <HorizontalScrollView
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:gravity="center" >
+	
+	            <TableLayout
+	                android:id="@+id/tablaPasajes"
+	                android:layout_width="wrap_content"
+	                android:layout_height="wrap_content"
+	                android:layout_marginLeft="20dp"
+	                android:layout_marginTop="10dp" >
+	
+	            </TableLayout>
+	        </HorizontalScrollView>
+	    </ScrollView>
+	</LinearLayout>    
 
 </RelativeLayout>

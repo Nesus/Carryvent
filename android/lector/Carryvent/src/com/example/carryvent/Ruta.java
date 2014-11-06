@@ -12,15 +12,20 @@ import java.util.List;
  
 import org.json.JSONObject;
  
+import android.content.Context;
 import android.graphics.Color;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.util.Log;
 import android.view.Menu;
+import android.widget.Toast;
  
+import com.google.android.gms.maps.CameraUpdate;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.GoogleMap.OnMapClickListener;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
@@ -35,36 +40,45 @@ public class Ruta extends FragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.ruta);
         
-        // Initializing
-        final List<double[]> puntos = databaseRuta.seleccionarTodo();
-        final LatLng inicio;
-		final LatLng fin;
+        ConnectivityManager administradorConexion = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo informacionConexion = administradorConexion.getActiveNetworkInfo();
+        if (informacionConexion != null){
+        	map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
+            if(map!=null){
+            	// Initializing
+                final List<double[]> puntos = databaseRuta.seleccionarTodo();
+                if(puntos.size()>1){
+                	final LatLng inicio;
+            		final LatLng fin;
+                    inicio = new LatLng(puntos.get(0)[0],puntos.get(0)[1]);
+                    fin = new LatLng(puntos.get(1)[0],puntos.get(1)[1]);
+                    
+                	CameraUpdate centrar = CameraUpdateFactory.newLatLng(new LatLng(puntos.get(0)[0],puntos.get(0)[1]));
+                	CameraUpdate zoom =CameraUpdateFactory.zoomTo(15);
+                	map.moveCamera(centrar);
+                    map.animateCamera(zoom);
+                    map.setMyLocationEnabled(true);
+                    MarkerOptions marcaInicio = new MarkerOptions();
+                    marcaInicio.position(inicio);
+                    marcaInicio.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
+                    map.addMarker(marcaInicio);
+                    MarkerOptions marcaFin = new MarkerOptions();
+                    marcaFin.position(fin);
+                    marcaFin.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED));
+                    map.addMarker(marcaFin);
 
-        inicio = new LatLng(puntos.get(0)[0],puntos.get(0)[1]);
-        fin = new LatLng(puntos.get(1)[0],puntos.get(1)[1]);
-        
-        
-        // Getting Map for the SupportMapFragment
-        map = ((MapFragment) getFragmentManager().findFragmentById(R.id.map)).getMap();
-        if(map!=null){
- 
-            // Enable MyLocation Button in the Map
-            map.setMyLocationEnabled(true);
-            MarkerOptions marcaInicio = new MarkerOptions();
-            marcaInicio.position(inicio);
-            marcaInicio.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-            map.addMarker(marcaInicio);
-            MarkerOptions marcaFin = new MarkerOptions();
-            marcaFin.position(fin);
-            marcaFin.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN));
-            map.addMarker(marcaFin);
+                    String url = getDirectionsUrl(puntos);
 
-            String url = getDirectionsUrl(puntos);
+                    DownloadTask downloadTask = new DownloadTask();
 
-            DownloadTask downloadTask = new DownloadTask();
-
-            // Start downloading json data from Google Directions API
-            downloadTask.execute(url);
+                    // Start downloading json data from Google Directions API
+                    downloadTask.execute(url);
+                }
+            }
+        }
+        else{
+        	Context context = getApplicationContext();
+			Toast.makeText(context, "No hay conexión a Internet para generar la ruta", Toast.LENGTH_SHORT).show();
         }
     }
  
@@ -80,8 +94,18 @@ public class Ruta extends FragmentActivity {
         String str_waypoints = "";
         if (puntos.size()>2){
         	str_waypoints = "waypoints="+puntos.get(2)[0]+","+puntos.get(2)[1];
+        	MarkerOptions marcaIntermedia = new MarkerOptions();
+        	LatLng posicion = new LatLng(puntos.get(2)[0],puntos.get(2)[1]);
+            marcaIntermedia.position(posicion);
+            marcaIntermedia.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+            map.addMarker(marcaIntermedia);
         	for (int i=3; i<puntos.size();i++){
             	str_waypoints += "|"+puntos.get(i)[0]+","+puntos.get(i)[1];
+            	marcaIntermedia = new MarkerOptions();
+            	posicion = new LatLng(puntos.get(i)[0],puntos.get(i)[1]);
+                marcaIntermedia.position(posicion);
+                marcaIntermedia.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_YELLOW));
+                map.addMarker(marcaIntermedia);
             }
         }
  
@@ -216,8 +240,8 @@ public class Ruta extends FragmentActivity {
  
                 // Adding all the points in the route to LineOptions
                 lineOptions.addAll(points);
-                lineOptions.width(2);
-                lineOptions.color(Color.RED);
+                lineOptions.width(3);
+                lineOptions.color(Color.BLUE);
             }
  
             // Drawing polyline in the Google Map for the i-th route

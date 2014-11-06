@@ -1,7 +1,5 @@
 package com.example.carryvent;
 
-
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +21,7 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,6 +36,7 @@ public class ListaEventos extends Activity {
 	List<String> nombreEventos = new ArrayList<String>();
 	DataBasePasajes databasePasajes = new DataBasePasajes(this);
 	DataBaseRuta databaseRuta = new DataBaseRuta(this);
+	LinearLayout informacion;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -51,15 +51,16 @@ public class ListaEventos extends Activity {
 		imagen = (ImageView)findViewById(R.id.imagenEvento);
 		obtenerLista = (Button)findViewById(R.id.obtenerLista);
 		obtenerRuta = (Button)findViewById(R.id.obtenerRuta);
+		informacion = (LinearLayout)findViewById(R.id.informacion);
 		
-		nombreEventos.add("- Seleccione un evento -");
+		nombreEventos.add("- Lista de Eventos -");
 		new JSONParseEventos().execute("http://192.168.0.2:3000/operario/list_eventos");
-		//new JSONParseEventos().execute("http://10.10.9.179:3000/operario/list_eventos");
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 			android.R.layout.simple_spinner_item, nombreEventos);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		listaEventos.setAdapter(adapter);
 		listaEventos.setOnItemSelectedListener(new CustomOnItemSelectedListener());
+		informacion.setVisibility(View.INVISIBLE);
 		obtenerLista.setVisibility(View.INVISIBLE);
 		obtenerRuta.setVisibility(View.INVISIBLE);
 	}
@@ -79,7 +80,6 @@ public class ListaEventos extends Activity {
 		Context context = getApplicationContext();
 		databasePasajes.dropPasajes();
 		new JSONParsePasajes().execute("http://192.168.0.2:3000/operario/list_pasajes/"+informacionEventos.get(listaEventos.getSelectedItem().toString())[0]);
-		//new JSONParsePasajes().execute("http://10.10.9.179:3000/operario/list_pasajes/"+informacionEventos.get(listaEventos.getSelectedItem().toString())[0]);
 		Toast.makeText(context, "Datos cargados", Toast.LENGTH_SHORT).show();
 	}
 	
@@ -90,7 +90,7 @@ public class ListaEventos extends Activity {
 		Toast.makeText(context, "Ruta cargada", Toast.LENGTH_SHORT).show();
 	}
 	
-	// Clase para realizar la conexiÃ³n y obtener el Json de eventos
+	// Clase para realizar la conexión y obtener el Json de eventos
 	public class JSONParseEventos extends AsyncTask<String, String, JSONObject> {
 		
 		protected void onPreExecute() {
@@ -117,12 +117,16 @@ public class ListaEventos extends Activity {
 					nombreEventos.add(c.getString("name"));			
 				}
 			} catch (JSONException e) {
-				e.printStackTrace();
+				Context context = getApplicationContext();
+				Toast.makeText(context, "No se ha podido cargar la lista de Eventos", Toast.LENGTH_SHORT).show();
+			} catch (NullPointerException e){
+				Context context = getApplicationContext();
+				Toast.makeText(context, "No se ha podido cargar la lista de Eventos", Toast.LENGTH_SHORT).show();
 			}
 		}
 	}
 	
-	// Clase para realizar la conexiÃ³n y obtener el Json de pasajes
+	// Clase para realizar la conexión y obtener el Json de pasajes
 	public class JSONParsePasajes extends AsyncTask<String, String, JSONObject> {
 		
 		protected void onPreExecute() {
@@ -192,12 +196,13 @@ public class ListaEventos extends Activity {
 	public class CustomOnItemSelectedListener implements OnItemSelectedListener {
 		 
 		public void onItemSelected(AdapterView<?> parent, View view, int pos,long id) {
-			if (parent.getItemAtPosition(pos).toString().compareTo("- Seleccione un evento -") == 0){
+			if (parent.getItemAtPosition(pos).toString().compareTo("- Lista de Eventos -") == 0){
 				nombre.setText("");
 				lugar.setText("");
 				fecha.setText("");
 				hora.setText("");
 				imagen.setImageBitmap(null);
+				informacion.setVisibility(View.INVISIBLE);
 				obtenerLista.setVisibility(View.INVISIBLE);
 				obtenerRuta.setVisibility(View.INVISIBLE);
 			}
@@ -207,7 +212,7 @@ public class ListaEventos extends Activity {
 				fecha.setText("Fecha: " + informacionEventos.get(parent.getItemAtPosition(pos).toString())[3]);
 				hora.setText("Hora: " + informacionEventos.get(parent.getItemAtPosition(pos).toString())[4]);
 				new ImageGet().execute("http://192.168.0.2:3000" + informacionEventos.get(parent.getItemAtPosition(pos).toString())[5]);
-				//new ImageGet().execute("http://10.10.9.179:3000" + informacionEventos.get(parent.getItemAtPosition(pos).toString())[5]);
+				informacion.setVisibility(View.VISIBLE);
 				obtenerLista.setVisibility(View.VISIBLE);
 				obtenerRuta.setVisibility(View.VISIBLE);
 			}
