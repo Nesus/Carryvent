@@ -20,7 +20,9 @@
             </div>
             <div class="col-md-10 col-xs-8">
               <p><b>Nombre Usuario: </b><%= @userPub.nombre %> </p>
-              <p><b>Ciudad: </b><%= @userPub.ciudad_region %></p>
+              <% if @userPub.city %>
+                <p><b>Ciudad: </b><%= @userPub.ciudad_region %></p>
+              <% end %>
               <p><b>Correo: </b><%= @userPub.email %> </p>
 
                 <% if @transUser and @transUser.aceptado %>
@@ -68,7 +70,7 @@
                   <div class="col-md-8 col-md-offset-2">
                       <h4>Únete al Carpool!</h4>
                       <div>
-                        <p><b>Lugar: </b> <%= @carpool.desde %></p>
+                        <p><b>Lugar de Salida: </b> <%= @carpool.desde %></p>
                         <p><b>Hora: </b> <%= @carpool.hora_desde.strftime("%H:%M") %></p>
                         <p><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></p>
                         <p><b>Descripción: <%= @carpool.descripcion %></b> </p>

@@ -37,6 +37,26 @@
                     <span class="glyphicon glyphicon-star" id="estrellaGris"></span>
                   <% end %>
                 </div></p>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-<%= @user.id %>">Comentarios</button>
+                        <div class="modal fade" id="myModal-<%= @user.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">Comentarios</h4>
+                              </div>
+                              <div class="modal-body">
+                                <%@user.rankings.each do |ranking|%>
+                                  <b><%= ranking.comment %></b> <small><%= ranking.updated_at %></small>
+                                  <hr>
+                                <% end %>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
               <% end %>
               <% if @user == current_user %>
 						    <a href="<%=edit_user_registration_path(@user)%>" class="btn btn-primary" style="float:right;">
@@ -75,27 +95,28 @@
                   <td><%= ea.user_evento.evento.name %></td>
                   <td><%= ea.user_evento.evento.date %></td>
                   <td>
-
-                    <% ea.pasajes.each do |p| %>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-<%= p.id %>">n° <%= p.asiento %></button>
-                      <div class="modal fade" id="myModal-<%= p.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                        <div class="modal-dialog">
-                          <div class="modal-content">
-                            <div class="modal-header">
-                              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-                              <h4 class="modal-title" id="myModalLabel">QR Asiento n° <%= p.asiento %></h4>
-                            </div>
-                            <div class="modal-body">
-                              <% qr = RQRCode::QRCode.new( p.codigo, :size => 4, :level => :h ) %>
-                              <% @png = qr.to_img.resize(300,300).to_data_url %>
-                              <center><%= image_tag @png %></center>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <% if current_user.present? && current_user == ea.user_evento.user %>
+                      <% ea.pasajes.each do |p| %>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal-<%= p.id %>">n° <%= p.asiento %></button>
+                        <div class="modal fade" id="myModal-<%= p.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                          <div class="modal-dialog">
+                            <div class="modal-content">
+                              <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                                <h4 class="modal-title" id="myModalLabel">QR Asiento n° <%= p.asiento %></h4>
+                              </div>
+                              <div class="modal-body">
+                                <% qr = RQRCode::QRCode.new( p.codigo, :size => 4, :level => :h ) %>
+                                <% @png = qr.to_img.resize(300,300).to_data_url %>
+                                <center><%= image_tag @png %></center>
+                              </div>
+                              <div class="modal-footer">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
+                      <% end %>
                     <% end %>
                   </td>
                 </tr>
@@ -121,7 +142,12 @@
                     <td><%= c.evento.name %></td>
                     <td><%= c.fecha %></td>
                     <td><%= c.tipo_vehiculo %></td>
-                    <td><%= link_to "Ver los detalles", mostrar_carpool_path(c.evento.id, c.id) %></td>
+                    <% if current_user %>
+                      <td><%= link_to "Ver los detalles", mostrar_carpool_path(c.evento.id, c.id) %></td>
+                    <% else %>
+                      <td>Ver los detalles</td>
+                    <% end %>
+
                   </tr>
                 <% end %>
               </tbody>
