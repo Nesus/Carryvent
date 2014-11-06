@@ -104,7 +104,9 @@
                       <%= link_to pub.user_evento.user.nombre, perfil_user_path(pub.user_evento.user) %>
   	                </TD>
   	                <TD>
-  	                  <%= pub.user_evento.user.city.name%>
+                      <% if pub.user_evento.user.city %>
+  	                   <%= pub.user_evento.user.city.name%>
+                      <% end %>
   	                </TD>
                     <td>
                       <b><%= pub.asientos_libres %> Asientos</b>

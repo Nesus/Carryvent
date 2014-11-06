@@ -103,15 +103,20 @@ class User < ActiveRecord::Base
         access_token = auth.credentials.token
         uid = auth.uid
         location = get_facebook_location(uid, access_token)[0]
-        city = location["current_location"]["city"]
-        region = location["current_location"]["state"]
-        ciudad = City.where(:name => city).first
-        if ciudad
-          region = ciudad.region
-        end
-        if ciudad and region
-          user.city_id = ciudad.id
-          user.region_id = region.id
+        begin
+          city = location["current_location"]["city"]
+          region = location["current_location"]["state"]
+          ciudad = City.where(:name => city).first
+          if ciudad
+            region = ciudad.region
+          end
+          if ciudad and region
+            user.city_id = ciudad.id
+            user.region_id = region.id
+          end
+        rescue
+          #Aca deberiamos pedir completar el formulario
+          print "Error"
         end
         user.facebook_password = true
         user.remote_foto_url = auth.info.image.sub("_normal", "").sub("http://","https://") + "?type=large"

@@ -24,7 +24,8 @@
               <p><b>Correo: </b><%= @userPub.email %> </p>
 
                 <% if @transUser and @transUser.aceptado %>
-                <p style="color:red;"><b>Celular: <%= @carpool.celular %> </b> </p>
+                <strong>¡Contacta al publicador!</strong>
+                <p style="color:red;"><b>Celular de contacto: <%= @carpool.celular %> </b> </p>
               <% end %>
             </div>
           </div>
@@ -71,6 +72,7 @@
                         <p><b>Hora: </b> <%= @carpool.hora_desde.strftime("%H:%M") %></p>
                         <p><b>Asientos disponibles:</b> <span class="badge"><%= @asientosDisp %></span></p>
                         <p><b>Descripción: <%= @carpool.descripcion %></b> </p>
+                        <!--
                         <div class="asientos-container col-xs-offset-1">
                           <p>
                             <%= image_tag "asientoSinSeleccionar.png", id:"asiento1", onClick:"seleccionar(1)", value:"1"%>
@@ -88,6 +90,7 @@
                             <%= image_tag "asientoSinSeleccionar.png", id:"asiento9", onClick:"seleccionar(9)", value:"9"%>
                           </p>
                         </div>
+                        -->
                       </div> 
                   </div>
                 </div>
@@ -109,7 +112,7 @@
                     
                      <%= form_for @transaccion , url: crear_transaccion_carpool_path do |f| %>
                         <%= f.label :asientos %>
-                        <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }) %> <br>
+                        <%= f.select :asientos, ((1..@asientosDisp).map {|i| [i,i] }), :class=>"form-control" %> <br>
                         <%= f.submit "Realizar petición", :class =>"btn btn-primary"%>
                     <%end%>
                     </div>
@@ -142,7 +145,9 @@
                       <%= link_to peticion.user.nombre[0..20]+"..", perfil_user_path(peticion.user) %>
                     </td>
                     <td>
-                      <%= peticion.user.city.name %>
+                      <% if peticion.user.city %>
+                        <%= peticion.user.city.name %>
+                      <% end %>
                     </td>
                     <td>
                       <%= peticion.asientos%>
