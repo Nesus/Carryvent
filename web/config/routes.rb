@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   get '/eventos' => 'evento#eventos', as: :lista_eventos_user
   get '/evento/:id' => 'evento#show', as: :mostrar_evento
   get '/operario/list_eventos' => "evento#list_eventos", as: :list_eventos
+  get '/operario/ruta_evento/:id' => "evento#ruta_evento", as: :ruta_evento
 
   #Pasajes
   get '/evento/:id/reserva' => "pasajes#reserva", as: :reserva_pasaje

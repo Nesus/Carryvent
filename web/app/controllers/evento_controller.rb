@@ -58,7 +58,7 @@ class EventoController < ApplicationController
 	#########################
 
 	def list_eventos
-		eventos=Evento.all
+		eventos = Evento.all
 		#eventos = Evento.where("date > CURRENT_TIMESTAMP AND strftime('%m',date) = strftime('%m',CURRENT_TIMESTAMP)")
 		json = {}
 		json[:eventos] = []
@@ -74,6 +74,77 @@ class EventoController < ApplicationController
 		end
 		render :json => json.to_json
 	end
+
+	def ruta_evento
+		evento = Evento.find(params[:id])
+		bus = Bus.where(evento_id: params[:id])[0]
+		puntos = []
+		lugares = []
+		usuarioEvento = UserEvento.where(evento_id: params[:id])
+		usuarioEvento.each do |ue|
+			reserva = Reserva.where("user_evento_id = " + ue.id.to_s + " AND state = 1")
+			reserva.each do |r|
+				if !lugares.include? r.point[:desc]
+					lugares.push(r.point[:desc])
+					puntos.push([r.point[:lat], r.point[:long]])
+				end
+			end
+		end
+		json = {}
+		json[:ruta] = []
+		hash = {}
+		hash[:inicio] = [evento.latitude, evento.longitude]
+		hash[:fin] = [bus.latitude, bus.longitude]
+		hash[:waypoints] = puntos
+		json[:ruta].push(hash)
+		render :json => json.to_json
+	end
+
+	#########################
+	# 		Publicador 		#
+	#########################
+
+  	#Mostrarle los eventos al publicador
+  	def eventos_publicador
+		@eventos = Evento.all
+	end
+
+	#Formulario creacion de eventos
+	def publicar
+		@evento = Evento.new
+		@ciudades = City.all
+		@regiones = Region.all
+		@organizations = Organization.all
+	end
+
+	#Se crea el nuevo evento
+	def new
+		@publicador = Publicador.find(current_publicador.id)
+		@evento = @publicador.eventos.create(evento_params)
+		if @evento.save
+			redirect_to lista_eventos_publicador_path
+		else
+			render 'publicar'
+		end
+
+	end
+
+	
+
+	def editar
+		@evento = Evento.find(params[:id])
+	end
+
+	def update
+		evento = Evento.find(params[:id])
+		evento.update(evento_params)
+		if evento.update(evento_params)
+			redirect_to lista_eventos_publicador_path
+		else
+			render 'editar'
+		end
+	end
+
 
 	#Tomamos solamente los parametros de evento que necesitamos
 	private
