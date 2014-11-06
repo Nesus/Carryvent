@@ -6,42 +6,64 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/background"
     tools:context=".Carryvent" >
 
-<RelativeLayout
-	    android:layout_width="match_parent"
-	    android:layout_height="418dp" >
-
-	    <Button
-	        android:id="@+id/botonEventos"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentTop="true"
-	        android:layout_centerHorizontal="true"
-	        android:layout_marginTop="100dp"
-	        android:onClick="listaEventos"
-	        android:text="@string/listaEventos" />
-
-	    <Button
-	        android:id="@+id/botonPasajeros"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/botonEventos"
-	        android:layout_centerHorizontal="true"
-	        android:layout_marginTop="16dp"
-	        android:onClick="listaPasajeros"
-	        android:text="@string/listaPasajeros" />
+	<LinearLayout
+        android:layout_width="match_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_gravity="center"
+	    android:gravity="center"
+	    android:baselineAligned="false"
+	    android:weightSum="10"
+	    android:orientation="horizontal">
 	    
-	    <Button
-	        android:id="@+id/botonRuta"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_below="@+id/botonPasajeros"
-	        android:layout_centerHorizontal="true"
-	        android:layout_marginTop="16dp"
-	        android:onClick="mostrarRuta"
-	        android:text="@string/mostrarRuta" />
-	    
-	</RelativeLayout>
+	    <LinearLayout 
+	        android:layout_width="0dp"
+		    android:layout_height="wrap_content"
+		    android:layout_gravity="center"
+		    android:gravity="center"
+		    android:layout_weight="7"
+		    android:orientation="vertical">
+		    
+	        <Button
+	            android:id="@+id/botonEventos"
+	            android:background="@drawable/button"
+	            android:layout_width="match_parent"
+	            android:layout_height="65dp"
+	            android:layout_marginTop="2dp"
+	            android:layout_marginBottom="2dp"
+	            android:onClick="listaEventos"
+	            android:text="@string/listaEventos"
+	            android:textColor="#fff"
+	            android:textSize="25sp" />
+		
+		    <Button
+		        android:id="@+id/botonPasajeros"
+		        android:background="@drawable/button"
+		        android:layout_width="match_parent"
+		        android:layout_height="65dp"
+		        android:layout_marginTop="2dp"
+	            android:layout_marginBottom="2dp"
+		        android:onClick="listaPasajeros"
+		        android:textSize="25sp"
+		        android:textColor="#fff"
+		        android:text="@string/listaPasajeros" />
+	
+		    <Button
+		        android:id="@+id/botonRuta"
+		        android:background="@drawable/button"
+		        android:layout_width="match_parent"
+		        android:layout_height="65dp"
+		        android:layout_marginTop="2dp"
+	            android:layout_marginBottom="2dp"
+		        android:onClick="mostrarRuta"
+		        android:textSize="25sp"
+		        android:textColor="#fff"
+		        android:text="@string/mostrarRuta" />
+	        
+	    </LinearLayout>
+ 
+   	</LinearLayout>
 
 </ScrollView>
