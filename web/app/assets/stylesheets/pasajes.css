@@ -1,0 +1,23 @@
+.busHead{
+	background-image: url("/assets/bus1.png");
+	text-align: "center";
+	width: 173px;
+	height: 60px;
+	background-repeat: no-repeat;
+}
+
+.busBody{
+	background-image: url("/assets/bus2.png");
+	display: block;
+	width: 173px;
+	padding-left: 20px;
+	background-repeat: repeat-y;
+}
+
+.busFoot{
+	background-image: url("/assets/bus3.png");
+	text-align: "center";
+	height: 60px;
+	width: 173px;
+	background-repeat: no-repeat;
+}

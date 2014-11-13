@@ -68,8 +68,14 @@
 
       <div class="col-md-6">
         <div class="row" style="padding:0 0 0 0;">
-          <h4 class="pull-left">Ofertas Carpool</h4>  
+          <h4 class="pull-left">Ofertas Carpool</h4>
+          <% if current_user.present? %>  
           <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-primary btn-sm pull-right' ,:style=>"margin-right:20px;", 'data-no-turbolink' => true %>
+          
+          <% else %>
+          <%= link_to "Publicar Carpool", publicar_carpool_path(@evento) , :class => 'btn btn-primary btn-sm pull-right disabled' ,:style=>"margin-right:20px;", 'data-no-turbolink' => true %>
+          <% end%>
+
         </div>
         <div class="row" style="padding:0 0 0 0;">
           <div class="publicacion-container panel">

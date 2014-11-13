@@ -33,21 +33,13 @@
 				<h3 class="page-header">Selecciona el lugar donde te gustaria llegar</h3>
 				<div class="row">
 					<%= label_tag "Donde quieres bajar" %>
-					<%= f.select :point,  options_for_select((@points.map {|point| [point[:desc],point.to_s] })), {} ,{:class => "form-control"} %>
+					<%= f.select :point,  options_for_select((@points.map {|point| [point[:desc],point.to_json] })), {} ,{:class => "form-control"} %>
 
 				</div>
 				<div class="row">
 				          
 				            <div id="map" style='height: 250px;'></div>
 				                   
-				          <script type="text/javascript">
-				            handler = Gmaps.build('Google');
-				            handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-				              markers = handler.addMarkers(<%=raw @hash.to_json %>);
-				              handler.bounds.extendWith(markers);
-				              handler.fitMapToBounds();
-				            })
-				          </script>
 				</div>
 
 			</div><!-- end location -->
@@ -67,10 +59,16 @@
 					<div class="busTipo">
 						<%= f.hidden_field :amount, value: 0, id:"seleccionados" %>
 						<table>
+						<thead>
+							<tr class="busHead">
+								<th colspan="4"></th>
+							</tr>
+						</thead>
 						<% (1..@bus.seats).each do |i| %>
 
 							<% if (i-1) % 4 == 0 %>
-							<tr class="centering">
+							<tbody>
+							<tr class="centering busBody">
 							<% end %>
 								<td>
 									<% if @asientos_no_disponibles.include?(i) %>
@@ -78,13 +76,20 @@
 									<% else %>
 										<a href="#" id="asiento<%=i%>" onclick="seleccionar('asiento<%= i%>');event.preventDefault();" value="false"><%=image_tag "asientoSinSeleccionar.png"%></a>
 									<% end %>
+									<br>
 									<%=i%>
 									<input type="hidden" id="asiento<%=i%>tag"value="<%=i%>">
 								</td>	
 							<% if i-1 % 4 == 3 %>
 								</tr>
+								</tbody>
 							<% end %>
 						<% end %>
+						<tfoot>
+							<tr class="busFoot">
+								<td colspan="4"></td>
+							</tr>
+						</tfoot>
 						</table>
 					</div>	
 				</div>
@@ -120,12 +125,29 @@
 <% end %>
 
 <script type="text/javascript">
+    var handler = Gmaps.build('Google');
+    handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+      markers = handler.addMarkers(<%=raw @hash.to_json %>);
+      handler.bounds.extendWith(markers);
+      handler.fitMapToBounds();
+    })
+
 	function load(){
-		send = $("#enviar")
+		var send = $("#enviar");
 		send.attr('disabled','disabled');
 		send.html('Enviando <i class="fa fa-spinner fa-spin"></i>');
 		$('form#new_reserva').submit();
 		
 	}
+
+
+	$("#reserva_point").on("change", function(e){
+		var optionSelected = $(this).find("option:selected");
+     	var value  = optionSelected.val();
+		var point = jQuery.parseJSON(value);
+
+		handler.getMap().panTo(new google.maps.LatLng(point.lat, point.long));
+		handler.getMap().setZoom(16);
+	})
 
 </script>
