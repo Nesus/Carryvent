@@ -5,12 +5,12 @@
 <div class="container">
   <!-- Perfil -->
   <div class="container">
-  	<div class="row">
-  		<div class="col-md-8">
-  			<div class="panel-body">
-  				<div class="row">
-  					<div class="col-xs-12 col-sm-4 text-center">
-  						<img src="
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12 col-sm-4 text-center">
+              <img src="
                 <% if @user.foto.present? %>
                   <%= @user.foto.url %>
                 <% else %>
@@ -19,10 +19,10 @@
               " alt="" class="center-block img-responsive">
             </div><!--/col-->       
             <div class="col-xs-12 col-sm-8">
-						  <div> 
-								
-							</div>
-						  <h2><%= @user.nombre %></h2>
+              <div> 
+                
+              </div>
+              <h2><%= @user.nombre %></h2>
               <% if @user.city %>
                 <p><b>Ciudad: </b> <%= @user.city.name + ", " + @user.region.name  %> </p>
               <% end %>
@@ -59,27 +59,32 @@
                         </div>
               <% end %>
               <% if @user == current_user %>
-						    <a href="<%=edit_user_registration_path(@user)%>" class="btn btn-primary" style="float:right;">
+                <a href="<%=edit_user_registration_path(@user)%>" class="btn btn-primary" style="float:right;">
                 <i class="glyphicon glyphicon-edit"></i> 
                 Editar Perfil </a>
               <% end %>
               <% if @gustos.length > 0 %>
-  						  <p><strong>Gustos: </strong>
+                <p><strong>Gustos: </strong>
                   <% @gustos.each do |g| %>
                     <span class="label label-info tags"><%= g %></span> 
                   <% end %>
-  						  </p>
+                </p>
               <% end %>
             </div><!--/col-->            
           </div><!--/row-->
-    		</div><!--/panel-body-->
-    	</div>
+        </div><!--/panel-body-->
+      </div>
     </div>
     <!-- Eventos Asistidos -->
     <div class="row">
       <div class="col-md-12">
         <div class="col-md-6 col-xs-12">
-          <h4>Eventos Asistidos</h4>
+        <div class="panel panel-default">
+          <div class="panel-heading">
+          <h4 class="panel-title">Eventos Asistidos</h4>
+          </div>
+          <% if @userEventosAceptados.count != 0 %>
+          <div class="panel-body">
           <div  class="asistidos-container" >
             <table class="table table-striped">
               <thead>
@@ -124,18 +129,28 @@
               </tbody>
             </table>
           </div>
+          <% else %>
+            <p>No ha asistido a eventos hasta el momento!</p>
+          <% end %>
+          </div>
         </div>
         <div class="col-md-6 col-xs-12">
-          <h4>Carpools Publicados</h4>
-          <table class="table table-striped">
-              <thead>
-                <tr>
-                  <td>Nombre</td>
-                  <td>Fecha</td>
-                  <td>Tipo Vehiculo</td>
-                  <td> </td>
-                </tr>
-              </thead>
+           <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Carpools Publicados</h4>
+            </div>
+            <% if @userCarpools.count != 0 %>
+              <div class="panel-body">
+              <table class="table table-striped">
+              
+                <thead>
+                  <tr>
+                    <td>Nombre</td>
+                    <td>Fecha</td>
+                    <td>Tipo Vehiculo</td>
+                    <td> </td>
+                  </tr>
+                </thead>            
               <tbody>
                 <% @userCarpools.each do |c| %>
                   <tr>
@@ -147,11 +162,17 @@
                     <% else %>
                       <td>Ver los detalles</td>
                     <% end %>
-
                   </tr>
                 <% end %>
               </tbody>
-            </table>
+              </table>
+              
+            <% else %>
+              <p>No tiene publicaciones de carpool hasta el momento!</p>
+            <% end %>
+            </div>
+          </div>
+        </div>
         </div>
       </div>
     </div>
