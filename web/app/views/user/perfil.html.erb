@@ -78,13 +78,13 @@
     <!-- Eventos Asistidos -->
     <div class="row">
       <div class="col-md-12">
-        <div class="col-md-6 col-xs-12">
+        <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading">
-          <h4 class="panel-title">Eventos Asistidos</h4>
+            <h4 class="panel-title">Eventos Asistidos</h4>
           </div>
+
           <% if @userEventosAceptados.count != 0 %>
-          <div class="panel-body">
           <div  class="asistidos-container" >
             <table class="table table-striped">
               <thead>
@@ -130,25 +130,28 @@
             </table>
           </div>
           <% else %>
-            <p>No ha asistido a eventos hasta el momento!</p>
+            <div class="panel-body">
+              <strong>¡No ha asistido a eventos hasta el momento!</strong>
+            </div>
           <% end %>
-          </div>
+          
         </div>
-        <div class="col-md-6 col-xs-12">
+      </div>
+        <div class="col-md-6">
            <div class="panel panel-default">
             <div class="panel-heading">
                 <h4 class="panel-title">Carpools Publicados</h4>
             </div>
             <% if @userCarpools.count != 0 %>
-              <div class="panel-body">
+              
               <table class="table table-striped">
               
                 <thead>
                   <tr>
-                    <td>Nombre</td>
-                    <td>Fecha</td>
-                    <td>Tipo Vehiculo</td>
-                    <td> </td>
+                    <th>Nombre</th>
+                    <th>Fecha</th>
+                    <th>Tipo Vehiculo</th>
+                    <th> </th>
                   </tr>
                 </thead>            
               <tbody>
@@ -168,9 +171,11 @@
               </table>
               
             <% else %>
-              <p>No tiene publicaciones de carpool hasta el momento!</p>
+              <div class="panel-body">
+                <p>No tiene publicaciones de carpool hasta el momento!</p>
+              </div>
             <% end %>
-            </div>
+            
           </div>
         </div>
         </div>
