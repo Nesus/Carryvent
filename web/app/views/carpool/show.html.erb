@@ -79,8 +79,11 @@
           </div>
 
             <div class="row">
-                    <div  class="comment-container" >
-                        <h4>Comentarios</h4>
+                    <div  class="panel panel-default" >
+                      <div class="panel-heading">
+                        <h4 class="panel-title">Deja tus consultas y comentarios</h4>
+                      </div>
+                      <div class="panel-body">
                         <div class="comments">
                           <div class="first-comment"></div>
                             <%= render :partial => 'comments/comment', :collection => @comments, :as => :comment %>
@@ -88,6 +91,7 @@
                         <div class="comment-send"> 
                             <%= render :partial => 'comments/form', :locals => { :comment => @new_comment } %>
                         </div>
+                      </div>
                     </div>
                 </div>
             </div>
