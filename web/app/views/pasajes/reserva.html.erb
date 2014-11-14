@@ -24,16 +24,16 @@
 		<div class="col-sm-6">
 			<div class="row" style="padding:0 0 0 0;">
 				<h3 class="page-header">Información</h3>
-				<p><b>Precio:</b> <%= @bus.price %> Pesos </p>
+				<p><b>Precio:</b> <%= number_to_currency(@bus.price, unit: "$", format: "%u %n") %> Pesos </p>
 				<p><b>Hora de salida:</b> <%= @bus.time.strftime("%H:%M:%S") %></p>
 				<p><b>Lugar de salida </b><%= @bus.from%> </p>
 			</div>
 
 			<div class="row">
-				<h3 class="page-header">Selecciona el lugar donde te gustaria llegar</h3>
+				<h3 class="page-header">Selecciona el lugar donde te  gustaría que te dejemos</h3>
 				<div class="row">
 					<%= label_tag "Donde quieres bajar" %>
-					<%= f.select :point,  options_for_select((@points.map {|point| [point[:desc],point.to_json] })), {} ,{:class => "form-control"} %>
+					<%= f.select :point,  options_for_select((@points.map {|point| [point[:desc],point.to_s, {"data-filter" => point.to_json}] })), {} ,{:class => "form-control"} %>
 
 				</div>
 				<div class="row">
@@ -143,7 +143,7 @@
 
 	$("#reserva_point").on("change", function(e){
 		var optionSelected = $(this).find("option:selected");
-     	var value  = optionSelected.val();
+     	var value  = optionSelected.attr('data-filter');
 		var point = jQuery.parseJSON(value);
 
 		handler.getMap().panTo(new google.maps.LatLng(point.lat, point.long));
